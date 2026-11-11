@@ -1,0 +1,303 @@
+{
+  "meta": {
+    "title": "Smetachi — remont smetasi 2 daqiqada",
+    "description": "Xona o‘lchamlarini kiriting — material ro‘yxati, so‘mdagi narx oralig‘i va usta ish haqini bir zumda oling. Remontni boshlashdan oldin byudjetni aniq biling va usta aytgan narxni tekshiring."
+  },
+  "common": {
+    "cta": "Bepul hisoblash",
+    "login": "Kirish",
+    "sample": "Namuna smetani ko‘rish",
+    "noSignup": "Ro‘yxatdan o‘tish shart emas"
+  },
+  "nav": {
+    "features": "Imkoniyatlar",
+    "calculators": "Kalkulyatorlar",
+    "pricing": "Narxlar",
+    "faq": "FAQ",
+    "home": "Bosh sahifa",
+    "openMenu": "Menyuni ochish",
+    "closeMenu": "Menyuni yopish",
+    "toggleTheme": "Mavzuni almashtirish",
+    "language": "Tilni tanlash"
+  },
+  "drawer": {
+    "menu": "Menyu",
+    "theme": "Mavzu",
+    "dark": "Qorong‘i",
+    "light": "Yorug‘",
+    "language": "Til",
+    "hints": {
+      "features": "Smetachi nima qila oladi",
+      "calculators": "Kafel, bo‘yoq, laminat va boshqalar",
+      "pricing": "Bepul, Plus va Pro tariflar",
+      "faq": "Ko‘p beriladigan savollar"
+    }
+  },
+  "hero": {
+    "badge": "Yangi",
+    "pill": "Toshkent do‘kon narxlari · noyabr 2026",
+    "titleLead": "Remontingiz qancha turadi?",
+    "titleTail": "2 daqiqada biling",
+    "lead": "Xona o‘lchamlarini kiriting — material ro‘yxati, so‘mdagi narx oralig‘i va usta ish haqini bir zumda oling. Remontni boshlashdan oldin byudjetni aniq biling va usta aytgan narxni tekshiring.",
+    "trust": ["Ro‘yxatdan o‘tish shart emas", "Narxlar so‘mda, manbasi bilan", "3 ta smeta bepul"]
+  },
+  "shot": {
+    "alt": "Smetachi ilovasi: yotoqxona smetasi namunasi",
+    "url": "app.smetachi.uz/smeta/yotoqxona",
+    "nav": ["Smetalarim", "Yangi smeta", "Kalkulyatorlar", "Usta narxini tekshirish"],
+    "settings": "Sozlamalar",
+    "breadcrumb": "Smetalarim / Yotoqxona",
+    "title": "Yotoqxona · 4,2 × 3,5 m",
+    "pricesBadge": "Narxlar noyabr 2026",
+    "meta": "O‘rta sifat · Toshkent",
+    "share": "Ulashish",
+    "pdf": "PDF yuklab olish",
+    "kpis": [
+      { "label": "Jami byudjet", "value": "13,4–16,3 mln", "note": "so‘m · 10% zaxira bilan" },
+      { "label": "Materiallar", "value": "6,5 mln", "note": "14 pozitsiya" },
+      { "label": "Usta ish haqi", "value": "8,0 mln", "note": "7 ish turi" },
+      { "label": "Taxminiy muddat", "value": "15–21 kun", "note": "2 usta bilan" }
+    ],
+    "materials": "Materiallar",
+    "search": "Qidirish",
+    "columns": ["Nomi", "Miqdori", "Birlik narxi", "Jami"],
+    "rows": [
+      ["Laminat 33-sinf, 8 mm", "16,2 m²", "110 000", "1 782 000"],
+      ["Knauf Rotband, 30 kg", "13 qop", "48 500", "630 500"],
+      ["Gipsokarton Knauf, 12,5 mm", "6 list", "59 500", "357 000"],
+      ["Yuviladigan bo‘yoq, 25 kg", "1 chelak", "465 000", "465 000"],
+      ["Plintus", "17 m", "25 000", "425 000"]
+    ],
+    "breakdown": "Xarajat taqsimoti",
+    "donutValue": "13,4",
+    "donutCaption": "mln so‘mdan",
+    "legend": [["Pol", "34%"], ["Devorlar", "28%"], ["Shift", "14%"], ["Elektr", "12%"], ["Boshqa", "12%"]],
+    "floatCheck": {
+      "title": "Usta narxi tekshirildi",
+      "subtitle": "Hammom · 6 200 000 so‘m",
+      "market": "Bozor: 4,1–6,8 mln",
+      "delta": "+18%"
+    },
+    "floatSaved": {
+      "title": "Smeta saqlandi",
+      "subtitle": "PDF tayyor · 2 sahifa"
+    }
+  },
+  "phone": {
+    "alt": "Telefonda yotoqxona smetasi namunasi",
+    "caption": "Yotoqxona · 14,7 m²",
+    "label": "Jami byudjet",
+    "value": "13,4–16,3 mln",
+    "note": "so‘m · narxlar noyabr 2026",
+    "kpis": [["Materiallar", "6,5 mln"], ["Usta ish haqi", "8,0 mln"]],
+    "rows": [["Laminat · 16,2 m²", "1 782 000"], ["Rotband · 13 qop", "630 500"], ["Bo‘yoq · 1 chelak", "465 000"]],
+    "cta": "PDF yuklab olish"
+  },
+  "sources": {
+    "caption": "Narxlar shu ochiq manbalardan yig‘ilgan · noyabr 2026"
+  },
+  "problem": {
+    "eyebrow": "Muammo",
+    "stat": "+42%",
+    "statCaption": "Shartli misol: reja 48 mln → amalda 68,4 mln",
+    "title": "Smetasiz boshlangan remont osongina rejadan qimmatga tushadi",
+    "lead": "Sabab — material “ko‘z bilan” olinadi, usta narxi bozor bilan solishtirilmaydi, mayda xarajatlar esa hisobga kirmay qoladi.",
+    "disclaimer": "Raqamlar tushuntirish uchun shartli misol — statistika emas.",
+    "card": {
+      "title": "Shartli misol: 2 xonali kvartira",
+      "planned": "Rejalashtirilgan",
+      "plannedValue": "48,0 mln so‘m",
+      "actual": "Haqiqatda ketgan",
+      "actualValue": "68,4 mln so‘m",
+      "reasons": [
+        ["Material yetmay qoldi, qayta xarid", "+8,6 mln"],
+        ["Usta ish jarayonida narxni oshirdi", "+7,2 mln"],
+        ["Hisobga olinmagan mayda xarajatlar", "+4,6 mln"]
+      ],
+      "solution": "Smetachi har bir xarajatni oldindan ro‘yxatga chiqaradi"
+    }
+  },
+  "features": {
+    "eyebrow": "Imkoniyatlar",
+    "title": "Taxmin emas — har bir so‘m hisobda",
+    "lead": "Smetachi o‘lchamdan tortib usta narxigacha hamma narsani bitta joyda hisoblaydi.",
+    "materials": {
+      "title": "Aniq material miqdori",
+      "text": "Eshik va derazalar ayiriladi, kesish chiqindisi va 10% zaxira qo‘shiladi. Do‘konga ro‘yxat bilan borasiz.",
+      "formula": "14,7 m² × 1,10 = 16,2 m²",
+      "listTitle": "Hammom · pol va devor",
+      "listCount": "4 pozitsiya",
+      "reserve": "+10%",
+      "items": [["Kafel 30×60", "168 dona"], ["Kafel yelimi, 25 kg", "9 qop"], ["Zatirka, 2 kg", "3 qop"], ["Gidroizolyatsiya", "15 kg"]]
+    },
+    "check": {
+      "title": "Usta narxini tekshirish",
+      "text": "Usta aytgan summani bozor oralig‘i bilan solishtiring.",
+      "label": "Usta aytgan narx · hammom",
+      "price": "6 200 000 so‘m",
+      "you": "Siz",
+      "axis": ["4,1 mln", "5,2 mln", "6,8 mln"],
+      "verdict": "O‘rtachadan 18% qimmat"
+    },
+    "prices": {
+      "title": "So‘mdagi real narxlar",
+      "text": "Toshkent do‘konlari narxlari — har bir smetada sana va manba bilan.",
+      "header": "Noyabr 2026 · Toshkent",
+      "rows": [["Knauf Rotband, 30 kg", "48 500", "/qop"], ["Laminat 33-sinf", "110 000", "/m²"], ["Gipsokarton Knauf", "59 500", "/list"]]
+    },
+    "pdf": {
+      "title": "PDF smeta",
+      "text": "Bir bosishda ustaga yoki do‘konga yuboring.",
+      "number": "No. 0142",
+      "docTitle": "Smeta · Yotoqxona",
+      "total": "Jami",
+      "totalValue": "14 570 000 so‘m"
+    },
+    "plan": {
+      "title": "Butun kvartira rejasi",
+      "text": "Har bir xona alohida, jami bitta smetada.",
+      "rooms": [["Mehmonxona", "18,2 m²"], ["Yotoqxona", "14,7 m²"], ["Hammom", "4,6 m²"], ["Oshxona", "9,8 m²"], ["Koridor", "6,1 m²"]]
+    },
+    "projects": {
+      "title": "Saqlangan loyihalar",
+      "text": "Smetalar saqlanadi — narx o‘zgarsa, qayta hisoblaysiz.",
+      "items": [
+        { "name": "Chilonzor, 3 xonali", "status": "Tayyor", "range": "48,6–56,2 mln so‘m", "meta": "68 m² · 5 xona · 6-noyabr" },
+        { "name": "Hammomni yangilash", "status": "Qoralama", "range": "9,2–11,4 mln so‘m", "meta": "4,6 m² · 2-noyabr" },
+        { "name": "Oshxona", "status": "Ustaga yuborildi", "range": "12,1–14,0 mln so‘m", "meta": "9,8 m² · 28-oktabr" }
+      ]
+    }
+  },
+  "how": {
+    "eyebrow": "Qanday ishlaydi",
+    "title": "Uch qadam. Ikki daqiqa.",
+    "steps": [
+      { "title": "Xonani tanlang", "text": "Yotoqxona, hammom, oshxona yoki butun kvartira." },
+      { "title": "O‘lchamlarni kiriting", "text": "Maydonlar avtomatik hisoblanadi." },
+      { "title": "Smetani oling", "text": "PDF qiling yoki ustaga yuboring." }
+    ],
+    "rooms": ["Yotoqxona", "Hammom", "Oshxona", "Butun kvartira"],
+    "fields": [["Uzunlik", "4,2"], ["Kenglik", "3,5"], ["Shift", "2,7"]],
+    "unit": "m",
+    "areas": [["Pol maydoni", "14,7 m²"], ["Devorlar", "37,7 m²"]],
+    "totalLabel": "Jami byudjet",
+    "totalValue": "13,4–16,3 mln so‘m",
+    "pdf": "PDF yuklab olish",
+    "send": "Ustaga yuborish"
+  },
+  "calculators": {
+    "eyebrow": "Tezkor kalkulyatorlar",
+    "title": "Bitta material kerakmi? 30 soniya.",
+    "all": "Barcha kalkulyatorlar",
+    "items": {
+      "kafel": { "name": "Kafel", "desc": "Dona, yelim va zatirka", "example": "14,7 m² → 45 dona" },
+      "boyoq": { "name": "Bo‘yoq", "desc": "Kg va chelak, 2 qatlam", "example": "37,7 m² → 15 kg" },
+      "laminat": { "name": "Laminat", "desc": "Upakovka va podlojka", "example": "14,7 m² → 8 upak." },
+      "shtuk": { "name": "Shtukaturka", "desc": "Qatlam qalinligi bo‘yicha qop", "example": "37,7 m² × 15 mm → 19 qop" },
+      "gips": { "name": "Gipsokarton", "desc": "List, profil va shuruplar", "example": "14,7 m² → 6 list" }
+    }
+  },
+  "audience": {
+    "eyebrow": "Kimlar uchun",
+    "title": "Remontni pulni sanab qilmoqchi bo‘lganlar uchun",
+    "pro": "Pro",
+    "items": [
+      { "title": "Yangi uy egalari", "text": "“Korobka” kvartira oldingizmi? Har bir xona bo‘yicha material ro‘yxati va byudjetni ishni boshlashdan oldin biling." },
+      { "title": "Qisman remont", "text": "Faqat hammom yoki oshxonani yangilayapsizmi? Kerakli ishlarnigina tanlang — ortiqcha xarajat smetaga kirmaydi." },
+      { "title": "Ustalar", "text": "Mijozga logotipli PDF smeta bering va narxingizni bozor narxlari bilan asoslang." }
+    ]
+  },
+  "pricing": {
+    "eyebrow": "Narxlar",
+    "title": "Bitta xato xariddan arzonroq",
+    "billingLabel": "To‘lov davri",
+    "monthly": "Oylik",
+    "annual": "Yillik",
+    "discount": "−20%",
+    "popular": "Ommabop",
+    "payments": "Click, Payme, Uzcard va Humo orqali to‘lov · Istalgan vaqtda bekor qilish",
+    "plans": {
+      "free": {
+        "name": "Bepul",
+        "desc": "Bitta xona uchun tekshirib ko‘rish",
+        "unit": "so‘m",
+        "cta": "Bepul boshlash",
+        "price": { "monthly": "0", "annual": "0" },
+        "note": { "monthly": "Har doim bepul", "annual": "Har doim bepul" },
+        "features": ["3 ta smeta", "Barcha tezkor kalkulyatorlar", "So‘mdagi narx oralig‘i"]
+      },
+      "plus": {
+        "name": "Plus",
+        "desc": "To‘liq remont qilayotganlar uchun",
+        "unit": "so‘m / oy",
+        "cta": "Plus’ni tanlash",
+        "price": { "monthly": "39 000", "annual": "31 000" },
+        "note": { "monthly": "Har oy to‘lanadi", "annual": "Yiliga 372 000 so‘m · 96 000 tejaysiz" },
+        "features": ["Cheksiz smeta", "PDF yuklab olish va ulashish", "Usta narxini tekshirish", "Butun kvartira rejasi"]
+      },
+      "pro": {
+        "name": "Pro",
+        "desc": "Ustalar va brigadalar uchun",
+        "unit": "so‘m / oy",
+        "cta": "Pro’ni tanlash",
+        "price": { "monthly": "129 000", "annual": "103 000" },
+        "note": { "monthly": "Har oy to‘lanadi", "annual": "Yiliga 1 236 000 so‘m · 312 000 tejaysiz" },
+        "features": ["Plus’dagi hamma narsa", "Logotipingiz bilan PDF smeta", "Mijozlar bazasi", "O‘z ish narxlaringizni kiritish"]
+      }
+    }
+  },
+  "faq": {
+    "eyebrow": "FAQ",
+    "title": "Ko‘p beriladigan savollar",
+    "lead": "Javob topmadingizmi? <link>Telegram’da yozing</link>.",
+    "items": [
+      {
+        "question": "Smetachi narxlari qanchalik aniq?",
+        "answer": "Narxlar Toshkentdagi ochiq onlayn do‘konlar va e’lon saytlaridan (Uzum Market, Prom.uz, Glotr.uz va boshqalar) olinadi. Har bir smetada narx sanasi ko‘rsatiladi, natija esa bitta raqam emas — oraliq ko‘rinishida beriladi."
+      },
+      {
+        "question": "Faqat Toshkent uchunmi?",
+        "answer": "Hozircha narxlar Toshkent bo‘yicha yig‘ilgan. Boshqa shaharlarda ham foydalanish mumkin, lekin narxlar mahalliy bozordan farq qilishi mumkin — viloyatlar keyinroq qo‘shiladi."
+      },
+      {
+        "question": "Material miqdori qanday hisoblanadi?",
+        "answer": "Devor maydonidan eshik va derazalar ayiriladi, har bir material uchun ishlab chiqaruvchi sarf me’yori olinadi va 10% zaxira qo‘shiladi. Kafel uchun kesish chiqindisi ham hisoblanadi."
+      },
+      {
+        "question": "Usta narxini tekshirish qanday ishlaydi?",
+        "answer": "Usta aytgan summani kiriting. Biz uni shu ish turi va maydon bo‘yicha bozor oralig‘i bilan solishtirib, o‘rtachadan qanchalik farq qilishini ko‘rsatamiz."
+      },
+      {
+        "question": "Bepul tarifda nimalar bor?",
+        "answer": "3 ta smeta, barcha tezkor kalkulyatorlar va so‘mdagi narx oralig‘i. PDF yuklab olish va cheksiz smeta Plus tarifida."
+      },
+      {
+        "question": "Obunani bekor qilsam bo‘ladimi?",
+        "answer": "Ha, istalgan vaqtda bir bosishda. Saqlangan smetalaringiz o‘chmaydi — ularni ko‘rish va PDF sifatida yuklab olish imkoni qoladi."
+      }
+    ]
+  },
+  "finalCta": {
+    "title": "Remontni pulni sanab boshlang",
+    "lead": "Birinchi smeta 2 daqiqa oladi. Ro‘yxatdan o‘tish shart emas.",
+    "secondary": "Tariflarni ko‘rish"
+  },
+  "footer": {
+    "about": "Remont smetasini so‘mda, real bozor narxlari bilan hisoblaydigan kalkulyator.",
+    "copyright": "© 2026 Smetachi · Toshkent",
+    "columns": {
+      "product": {
+        "title": "Mahsulot",
+        "links": { "features": "Imkoniyatlar", "pricing": "Narxlar", "masters": "Ustalar uchun", "updates": "Yangilanishlar" }
+      },
+      "calculators": {
+        "title": "Kalkulyatorlar",
+        "links": { "kafel": "Kafel", "boyoq": "Bo‘yoq", "laminat": "Laminat", "shtuk": "Shtukaturka", "gips": "Gipsokarton" }
+      },
+      "help": {
+        "title": "Yordam",
+        "links": { "faq": "FAQ", "telegram": "Telegram", "privacy": "Maxfiylik siyosati", "terms": "Foydalanish shartlari" }
+      }
+    }
+  }
+}

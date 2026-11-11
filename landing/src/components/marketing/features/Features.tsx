@@ -1,8 +1,8 @@
 import { useTranslations } from 'next-intl';
 import type { ComponentType } from 'react';
-import { Reveal } from '@/components/ui/Reveal';
-import { Section } from '@/components/ui/Section';
-import { SectionHeading } from '@/components/ui/SectionHeading';
+import { Reveal } from '@/components/shared/Reveal';
+import { Section } from '@/components/shared/Section';
+import { SectionHeading } from '@/components/shared/SectionHeading';
 import { ANCHORS } from '@/lib/anchors';
 import { stagger } from '@/lib/motion';
 import { LivePricesCard } from './cards/LivePricesCard';

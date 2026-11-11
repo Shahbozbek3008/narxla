@@ -1,5 +1,5 @@
-import clsx from 'clsx';
 import type { ReactNode } from 'react';
+import { cn } from '@/lib/utils';
 
 type FeatureCardProps = {
   layout?: 'stack' | 'grid';
@@ -13,14 +13,14 @@ const LAYOUT = {
 };
 
 export const featureTitleClass = (large = false) =>
-  clsx('font-display font-semibold tracking-[-0.02em]', large ? 'text-[22px]/[30px]' : 'text-xl/7');
+  cn('font-display font-semibold tracking-[-0.02em]', large ? 'text-[22px]/[30px]' : 'text-xl/7');
 
 export const featureTextClass = 'mt-2 text-[15px]/6 text-pretty text-fg-2';
 
 export function FeatureCard({ layout = 'stack', className, children }: FeatureCardProps) {
   return (
     <article
-      className={clsx(
+      className={cn(
         'sheen h-full rounded-2xl border border-line bg-surface p-6 shadow-(--shadow-card) transition-[translate,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-(--shadow-lift)',
         LAYOUT[layout],
         className,

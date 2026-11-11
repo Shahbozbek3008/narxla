@@ -1,6 +1,6 @@
-import clsx from 'clsx';
 import type { ReactNode } from 'react';
 import { Container } from './Container';
+import { cn } from '@/lib/utils';
 
 type SectionProps = {
   id?: string;
@@ -19,7 +19,7 @@ export function Section({ id, tone = 'base', bordered = false, spacing = 'both',
   return (
     <section
       id={id}
-      className={clsx(
+      className={cn(
         SPACING[spacing],
         tone === 'alt' && 'border-y border-line bg-bg-2',
         bordered && 'border-t border-line',

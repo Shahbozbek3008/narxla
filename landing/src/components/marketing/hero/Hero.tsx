@@ -1,11 +1,12 @@
-import { Check, ChevronRight } from 'lucide-react';
+import { ArrowRight, Check, ChevronRight } from 'lucide-react';
 import { useTranslations } from 'next-intl';
-import { ButtonLink } from '@/components/ui/ButtonLink';
-import { Container } from '@/components/ui/Container';
-import { CtaGroup } from '@/components/ui/CtaGroup';
-import { Reveal } from '@/components/ui/Reveal';
+import { Container } from '@/components/shared/Container';
+import { CtaGroup } from '@/components/shared/CtaGroup';
+import { Reveal } from '@/components/shared/Reveal';
+import { Button } from '@/components/ui/button';
+import { Link } from '@/i18n/navigation';
 import { ANCHORS, toHash } from '@/lib/anchors';
-import { appLinks } from '@/lib/config';
+import { routes } from '@/lib/routes';
 import { ProductShot } from './ProductShot';
 import { SourcesStrip } from './SourcesStrip';
 
@@ -51,12 +52,15 @@ export function Hero() {
 
         <Reveal delay={330} className="mt-8 max-sm:w-full">
           <CtaGroup>
-            <ButtonLink href={appLinks.newEstimate} arrow>
-              {tCommon('cta')}
-            </ButtonLink>
-            <ButtonLink href={appLinks.sample} variant="secondary">
-              {tCommon('sample')}
-            </ButtonLink>
+            <Button asChild size="xl">
+              <Link href={routes.newEstimate}>
+                {tCommon('cta')}
+                <ArrowRight size={16} strokeWidth={1.75} aria-hidden />
+              </Link>
+            </Button>
+            <Button asChild variant="secondary" size="xl">
+              <Link href={routes.demo}>{tCommon('sample')}</Link>
+            </Button>
           </CtaGroup>
         </Reveal>
 

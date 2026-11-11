@@ -1,6 +1,6 @@
-import clsx from 'clsx';
 import { Check } from 'lucide-react';
 import { useTranslations } from 'next-intl';
+import { cn } from '@/lib/utils';
 
 type Pair = [label: string, value: string];
 
@@ -14,16 +14,16 @@ export function RoomPreview() {
 
   return (
     <div className="grid grid-cols-2 gap-2">
-      <div className={clsx(CHIP, 'flex items-center justify-between border-accent bg-accent-soft font-medium text-accent-text')}>
+      <div className={cn(CHIP, 'flex items-center justify-between border-accent bg-accent-soft font-medium text-accent-text')}>
         {selected}
         <Check size={14} strokeWidth={2} />
       </div>
       {rooms.map((room) => (
-        <div key={room} className={clsx(CHIP, 'border-line text-fg-2')}>
+        <div key={room} className={cn(CHIP, 'border-line text-fg-2')}>
           {room}
         </div>
       ))}
-      <div className={clsx(CHIP, 'border-dashed border-line-2 text-fg-2')}>{flat}</div>
+      <div className={cn(CHIP, 'border-dashed border-line-2 text-fg-2')}>{flat}</div>
     </div>
   );
 }
@@ -40,7 +40,7 @@ export function DimensionsPreview() {
           <div key={label}>
             <div className="mb-1 text-[11px] text-fg-3">{label}</div>
             <div
-              className={clsx(
+              className={cn(
                 'flex h-9 items-center justify-between rounded-[10px] border bg-surface-2 px-2.5',
                 index === 0 ? 'border-ring shadow-[0_0_0_3px_var(--accent-soft)]' : 'border-line-2',
               )}
@@ -71,8 +71,8 @@ export function EstimatePreview() {
       <div className="text-xs/4 text-fg-2">{t('totalLabel')}</div>
       <div className="font-display text-[26px]/8 font-semibold tracking-[-0.025em] text-accent-text">{t('totalValue')}</div>
       <div className="grid grid-cols-2 gap-2">
-        <span className={clsx(ACTION, 'gloss bg-accent font-semibold text-accent-ink')}>{t('pdf')}</span>
-        <span className={clsx(ACTION, 'border border-line-2 font-medium')}>{t('send')}</span>
+        <span className={cn(ACTION, 'gloss bg-accent font-semibold text-accent-ink')}>{t('pdf')}</span>
+        <span className={cn(ACTION, 'border border-line-2 font-medium')}>{t('send')}</span>
       </div>
     </div>
   );

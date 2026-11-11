@@ -1,11 +1,11 @@
-import clsx from 'clsx';
 import { useTranslations } from 'next-intl';
-import { Grow } from '@/components/ui/Grow';
-import { Reveal } from '@/components/ui/Reveal';
-import { Section } from '@/components/ui/Section';
-import { SectionHeading } from '@/components/ui/SectionHeading';
+import { Grow } from '@/components/shared/Grow';
+import { Reveal } from '@/components/shared/Reveal';
+import { Section } from '@/components/shared/Section';
+import { SectionHeading } from '@/components/shared/SectionHeading';
 import { stagger } from '@/lib/motion';
 import { DimensionsPreview, EstimatePreview, RoomPreview } from './StepPreviews';
+import { cn } from '@/lib/utils';
 
 type Step = { title: string; text: string };
 
@@ -32,7 +32,7 @@ export function HowItWorks() {
               <li key={step.title}>
                 <Reveal delay={stagger(index, 120)} className="flex flex-col items-center gap-5 text-center">
                   <span
-                    className={clsx(
+                    className={cn(
                       'relative grid size-8 place-items-center rounded-full font-mono text-xs font-semibold',
                       index === 0
                         ? 'gloss bg-accent text-accent-ink shadow-[0_0_0_6px_var(--bg),0_0_24px_var(--glow)]'

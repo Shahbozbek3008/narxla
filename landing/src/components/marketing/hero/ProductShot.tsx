@@ -1,13 +1,13 @@
 'use client';
 
-import clsx from 'clsx';
 import { Check, ShieldCheck } from 'lucide-react';
 import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import { useTranslations } from 'next-intl';
-import { RangeScale } from '@/components/ui/RangeScale';
-import { Reveal } from '@/components/ui/Reveal';
+import { RangeScale } from '@/components/shared/RangeScale';
+import { Reveal } from '@/components/shared/Reveal';
 import { PhoneMockup } from './PhoneMockup';
 import { ShotDashboard } from './ShotDashboard';
+import { cn } from '@/lib/utils';
 
 const MAX_TILT = 10;
 const TILT_SCROLL_RATIO = 30;
@@ -47,10 +47,10 @@ export function ProductShot() {
         </motion.div>
       </div>
 
-      <Reveal kind="pop" delay={1150} className={clsx(FLOAT, 'bottom-16 left-0 w-72')} aria-hidden>
-        <motion.div className={clsx(FLOAT_CARD, 'rounded-2xl p-4')} style={{ y: floatSlow }}>
+      <Reveal kind="pop" delay={1150} className={cn(FLOAT, 'bottom-16 left-0 w-72')} aria-hidden>
+        <motion.div className={cn(FLOAT_CARD, 'rounded-2xl p-4')} style={{ y: floatSlow }}>
           <div className="flex items-center gap-2.5">
-            <span className={clsx(FLOAT_ICON, 'rounded-[9px] bg-accent-soft text-accent-text')}>
+            <span className={cn(FLOAT_ICON, 'rounded-[9px] bg-accent-soft text-accent-text')}>
               <ShieldCheck size={16} strokeWidth={1.5} />
             </span>
             <span className="flex flex-col">
@@ -68,12 +68,12 @@ export function ProductShot() {
         </motion.div>
       </Reveal>
 
-      <Reveal kind="pop" delay={1300} className={clsx(FLOAT, 'top-30 right-0')} aria-hidden>
+      <Reveal kind="pop" delay={1300} className={cn(FLOAT, 'top-30 right-0')} aria-hidden>
         <motion.div
-          className={clsx(FLOAT_CARD, 'flex items-center gap-3 rounded-[14px] py-3 pr-4 pl-3')}
+          className={cn(FLOAT_CARD, 'flex items-center gap-3 rounded-[14px] py-3 pr-4 pl-3')}
           style={{ y: floatFast }}
         >
-          <span className={clsx(FLOAT_ICON, 'rounded-full bg-success-soft text-success')}>
+          <span className={cn(FLOAT_ICON, 'rounded-full bg-success-soft text-success')}>
             <Check size={16} strokeWidth={2} />
           </span>
           <span className="flex flex-col">

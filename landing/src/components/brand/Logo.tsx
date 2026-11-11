@@ -1,5 +1,5 @@
-import clsx from 'clsx';
 import { BRAND_NAME } from '@/lib/config';
+import { cn } from '@/lib/utils';
 
 const LOGO_PATH =
   'M16.5 6.5h-7A2.5 2.5 0 0 0 7 9v.5A2.5 2.5 0 0 0 9.5 12h5a2.5 2.5 0 0 1 2.5 2.5v.5a2.5 2.5 0 0 1-2.5 2.5h-7';
@@ -46,7 +46,7 @@ export function Logo({ size = 28, compact = false }: LogoProps) {
     <span className="flex items-center gap-2.5">
       <LogoMark size={size} />
       <span
-        className={clsx('font-display font-semibold', compact ? 'text-sm' : 'text-[17px] tracking-[-0.02em]')}
+        className={cn('font-display font-semibold', compact ? 'text-sm' : 'text-[17px] tracking-[-0.02em]')}
       >
         {BRAND_NAME}
       </span>

@@ -1,43 +1,50 @@
 import { useTranslations } from 'next-intl';
+import { Logo } from '@/components/brand/Logo';
 import { LocaleMenu } from '@/components/locale/LocaleMenu';
-import { Logo } from '@/components/ui/Logo';
-import { Reveal } from '@/components/ui/Reveal';
+import { Reveal } from '@/components/shared/Reveal';
+import { Link } from '@/i18n/navigation';
 import { ANCHORS, toHash } from '@/lib/anchors';
-import { appLinks, externalLinks } from '@/lib/config';
+import { externalLinks } from '@/lib/config';
 import { stagger } from '@/lib/motion';
+import { routes } from '@/lib/routes';
+
+type FooterLink = {
+  label: string;
+  href: string;
+  kind: 'anchor' | 'route' | 'external';
+};
 
 const PLACEHOLDER_HREF = '#';
 
-const COLUMNS = [
+const anchor = (label: string, href: string): FooterLink => ({ label, href, kind: 'anchor' });
+const route = (label: string, href: string): FooterLink => ({ label, href, kind: 'route' });
+
+const COLUMNS: { title: string; links: FooterLink[] }[] = [
   {
     title: 'product.title',
     links: [
-      { label: 'product.links.features', href: toHash(ANCHORS.features) },
-      { label: 'product.links.pricing', href: toHash(ANCHORS.pricing) },
-      { label: 'product.links.masters', href: toHash(ANCHORS.audience) },
-      { label: 'product.links.updates', href: PLACEHOLDER_HREF },
+      anchor('product.links.features', toHash(ANCHORS.features)),
+      anchor('product.links.pricing', toHash(ANCHORS.pricing)),
+      anchor('product.links.masters', toHash(ANCHORS.audience)),
+      anchor('product.links.updates', PLACEHOLDER_HREF),
     ],
   },
   {
     title: 'calculators.title',
-    links: [
-      { label: 'calculators.links.kafel', href: appLinks.calculator('kafel') },
-      { label: 'calculators.links.boyoq', href: appLinks.calculator('boyoq') },
-      { label: 'calculators.links.laminat', href: appLinks.calculator('laminat') },
-      { label: 'calculators.links.shtuk', href: appLinks.calculator('shtuk') },
-      { label: 'calculators.links.gips', href: appLinks.calculator('gips') },
-    ],
+    links: (['kafel', 'boyoq', 'laminat', 'shtuk', 'gips'] as const).map((id) =>
+      route(`calculators.links.${id}`, routes.calc(id)),
+    ),
   },
   {
     title: 'help.title',
     links: [
-      { label: 'help.links.faq', href: toHash(ANCHORS.faq) },
-      { label: 'help.links.telegram', href: externalLinks.telegram, external: true },
-      { label: 'help.links.privacy', href: PLACEHOLDER_HREF },
-      { label: 'help.links.terms', href: PLACEHOLDER_HREF },
+      anchor('help.links.faq', toHash(ANCHORS.faq)),
+      { label: 'help.links.telegram', href: externalLinks.telegram, kind: 'external' },
+      anchor('help.links.privacy', PLACEHOLDER_HREF),
+      anchor('help.links.terms', PLACEHOLDER_HREF),
     ],
   },
-] as const;
+];
 
 const EXTERNAL_LINK_PROPS = { target: '_blank', rel: 'noreferrer' };
 const LINK = 'text-fg-2 transition-colors duration-150 hover:text-fg';
@@ -46,6 +53,7 @@ const BOTTOM_LINK = 'text-fg-3 transition-colors duration-150 hover:text-fg';
 export function Footer() {
   const t = useTranslations('footer');
   const tColumns = useTranslations('footer.columns');
+  const label = (key: string) => tColumns(key as Parameters<typeof tColumns>[0]);
 
   return (
     <footer className="border-t border-line bg-bg-2">
@@ -57,17 +65,23 @@ export function Footer() {
           </Reveal>
           {COLUMNS.map((column, index) => (
             <Reveal key={column.title} delay={stagger(index + 1, 60)} className="flex flex-col gap-2.5 text-sm/5">
-              <span className="mb-1 font-semibold">{tColumns(column.title)}</span>
-              {column.links.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  className={LINK}
-                  {...('external' in link ? EXTERNAL_LINK_PROPS : {})}
-                >
-                  {tColumns(link.label)}
-                </a>
-              ))}
+              <span className="mb-1 font-semibold">{label(column.title)}</span>
+              {column.links.map((link) =>
+                link.kind === 'route' ? (
+                  <Link key={link.label} href={link.href} className={LINK}>
+                    {label(link.label)}
+                  </Link>
+                ) : (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    className={LINK}
+                    {...(link.kind === 'external' ? EXTERNAL_LINK_PROPS : {})}
+                  >
+                    {label(link.label)}
+                  </a>
+                ),
+              )}
             </Reveal>
           ))}
         </div>

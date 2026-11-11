@@ -1,12 +1,12 @@
 'use client';
 
-import clsx from 'clsx';
 import { Check, ChevronDown, Globe } from 'lucide-react';
 import { useLocale, useTranslations } from 'next-intl';
 import { useEffect, useRef, useState } from 'react';
 import { useChangeLocale } from '@/hooks/useChangeLocale';
 import { routing } from '@/i18n/routing';
 import { LOCALE_LABELS } from '@/lib/locales';
+import { cn } from '@/lib/utils';
 
 type Variant = 'button' | 'link';
 type Placement = 'bottom' | 'top';
@@ -79,7 +79,7 @@ export function LocaleMenu({ variant, placement = 'bottom' }: LocaleMenuProps) {
         role="menu"
         data-open={open}
         inert={!open}
-        className={clsx(
+        className={cn(
           'sheen invisible absolute right-0 z-60 min-w-[168px] scale-[.97] rounded-[14px] border border-line-2 bg-surface-2 p-1.5 opacity-0 shadow-(--shadow-elev)',
           '[transition:opacity_.2s_ease,translate_.35s_var(--ease-out),scale_.35s_var(--ease-out),visibility_0s_linear_.2s]',
           'data-[open=true]:visible data-[open=true]:translate-y-0 data-[open=true]:scale-100 data-[open=true]:opacity-100 data-[open=true]:delay-0',

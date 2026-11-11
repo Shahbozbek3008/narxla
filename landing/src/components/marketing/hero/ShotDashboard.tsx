@@ -1,7 +1,7 @@
-import clsx from 'clsx';
 import { Calculator, Download, Folder, Plus, Search, Settings, Share2, ShieldCheck } from 'lucide-react';
 import { useTranslations } from 'next-intl';
-import { Logo } from '@/components/ui/Logo';
+import { Logo } from '@/components/brand/Logo';
+import { cn } from '@/lib/utils';
 
 type Kpi = { label: string; value: string; note: string };
 type MaterialRow = [name: string, qty: string, price: string, total: string];
@@ -49,14 +49,14 @@ export function ShotDashboard() {
             return (
               <div
                 key={label}
-                className={clsx(NAV_ITEM, index === 0 ? 'bg-surface-3 font-medium text-fg' : 'text-fg-2')}
+                className={cn(NAV_ITEM, index === 0 ? 'bg-surface-3 font-medium text-fg' : 'text-fg-2')}
               >
                 <Icon size={15} strokeWidth={1.5} />
                 {label}
               </div>
             );
           })}
-          <div className={clsx(NAV_ITEM, 'mt-auto text-fg-2')}>
+          <div className={cn(NAV_ITEM, 'mt-auto text-fg-2')}>
             <Settings size={15} strokeWidth={1.5} />
             {t('settings')}
           </div>
@@ -76,11 +76,11 @@ export function ShotDashboard() {
               </div>
             </div>
             <div className="flex gap-2">
-              <span className={clsx(ACTION, 'border border-line-2 bg-surface font-medium')}>
+              <span className={cn(ACTION, 'border border-line-2 bg-surface font-medium')}>
                 <Share2 size={14} strokeWidth={1.5} />
                 {t('share')}
               </span>
-              <span className={clsx(ACTION, 'gloss bg-accent font-semibold text-accent-ink')}>
+              <span className={cn(ACTION, 'gloss bg-accent font-semibold text-accent-ink')}>
                 <Download size={14} strokeWidth={1.75} />
                 {t('pdf')}
               </span>
@@ -89,10 +89,10 @@ export function ShotDashboard() {
 
           <div className="grid grid-cols-4 gap-3">
             {kpis.map((kpi, index) => (
-              <div key={kpi.label} className={clsx(PANEL, 'p-4')}>
+              <div key={kpi.label} className={cn(PANEL, 'p-4')}>
                 <div className="text-xs/4 text-fg-2">{kpi.label}</div>
                 <div
-                  className={clsx(
+                  className={cn(
                     'mt-2 font-display text-[22px]/7 font-semibold tracking-[-0.02em] whitespace-nowrap tabular-nums',
                     index === 0 && 'text-accent-text',
                   )}
@@ -105,7 +105,7 @@ export function ShotDashboard() {
           </div>
 
           <div className="grid flex-1 grid-cols-[minmax(0,1.9fr)_minmax(0,1fr)] gap-3">
-            <div className={clsx(PANEL, 'overflow-hidden')}>
+            <div className={cn(PANEL, 'overflow-hidden')}>
               <div className="flex items-center justify-between border-b border-line px-4 py-3">
                 <span className="text-[13px] font-semibold">{t('materials')}</span>
                 <span className="flex h-7 w-45 items-center gap-1.5 rounded-lg border border-line bg-surface-2 px-2.5 text-xs text-fg-3">
@@ -113,15 +113,15 @@ export function ShotDashboard() {
                   {t('search')}
                 </span>
               </div>
-              <div className={clsx(TABLE_ROW, 'py-2 text-[11px]/4 tracking-[0.04em] text-fg-3 uppercase')}>
+              <div className={cn(TABLE_ROW, 'py-2 text-[11px]/4 tracking-[0.04em] text-fg-3 uppercase')}>
                 {columns.map((column, index) => (
-                  <span key={column} className={clsx(index > 0 && 'text-right')}>
+                  <span key={column} className={cn(index > 0 && 'text-right')}>
                     {column}
                   </span>
                 ))}
               </div>
               {rows.map(([name, qty, price, total]) => (
-                <div key={name} className={clsx(TABLE_ROW, 'py-2.5 text-[13px]/5 last:border-b-0')}>
+                <div key={name} className={cn(TABLE_ROW, 'py-2.5 text-[13px]/5 last:border-b-0')}>
                   <span className="truncate">{name}</span>
                   <span className="text-right text-fg-2">{qty}</span>
                   <span className="text-right text-fg-2">{price}</span>
@@ -130,7 +130,7 @@ export function ShotDashboard() {
               ))}
             </div>
 
-            <div className={clsx(PANEL, 'flex flex-col gap-4 p-4')}>
+            <div className={cn(PANEL, 'flex flex-col gap-4 p-4')}>
               <span className="text-[13px] font-semibold">{t('breakdown')}</span>
               <div className="relative mx-auto size-33 rounded-full bg-[conic-gradient(var(--cat-pol)_0_34%,var(--cat-devor)_34%_62%,var(--cat-shift)_62%_76%,var(--cat-elektr)_76%_88%,var(--surface-3)_88%_100%)]">
                 <div className="absolute inset-4.5 grid place-items-center rounded-full bg-surface text-center">
@@ -143,7 +143,7 @@ export function ShotDashboard() {
               <div className="flex flex-col gap-2 text-xs/4 tabular-nums">
                 {legend.map(([name, share], index) => (
                   <div key={name} className="flex items-center gap-2">
-                    <span className={clsx('size-2 rounded-[2px]', LEGEND_SWATCHES[index])} />
+                    <span className={cn('size-2 rounded-[2px]', LEGEND_SWATCHES[index])} />
                     <span className="text-fg-2">{name}</span>
                     <span className="ml-auto">{share}</span>
                   </div>

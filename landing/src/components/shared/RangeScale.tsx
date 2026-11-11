@@ -1,4 +1,4 @@
-import clsx from 'clsx';
+import { cn } from '@/lib/utils';
 
 type Size = 'sm' | 'md';
 
@@ -25,10 +25,10 @@ export function RangeScale({ marker, label, size = 'md', ring = 'surface', class
   const position = { left: `${marker}%` };
 
   return (
-    <div className={clsx('relative flex gap-[3px]', track.root, className)} aria-hidden>
-      <span className={clsx('flex-1 bg-success-soft', track.low)} />
+    <div className={cn('relative flex gap-[3px]', track.root, className)} aria-hidden>
+      <span className={cn('flex-1 bg-success-soft', track.low)} />
       <span className="flex-[1.4] bg-success opacity-50" />
-      <span className={clsx('flex-1 bg-danger-soft', track.high)} />
+      <span className={cn('flex-1 bg-danger-soft', track.high)} />
       {label && (
         <span
           className="absolute -top-[22px] -translate-x-1/2 text-[11px]/[14px] font-semibold whitespace-nowrap text-accent-text"
@@ -38,7 +38,7 @@ export function RangeScale({ marker, label, size = 'md', ring = 'surface', class
         </span>
       )}
       <span
-        className={clsx('absolute -top-[5px] w-1 -translate-x-1/2 rounded-[2px] bg-accent', track.marker, RING[ring])}
+        className={cn('absolute -top-[5px] w-1 -translate-x-1/2 rounded-[2px] bg-accent', track.marker, RING[ring])}
         style={position}
       />
     </div>

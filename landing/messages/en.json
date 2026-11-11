@@ -7,7 +7,8 @@
     "cta": "Calculate for free",
     "login": "Log in",
     "sample": "See a sample estimate",
-    "noSignup": "No sign-up required"
+    "noSignup": "No sign-up required",
+    "openApp": "Open the app"
   },
   "nav": {
     "features": "Features",
@@ -29,7 +30,7 @@
     "hints": {
       "features": "What Smetachi can do",
       "calculators": "Tile, paint, laminate and more",
-      "pricing": "Free, Plus and Pro plans",
+      "pricing": "Free, Project and Pro plans",
       "faq": "Frequently asked questions"
     }
   },
@@ -39,12 +40,21 @@
     "titleLead": "How much will your renovation cost?",
     "titleTail": "Find out in 2 minutes",
     "lead": "Enter your room dimensions and instantly get a materials list, a price range in UZS and the cost of labour. Know your budget before the renovation starts and check the price your contractor quotes.",
-    "trust": ["No sign-up required", "Prices in UZS, with sources", "3 estimates for free"]
+    "trust": [
+      "No sign-up required",
+      "Prices in UZS, with sources",
+      "3 estimates for free"
+    ]
   },
   "shot": {
     "alt": "Smetachi app: a sample bedroom estimate",
     "url": "app.smetachi.uz/smeta/yotoqxona",
-    "nav": ["My estimates", "New estimate", "Calculators", "Check a contractor price"],
+    "nav": [
+      "My estimates",
+      "New estimate",
+      "Calculators",
+      "Check a contractor price"
+    ],
     "settings": "Settings",
     "breadcrumb": "My estimates / Bedroom",
     "title": "Bedroom · 4.2 × 3.5 m",
@@ -53,25 +63,92 @@
     "share": "Share",
     "pdf": "Download PDF",
     "kpis": [
-      { "label": "Total budget", "value": "13.4–16.3M", "note": "UZS · incl. 10% reserve" },
-      { "label": "Materials", "value": "6.5M", "note": "14 items" },
-      { "label": "Labour", "value": "8.0M", "note": "7 job types" },
-      { "label": "Estimated time", "value": "15–21 days", "note": "with 2 workers" }
+      {
+        "label": "Total budget",
+        "value": "13.4–16.3M",
+        "note": "UZS · incl. 10% reserve"
+      },
+      {
+        "label": "Materials",
+        "value": "6.5M",
+        "note": "14 items"
+      },
+      {
+        "label": "Labour",
+        "value": "8.0M",
+        "note": "7 job types"
+      },
+      {
+        "label": "Estimated time",
+        "value": "15–21 days",
+        "note": "with 2 workers"
+      }
     ],
     "materials": "Materials",
     "search": "Search",
-    "columns": ["Item", "Qty", "Unit price", "Total"],
+    "columns": [
+      "Item",
+      "Qty",
+      "Unit price",
+      "Total"
+    ],
     "rows": [
-      ["Laminate class 33, 8 mm", "16.2 m²", "110,000", "1,782,000"],
-      ["Knauf Rotband, 30 kg", "13 bags", "48,500", "630,500"],
-      ["Knauf drywall, 12.5 mm", "6 sheets", "59,500", "357,000"],
-      ["Washable paint, 25 kg", "1 bucket", "465,000", "465,000"],
-      ["Skirting board", "17 m", "25,000", "425,000"]
+      [
+        "Laminate class 33, 8 mm",
+        "16.2 m²",
+        "110,000",
+        "1,782,000"
+      ],
+      [
+        "Knauf Rotband, 30 kg",
+        "13 bags",
+        "48,500",
+        "630,500"
+      ],
+      [
+        "Knauf drywall, 12.5 mm",
+        "6 sheets",
+        "59,500",
+        "357,000"
+      ],
+      [
+        "Washable paint, 25 kg",
+        "1 bucket",
+        "465,000",
+        "465,000"
+      ],
+      [
+        "Skirting board",
+        "17 m",
+        "25,000",
+        "425,000"
+      ]
     ],
     "breakdown": "Cost breakdown",
     "donutValue": "13.4",
     "donutCaption": "M UZS and up",
-    "legend": [["Floor", "34%"], ["Walls", "28%"], ["Ceiling", "14%"], ["Electrical", "12%"], ["Other", "12%"]],
+    "legend": [
+      [
+        "Floor",
+        "34%"
+      ],
+      [
+        "Walls",
+        "28%"
+      ],
+      [
+        "Ceiling",
+        "14%"
+      ],
+      [
+        "Electrical",
+        "12%"
+      ],
+      [
+        "Other",
+        "12%"
+      ]
+    ],
     "floatCheck": {
       "title": "Contractor price checked",
       "subtitle": "Bathroom · 6,200,000 UZS",
@@ -89,8 +166,30 @@
     "label": "Total budget",
     "value": "13.4–16.3M",
     "note": "UZS · prices Nov 2026",
-    "kpis": [["Materials", "6.5M"], ["Labour", "8.0M"]],
-    "rows": [["Laminate · 16.2 m²", "1,782,000"], ["Rotband · 13 bags", "630,500"], ["Paint · 1 bucket", "465,000"]],
+    "kpis": [
+      [
+        "Materials",
+        "6.5M"
+      ],
+      [
+        "Labour",
+        "8.0M"
+      ]
+    ],
+    "rows": [
+      [
+        "Laminate · 16.2 m²",
+        "1,782,000"
+      ],
+      [
+        "Rotband · 13 bags",
+        "630,500"
+      ],
+      [
+        "Paint · 1 bucket",
+        "465,000"
+      ]
+    ],
     "cta": "Download PDF"
   },
   "sources": {
@@ -110,9 +209,18 @@
       "actual": "Actually spent",
       "actualValue": "68.4M UZS",
       "reasons": [
-        ["Ran out of material, bought again", "+8.6M"],
-        ["Contractor raised the price mid-job", "+7.2M"],
-        ["Small expenses nobody counted", "+4.6M"]
+        [
+          "Ran out of material, bought again",
+          "+8.6M"
+        ],
+        [
+          "Contractor raised the price mid-job",
+          "+7.2M"
+        ],
+        [
+          "Small expenses nobody counted",
+          "+4.6M"
+        ]
       ],
       "solution": "Smetachi lists every expense up front"
     }
@@ -128,7 +236,24 @@
       "listTitle": "Bathroom · floor and walls",
       "listCount": "4 items",
       "reserve": "+10%",
-      "items": [["Tile 30×60", "168 pcs"], ["Tile adhesive, 25 kg", "9 bags"], ["Grout, 2 kg", "3 bags"], ["Waterproofing", "15 kg"]]
+      "items": [
+        [
+          "Tile 30×60",
+          "168 pcs"
+        ],
+        [
+          "Tile adhesive, 25 kg",
+          "9 bags"
+        ],
+        [
+          "Grout, 2 kg",
+          "3 bags"
+        ],
+        [
+          "Waterproofing",
+          "15 kg"
+        ]
+      ]
     },
     "check": {
       "title": "Check a contractor’s price",
@@ -136,14 +261,34 @@
       "label": "Contractor quote · bathroom",
       "price": "6,200,000 UZS",
       "you": "You",
-      "axis": ["4.1M", "5.2M", "6.8M"],
+      "axis": [
+        "4.1M",
+        "5.2M",
+        "6.8M"
+      ],
       "verdict": "18% above average"
     },
     "prices": {
       "title": "Real prices in UZS",
       "text": "Tashkent store prices — with a date and source in every estimate.",
       "header": "November 2026 · Tashkent",
-      "rows": [["Knauf Rotband, 30 kg", "48,500", "/bag"], ["Laminate class 33", "110,000", "/m²"], ["Knauf drywall", "59,500", "/sheet"]]
+      "rows": [
+        [
+          "Knauf Rotband, 30 kg",
+          "48,500",
+          "/bag"
+        ],
+        [
+          "Laminate class 33",
+          "110,000",
+          "/m²"
+        ],
+        [
+          "Knauf drywall",
+          "59,500",
+          "/sheet"
+        ]
+      ]
     },
     "pdf": {
       "title": "PDF estimate",
@@ -156,15 +301,51 @@
     "plan": {
       "title": "Whole-apartment plan",
       "text": "Every room on its own, the total in a single estimate.",
-      "rooms": [["Living room", "18.2 m²"], ["Bedroom", "14.7 m²"], ["Bathroom", "4.6 m²"], ["Kitchen", "9.8 m²"], ["Hallway", "6.1 m²"]]
+      "rooms": [
+        [
+          "Living room",
+          "18.2 m²"
+        ],
+        [
+          "Bedroom",
+          "14.7 m²"
+        ],
+        [
+          "Bathroom",
+          "4.6 m²"
+        ],
+        [
+          "Kitchen",
+          "9.8 m²"
+        ],
+        [
+          "Hallway",
+          "6.1 m²"
+        ]
+      ]
     },
     "projects": {
       "title": "Saved projects",
       "text": "Estimates are saved — if prices change, just recalculate.",
       "items": [
-        { "name": "Chilonzor, 3-room", "status": "Ready", "range": "48.6–56.2M UZS", "meta": "68 m² · 5 rooms · Nov 6" },
-        { "name": "Bathroom refresh", "status": "Draft", "range": "9.2–11.4M UZS", "meta": "4.6 m² · Nov 2" },
-        { "name": "Kitchen", "status": "Sent to contractor", "range": "12.1–14.0M UZS", "meta": "9.8 m² · Oct 28" }
+        {
+          "name": "Chilonzor, 3-room",
+          "status": "Ready",
+          "range": "48.6–56.2M UZS",
+          "meta": "68 m² · 5 rooms · Nov 6"
+        },
+        {
+          "name": "Bathroom refresh",
+          "status": "Draft",
+          "range": "9.2–11.4M UZS",
+          "meta": "4.6 m² · Nov 2"
+        },
+        {
+          "name": "Kitchen",
+          "status": "Sent to contractor",
+          "range": "12.1–14.0M UZS",
+          "meta": "9.8 m² · Oct 28"
+        }
       ]
     }
   },
@@ -172,14 +353,50 @@
     "eyebrow": "How it works",
     "title": "Three steps. Two minutes.",
     "steps": [
-      { "title": "Choose a room", "text": "Bedroom, bathroom, kitchen or the whole apartment." },
-      { "title": "Enter dimensions", "text": "Areas are calculated automatically." },
-      { "title": "Get your estimate", "text": "Save it as a PDF or send it to a contractor." }
+      {
+        "title": "Choose a room",
+        "text": "Bedroom, bathroom, kitchen or the whole apartment."
+      },
+      {
+        "title": "Enter dimensions",
+        "text": "Areas are calculated automatically."
+      },
+      {
+        "title": "Get your estimate",
+        "text": "Save it as a PDF or send it to a contractor."
+      }
     ],
-    "rooms": ["Bedroom", "Bathroom", "Kitchen", "Whole apartment"],
-    "fields": [["Length", "4.2"], ["Width", "3.5"], ["Ceiling", "2.7"]],
+    "rooms": [
+      "Bedroom",
+      "Bathroom",
+      "Kitchen",
+      "Whole apartment"
+    ],
+    "fields": [
+      [
+        "Length",
+        "4.2"
+      ],
+      [
+        "Width",
+        "3.5"
+      ],
+      [
+        "Ceiling",
+        "2.7"
+      ]
+    ],
     "unit": "m",
-    "areas": [["Floor area", "14.7 m²"], ["Walls", "37.7 m²"]],
+    "areas": [
+      [
+        "Floor area",
+        "14.7 m²"
+      ],
+      [
+        "Walls",
+        "37.7 m²"
+      ]
+    ],
     "totalLabel": "Total budget",
     "totalValue": "13.4–16.3M UZS",
     "pdf": "Download PDF",
@@ -190,11 +407,31 @@
     "title": "Need just one material? 30 seconds.",
     "all": "All calculators",
     "items": {
-      "kafel": { "name": "Tile", "desc": "Pieces, adhesive and grout", "example": "14.7 m² → 45 pcs" },
-      "boyoq": { "name": "Paint", "desc": "Kilograms and buckets, 2 coats", "example": "37.7 m² → 15 kg" },
-      "laminat": { "name": "Laminate", "desc": "Packs and underlay", "example": "14.7 m² → 8 packs" },
-      "shtuk": { "name": "Plaster", "desc": "Bags by layer thickness", "example": "37.7 m² × 15 mm → 19 bags" },
-      "gips": { "name": "Drywall", "desc": "Sheets, profiles and screws", "example": "14.7 m² → 6 sheets" }
+      "kafel": {
+        "name": "Tile",
+        "desc": "Pieces, adhesive and grout",
+        "example": "14.7 m² → 45 pcs"
+      },
+      "boyoq": {
+        "name": "Paint",
+        "desc": "Kilograms and buckets, 2 coats",
+        "example": "37.7 m² → 15 kg"
+      },
+      "laminat": {
+        "name": "Laminate",
+        "desc": "Packs and underlay",
+        "example": "14.7 m² → 8 packs"
+      },
+      "shtuk": {
+        "name": "Plaster",
+        "desc": "Bags by layer thickness",
+        "example": "37.7 m² × 15 mm → 19 bags"
+      },
+      "gips": {
+        "name": "Drywall",
+        "desc": "Sheets, profiles and screws",
+        "example": "14.7 m² → 6 sheets"
+      }
     }
   },
   "audience": {
@@ -202,47 +439,68 @@
     "title": "For people who renovate with their money counted",
     "pro": "Pro",
     "items": [
-      { "title": "New homeowners", "text": "Bought a bare-shell apartment? Know the materials list and budget for every room before work begins." },
-      { "title": "Partial renovation", "text": "Only updating the bathroom or kitchen? Pick just the jobs you need — no extra costs end up in the estimate." },
-      { "title": "Contractors", "text": "Give clients a PDF estimate with your logo and back up your price with market data." }
+      {
+        "title": "New homeowners",
+        "text": "Bought a bare-shell apartment? Know the materials list and budget for every room before work begins."
+      },
+      {
+        "title": "Partial renovation",
+        "text": "Only updating the bathroom or kitchen? Pick just the jobs you need — no extra costs end up in the estimate."
+      },
+      {
+        "title": "Contractors",
+        "text": "Give clients a PDF estimate with your logo and back up your price with market data."
+      }
     ]
   },
   "pricing": {
     "eyebrow": "Pricing",
     "title": "Cheaper than one wrong purchase",
-    "billingLabel": "Billing period",
-    "monthly": "Monthly",
-    "annual": "Yearly",
-    "discount": "−20%",
+    "lead": "No subscription for homeowners — you renovate once, so you pay once. The monthly plan is for contractors only.",
     "popular": "Popular",
-    "payments": "Pay with Click, Payme, Uzcard and Humo · Cancel anytime",
+    "payments": "Pay with Click, Payme, Uzcard or Humo · Cancel Pro anytime",
     "plans": {
       "free": {
         "name": "Free",
-        "desc": "Try it on a single room",
+        "desc": "For planning a renovation",
+        "price": "0",
         "unit": "UZS",
+        "note": "Free forever",
         "cta": "Start for free",
-        "price": { "monthly": "0", "annual": "0" },
-        "note": { "monthly": "Always free", "annual": "Always free" },
-        "features": ["3 estimates", "All quick calculators", "Price ranges in UZS"]
+        "features": [
+          "3 estimates",
+          "25 material calculators",
+          "Contractor quote check",
+          "Price ranges in UZS"
+        ]
       },
-      "plus": {
-        "name": "Plus",
-        "desc": "For full renovations",
-        "unit": "UZS / mo",
-        "cta": "Choose Plus",
-        "price": { "monthly": "39,000", "annual": "31,000" },
-        "note": { "monthly": "Billed monthly", "annual": "372,000 UZS per year · save 96,000" },
-        "features": ["Unlimited estimates", "PDF download and sharing", "Contractor price check", "Whole-apartment plan"]
+      "project": {
+        "name": "Project",
+        "desc": "For a whole-apartment renovation",
+        "price": "49 000",
+        "unit": "UZS",
+        "note": "One-time payment · not a subscription",
+        "cta": "Start a project",
+        "features": [
+          "Everything in Free",
+          "Whole apartment: unlimited rooms and estimates",
+          "PDF download and sharing with contractors",
+          "6 months of price tracking — we alert you on changes"
+        ]
       },
       "pro": {
         "name": "Pro",
         "desc": "For contractors and crews",
+        "price": "129 000",
         "unit": "UZS / mo",
+        "note": "103 000 UZS / mo billed yearly",
         "cta": "Choose Pro",
-        "price": { "monthly": "129,000", "annual": "103,000" },
-        "note": { "monthly": "Billed monthly", "annual": "1,236,000 UZS per year · save 312,000" },
-        "features": ["Everything in Plus", "PDF estimates with your logo", "Client database", "Your own labour rates"]
+        "features": [
+          "Unlimited projects and clients",
+          "PDF estimates with your logo",
+          "Client database",
+          "Your own labour rates"
+        ]
       }
     }
   },
@@ -269,11 +527,11 @@
       },
       {
         "question": "What’s included in the free plan?",
-        "answer": "3 estimates, all quick calculators and price ranges in UZS. PDF download and unlimited estimates come with the Plus plan."
+        "answer": "3 estimates, 25 material calculators, contractor quote checks and price ranges in UZS. Need the whole apartment, PDF and price tracking? The Project plan is a one-time 49 000 UZS."
       },
       {
-        "question": "Can I cancel my subscription?",
-        "answer": "Yes, anytime in one click. Your saved estimates stay — you can still view them and download them as PDF."
+        "question": "Why not a monthly subscription?",
+        "answer": "People renovate once every few years, so homeowners get no subscription. The Project plan is paid once, price tracking runs for 6 months, and your estimates stay available afterwards. Monthly Pro is only for contractors who build estimates every week — cancel anytime."
       }
     ]
   },
@@ -288,15 +546,31 @@
     "columns": {
       "product": {
         "title": "Product",
-        "links": { "features": "Features", "pricing": "Pricing", "masters": "For contractors", "updates": "Updates" }
+        "links": {
+          "features": "Features",
+          "pricing": "Pricing",
+          "masters": "For contractors",
+          "updates": "Updates"
+        }
       },
       "calculators": {
         "title": "Calculators",
-        "links": { "kafel": "Tile", "boyoq": "Paint", "laminat": "Laminate", "shtuk": "Plaster", "gips": "Drywall" }
+        "links": {
+          "kafel": "Tile",
+          "boyoq": "Paint",
+          "laminat": "Laminate",
+          "shtuk": "Plaster",
+          "gips": "Drywall"
+        }
       },
       "help": {
         "title": "Help",
-        "links": { "faq": "FAQ", "telegram": "Telegram", "privacy": "Privacy policy", "terms": "Terms of use" }
+        "links": {
+          "faq": "FAQ",
+          "telegram": "Telegram",
+          "privacy": "Privacy policy",
+          "terms": "Terms of use"
+        }
       }
     }
   }

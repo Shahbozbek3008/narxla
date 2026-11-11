@@ -1,5 +1,5 @@
-import clsx from 'clsx';
 import { useTranslations } from 'next-intl';
+import { cn } from '@/lib/utils';
 
 type Pair = [label: string, value: string];
 
@@ -39,7 +39,7 @@ export function PhoneMockup() {
           </div>
           <div className="flex h-2 gap-0.5 overflow-hidden rounded-[9px]">
             {SEGMENTS.map((segment) => (
-              <span key={segment} className={clsx('h-full', segment)} />
+              <span key={segment} className={cn('h-full', segment)} />
             ))}
           </div>
           <div className="grid grid-cols-2 gap-2">

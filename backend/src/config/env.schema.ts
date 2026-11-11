@@ -1,0 +1,44 @@
+import { z } from 'zod';
+
+const csv = z
+  .string()
+  .default('')
+  .transform((value) =>
+    value
+      .split(',')
+      .map((item) => item.trim())
+      .filter(Boolean),
+  );
+
+const flag = z
+  .enum(['true', 'false'])
+  .default('true')
+  .transform((value) => value === 'true');
+
+export const envSchema = z.object({
+  NODE_ENV: z.enum(['development', 'test', 'production']).default('development'),
+  PORT: z.coerce.number().int().positive().default(4000),
+  DATABASE_URL: z.url(),
+  CORS_ORIGINS: csv,
+  ADMIN_API_KEY: z.string().min(32),
+
+  SCRAPER_ENABLED: flag,
+  SCRAPER_CRON: z.string().default('0 3 * * 1'),
+  SCRAPER_TIMEZONE: z.string().default('Asia/Tashkent'),
+  SCRAPER_USER_AGENT: z.string().min(1),
+  SCRAPER_REQUEST_TIMEOUT_MS: z.coerce.number().int().positive().default(15000),
+  SCRAPER_DEFAULT_DELAY_MS: z.coerce.number().int().nonnegative().default(3000),
+
+  PRICE_FRESH_DAYS: z.coerce.number().int().positive().default(45),
+  PRICE_MIN_SOURCES: z.coerce.number().int().positive().default(3),
+  PRICE_REVIEW_THRESHOLD: z.coerce.number().positive().max(1).default(0.3),
+});
+
+export type Env = z.infer<typeof envSchema>;
+
+export function validateEnv(raw: Record<string, unknown>): Env {
+  const result = envSchema.safeParse(raw);
+  if (result.success) return result.data;
+  const details = result.error.issues.map((issue) => `${issue.path.join('.')}: ${issue.message}`).join('; ');
+  throw new Error(`Invalid environment configuration: ${details}`);
+}

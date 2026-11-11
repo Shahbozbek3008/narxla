@@ -1,9 +1,9 @@
 import { Bath, House, Wrench } from 'lucide-react';
 import { useTranslations } from 'next-intl';
-import { Badge } from '@/components/ui/Badge';
-import { Reveal } from '@/components/ui/Reveal';
-import { Section } from '@/components/ui/Section';
-import { SectionHeading } from '@/components/ui/SectionHeading';
+import { Badge } from '@/components/ui/badge';
+import { Reveal } from '@/components/shared/Reveal';
+import { Section } from '@/components/shared/Section';
+import { SectionHeading } from '@/components/shared/SectionHeading';
 import { ANCHORS } from '@/lib/anchors';
 import { stagger } from '@/lib/motion';
 
@@ -31,7 +31,7 @@ export function Audience() {
                 <div className="flex items-center gap-2">
                   <h3 className="font-display text-xl/7 font-semibold tracking-[-0.02em]">{persona.title}</h3>
                   {index === PRO_PERSONA_INDEX && (
-                    <Badge tone="accent" shape="square">
+                    <Badge tone="accent" shape="square" className="leading-5">
                       {t('pro')}
                     </Badge>
                   )}

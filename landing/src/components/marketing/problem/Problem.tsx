@@ -1,9 +1,9 @@
 import { Check } from 'lucide-react';
 import { useTranslations } from 'next-intl';
-import { Eyebrow } from '@/components/ui/Eyebrow';
-import { Grow } from '@/components/ui/Grow';
-import { Reveal } from '@/components/ui/Reveal';
-import { Section } from '@/components/ui/Section';
+import { Eyebrow } from '@/components/shared/Eyebrow';
+import { Grow } from '@/components/shared/Grow';
+import { Reveal } from '@/components/shared/Reveal';
+import { Section } from '@/components/shared/Section';
 
 type Reason = [label: string, value: string];
 

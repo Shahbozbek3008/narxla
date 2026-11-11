@@ -7,6 +7,8 @@ import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
+import { GlobalToaster } from "@/components/app/common/GlobalToaster";
+import { StoreHydrator } from "@/store/StoreHydrator";
 import "../globals.css";
 
 type LayoutProps = {
@@ -63,7 +65,11 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
       </head>
       <body>
-        <NextIntlClientProvider>{children}</NextIntlClientProvider>
+        <NextIntlClientProvider>
+          <StoreHydrator />
+          {children}
+          <GlobalToaster />
+        </NextIntlClientProvider>
       </body>
     </html>
   );

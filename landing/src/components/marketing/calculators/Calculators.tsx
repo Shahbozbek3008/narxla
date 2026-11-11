@@ -1,14 +1,15 @@
-import clsx from 'clsx';
 import { ArrowRight, PaintRoller } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import type { ComponentType } from 'react';
+import { Link } from '@/i18n/navigation';
 import { Drywall, Laminate, Tile, Trowel, type IconProps } from '@/components/icons';
-import { Reveal } from '@/components/ui/Reveal';
-import { Section } from '@/components/ui/Section';
-import { SectionHeading } from '@/components/ui/SectionHeading';
+import { Reveal } from '@/components/shared/Reveal';
+import { Section } from '@/components/shared/Section';
+import { SectionHeading } from '@/components/shared/SectionHeading';
 import { ANCHORS } from '@/lib/anchors';
-import { appLinks } from '@/lib/config';
+import { routes } from '@/lib/routes';
 import { stagger } from '@/lib/motion';
+import { cn } from '@/lib/utils';
 
 type CalculatorId = 'kafel' | 'boyoq' | 'laminat' | 'shtuk' | 'gips';
 
@@ -27,23 +28,23 @@ export function Calculators() {
     <Section id={ANCHORS.calculators} bordered>
       <div className="flex flex-wrap items-end justify-between gap-6">
         <SectionHeading eyebrow={t('eyebrow')} title={t('title')} width="sm" />
-        <a
-          href={appLinks.calculators}
+        <Link
+          href={routes.calcs}
           className="inline-flex items-center gap-1.5 text-sm font-medium text-fg-2 transition-colors duration-150 hover:text-fg"
         >
           {t('all')}
           <ArrowRight size={14} strokeWidth={1.5} aria-hidden />
-        </a>
+        </Link>
       </div>
 
       <div className="mt-[clamp(32px,4vw,48px)] grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-5">
         {CALCULATORS.map(({ id, Icon, pattern }, index) => (
           <Reveal key={id} delay={stagger(index, 70)}>
-            <a
-              href={appLinks.calculator(id)}
+            <Link
+              href={routes.calc(id)}
               className="sheen flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-surface shadow-(--shadow-card) transition-[translate,box-shadow,border-color] duration-200 hover:-translate-y-[3px] hover:border-line-2 hover:shadow-(--shadow-lift)"
             >
-              <div className={clsx('grid h-28 place-items-center border-b border-line bg-surface-2', pattern)}>
+              <div className={cn('grid h-28 place-items-center border-b border-line bg-surface-2', pattern)}>
                 <span className="sheen grid size-16 place-items-center rounded-[18px] border border-line-2 bg-surface text-accent-text shadow-(--shadow-lift)">
                   <Icon size={30} strokeWidth={1.5} />
                 </span>
@@ -53,7 +54,7 @@ export function Calculators() {
                 <span className="text-[13px]/5 text-fg-2">{t(`items.${id}.desc`)}</span>
                 <span className="mt-3 font-mono text-xs text-fg-3">{t(`items.${id}.example`)}</span>
               </div>
-            </a>
+            </Link>
           </Reveal>
         ))}
       </div>

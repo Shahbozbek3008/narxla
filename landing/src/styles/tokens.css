@@ -74,7 +74,11 @@
   --paper: #FFFFFF;
   --paper-ink: #0B0D12;
   --paper-text-3: #7D828C;
+  --paper-text-2: #525866;
   --paper-line: #E7E7E4;
+  --paper-line-soft: #EFEFEC;
+  --paper-total: #FDF3E4;
+  --paper-total-ink: #A15D07;
   --brand-amber-light: #F2A13A;
 
   --ease-out: cubic-bezier(.16, 1, .3, 1);

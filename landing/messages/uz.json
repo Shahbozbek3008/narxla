@@ -7,7 +7,8 @@
     "cta": "Bepul hisoblash",
     "login": "Kirish",
     "sample": "Namuna smetani ko‘rish",
-    "noSignup": "Ro‘yxatdan o‘tish shart emas"
+    "noSignup": "Ro‘yxatdan o‘tish shart emas",
+    "openApp": "Ilovaga o‘tish"
   },
   "nav": {
     "features": "Imkoniyatlar",
@@ -29,7 +30,7 @@
     "hints": {
       "features": "Smetachi nima qila oladi",
       "calculators": "Kafel, bo‘yoq, laminat va boshqalar",
-      "pricing": "Bepul, Plus va Pro tariflar",
+      "pricing": "Bepul, Loyiha va Pro tariflar",
       "faq": "Ko‘p beriladigan savollar"
     }
   },
@@ -39,12 +40,21 @@
     "titleLead": "Remontingiz qancha turadi?",
     "titleTail": "2 daqiqada biling",
     "lead": "Xona o‘lchamlarini kiriting — material ro‘yxati, so‘mdagi narx oralig‘i va usta ish haqini bir zumda oling. Remontni boshlashdan oldin byudjetni aniq biling va usta aytgan narxni tekshiring.",
-    "trust": ["Ro‘yxatdan o‘tish shart emas", "Narxlar so‘mda, manbasi bilan", "3 ta smeta bepul"]
+    "trust": [
+      "Ro‘yxatdan o‘tish shart emas",
+      "Narxlar so‘mda, manbasi bilan",
+      "3 ta smeta bepul"
+    ]
   },
   "shot": {
     "alt": "Smetachi ilovasi: yotoqxona smetasi namunasi",
     "url": "app.smetachi.uz/smeta/yotoqxona",
-    "nav": ["Smetalarim", "Yangi smeta", "Kalkulyatorlar", "Usta narxini tekshirish"],
+    "nav": [
+      "Smetalarim",
+      "Yangi smeta",
+      "Kalkulyatorlar",
+      "Usta narxini tekshirish"
+    ],
     "settings": "Sozlamalar",
     "breadcrumb": "Smetalarim / Yotoqxona",
     "title": "Yotoqxona · 4,2 × 3,5 m",
@@ -53,25 +63,92 @@
     "share": "Ulashish",
     "pdf": "PDF yuklab olish",
     "kpis": [
-      { "label": "Jami byudjet", "value": "13,4–16,3 mln", "note": "so‘m · 10% zaxira bilan" },
-      { "label": "Materiallar", "value": "6,5 mln", "note": "14 pozitsiya" },
-      { "label": "Usta ish haqi", "value": "8,0 mln", "note": "7 ish turi" },
-      { "label": "Taxminiy muddat", "value": "15–21 kun", "note": "2 usta bilan" }
+      {
+        "label": "Jami byudjet",
+        "value": "13,4–16,3 mln",
+        "note": "so‘m · 10% zaxira bilan"
+      },
+      {
+        "label": "Materiallar",
+        "value": "6,5 mln",
+        "note": "14 pozitsiya"
+      },
+      {
+        "label": "Usta ish haqi",
+        "value": "8,0 mln",
+        "note": "7 ish turi"
+      },
+      {
+        "label": "Taxminiy muddat",
+        "value": "15–21 kun",
+        "note": "2 usta bilan"
+      }
     ],
     "materials": "Materiallar",
     "search": "Qidirish",
-    "columns": ["Nomi", "Miqdori", "Birlik narxi", "Jami"],
+    "columns": [
+      "Nomi",
+      "Miqdori",
+      "Birlik narxi",
+      "Jami"
+    ],
     "rows": [
-      ["Laminat 33-sinf, 8 mm", "16,2 m²", "110 000", "1 782 000"],
-      ["Knauf Rotband, 30 kg", "13 qop", "48 500", "630 500"],
-      ["Gipsokarton Knauf, 12,5 mm", "6 list", "59 500", "357 000"],
-      ["Yuviladigan bo‘yoq, 25 kg", "1 chelak", "465 000", "465 000"],
-      ["Plintus", "17 m", "25 000", "425 000"]
+      [
+        "Laminat 33-sinf, 8 mm",
+        "16,2 m²",
+        "110 000",
+        "1 782 000"
+      ],
+      [
+        "Knauf Rotband, 30 kg",
+        "13 qop",
+        "48 500",
+        "630 500"
+      ],
+      [
+        "Gipsokarton Knauf, 12,5 mm",
+        "6 list",
+        "59 500",
+        "357 000"
+      ],
+      [
+        "Yuviladigan bo‘yoq, 25 kg",
+        "1 chelak",
+        "465 000",
+        "465 000"
+      ],
+      [
+        "Plintus",
+        "17 m",
+        "25 000",
+        "425 000"
+      ]
     ],
     "breakdown": "Xarajat taqsimoti",
     "donutValue": "13,4",
     "donutCaption": "mln so‘mdan",
-    "legend": [["Pol", "34%"], ["Devorlar", "28%"], ["Shift", "14%"], ["Elektr", "12%"], ["Boshqa", "12%"]],
+    "legend": [
+      [
+        "Pol",
+        "34%"
+      ],
+      [
+        "Devorlar",
+        "28%"
+      ],
+      [
+        "Shift",
+        "14%"
+      ],
+      [
+        "Elektr",
+        "12%"
+      ],
+      [
+        "Boshqa",
+        "12%"
+      ]
+    ],
     "floatCheck": {
       "title": "Usta narxi tekshirildi",
       "subtitle": "Hammom · 6 200 000 so‘m",
@@ -89,8 +166,30 @@
     "label": "Jami byudjet",
     "value": "13,4–16,3 mln",
     "note": "so‘m · narxlar noyabr 2026",
-    "kpis": [["Materiallar", "6,5 mln"], ["Usta ish haqi", "8,0 mln"]],
-    "rows": [["Laminat · 16,2 m²", "1 782 000"], ["Rotband · 13 qop", "630 500"], ["Bo‘yoq · 1 chelak", "465 000"]],
+    "kpis": [
+      [
+        "Materiallar",
+        "6,5 mln"
+      ],
+      [
+        "Usta ish haqi",
+        "8,0 mln"
+      ]
+    ],
+    "rows": [
+      [
+        "Laminat · 16,2 m²",
+        "1 782 000"
+      ],
+      [
+        "Rotband · 13 qop",
+        "630 500"
+      ],
+      [
+        "Bo‘yoq · 1 chelak",
+        "465 000"
+      ]
+    ],
     "cta": "PDF yuklab olish"
   },
   "sources": {
@@ -110,9 +209,18 @@
       "actual": "Haqiqatda ketgan",
       "actualValue": "68,4 mln so‘m",
       "reasons": [
-        ["Material yetmay qoldi, qayta xarid", "+8,6 mln"],
-        ["Usta ish jarayonida narxni oshirdi", "+7,2 mln"],
-        ["Hisobga olinmagan mayda xarajatlar", "+4,6 mln"]
+        [
+          "Material yetmay qoldi, qayta xarid",
+          "+8,6 mln"
+        ],
+        [
+          "Usta ish jarayonida narxni oshirdi",
+          "+7,2 mln"
+        ],
+        [
+          "Hisobga olinmagan mayda xarajatlar",
+          "+4,6 mln"
+        ]
       ],
       "solution": "Smetachi har bir xarajatni oldindan ro‘yxatga chiqaradi"
     }
@@ -128,7 +236,24 @@
       "listTitle": "Hammom · pol va devor",
       "listCount": "4 pozitsiya",
       "reserve": "+10%",
-      "items": [["Kafel 30×60", "168 dona"], ["Kafel yelimi, 25 kg", "9 qop"], ["Zatirka, 2 kg", "3 qop"], ["Gidroizolyatsiya", "15 kg"]]
+      "items": [
+        [
+          "Kafel 30×60",
+          "168 dona"
+        ],
+        [
+          "Kafel yelimi, 25 kg",
+          "9 qop"
+        ],
+        [
+          "Zatirka, 2 kg",
+          "3 qop"
+        ],
+        [
+          "Gidroizolyatsiya",
+          "15 kg"
+        ]
+      ]
     },
     "check": {
       "title": "Usta narxini tekshirish",
@@ -136,14 +261,34 @@
       "label": "Usta aytgan narx · hammom",
       "price": "6 200 000 so‘m",
       "you": "Siz",
-      "axis": ["4,1 mln", "5,2 mln", "6,8 mln"],
+      "axis": [
+        "4,1 mln",
+        "5,2 mln",
+        "6,8 mln"
+      ],
       "verdict": "O‘rtachadan 18% qimmat"
     },
     "prices": {
       "title": "So‘mdagi real narxlar",
       "text": "Toshkent do‘konlari narxlari — har bir smetada sana va manba bilan.",
       "header": "Noyabr 2026 · Toshkent",
-      "rows": [["Knauf Rotband, 30 kg", "48 500", "/qop"], ["Laminat 33-sinf", "110 000", "/m²"], ["Gipsokarton Knauf", "59 500", "/list"]]
+      "rows": [
+        [
+          "Knauf Rotband, 30 kg",
+          "48 500",
+          "/qop"
+        ],
+        [
+          "Laminat 33-sinf",
+          "110 000",
+          "/m²"
+        ],
+        [
+          "Gipsokarton Knauf",
+          "59 500",
+          "/list"
+        ]
+      ]
     },
     "pdf": {
       "title": "PDF smeta",
@@ -156,15 +301,51 @@
     "plan": {
       "title": "Butun kvartira rejasi",
       "text": "Har bir xona alohida, jami bitta smetada.",
-      "rooms": [["Mehmonxona", "18,2 m²"], ["Yotoqxona", "14,7 m²"], ["Hammom", "4,6 m²"], ["Oshxona", "9,8 m²"], ["Koridor", "6,1 m²"]]
+      "rooms": [
+        [
+          "Mehmonxona",
+          "18,2 m²"
+        ],
+        [
+          "Yotoqxona",
+          "14,7 m²"
+        ],
+        [
+          "Hammom",
+          "4,6 m²"
+        ],
+        [
+          "Oshxona",
+          "9,8 m²"
+        ],
+        [
+          "Koridor",
+          "6,1 m²"
+        ]
+      ]
     },
     "projects": {
       "title": "Saqlangan loyihalar",
       "text": "Smetalar saqlanadi — narx o‘zgarsa, qayta hisoblaysiz.",
       "items": [
-        { "name": "Chilonzor, 3 xonali", "status": "Tayyor", "range": "48,6–56,2 mln so‘m", "meta": "68 m² · 5 xona · 6-noyabr" },
-        { "name": "Hammomni yangilash", "status": "Qoralama", "range": "9,2–11,4 mln so‘m", "meta": "4,6 m² · 2-noyabr" },
-        { "name": "Oshxona", "status": "Ustaga yuborildi", "range": "12,1–14,0 mln so‘m", "meta": "9,8 m² · 28-oktabr" }
+        {
+          "name": "Chilonzor, 3 xonali",
+          "status": "Tayyor",
+          "range": "48,6–56,2 mln so‘m",
+          "meta": "68 m² · 5 xona · 6-noyabr"
+        },
+        {
+          "name": "Hammomni yangilash",
+          "status": "Qoralama",
+          "range": "9,2–11,4 mln so‘m",
+          "meta": "4,6 m² · 2-noyabr"
+        },
+        {
+          "name": "Oshxona",
+          "status": "Ustaga yuborildi",
+          "range": "12,1–14,0 mln so‘m",
+          "meta": "9,8 m² · 28-oktabr"
+        }
       ]
     }
   },
@@ -172,14 +353,50 @@
     "eyebrow": "Qanday ishlaydi",
     "title": "Uch qadam. Ikki daqiqa.",
     "steps": [
-      { "title": "Xonani tanlang", "text": "Yotoqxona, hammom, oshxona yoki butun kvartira." },
-      { "title": "O‘lchamlarni kiriting", "text": "Maydonlar avtomatik hisoblanadi." },
-      { "title": "Smetani oling", "text": "PDF qiling yoki ustaga yuboring." }
+      {
+        "title": "Xonani tanlang",
+        "text": "Yotoqxona, hammom, oshxona yoki butun kvartira."
+      },
+      {
+        "title": "O‘lchamlarni kiriting",
+        "text": "Maydonlar avtomatik hisoblanadi."
+      },
+      {
+        "title": "Smetani oling",
+        "text": "PDF qiling yoki ustaga yuboring."
+      }
     ],
-    "rooms": ["Yotoqxona", "Hammom", "Oshxona", "Butun kvartira"],
-    "fields": [["Uzunlik", "4,2"], ["Kenglik", "3,5"], ["Shift", "2,7"]],
+    "rooms": [
+      "Yotoqxona",
+      "Hammom",
+      "Oshxona",
+      "Butun kvartira"
+    ],
+    "fields": [
+      [
+        "Uzunlik",
+        "4,2"
+      ],
+      [
+        "Kenglik",
+        "3,5"
+      ],
+      [
+        "Shift",
+        "2,7"
+      ]
+    ],
     "unit": "m",
-    "areas": [["Pol maydoni", "14,7 m²"], ["Devorlar", "37,7 m²"]],
+    "areas": [
+      [
+        "Pol maydoni",
+        "14,7 m²"
+      ],
+      [
+        "Devorlar",
+        "37,7 m²"
+      ]
+    ],
     "totalLabel": "Jami byudjet",
     "totalValue": "13,4–16,3 mln so‘m",
     "pdf": "PDF yuklab olish",
@@ -190,11 +407,31 @@
     "title": "Bitta material kerakmi? 30 soniya.",
     "all": "Barcha kalkulyatorlar",
     "items": {
-      "kafel": { "name": "Kafel", "desc": "Dona, yelim va zatirka", "example": "14,7 m² → 45 dona" },
-      "boyoq": { "name": "Bo‘yoq", "desc": "Kg va chelak, 2 qatlam", "example": "37,7 m² → 15 kg" },
-      "laminat": { "name": "Laminat", "desc": "Upakovka va podlojka", "example": "14,7 m² → 8 upak." },
-      "shtuk": { "name": "Shtukaturka", "desc": "Qatlam qalinligi bo‘yicha qop", "example": "37,7 m² × 15 mm → 19 qop" },
-      "gips": { "name": "Gipsokarton", "desc": "List, profil va shuruplar", "example": "14,7 m² → 6 list" }
+      "kafel": {
+        "name": "Kafel",
+        "desc": "Dona, yelim va zatirka",
+        "example": "14,7 m² → 45 dona"
+      },
+      "boyoq": {
+        "name": "Bo‘yoq",
+        "desc": "Kg va chelak, 2 qatlam",
+        "example": "37,7 m² → 15 kg"
+      },
+      "laminat": {
+        "name": "Laminat",
+        "desc": "Upakovka va podlojka",
+        "example": "14,7 m² → 8 upak."
+      },
+      "shtuk": {
+        "name": "Shtukaturka",
+        "desc": "Qatlam qalinligi bo‘yicha qop",
+        "example": "37,7 m² × 15 mm → 19 qop"
+      },
+      "gips": {
+        "name": "Gipsokarton",
+        "desc": "List, profil va shuruplar",
+        "example": "14,7 m² → 6 list"
+      }
     }
   },
   "audience": {
@@ -202,47 +439,68 @@
     "title": "Remontni pulni sanab qilmoqchi bo‘lganlar uchun",
     "pro": "Pro",
     "items": [
-      { "title": "Yangi uy egalari", "text": "“Korobka” kvartira oldingizmi? Har bir xona bo‘yicha material ro‘yxati va byudjetni ishni boshlashdan oldin biling." },
-      { "title": "Qisman remont", "text": "Faqat hammom yoki oshxonani yangilayapsizmi? Kerakli ishlarnigina tanlang — ortiqcha xarajat smetaga kirmaydi." },
-      { "title": "Ustalar", "text": "Mijozga logotipli PDF smeta bering va narxingizni bozor narxlari bilan asoslang." }
+      {
+        "title": "Yangi uy egalari",
+        "text": "“Korobka” kvartira oldingizmi? Har bir xona bo‘yicha material ro‘yxati va byudjetni ishni boshlashdan oldin biling."
+      },
+      {
+        "title": "Qisman remont",
+        "text": "Faqat hammom yoki oshxonani yangilayapsizmi? Kerakli ishlarnigina tanlang — ortiqcha xarajat smetaga kirmaydi."
+      },
+      {
+        "title": "Ustalar",
+        "text": "Mijozga logotipli PDF smeta bering va narxingizni bozor narxlari bilan asoslang."
+      }
     ]
   },
   "pricing": {
     "eyebrow": "Narxlar",
     "title": "Bitta xato xariddan arzonroq",
-    "billingLabel": "To‘lov davri",
-    "monthly": "Oylik",
-    "annual": "Yillik",
-    "discount": "−20%",
+    "lead": "Uy egalari uchun obuna yo‘q — remont bir marta bo‘ladi, to‘lov ham bir marta. Oylik tarif faqat ustalar uchun.",
     "popular": "Ommabop",
-    "payments": "Click, Payme, Uzcard va Humo orqali to‘lov · Istalgan vaqtda bekor qilish",
+    "payments": "Click, Payme, Uzcard va Humo orqali to‘lov · Pro istalgan vaqtda bekor qilinadi",
     "plans": {
       "free": {
         "name": "Bepul",
-        "desc": "Bitta xona uchun tekshirib ko‘rish",
+        "desc": "Remontni rejalashtirayotganlar uchun",
+        "price": "0",
         "unit": "so‘m",
+        "note": "Har doim bepul",
         "cta": "Bepul boshlash",
-        "price": { "monthly": "0", "annual": "0" },
-        "note": { "monthly": "Har doim bepul", "annual": "Har doim bepul" },
-        "features": ["3 ta smeta", "Barcha tezkor kalkulyatorlar", "So‘mdagi narx oralig‘i"]
+        "features": [
+          "3 ta smeta",
+          "25 ta material kalkulyatori",
+          "Usta narxini tekshirish",
+          "So‘mdagi narx oralig‘i"
+        ]
       },
-      "plus": {
-        "name": "Plus",
-        "desc": "To‘liq remont qilayotganlar uchun",
-        "unit": "so‘m / oy",
-        "cta": "Plus’ni tanlash",
-        "price": { "monthly": "39 000", "annual": "31 000" },
-        "note": { "monthly": "Har oy to‘lanadi", "annual": "Yiliga 372 000 so‘m · 96 000 tejaysiz" },
-        "features": ["Cheksiz smeta", "PDF yuklab olish va ulashish", "Usta narxini tekshirish", "Butun kvartira rejasi"]
+      "project": {
+        "name": "Loyiha",
+        "desc": "Butun kvartira remonti uchun",
+        "price": "49 000",
+        "unit": "so‘m",
+        "note": "Bir marta to‘lanadi · obuna emas",
+        "cta": "Loyihani boshlash",
+        "features": [
+          "Bepuldagi hamma narsa",
+          "Butun kvartira: cheksiz xona va smeta",
+          "PDF yuklab olish va ustaga ulashish",
+          "6 oy narx kuzatuvi — o‘zgarsa xabar beramiz"
+        ]
       },
       "pro": {
         "name": "Pro",
         "desc": "Ustalar va brigadalar uchun",
+        "price": "129 000",
         "unit": "so‘m / oy",
+        "note": "Yillik to‘lovda 103 000 so‘m / oy",
         "cta": "Pro’ni tanlash",
-        "price": { "monthly": "129 000", "annual": "103 000" },
-        "note": { "monthly": "Har oy to‘lanadi", "annual": "Yiliga 1 236 000 so‘m · 312 000 tejaysiz" },
-        "features": ["Plus’dagi hamma narsa", "Logotipingiz bilan PDF smeta", "Mijozlar bazasi", "O‘z ish narxlaringizni kiritish"]
+        "features": [
+          "Cheksiz loyiha va mijoz",
+          "Logotipingiz bilan PDF smeta",
+          "Mijozlar bazasi",
+          "O‘z ish narxlaringizni kiritish"
+        ]
       }
     }
   },
@@ -253,7 +511,7 @@
     "items": [
       {
         "question": "Smetachi narxlari qanchalik aniq?",
-        "answer": "Narxlar Toshkentdagi ochiq onlayn do‘konlar va e’lon saytlaridan (Uzum Market, Prom.uz, Glotr.uz va boshqalar) olinadi. Har bir smetada narx sanasi ko‘rsatiladi, natija esa bitta raqam emas — oraliq ko‘rinishida beriladi."
+        "answer": "Narxlar Toshkentdagi ochiq onlayn do‘konlar va e’lon saytlaridan (Uzum Market, Prom.uz, Glotr.uz va boshqalar) olinadi. Har bir smetada narx sanasi ko‘rsatiladi, natija esa bitta raqam emas — oraliq ko‘rinishida beriladi. Narxlar har oy yangilanadi; xato narx ko‘rsangiz, smetaning o‘zidan bir bosishda xabar berasiz."
       },
       {
         "question": "Faqat Toshkent uchunmi?",
@@ -269,11 +527,11 @@
       },
       {
         "question": "Bepul tarifda nimalar bor?",
-        "answer": "3 ta smeta, barcha tezkor kalkulyatorlar va so‘mdagi narx oralig‘i. PDF yuklab olish va cheksiz smeta Plus tarifida."
+        "answer": "3 ta smeta, 25 ta material kalkulyatori, usta narxini tekshirish va so‘mdagi narx oralig‘i. Butun kvartira, PDF va narx kuzatuvi kerak bo‘lsa — Loyiha tarifi, bir marta 49 000 so‘m."
       },
       {
-        "question": "Obunani bekor qilsam bo‘ladimi?",
-        "answer": "Ha, istalgan vaqtda bir bosishda. Saqlangan smetalaringiz o‘chmaydi — ularni ko‘rish va PDF sifatida yuklab olish imkoni qoladi."
+        "question": "Nega oylik obuna emas?",
+        "answer": "Remont bir necha yilda bir marta bo‘ladi, shuning uchun uy egalari uchun obuna yo‘q. Loyiha tarifi bir marta to‘lanadi, narx kuzatuvi 6 oy ishlaydi, smetalaringiz esa keyin ham ochiq qoladi. Oylik Pro faqat har hafta smeta tuzadigan ustalar uchun — istalgan vaqtda bekor qilinadi."
       }
     ]
   },
@@ -288,16 +546,659 @@
     "columns": {
       "product": {
         "title": "Mahsulot",
-        "links": { "features": "Imkoniyatlar", "pricing": "Narxlar", "masters": "Ustalar uchun", "updates": "Yangilanishlar" }
+        "links": {
+          "features": "Imkoniyatlar",
+          "pricing": "Narxlar",
+          "masters": "Ustalar uchun",
+          "updates": "Yangilanishlar"
+        }
       },
       "calculators": {
         "title": "Kalkulyatorlar",
-        "links": { "kafel": "Kafel", "boyoq": "Bo‘yoq", "laminat": "Laminat", "shtuk": "Shtukaturka", "gips": "Gipsokarton" }
+        "links": {
+          "kafel": "Kafel",
+          "boyoq": "Bo‘yoq",
+          "laminat": "Laminat",
+          "shtuk": "Shtukaturka",
+          "gips": "Gipsokarton"
+        }
       },
       "help": {
         "title": "Yordam",
-        "links": { "faq": "FAQ", "telegram": "Telegram", "privacy": "Maxfiylik siyosati", "terms": "Foydalanish shartlari" }
+        "links": {
+          "faq": "FAQ",
+          "telegram": "Telegram",
+          "privacy": "Maxfiylik siyosati",
+          "terms": "Foydalanish shartlari"
+        }
       }
     }
+  },
+  "app": {
+    "meta": {
+      "title": "Smetachi — ilova"
+    },
+    "nav": {
+      "label": "Asosiy navigatsiya",
+      "workspace": "Ish joyi",
+      "estimates": "Smetalarim",
+      "new": "Yangi smeta",
+      "calcs": "Kalkulyatorlar",
+      "check": "Usta narxini tekshirish",
+      "settings": "Sozlamalar"
+    },
+    "tabs": {
+      "estimates": "Smetalar",
+      "calcs": "Kalkulyator",
+      "check": "Tekshirish",
+      "settings": "Sozlama",
+      "new": "Yangi smeta"
+    },
+    "titles": {
+      "estimates": "Smetalarim",
+      "new": "Yangi smeta",
+      "result": "Smeta",
+      "check": "Narxni tekshirish",
+      "calcs": "Kalkulyatorlar",
+      "pdf": "PDF",
+      "settings": "Sozlamalar"
+    },
+    "theme": "Mavzu",
+    "plan": {
+      "projectTitle": "Loyiha tarifi",
+      "active": "Faol",
+      "projectNote": "Bir martalik · narx kuzatuvi {date}gacha",
+      "proCta": "Ustamisiz? Pro tarifi",
+      "freeTitle": "Bepul tarif",
+      "freeUsage": "{used} / {limit} smeta",
+      "freeCta": "Loyiha — 49 000 so‘m"
+    },
+    "profile": {
+      "trigger": "Profil menyusi",
+      "settings": "Profil va sozlamalar",
+      "billing": "Tarif va to‘lov",
+      "billingBadge": "Loyiha",
+      "help": "Yordam",
+      "logout": "Tizimdan chiqish",
+      "signIn": "Kirish",
+      "guest": "Mehmon",
+      "guestNote": "Smetalar shu qurilmada"
+    },
+    "months": {
+      "1": "yanvar",
+      "2": "fevral",
+      "3": "mart",
+      "4": "aprel",
+      "5": "may",
+      "6": "iyun",
+      "7": "iyul",
+      "8": "avgust",
+      "9": "sentabr",
+      "10": "oktabr",
+      "11": "noyabr",
+      "12": "dekabr"
+    },
+    "date": "{day}-{month}",
+    "dateLong": "{day}-{month}, {year}",
+    "money": "{value} so‘m",
+    "currency": "so‘m",
+    "mlnSom": "{value} mln so‘m",
+    "mln": "{value} mln",
+    "rooms": {
+      "yotoq": {
+        "name": "Yotoqxona",
+        "hint": "10–18 m²"
+      },
+      "mehmon": {
+        "name": "Mehmonxona",
+        "hint": "16–28 m²"
+      },
+      "oshxona": {
+        "name": "Oshxona",
+        "hint": "8–14 m²"
+      },
+      "hammom": {
+        "name": "Hammom",
+        "hint": "3–7 m²"
+      },
+      "koridor": {
+        "name": "Koridor",
+        "hint": "4–10 m²"
+      },
+      "bolalar": {
+        "name": "Bolalar xonasi",
+        "hint": "9–14 m²"
+      }
+    },
+    "works": {
+      "pol": {
+        "name": "Pol",
+        "desc": "Laminat yoki kafel, podlojka, plintus"
+      },
+      "devor": {
+        "name": "Devorlar",
+        "desc": "Shtukaturka, shpaklyovka, bo‘yoq yoki kafel"
+      },
+      "shift": {
+        "name": "Shift",
+        "desc": "Gipsokarton, profil va bo‘yash"
+      },
+      "elektr": {
+        "name": "Elektr",
+        "desc": "Kabel, rozetka va viklyuchatellar"
+      },
+      "santex": {
+        "name": "Santexnika",
+        "desc": "Trubalar, smesitel va ulanish"
+      }
+    },
+    "qualities": {
+      "eco": {
+        "name": "Tejamkor",
+        "desc": "Ishonchli, lekin oddiy materiallar.",
+        "examples": {
+          "floor": "Laminat 32-sinf",
+          "paint": "Emulsion bo‘yoq",
+          "tile": "Mahalliy kafel"
+        },
+        "badge": ""
+      },
+      "mid": {
+        "name": "O‘rta",
+        "desc": "Narx va sifat muvozanati.",
+        "examples": {
+          "floor": "Laminat 33-sinf",
+          "paint": "Yuviladigan bo‘yoq",
+          "tile": "Turkiya kafeli"
+        },
+        "badge": "Ko‘pchilik tanlaydi"
+      },
+      "pre": {
+        "name": "Premium",
+        "desc": "Uzoq xizmat qiladigan, chiroyli.",
+        "examples": {
+          "floor": "Laminat 34-sinf, 12 mm",
+          "paint": "Yevropa bo‘yog‘i",
+          "tile": "Ispaniya keramograniti"
+        },
+        "badge": ""
+      }
+    },
+    "categories": {
+      "pol": "Pol",
+      "devor": "Devorlar",
+      "shift": "Shift",
+      "elektr": "Elektr",
+      "santex": "Santexnika"
+    },
+    "status": {
+      "ready": "Tayyor",
+      "draft": "Qoralama",
+      "sent": "Ustaga yuborildi"
+    },
+    "list": {
+      "title": "Smetalarim",
+      "subtitle": "{count} ta smeta · oxirgisi {date}",
+      "subtitleEmpty": "Hali smeta yo‘q",
+      "new": "Yangi smeta",
+      "viewLabel": "Ko‘rinish",
+      "viewCards": "Kartalar",
+      "viewTable": "Jadval",
+      "search": "Smeta nomi bo‘yicha qidirish",
+      "filtersLabel": "Holat bo‘yicha filtr",
+      "filters": {
+        "all": "Hammasi",
+        "ready": "Tayyor",
+        "draft": "Qoralama",
+        "sent": "Yuborilgan"
+      },
+      "columns": {
+        "name": "Nomi",
+        "area": "Maydon",
+        "quality": "Sifat",
+        "budget": "Byudjet",
+        "status": "Holati"
+      },
+      "meta": "{area} · {quality} · {date}",
+      "emptyTitle": "Hali smeta yo‘q",
+      "emptyText": "Xonani tanlang va o‘lchamlarini kiriting. 2 daqiqada material ro‘yxati va so‘mdagi narx oralig‘i tayyor bo‘ladi.",
+      "emptyCta": "Birinchi smetani yaratish",
+      "notFoundTitle": "Hech narsa topilmadi",
+      "notFoundText": "Boshqa nom yoki filtrni sinab ko‘ring.",
+      "clear": "Filtrni tozalash"
+    },
+    "wizard": {
+      "back": "Smetalarim",
+      "title": "Yangi smeta",
+      "stepsLabel": "Qadamlar",
+      "steps": {
+        "room": "Xona",
+        "dims": "O‘lchamlar",
+        "works": "Ish turlari",
+        "quality": "Sifat"
+      },
+      "room": {
+        "title": "Qaysi xonani ta’mirlaysiz?",
+        "lead": "Keyin boshqa xonalarni ham qo‘shishingiz mumkin.",
+        "flat": "Butun kvartira",
+        "flatHint": "Har bir xonani alohida o‘lchang — jami bitta smetada",
+        "flatBadge": "Loyiha"
+      },
+      "dims": {
+        "title": "{room} o‘lchamlari",
+        "lead": "Metrda kiriting — vergul ham, nuqta ham bo‘ladi.",
+        "length": "Uzunlik",
+        "width": "Kenglik",
+        "height": "Shift balandligi",
+        "heightHint": "Odatda 2,5–3,2 m",
+        "errLW": "Uzunlik va kenglik 1 dan 20 m gacha bo‘lishi kerak.",
+        "errH": "Shift balandligi odatda 2,5–3,2 m bo‘ladi, tekshirib ko‘ring.",
+        "doors": "Eshiklar",
+        "doorsHint": "0,9 × 2,0 m",
+        "windows": "Derazalar",
+        "windowsHint": "1,5 × 1,4 m",
+        "decrease": "Kamaytirish",
+        "increase": "Oshirish",
+        "diagram": "Xona sxemasi",
+        "floorCaption": "pol maydoni",
+        "stats": {
+          "floor": "Pol maydoni",
+          "walls": "Devorlar (ochiqliksiz)",
+          "ceiling": "Shift",
+          "perimeter": "Perimetr"
+        },
+        "viewLabel": "Sxema ko‘rinishi",
+        "view2d": "2D",
+        "view3d": "3D",
+        "dragHint": "Aylantirish uchun suring",
+        "resetView": "Ko‘rinishni tiklash"
+      },
+      "works": {
+        "title": "Qanday ishlar qilinadi?",
+        "lead": "Bir nechtasini tanlang. Har biri uchun material va ish haqi alohida hisoblanadi.",
+        "estimate": "≈ {value} mln so‘m",
+        "error": "Kamida bitta ish turini tanlang."
+      },
+      "quality": {
+        "title": "Material sifati",
+        "lead": "Narx shu xona uchun 1 m² pol maydoniga — materiallar va ish haqi bilan.",
+        "unit": "so‘m / m²"
+      },
+      "prev": "Orqaga",
+      "next": "Davom etish",
+      "calculate": "Smetani hisoblash",
+      "liveEstimate": "Taxminiy byudjet"
+    },
+    "result": {
+      "breadcrumb": "Smetalarim",
+      "title": "{name} · {length} × {width} m",
+      "pricesBadge": "{verified} / {total} narx do‘konlardan tekshirilgan · {date}",
+      "qualityBadge": "{quality} sifat",
+      "region": "Toshkent",
+      "edit": "Tahrirlash",
+      "check": "Usta narxini tekshirish",
+      "kpi": {
+        "total": "Jami byudjet",
+        "totalNote": "mln so‘m · 10% zaxira bilan",
+        "materials": "Materiallar",
+        "materialsNote": "mln so‘m · {count} pozitsiya",
+        "labour": "Usta ish haqi",
+        "labourNote": "mln so‘m · {count} ish turi",
+        "duration": "Taxminiy muddat",
+        "durationNote": "kun · 2 usta bilan"
+      },
+      "breakdown": "Xarajat taqsimoti",
+      "breakdownTotal": "Jami {value} so‘m",
+      "share": "Ulashish",
+      "materials": "Materiallar",
+      "reserveNote": "Miqdor 10% zaxira bilan",
+      "searchMaterials": "Material qidirish",
+      "columns": {
+        "name": "Nomi",
+        "qty": "Miqdori",
+        "price": "Birlik narxi",
+        "total": "Jami"
+      },
+      "noMaterials": "“{query}” bo‘yicha material topilmadi",
+      "materialsTotal": "Materiallar jami",
+      "labour": "Usta ish haqi",
+      "labourNote": "Toshkent bo‘yicha o‘rtacha stavkalar",
+      "labourTotal": "Ish haqi jami",
+      "summary": "Umumiy hisob",
+      "summaryNote": "Oraliq do‘konlar orasidagi narx farqini hisobga oladi: −8% / +12%",
+      "totals": {
+        "materials": "Materiallar",
+        "labour": "Usta ish haqi",
+        "total": "Jami",
+        "range": "Byudjet oralig‘i"
+      },
+      "lineDetail": "{qty} × {price}",
+      "lineDetailSom": "{qty} × {price} so‘m",
+      "sources": "Narxlar: Uzum Market, Prom.uz, Glotr.uz, 24stroy.uz, Maff.uz · Ish haqi: Ustabor.uz, MegaMaster · Noyabr 2026 · Oraliq −8% / +12%",
+      "report": "Narx noto‘g‘rimi? Xabar bering",
+      "totalLabel": "Jami byudjet",
+      "save": "Saqlash",
+      "saved": "Saqlandi",
+      "pdf": "PDF",
+      "loading": "Toshkent do‘konlari narxlari bo‘yicha hisoblanmoqda…",
+      "notFoundTitle": "Smeta topilmadi",
+      "notFoundText": "Bu smeta o‘chirilgan yoki boshqa qurilmada saqlangan.",
+      "notFoundCta": "Smetalarimga qaytish",
+      "pricesBadgeNone": "Narxlar taxminiy — do‘konlardan hali tekshirilmagan",
+      "priceStatus": {
+        "partial": "qisman",
+        "estimated": "taxminiy"
+      },
+      "priceStatusHint": {
+        "partial": "Narx 1–2 ta do‘kon bo‘yicha tekshirilgan",
+        "estimated": "Narx taxminiy — do‘konlardan hali tekshirilmagan"
+      }
+    },
+    "pdf": {
+      "back": "Smetaga qaytish",
+      "title": "PDF ko‘rinishi",
+      "print": "Chop etish",
+      "download": "Yuklab olish",
+      "number": "SMETA No. {number}",
+      "docTitle": "Ta’mirlash smetasi",
+      "info": {
+        "object": "Obyekt",
+        "dims": "O‘lchamlar",
+        "floor": "Pol maydoni",
+        "qualityRegion": "Sifat · Hudud"
+      },
+      "qualityRegion": "{quality} · Toshkent",
+      "materials": "Materiallar",
+      "labour": "Usta ish haqi",
+      "materialColumns": {
+        "index": "№",
+        "name": "Nomi",
+        "qty": "Miqdori",
+        "price": "Narxi",
+        "total": "Jami"
+      },
+      "labourColumns": {
+        "index": "№",
+        "name": "Ish turi",
+        "qty": "Hajmi",
+        "price": "Stavka",
+        "total": "Jami"
+      },
+      "totals": {
+        "materials": "Materiallar",
+        "labour": "Usta ish haqi",
+        "total": "Jami",
+        "range": "Byudjet oralig‘i"
+      },
+      "footer": "Narxlar 8-noyabr, 2026 holatiga ko‘ra, Toshkent bozorlari asosida. Miqdorlar 10% zaxira bilan.",
+      "site": "smetachi.uz · {page} / {pages}",
+      "continued": "(davomi)",
+      "estimatedNote": "* — taxminiy narx, do‘konlardan hali tekshirilmagan."
+    },
+    "check": {
+      "title": "Usta narxini tekshirish",
+      "lead": "Usta aytgan summani shu ish uchun bozor oralig‘i bilan solishtiring.",
+      "type": "Ish turi",
+      "categories": {
+        "pol": "Pol",
+        "devor": "Devor",
+        "shift": "Shift",
+        "qurilish": "Qurilish",
+        "muh": "Elektr va santexnika"
+      },
+      "rate": "≈ {rate} so‘m / {unit}",
+      "volume": "Ish hajmi",
+      "verified": "Bozor narxi tekshirilgan",
+      "estimated": "Taxminiy oraliq",
+      "quote": "Usta aytgan narx",
+      "quotePlaceholder": "Masalan, 6 000 000",
+      "quoteHint": "Faqat ish haqi — materiallarsiz.",
+      "result": "Natija",
+      "verdicts": {
+        "fair": "Bozor narxiga mos",
+        "expensive": "O‘rtachadan {percent}% qimmat",
+        "cheap": "O‘rtachadan {percent}% arzon",
+        "tooCheap": "O‘rtachadan {percent}% arzon"
+      },
+      "average": "Bozor o‘rtachasi: {value} so‘m",
+      "master": "Usta",
+      "scale": {
+        "low": "Arzon",
+        "range": "Bozor oralig‘i",
+        "high": "Qimmat"
+      },
+      "stats": {
+        "min": "Minimum",
+        "avg": "O‘rtacha",
+        "max": "Maksimum"
+      },
+      "tips": {
+        "fair": "Narx adolatli. Ishlar ro‘yxatini va muddatni yozma kelishib oling.",
+        "expensive": "Savdolashish uchun {from}–{to} mln so‘m atrofida taklif qiling. Narxga nimalar kirganini so‘rang.",
+        "cheap": "Yaxshi narx. Ishlar ro‘yxatini yozma kelishib oling.",
+        "tooCheap": "Narx bozordan ancha past — qaysi ishlar kirmaganini va kafolatni aniqlang."
+      },
+      "emptyTitle": "Usta aytgan narxni kiriting",
+      "emptyText": "Natija shu yerda bozor shkalasida ko‘rinadi."
+    },
+    "calcs": {
+      "title": "Kalkulyatorlar",
+      "lead": "{count} ta material — miqdor, sarf va taxminiy narx.",
+      "search": "Qidirish: g‘isht, oboy, beton…",
+      "categoriesTitle": "Toifalar",
+      "categories": {
+        "all": "Hammasi",
+        "pol": "Pol",
+        "devor": "Devor",
+        "shift": "Shift",
+        "qurilish": "Qurilish",
+        "izol": "Izolyatsiya",
+        "muh": "Elektr va santexnika"
+      },
+      "source": {
+        "verified": {
+          "short": "Tekshirilgan",
+          "title": "Narx manbasi tekshirilgan",
+          "long": "Barcha narxlar do‘konlardan tekshirilgan"
+        },
+        "partial": {
+          "short": "Qisman",
+          "title": "Narxlarning bir qismi taxminiy",
+          "long": "Narxlarning bir qismi do‘konlardan tekshirilgan"
+        },
+        "estimated": {
+          "short": "Taxminiy",
+          "title": "Narx hali tekshirilmagan",
+          "long": "Narx taxminiy — do‘konlardan hali tekshirilmagan"
+        }
+      },
+      "emptyTitle": "Bunday kalkulyator topilmadi",
+      "emptyText": "Boshqa nom bilan qidiring yoki toifani o‘zgartiring.",
+      "back": "Kalkulyatorlar",
+      "caption": "{category} · {desc}",
+      "cost": "Taxminiy narx",
+      "addToEstimate": "Smetaga qo‘shish",
+      "notFoundTitle": "Kalkulyator topilmadi",
+      "notFoundText": "Bu kalkulyator mavjud emas yoki nomi o‘zgargan."
+    },
+    "settings": {
+      "title": "Sozlamalar",
+      "lead": "Profil, hisob-kitob va ilova ko‘rinishi.",
+      "navLabel": "Sozlamalar bo‘limlari",
+      "nav": {
+        "s-profil": "Profil",
+        "s-smeta": "Smeta",
+        "s-bildirish": "Bildirishnomalar",
+        "s-korinish": "Ko‘rinish",
+        "s-tarif": "Tarif va to‘lov",
+        "s-hisob": "Hisob"
+      },
+      "profile": {
+        "title": "Profil",
+        "lead": "Smeta va PDF’da shu ma’lumotlar ko‘rinadi.",
+        "photo": "Rasm",
+        "photoHint": "PNG yoki JPG, 2 MB gacha",
+        "upload": "Yuklash",
+        "name": "Ism familiya",
+        "phone": "Telefon",
+        "phoneHint": "Kirish uchun ishlatiladi",
+        "verified": "Tasdiqlangan",
+        "district": "Tuman"
+      },
+      "estimate": {
+        "title": "Smeta",
+        "lead": "Yangi smetalar uchun standart qiymatlar.",
+        "region": "Hudud",
+        "regionHint": "Hozircha narxlar faqat Toshkent bo‘yicha",
+        "reserve": "Material zaxirasi",
+        "reserveHint": "Kesish va isrof uchun qo‘shiladi",
+        "quality": "Standart sifat"
+      },
+      "notifications": {
+        "title": "Bildirishnomalar",
+        "lead": "Qachon va qayerda xabar olishni tanlang.",
+        "notifyPrice": {
+          "title": "Narxlar o‘zgarganda",
+          "desc": "Saqlangan smetadagi narx 5% dan ko‘p o‘zgarsa"
+        },
+        "notifyTelegram": {
+          "title": "Telegram orqali",
+          "desc": "Xabarlar @smetachi_bot ga keladi"
+        },
+        "notifyNews": {
+          "title": "Maslahat va yangiliklar",
+          "desc": "Oyiga 1–2 marta, ta’mir bo‘yicha foydali materiallar"
+        }
+      },
+      "appearance": {
+        "title": "Ko‘rinish",
+        "lead": "Ilova mavzusi faqat shu qurilmada saqlanadi.",
+        "dark": "Qorong‘i",
+        "light": "Yorug‘",
+        "system": "Tizim"
+      },
+      "billing": {
+        "title": "Tarif va to‘lov",
+        "lead": "Obunani istalgan vaqtda o‘zgartirishingiz mumkin.",
+        "plan": "Loyiha",
+        "oneTime": "Bir martalik",
+        "paid": "49 000 so‘m · {date}da to‘langan · obuna emas",
+        "tracking": "Narx kuzatuvi {date}gacha · Uzcard •••• {card}",
+        "history": "To‘lovlar tarixi",
+        "pro": "Ustalar uchun Pro"
+      },
+      "account": {
+        "title": "Hisob",
+        "lead": "Kirish va hisobni boshqarish.",
+        "logout": "Tizimdan chiqish",
+        "logoutHint": "Bu qurilmadan chiqasiz. Smetalaringiz saqlanib qoladi.",
+        "logoutCta": "Chiqish",
+        "delete": "Hisobni o‘chirish",
+        "deleteHint": "Barcha smetalar va ma’lumotlar butunlay o‘chiriladi."
+      },
+      "dirty": "Saqlanmagan o‘zgarishlar",
+      "cancel": "Bekor qilish",
+      "save": "Saqlash"
+    },
+    "dialogs": {
+      "cancel": "Bekor qilish",
+      "logout": {
+        "title": "Tizimdan chiqmoqchimisiz?",
+        "text": "Smetalaringiz saqlanib qoladi. Qayta kirish uchun telefon raqamingizga kod yuboramiz.",
+        "action": "Chiqish"
+      },
+      "delete": {
+        "title": "Hisobni o‘chirasizmi?",
+        "text": "Barcha smetalar, PDF’lar va to‘lov tarixi butunlay o‘chiriladi. Bu amalni bekor qilib bo‘lmaydi.",
+        "action": "O‘chirish"
+      }
+    },
+    "toasts": {
+      "close": "Yopish",
+      "saved": {
+        "title": "Smeta saqlandi",
+        "text": "Smetalarim bo‘limiga qo‘shildi."
+      },
+      "alreadySaved": {
+        "title": "Allaqachon saqlangan",
+        "text": "Smetalarim bo‘limida turibdi."
+      },
+      "shared": {
+        "title": "Havola nusxalandi",
+        "text": "{url} — ustaga yoki do‘konga yuboring."
+      },
+      "reported": {
+        "title": "Rahmat, xabaringiz qabul qilindi",
+        "text": "Narxni do‘konlar bilan solishtirib, keyingi yangilanishda tuzatamiz."
+      },
+      "pro": {
+        "title": "Pro — ustalar uchun",
+        "text": "Logotipli PDF, mijozlar bazasi va o‘z narxlaringiz — 129 000 so‘m/oy."
+      },
+      "flat": {
+        "title": "Loyiha tarifida mavjud",
+        "text": "Butun kvartira rejasi keyingi bosqichda chiziladi."
+      },
+      "help": {
+        "title": "Yordam",
+        "text": "Telegram: @smetachi_support"
+      },
+      "settingsSaved": {
+        "title": "Sozlamalar saqlandi",
+        "text": "O‘zgarishlar yangi smetalarga qo‘llanadi."
+      },
+      "upload": {
+        "title": "Rasm yuklash",
+        "text": "Fayl tanlash oynasi ochiladi."
+      },
+      "billing": {
+        "title": "To‘lov boshqaruvi",
+        "text": "Click, Payme, Uzcard va Humo qo‘llab-quvvatlanadi."
+      },
+      "loggedOut": {
+        "title": "Tizimdan chiqdingiz",
+        "text": "Smetalaringiz saqlanib qoldi."
+      },
+      "deleteRequested": {
+        "title": "So‘rov qabul qilindi",
+        "text": "Tasdiqlash kodi telefoningizga yuborildi."
+      },
+      "print": {
+        "title": "Chop etishga tayyor",
+        "text": "A4 format, 1 sahifa."
+      },
+      "downloaded": {
+        "title": "PDF yuklab olindi",
+        "text": "{file} · 184 KB"
+      },
+      "addedToEstimate": {
+        "title": "Smetaga qo‘shildi",
+        "text": "{calc} — {room} smetasiga."
+      },
+      "welcome": {
+        "title": "Xush kelibsiz, {name}",
+        "text": "Tizimga muvaffaqiyatli kirdingiz."
+      },
+      "signInRequired": {
+        "title": "Kirish talab qilinadi",
+        "text": "Smetani saqlash va PDF uchun tizimga kiring."
+      },
+      "reportFailed": {
+        "title": "Xabar yuborilmadi",
+        "text": "Internet aloqasini tekshirib, qayta urinib ko‘ring."
+      }
+    }
+  },
+  "login": {
+    "title": "Qaytganingizdan xursandmiz",
+    "lead": "Telefon raqamingizga 6 xonali kod yuboramiz.",
+    "phone": "Telefon raqam",
+    "prefix": "+998",
+    "getCode": "Kodni olish",
+    "or": "yoki",
+    "telegram": "Telegram orqali kirish",
+    "back": "← Bosh sahifaga qaytish",
+    "terms": "Kirish orqali <link>Foydalanish shartlari</link>ga rozilik bildirasiz.",
+    "invalidPhone": "Telefon raqamni to‘liq kiriting."
   }
 }

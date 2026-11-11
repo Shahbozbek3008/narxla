@@ -1,8 +1,8 @@
-import clsx from 'clsx';
 import { useTranslations } from 'next-intl';
-import { RangeScale } from '@/components/ui/RangeScale';
+import { RangeScale } from '@/components/shared/RangeScale';
 import { FeatureCard, FeatureIntro } from './FeatureCard';
 import { miniPanel } from './miniPanel';
+import { cn } from '@/lib/utils';
 
 const QUOTE_POSITION = 74;
 
@@ -13,7 +13,7 @@ export function PriceCheckCard() {
   return (
     <FeatureCard>
       <FeatureIntro title={t('title')} text={t('text')} />
-      <div className={clsx(miniPanel.root, 'mt-auto p-4')}>
+      <div className={cn(miniPanel.root, 'mt-auto p-4')}>
         <p className="text-xs/4 text-fg-3">{t('label')}</p>
         <p className="mt-1 font-display text-[22px]/7 font-semibold">{t('price')}</p>
         <RangeScale className="mt-7" marker={QUOTE_POSITION} label={t('you')} ring="surface-2" />

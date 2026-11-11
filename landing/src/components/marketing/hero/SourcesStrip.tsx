@@ -1,6 +1,6 @@
 import { useTranslations } from 'next-intl';
-import { Container } from '@/components/ui/Container';
-import { Reveal } from '@/components/ui/Reveal';
+import { Container } from '@/components/shared/Container';
+import { Reveal } from '@/components/shared/Reveal';
 import { PRICE_SOURCES } from '@/lib/config';
 import { stagger } from '@/lib/motion';
 

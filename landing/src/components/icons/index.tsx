@@ -52,3 +52,9 @@ export const Burger = () => (
     <span className="h-[1.5px] w-[13px] rounded-[2px] bg-current" />
   </span>
 );
+
+export const Ceiling = (props: IconProps) => (
+  <svg {...base(props)}>
+    <path d="M3 4h18M7 4v5M17 4v5M12 4v9M9 13h6l-1 4h-4z" />
+  </svg>
+);

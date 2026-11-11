@@ -1,5 +1,5 @@
 import { useTranslations } from 'next-intl';
-import { Badge, type BadgeTone } from '@/components/ui/Badge';
+import { Badge, type BadgeTone } from '@/components/ui/badge';
 import { FeatureCard, FeatureIntro } from './FeatureCard';
 
 type Project = { name: string; status: string; range: string; meta: string };

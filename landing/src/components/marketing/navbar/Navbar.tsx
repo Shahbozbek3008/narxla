@@ -1,16 +1,20 @@
 'use client';
 
 import { motion, useMotionValueEvent, useReducedMotion, useScroll } from 'framer-motion';
+import { ArrowRight } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { useCallback, useEffect, useState } from 'react';
+import { Logo } from '@/components/brand/Logo';
 import { Burger } from '@/components/icons';
 import { LocaleMenu } from '@/components/locale/LocaleMenu';
 import { ThemeToggle } from '@/components/theme/ThemeToggle';
-import { ButtonLink } from '@/components/ui/ButtonLink';
-import { Logo } from '@/components/ui/Logo';
+import { Button } from '@/components/ui/button';
+import { Sheet, SheetTrigger } from '@/components/ui/sheet';
+import { Link } from '@/i18n/navigation';
 import { ANCHORS, toHash } from '@/lib/anchors';
-import { appLinks } from '@/lib/config';
 import { EASE_OUT } from '@/lib/motion';
+import { routes } from '@/lib/routes';
+import { useSession } from '@/store/session';
 import { MobileDrawer } from './MobileDrawer';
 import { NAV_ITEMS } from './navItems';
 
@@ -23,15 +27,14 @@ export function Navbar() {
   const { scrollY } = useScroll();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const signedIn = useSession((state) => state.signedIn);
+  const closeMenu = useCallback(() => setMenuOpen(false), []);
 
   useEffect(() => setScrolled(scrollY.get() > SCROLL_THRESHOLD), [scrollY]);
   useMotionValueEvent(scrollY, 'change', (value) => setScrolled(value > SCROLL_THRESHOLD));
 
-  const openMenu = useCallback(() => setMenuOpen(true), []);
-  const closeMenu = useCallback(() => setMenuOpen(false), []);
-
   return (
-    <>
+    <Sheet open={menuOpen} onOpenChange={setMenuOpen}>
       <motion.header
         data-scrolled={scrolled}
         className="sticky top-0 z-50 border-b border-transparent transition-[background-color,border-color] duration-250 data-[scrolled=true]:border-line data-[scrolled=true]:bg-nav data-[scrolled=true]:backdrop-blur-[16px] data-[scrolled=true]:backdrop-saturate-[160%]"
@@ -58,29 +61,34 @@ export function Navbar() {
             <div className="hidden items-center gap-2 md:flex">
               <LocaleMenu variant="button" />
               <ThemeToggle />
-              <a
-                href={appLinks.login}
-                className="rounded-[10px] px-3.5 py-2 text-sm/5 font-medium text-fg-2 transition-colors duration-150 hover:bg-surface-2 hover:text-fg"
-              >
-                {tCommon('login')}
-              </a>
+              <Button asChild variant="ghost" size="nav">
+                {signedIn ? (
+                  <Link href={routes.app}>
+                    {tCommon('openApp')}
+                    <ArrowRight size={14} strokeWidth={1.75} aria-hidden />
+                  </Link>
+                ) : (
+                  <Link href={routes.login}>{tCommon('login')}</Link>
+                )}
+              </Button>
             </div>
-            <ButtonLink href={appLinks.newEstimate} size="sm">
-              {tCommon('cta')}
-            </ButtonLink>
-            <button
-              type="button"
-              className="-mr-1.5 grid size-10 place-items-center rounded-[10px] text-fg transition-colors duration-150 hover:bg-surface-2 active:bg-surface-3 md:hidden"
-              aria-label={t('openMenu')}
-              aria-expanded={menuOpen}
-              onClick={openMenu}
-            >
-              <Burger />
-            </button>
+            <Button asChild size="nav">
+              <Link href={routes.newEstimate}>{tCommon('cta')}</Link>
+            </Button>
+            <SheetTrigger asChild>
+              <Button
+                variant="ghost"
+                size="icon"
+                className="-mr-1.5 text-fg active:bg-surface-3 md:hidden"
+                aria-label={t('openMenu')}
+              >
+                <Burger />
+              </Button>
+            </SheetTrigger>
           </div>
         </div>
       </motion.header>
-      <MobileDrawer open={menuOpen} onClose={closeMenu} />
-    </>
+      <MobileDrawer signedIn={signedIn} onClose={closeMenu} />
+    </Sheet>
   );
 }

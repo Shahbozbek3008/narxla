@@ -1,32 +1,51 @@
 export type Theme = 'dark' | 'light';
+export type ThemePreference = Theme | 'system';
 
 const STORAGE_KEY = 'smetachi-theme';
+const LIGHT_QUERY = '(prefers-color-scheme: light)';
 
-export const themeInitScript = `(function(){try{var t=localStorage.getItem('${STORAGE_KEY}');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}})();`;
+export const themeInitScript = `(function(){try{var p=localStorage.getItem('${STORAGE_KEY}');if(p!=='light'&&p!=='dark'&&p!=='system')p='dark';var t=p==='system'?(matchMedia('${LIGHT_QUERY}').matches?'light':'dark'):p;var d=document.documentElement;d.dataset.theme=t;d.dataset.themePreference=p}catch(e){}})();`;
+
+const root = () => document.documentElement;
+
+const resolve = (preference: ThemePreference): Theme =>
+  preference === 'system' ? (window.matchMedia(LIGHT_QUERY).matches ? 'light' : 'dark') : preference;
 
 export function readTheme(): Theme {
-  return document.documentElement.dataset.theme === 'light' ? 'light' : 'dark';
+  return root().dataset.theme === 'light' ? 'light' : 'dark';
 }
 
-function persistTheme(theme: Theme) {
+export function readThemePreference(): ThemePreference {
+  const value = root().dataset.themePreference;
+  return value === 'light' || value === 'system' ? value : readTheme();
+}
+
+export function applyThemePreference(preference: ThemePreference) {
+  root().dataset.themePreference = preference;
+  root().dataset.theme = resolve(preference);
   try {
-    localStorage.setItem(STORAGE_KEY, theme);
+    localStorage.setItem(STORAGE_KEY, preference);
   } catch {
     return;
   }
 }
 
-export function applyTheme(theme: Theme) {
-  document.documentElement.dataset.theme = theme;
-  persistTheme(theme);
-}
-
 export function toggleTheme() {
-  applyTheme(readTheme() === 'dark' ? 'light' : 'dark');
+  applyThemePreference(readTheme() === 'dark' ? 'light' : 'dark');
 }
 
 export function subscribeTheme(onChange: () => void) {
   const observer = new MutationObserver(onChange);
-  observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
-  return () => observer.disconnect();
+  observer.observe(root(), { attributes: true, attributeFilter: ['data-theme', 'data-theme-preference'] });
+
+  const media = window.matchMedia(LIGHT_QUERY);
+  const handleSystemChange = () => {
+    if (readThemePreference() === 'system') applyThemePreference('system');
+  };
+  media.addEventListener('change', handleSystemChange);
+
+  return () => {
+    observer.disconnect();
+    media.removeEventListener('change', handleSystemChange);
+  };
 }

@@ -1,5 +1,5 @@
-import clsx from 'clsx';
 import type { ReactNode } from 'react';
+import { cn } from '@/lib/utils';
 import { Eyebrow } from './Eyebrow';
 import { Reveal } from './Reveal';
 
@@ -10,12 +10,18 @@ type SectionHeadingProps = {
   align?: 'start' | 'center';
   width?: 'md' | 'sm' | 'xs';
   leadSize?: 'md' | 'lg';
+  leadWidth?: 'full' | 'sm';
 };
 
 const WIDTH = {
   md: 'max-w-[640px]',
   sm: 'max-w-[560px]',
   xs: 'max-w-[400px]',
+};
+
+const LEAD_WIDTH = {
+  full: '',
+  sm: 'mx-auto max-w-[520px]',
 };
 
 const LEAD_SIZE = {
@@ -30,9 +36,10 @@ export function SectionHeading({
   align = 'start',
   width = 'md',
   leadSize = 'lg',
+  leadWidth = 'full',
 }: SectionHeadingProps) {
   return (
-    <div className={clsx(WIDTH[width], align === 'center' && 'mx-auto text-center')}>
+    <div className={cn(WIDTH[width], align === 'center' && 'mx-auto text-center')}>
       <Reveal>
         <Eyebrow>{eyebrow}</Eyebrow>
       </Reveal>
@@ -43,7 +50,7 @@ export function SectionHeading({
       </Reveal>
       {lead && (
         <Reveal delay={160}>
-          <p className={clsx('mt-4 text-pretty text-fg-2', LEAD_SIZE[leadSize])}>{lead}</p>
+          <p className={cn('mt-4 text-pretty text-fg-2', LEAD_SIZE[leadSize], LEAD_WIDTH[leadWidth])}>{lead}</p>
         </Reveal>
       )}
     </div>

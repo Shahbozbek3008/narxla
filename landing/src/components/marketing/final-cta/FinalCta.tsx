@@ -1,10 +1,12 @@
+import { ArrowRight } from 'lucide-react';
 import { useTranslations } from 'next-intl';
-import { ButtonLink } from '@/components/ui/ButtonLink';
-import { CtaGroup } from '@/components/ui/CtaGroup';
-import { Reveal } from '@/components/ui/Reveal';
-import { Section } from '@/components/ui/Section';
+import { CtaGroup } from '@/components/shared/CtaGroup';
+import { Reveal } from '@/components/shared/Reveal';
+import { Section } from '@/components/shared/Section';
+import { Button } from '@/components/ui/button';
+import { Link } from '@/i18n/navigation';
 import { ANCHORS, toHash } from '@/lib/anchors';
-import { appLinks } from '@/lib/config';
+import { routes } from '@/lib/routes';
 
 export function FinalCta() {
   const t = useTranslations('finalCta');
@@ -32,12 +34,15 @@ export function FinalCta() {
         <p className="relative mt-4 max-w-[480px] text-lg/7 text-pretty text-fg-2">{t('lead')}</p>
         <div className="relative mt-8 max-sm:w-full">
           <CtaGroup>
-            <ButtonLink href={appLinks.newEstimate} arrow>
-              {tCommon('cta')}
-            </ButtonLink>
-            <ButtonLink href={toHash(ANCHORS.pricing)} variant="secondary">
-              {t('secondary')}
-            </ButtonLink>
+            <Button asChild size="xl">
+              <Link href={routes.newEstimate}>
+                {tCommon('cta')}
+                <ArrowRight size={16} strokeWidth={1.75} aria-hidden />
+              </Link>
+            </Button>
+            <Button asChild variant="secondary" size="xl">
+              <a href={toHash(ANCHORS.pricing)}>{t('secondary')}</a>
+            </Button>
           </CtaGroup>
         </div>
       </Reveal>

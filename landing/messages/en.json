@@ -573,5 +573,994 @@
         }
       }
     }
+  },
+  "app": {
+    "meta": {
+      "title": "Smetachi — app"
+    },
+    "nav": {
+      "label": "Main navigation",
+      "workspace": "Workspace",
+      "estimates": "My estimates",
+      "new": "New estimate",
+      "calcs": "Calculators",
+      "check": "Check a contractor quote",
+      "settings": "Settings"
+    },
+    "tabs": {
+      "estimates": "Estimates",
+      "calcs": "Calculator",
+      "check": "Check",
+      "settings": "Settings",
+      "new": "New estimate"
+    },
+    "titles": {
+      "estimates": "My estimates",
+      "new": "New estimate",
+      "result": "Estimate",
+      "check": "Quote check",
+      "calcs": "Calculators",
+      "pdf": "PDF",
+      "settings": "Settings"
+    },
+    "theme": "Theme",
+    "plan": {
+      "projectTitle": "Project plan",
+      "active": "Active",
+      "projectNote": "One-time · price tracking until {date}",
+      "proCta": "Are you a contractor? Go Pro",
+      "freeTitle": "Free plan",
+      "freeUsage": "{used} / {limit} estimates",
+      "freeCta": "Project — 49,000 UZS"
+    },
+    "profile": {
+      "trigger": "Profile menu",
+      "settings": "Profile and settings",
+      "billing": "Plan and billing",
+      "billingBadge": "Project",
+      "help": "Help",
+      "logout": "Sign out",
+      "signIn": "Sign in",
+      "guest": "Guest",
+      "guestNote": "Estimates are stored on this device"
+    },
+    "months": {
+      "1": "Jan",
+      "2": "Feb",
+      "3": "Mar",
+      "4": "Apr",
+      "5": "May",
+      "6": "Jun",
+      "7": "Jul",
+      "8": "Aug",
+      "9": "Sep",
+      "10": "Oct",
+      "11": "Nov",
+      "12": "Dec"
+    },
+    "date": "{month} {day}",
+    "dateLong": "{month} {day}, {year}",
+    "money": "{value} UZS",
+    "currency": "UZS",
+    "mlnSom": "{value} mln UZS",
+    "mln": "{value} mln",
+    "rooms": {
+      "yotoq": {
+        "name": "Bedroom",
+        "hint": "10–18 m²"
+      },
+      "mehmon": {
+        "name": "Living room",
+        "hint": "16–28 m²"
+      },
+      "oshxona": {
+        "name": "Kitchen",
+        "hint": "8–14 m²"
+      },
+      "hammom": {
+        "name": "Bathroom",
+        "hint": "3–7 m²"
+      },
+      "koridor": {
+        "name": "Hallway",
+        "hint": "4–10 m²"
+      },
+      "bolalar": {
+        "name": "Kids' room",
+        "hint": "9–14 m²"
+      }
+    },
+    "works": {
+      "pol": {
+        "name": "Floor",
+        "desc": "Laminate or tile, underlay, skirting"
+      },
+      "devor": {
+        "name": "Walls",
+        "desc": "Plaster, putty, paint or tile"
+      },
+      "shift": {
+        "name": "Ceiling",
+        "desc": "Drywall, profiles and paint"
+      },
+      "elektr": {
+        "name": "Electrical",
+        "desc": "Cable, sockets and switches"
+      },
+      "santex": {
+        "name": "Plumbing",
+        "desc": "Pipes, mixer and connections"
+      }
+    },
+    "qualities": {
+      "eco": {
+        "name": "Budget",
+        "desc": "Reliable but basic materials.",
+        "examples": {
+          "floor": "Class 32 laminate",
+          "paint": "Emulsion paint",
+          "tile": "Local tile"
+        },
+        "badge": ""
+      },
+      "mid": {
+        "name": "Standard",
+        "desc": "A balance of price and quality.",
+        "examples": {
+          "floor": "Class 33 laminate",
+          "paint": "Washable paint",
+          "tile": "Turkish tile"
+        },
+        "badge": "Most popular"
+      },
+      "pre": {
+        "name": "Premium",
+        "desc": "Durable and beautiful.",
+        "examples": {
+          "floor": "Class 34 laminate, 12 mm",
+          "paint": "European paint",
+          "tile": "Spanish porcelain"
+        },
+        "badge": ""
+      }
+    },
+    "categories": {
+      "pol": "Floor",
+      "devor": "Walls",
+      "shift": "Ceiling",
+      "elektr": "Electrical",
+      "santex": "Plumbing"
+    },
+    "status": {
+      "ready": "Ready",
+      "draft": "Draft",
+      "sent": "Sent to contractor"
+    },
+    "list": {
+      "title": "My estimates",
+      "subtitle": "{count} estimates · latest {date}",
+      "subtitleEmpty": "No estimates yet",
+      "new": "New estimate",
+      "viewLabel": "View",
+      "viewCards": "Cards",
+      "viewTable": "Table",
+      "search": "Search by estimate name",
+      "filtersLabel": "Filter by status",
+      "filters": {
+        "all": "All",
+        "ready": "Ready",
+        "draft": "Drafts",
+        "sent": "Sent"
+      },
+      "columns": {
+        "name": "Name",
+        "area": "Area",
+        "quality": "Quality",
+        "budget": "Budget",
+        "status": "Status"
+      },
+      "meta": "{area} · {quality} · {date}",
+      "emptyTitle": "No estimates yet",
+      "emptyText": "Pick a room and enter its size. In 2 minutes you get a materials list and a price range in UZS.",
+      "emptyCta": "Create your first estimate",
+      "notFoundTitle": "Nothing found",
+      "notFoundText": "Try another name or filter.",
+      "clear": "Clear filter"
+    },
+    "wizard": {
+      "back": "My estimates",
+      "title": "New estimate",
+      "stepsLabel": "Steps",
+      "steps": {
+        "room": "Room",
+        "dims": "Size",
+        "works": "Works",
+        "quality": "Quality"
+      },
+      "room": {
+        "title": "Which room are you renovating?",
+        "lead": "You can add more rooms later.",
+        "flat": "Whole apartment",
+        "flatHint": "Measure each room separately — one combined estimate",
+        "flatBadge": "Project"
+      },
+      "dims": {
+        "title": "{room} size",
+        "lead": "Enter metres — a comma or a dot both work.",
+        "length": "Length",
+        "width": "Width",
+        "height": "Ceiling height",
+        "heightHint": "Usually 2.5–3.2 m",
+        "errLW": "Length and width must be between 1 and 20 m.",
+        "errH": "Ceiling height is usually 2.5–3.2 m, please check.",
+        "doors": "Doors",
+        "doorsHint": "0.9 × 2.0 m",
+        "windows": "Windows",
+        "windowsHint": "1.5 × 1.4 m",
+        "decrease": "Decrease",
+        "increase": "Increase",
+        "diagram": "Room diagram",
+        "floorCaption": "floor area",
+        "stats": {
+          "floor": "Floor area",
+          "walls": "Walls (without openings)",
+          "ceiling": "Ceiling",
+          "perimeter": "Perimeter"
+        },
+        "viewLabel": "Diagram view",
+        "view2d": "2D",
+        "view3d": "3D",
+        "dragHint": "Drag to rotate",
+        "resetView": "Reset view"
+      },
+      "works": {
+        "title": "What work is planned?",
+        "lead": "Pick one or more. Materials and labour are calculated for each.",
+        "estimate": "≈ {value} mln UZS",
+        "error": "Select at least one type of work."
+      },
+      "quality": {
+        "title": "Material quality",
+        "lead": "Price per 1 m² of this room's floor — materials and labour included.",
+        "unit": "UZS / m²"
+      },
+      "prev": "Back",
+      "next": "Continue",
+      "calculate": "Calculate estimate",
+      "liveEstimate": "Estimated budget"
+    },
+    "result": {
+      "breadcrumb": "My estimates",
+      "title": "{name} · {length} × {width} m",
+      "pricesBadge": "{verified} of {total} prices checked in stores · {date}",
+      "qualityBadge": "{quality} quality",
+      "region": "Tashkent",
+      "edit": "Edit",
+      "check": "Check a contractor quote",
+      "kpi": {
+        "total": "Total budget",
+        "totalNote": "mln UZS · incl. 10% reserve",
+        "materials": "Materials",
+        "materialsNote": "mln UZS · {count} items",
+        "labour": "Labour",
+        "labourNote": "mln UZS · {count} work types",
+        "duration": "Estimated duration",
+        "durationNote": "days · with 2 workers"
+      },
+      "breakdown": "Cost breakdown",
+      "breakdownTotal": "Total {value} UZS",
+      "share": "Share",
+      "materials": "Materials",
+      "reserveNote": "Quantities include a 10% reserve",
+      "searchMaterials": "Search materials",
+      "columns": {
+        "name": "Name",
+        "qty": "Quantity",
+        "price": "Unit price",
+        "total": "Total"
+      },
+      "noMaterials": "No materials match “{query}”",
+      "materialsTotal": "Materials total",
+      "labour": "Labour",
+      "labourNote": "Average Tashkent rates",
+      "labourTotal": "Labour total",
+      "summary": "Summary",
+      "summaryNote": "The range reflects price differences between stores: −8% / +12%",
+      "totals": {
+        "materials": "Materials",
+        "labour": "Labour",
+        "total": "Total",
+        "range": "Budget range"
+      },
+      "lineDetail": "{qty} × {price}",
+      "lineDetailSom": "{qty} × {price} UZS",
+      "sources": "Prices: Uzum Market, Prom.uz, Glotr.uz, 24stroy.uz, Maff.uz · Labour: Ustabor.uz, MegaMaster · November 2026 · Range −8% / +12%",
+      "report": "Wrong price? Let us know",
+      "totalLabel": "Total budget",
+      "save": "Save",
+      "saved": "Saved",
+      "pdf": "PDF",
+      "loading": "Calculating with Tashkent store prices…",
+      "notFoundTitle": "Estimate not found",
+      "notFoundText": "This estimate was deleted or saved on another device.",
+      "notFoundCta": "Back to my estimates",
+      "pricesBadgeNone": "Prices are estimates — not yet checked in stores",
+      "priceStatus": {
+        "partial": "partial",
+        "estimated": "estimate"
+      },
+      "priceStatusHint": {
+        "partial": "Price checked in 1–2 stores",
+        "estimated": "Estimated price — not yet checked in stores"
+      }
+    },
+    "pdf": {
+      "back": "Back to estimate",
+      "title": "PDF preview",
+      "print": "Print",
+      "download": "Download",
+      "number": "ESTIMATE No. {number}",
+      "docTitle": "Renovation estimate",
+      "info": {
+        "object": "Property",
+        "dims": "Size",
+        "floor": "Floor area",
+        "qualityRegion": "Quality · Region"
+      },
+      "qualityRegion": "{quality} · Tashkent",
+      "materials": "Materials",
+      "labour": "Labour",
+      "materialColumns": {
+        "index": "#",
+        "name": "Name",
+        "qty": "Qty",
+        "price": "Price",
+        "total": "Total"
+      },
+      "labourColumns": {
+        "index": "#",
+        "name": "Work",
+        "qty": "Volume",
+        "price": "Rate",
+        "total": "Total"
+      },
+      "totals": {
+        "materials": "Materials",
+        "labour": "Labour",
+        "total": "Total",
+        "range": "Budget range"
+      },
+      "footer": "Prices as of November 8, 2026, based on Tashkent markets. Quantities include a 10% reserve.",
+      "site": "smetachi.uz · {page} / {pages}",
+      "continued": "(continued)",
+      "estimatedNote": "* — estimated price, not yet checked in stores."
+    },
+    "check": {
+      "title": "Check a contractor quote",
+      "lead": "Compare the amount your contractor quoted with the market range for this work.",
+      "type": "Type of work",
+      "categories": {
+        "pol": "Floor",
+        "devor": "Walls",
+        "shift": "Ceiling",
+        "qurilish": "Construction",
+        "muh": "Electrical and plumbing"
+      },
+      "rate": "≈ {rate} UZS / {unit}",
+      "volume": "Work volume",
+      "estimated": "Estimated range",
+      "updated": "Market range updated · {date}",
+      "quote": "Contractor's quote",
+      "quotePlaceholder": "For example, 6 000 000",
+      "quoteHint": "Labour only — without materials.",
+      "result": "Result",
+      "verdicts": {
+        "fair": "In line with the market",
+        "expensive": "{percent}% above average",
+        "cheap": "{percent}% below average",
+        "tooCheap": "{percent}% below average"
+      },
+      "average": "Market average: {value} UZS",
+      "master": "Quote",
+      "scale": {
+        "low": "Cheap",
+        "range": "Market range",
+        "high": "Expensive"
+      },
+      "stats": {
+        "min": "Minimum",
+        "avg": "Average",
+        "max": "Maximum"
+      },
+      "tips": {
+        "fair": "The price is fair. Agree on the scope of work and the timeline in writing.",
+        "expensive": "To negotiate, offer around {from}–{to} mln UZS. Ask what the price includes.",
+        "cheap": "Good price. Agree on the scope of work in writing.",
+        "tooCheap": "Far below the market — find out what work is excluded and whether there is a warranty."
+      },
+      "emptyTitle": "Enter the contractor's quote",
+      "emptyText": "The result will appear here on the market scale."
+    },
+    "calcs": {
+      "title": "Calculators",
+      "lead": "{count} materials — quantity, consumption and estimated price.",
+      "search": "Search: brick, wallpaper, concrete…",
+      "categoriesTitle": "Categories",
+      "categories": {
+        "all": "All",
+        "pol": "Floor",
+        "devor": "Walls",
+        "shift": "Ceiling",
+        "qurilish": "Construction",
+        "izol": "Insulation",
+        "muh": "Electrical and plumbing"
+      },
+      "source": {
+        "verified": {
+          "short": "Checked",
+          "title": "Price source checked",
+          "long": "All prices checked in stores"
+        },
+        "partial": {
+          "short": "Partial",
+          "title": "Some prices are estimates",
+          "long": "Some prices checked in stores"
+        },
+        "estimated": {
+          "short": "Estimate",
+          "title": "Price not yet checked",
+          "long": "Estimated price — not yet checked in stores"
+        }
+      },
+      "emptyTitle": "No calculator found",
+      "emptyText": "Try another name or change the category.",
+      "back": "Calculators",
+      "caption": "{category} · {desc}",
+      "cost": "Estimated cost",
+      "addToEstimate": "Add to estimate",
+      "notFoundTitle": "Calculator not found",
+      "notFoundText": "This calculator does not exist or was renamed.",
+      "items": {
+        "kafel": {
+          "name": "Tile / porcelain",
+          "desc": "Pieces, adhesive, grout, spacers",
+          "note": "Includes cutting waste and a 10% reserve. Adhesive: 5 kg/m²."
+        },
+        "laminat": {
+          "name": "Laminate",
+          "desc": "Packs, underlay, skirting",
+          "note": "Assumes a square room. Add 5% for diagonal laying."
+        },
+        "linoleum": {
+          "name": "Linoleum",
+          "desc": "Sheet and double-sided tape",
+          "note": "Choose a roll wider than the room for a seamless floor."
+        },
+        "styajka": {
+          "name": "Screed (cement-sand)",
+          "desc": "Dry mix and edge strip",
+          "note": "Consumption: 20 kg/m² per 1 cm of thickness."
+        },
+        "nalivnoy": {
+          "name": "Self-levelling floor",
+          "desc": "Self-levelling compound",
+          "note": "Consumption: 1.6 kg/m² per 1 mm of thickness."
+        },
+        "plintus": {
+          "name": "Skirting",
+          "desc": "Boards and corners",
+          "note": "0.9 m is subtracted per door, 10% reserve."
+        },
+        "boyoq": {
+          "name": "Paint",
+          "desc": "Kilograms, buckets and primer",
+          "note": "Consumption: 0.18 kg/m² per coat, 10% reserve."
+        },
+        "shtuk": {
+          "name": "Gypsum plaster",
+          "desc": "Knauf Rotband, beads",
+          "note": "Consumption: 9 kg/m² per 1 cm layer. Uneven walls need more."
+        },
+        "sementshtuk": {
+          "name": "Cement plaster",
+          "desc": "For wet rooms and facades",
+          "note": "Consumption: 17 kg/m² per 1 cm layer."
+        },
+        "shpak": {
+          "name": "Putty",
+          "desc": "Base and finish coats",
+          "note": "Consumption: 1.2 kg/m² per coat."
+        },
+        "grunt": {
+          "name": "Primer",
+          "desc": "Deep-penetrating, in litres",
+          "note": "Consumption: 0.15 l/m² per coat."
+        },
+        "oboy": {
+          "name": "Wallpaper",
+          "desc": "Number of rolls and paste",
+          "note": "Adds 10 cm to every strip for pattern matching."
+        },
+        "devorkafel": {
+          "name": "Wall tile",
+          "desc": "Bathroom and kitchen backsplash",
+          "note": "Includes cutting waste and a 10% reserve."
+        },
+        "pvx": {
+          "name": "PVC panels",
+          "desc": "Panels and starter trim",
+          "note": "Panel area 0.75 m², 10% reserve."
+        },
+        "dekor": {
+          "name": "Decorative plaster",
+          "desc": "Textured finish",
+          "note": "Consumption: 2.5 kg/m² (depends on the texture)."
+        },
+        "gips": {
+          "name": "Drywall",
+          "desc": "Boards, profiles, screws, tape",
+          "note": "Profile spacing 60 cm."
+        },
+        "natyajnoy": {
+          "name": "Stretch ceiling",
+          "desc": "Membrane and baguette",
+          "note": "Price includes membrane and installation."
+        },
+        "shiftboyoq": {
+          "name": "Ceiling paint",
+          "desc": "Matte ceiling paint",
+          "note": "Consumption: 0.18 kg/m² per coat."
+        },
+        "gisht": {
+          "name": "Bricklaying",
+          "desc": "Bricks, cement, sand",
+          "note": "Includes joints, 5% reserve. Mortar 1:3."
+        },
+        "gazoblok": {
+          "name": "Aerated block",
+          "desc": "Blocks and adhesive",
+          "note": "Block face 600×300 mm, 5% reserve."
+        },
+        "beton": {
+          "name": "Concrete",
+          "desc": "Cement, sand, gravel",
+          "note": "Per 1 m³: cement by grade, 0.5 m³ sand, 0.8 m³ gravel."
+        },
+        "gidro": {
+          "name": "Waterproofing",
+          "desc": "Bathroom floor and wall base",
+          "note": "Runs 30 cm up the walls. 0.6 kg/m² per coat."
+        },
+        "issiq": {
+          "name": "Thermal insulation",
+          "desc": "Mineral wool or EPS",
+          "note": "10% reserve, 5 anchors per m²."
+        },
+        "elektr": {
+          "name": "Electrical wiring",
+          "desc": "Cable, sockets, boxes",
+          "note": "Cable length is estimated from the room perimeter."
+        },
+        "truba": {
+          "name": "Water pipes (PPR)",
+          "desc": "Pipe and fittings",
+          "note": "Clip spacing 50 cm."
+        }
+      },
+      "fields": {
+        "floorArea": "Floor area",
+        "wallArea": "Wall area",
+        "surfaceArea": "Surface area",
+        "ceilingArea": "Ceiling area",
+        "roomArea": "Room area",
+        "tileSize": "Tile size",
+        "laminateClass": "Class",
+        "thickness": "Thickness",
+        "averageLayer": "Average layer",
+        "roomPerimeter": "Room perimeter",
+        "wallPerimeter": "Wall perimeter",
+        "perimeter": "Perimeter",
+        "doors": "Number of doors",
+        "layers": "Coats",
+        "ceilingHeight": "Ceiling height",
+        "roll": "Roll",
+        "lightPoints": "Light points",
+        "wallThickness": "Wall thickness",
+        "concreteVolume": "Concrete volume",
+        "grade": "Grade",
+        "material": "Material",
+        "sockets": "Sockets and switches",
+        "pipeLength": "Pipe length",
+        "bends": "Number of bends"
+      },
+      "options": {
+        "tile30": "30×30",
+        "tile60": "60×60",
+        "tile120": "60×120",
+        "tile20x30": "20×30",
+        "tile30x60": "30×60",
+        "class32": "Class 32",
+        "class33": "Class 33",
+        "class34": "Class 34",
+        "one": "1",
+        "two": "2",
+        "three": "3",
+        "layer1": "1 layer",
+        "layer2": "2 layers",
+        "roll053": "0.53 × 10 m",
+        "roll106": "1.06 × 10 m",
+        "brickHalf": "½ brick",
+        "brickOne": "1 brick",
+        "brickOneHalf": "1½ bricks",
+        "block200": "200 mm",
+        "block300": "300 mm",
+        "m200": "M200",
+        "m250": "M250",
+        "m300": "M300",
+        "mineralWool": "Mineral wool 50 mm",
+        "eps": "EPS 50 mm"
+      },
+      "rows": {
+        "tiles": "Tiles",
+        "tileArea": "Tile area",
+        "tileAdhesive": "Tile adhesive, 25 kg",
+        "grout": "Grout, 2 kg",
+        "spacers": "Spacers, 2 mm",
+        "laminatePacks": "Laminate, 2.13 m² packs",
+        "underlay": "Underlay, 3 mm",
+        "skirting": "Skirting",
+        "linoleum": "Linoleum",
+        "doubleTape": "Double-sided tape, 25 m",
+        "screedMix": "Dry mix M150, 40 kg",
+        "mixWeight": "Mix weight",
+        "damperTape": "Edge strip",
+        "selfLeveling": "Self-levelling compound, 25 kg",
+        "primerCanister": "Primer, 10 l",
+        "skirtingPlanks": "Skirting, 2.5 m",
+        "totalLength": "Total length",
+        "skirtingFittings": "Corners and end caps",
+        "paint": "Paint",
+        "paintBuckets": "Bucket, 25 kg",
+        "rotband": "Knauf Rotband, 30 kg",
+        "beacons": "Plaster beads",
+        "cementPlaster": "Cement plaster, 25 kg",
+        "putty": "Putty, 25 kg",
+        "sandpaper": "Sandpaper",
+        "primer": "Primer",
+        "canisters": "Canister, 10 l",
+        "wallpaperRolls": "Wallpaper rolls",
+        "strips": "Strips",
+        "wallpaperGlue": "Wallpaper paste",
+        "pvcPanels": "PVC panel 0.25 × 3 m",
+        "startProfile": "Starter trim, 3 m",
+        "mountingAdhesive": "Mounting adhesive / staples",
+        "decorativePlaster": "Decorative plaster",
+        "buckets15": "Bucket, 15 kg",
+        "drywallSheets": "Knauf drywall 1.2 × 2.5 m",
+        "profiles": "Profile, 3 m",
+        "screws": "Screws",
+        "jointTape": "Joint tape, 45 m",
+        "stretchCanvas": "Membrane (installed)",
+        "baguette": "Baguette",
+        "lightRings": "Light rings",
+        "ceilingPaint": "Ceiling paint",
+        "buckets10": "Bucket, 10 kg",
+        "bricks": "Brick 250×120×65",
+        "mortar": "Mortar",
+        "cement": "Cement M400, 50 kg",
+        "sand": "Sand",
+        "blocks": "Aerated block 600×300",
+        "volume": "Volume",
+        "blockAdhesive": "Block adhesive, 25 kg",
+        "gravel": "Gravel",
+        "water": "Water",
+        "treatedArea": "Treated area",
+        "waterproofing": "Waterproofing, 15 kg",
+        "sealingTape": "Sealing tape",
+        "mineralWool": "Mineral wool, 6 m² pack",
+        "epsBoard": "EPS board 1 × 1 m",
+        "dowels": "Insulation anchors",
+        "cable25": "VVGng cable 3×2.5 (sockets)",
+        "cable15": "VVGng cable 3×1.5 (lighting)",
+        "sockets": "Sockets / switches",
+        "junctionBoxes": "Junction boxes",
+        "conduit": "Corrugated conduit",
+        "pprPipe": "PPR pipe, 20 mm",
+        "pprFittings": "Fittings (elbows, tees, couplings)",
+        "pipeClips": "Pipe clips"
+      }
+    },
+    "settings": {
+      "title": "Settings",
+      "lead": "Profile, calculations and app appearance.",
+      "navLabel": "Settings sections",
+      "nav": {
+        "s-profil": "Profile",
+        "s-smeta": "Estimate",
+        "s-bildirish": "Notifications",
+        "s-korinish": "Appearance",
+        "s-tarif": "Plan and billing",
+        "s-hisob": "Account"
+      },
+      "profile": {
+        "title": "Profile",
+        "lead": "These details appear on estimates and PDFs.",
+        "photo": "Photo",
+        "photoHint": "PNG or JPG, up to 2 MB",
+        "upload": "Upload",
+        "name": "Full name",
+        "phone": "Phone",
+        "phoneHint": "Used to sign in",
+        "verified": "Verified",
+        "district": "District"
+      },
+      "estimate": {
+        "title": "Estimate",
+        "lead": "Defaults for new estimates.",
+        "region": "Region",
+        "regionHint": "Prices are currently available for Tashkent only",
+        "reserve": "Material reserve",
+        "reserveHint": "Added for cutting and waste",
+        "quality": "Default quality"
+      },
+      "notifications": {
+        "title": "Notifications",
+        "lead": "Choose when and where to get messages.",
+        "notifyPrice": {
+          "title": "When prices change",
+          "desc": "If a price in a saved estimate changes by more than 5%"
+        },
+        "notifyTelegram": {
+          "title": "Via Telegram",
+          "desc": "Messages are sent to @smetachi_bot"
+        },
+        "notifyNews": {
+          "title": "Tips and news",
+          "desc": "1–2 times a month, useful renovation reads"
+        }
+      },
+      "appearance": {
+        "title": "Appearance",
+        "lead": "The app theme is stored on this device only.",
+        "dark": "Dark",
+        "light": "Light",
+        "system": "System"
+      },
+      "billing": {
+        "title": "Plan and billing",
+        "lead": "You can change your plan at any time.",
+        "plan": "Project",
+        "oneTime": "One-time",
+        "paid": "49,000 UZS · paid on {date} · not a subscription",
+        "tracking": "Price tracking until {date} · Uzcard •••• {card}",
+        "history": "Payment history",
+        "pro": "Pro for contractors"
+      },
+      "account": {
+        "title": "Account",
+        "lead": "Sign-in and account management.",
+        "logout": "Sign out",
+        "logoutHint": "You will be signed out on this device. Your estimates stay saved.",
+        "logoutCta": "Sign out",
+        "delete": "Delete account",
+        "deleteHint": "All estimates and data will be permanently deleted."
+      },
+      "dirty": "Unsaved changes",
+      "cancel": "Cancel",
+      "save": "Save"
+    },
+    "dialogs": {
+      "cancel": "Cancel",
+      "logout": {
+        "title": "Sign out?",
+        "text": "Your estimates stay saved. To sign back in, we will text a code to your number.",
+        "action": "Sign out"
+      },
+      "delete": {
+        "title": "Delete your account?",
+        "text": "All estimates, PDFs and payment history will be permanently deleted. This cannot be undone.",
+        "action": "Delete"
+      }
+    },
+    "toasts": {
+      "close": "Close",
+      "saved": {
+        "title": "Estimate saved",
+        "text": "Added to My estimates."
+      },
+      "alreadySaved": {
+        "title": "Already saved",
+        "text": "It is in My estimates."
+      },
+      "shared": {
+        "title": "Link copied",
+        "text": "{url} — send it to your contractor or store."
+      },
+      "reported": {
+        "title": "Thanks, we got your report",
+        "text": "We will compare the price with stores and fix it in the next update."
+      },
+      "pro": {
+        "title": "Pro — for contractors",
+        "text": "Branded PDFs, a client base and your own prices — 129,000 UZS/month."
+      },
+      "flat": {
+        "title": "Available on the Project plan",
+        "text": "Whole-apartment plans are coming in the next release."
+      },
+      "help": {
+        "title": "Help",
+        "text": "Telegram: @smetachi_support"
+      },
+      "settingsSaved": {
+        "title": "Settings saved",
+        "text": "Changes apply to new estimates."
+      },
+      "upload": {
+        "title": "Upload photo",
+        "text": "A file picker will open."
+      },
+      "billing": {
+        "title": "Billing",
+        "text": "Click, Payme, Uzcard and Humo are supported."
+      },
+      "loggedOut": {
+        "title": "Signed out",
+        "text": "Your estimates are saved."
+      },
+      "deleteRequested": {
+        "title": "Request received",
+        "text": "A confirmation code was sent to your phone."
+      },
+      "print": {
+        "title": "Ready to print",
+        "text": "A4, 1 page."
+      },
+      "downloaded": {
+        "title": "PDF downloaded",
+        "text": "{file} · 184 KB"
+      },
+      "addedToEstimate": {
+        "title": "Added to estimate",
+        "text": "{calc} — added to the {room} estimate."
+      },
+      "welcome": {
+        "title": "Welcome, {name}",
+        "text": "You are signed in."
+      },
+      "signInRequired": {
+        "title": "Sign-in required",
+        "text": "Sign in to save estimates and download PDFs."
+      },
+      "reportFailed": {
+        "title": "Report not sent",
+        "text": "Check your internet connection and try again."
+      }
+    },
+    "units": {
+      "m2": "m²",
+      "m": "m",
+      "m3": "m³",
+      "mm": "mm",
+      "pcs": "pcs",
+      "bag": "bags",
+      "bucket": "buckets",
+      "canister": "canisters",
+      "sheet": "sheets",
+      "set": "sets",
+      "pack": "packs",
+      "packet": "packets",
+      "roll": "rolls",
+      "kg": "kg",
+      "l": "l"
+    },
+    "materials": {
+      "laminate-32": "Laminate class 32, 8 mm",
+      "laminate-33": "Laminate class 33, 8 mm",
+      "laminate-34": "Laminate class 34, 12 mm",
+      "underlay-3mm": "Underlay, 3 mm",
+      "skirting": "Skirting",
+      "skirting-fittings": "Skirting corners and end caps",
+      "porcelain-local": "Porcelain tile 60×60, local",
+      "porcelain-60x60": "Porcelain tile 60×60",
+      "porcelain-import": "Porcelain tile 60×60, imported",
+      "tile-adhesive-25": "Tile adhesive, 25 kg",
+      "grout-2": "Grout, 2 kg",
+      "tile-spacers": "Tile spacers, 2 mm",
+      "linoleum": "Linoleum",
+      "double-tape-25": "Double-sided tape, 25 m",
+      "screed-m150-40": "Dry mix M150, 40 kg",
+      "damper-tape": "Edge strip",
+      "self-leveling-25": "Self-levelling compound, 25 kg",
+      "rotband-30": "Knauf Rotband, 30 kg",
+      "cement-plaster-25": "Cement plaster, 25 kg",
+      "plaster-beacon": "Plaster bead",
+      "putty-25": "Putty, 25 kg",
+      "sandpaper-roll": "Sandpaper",
+      "primer-10": "Primer, 10 l",
+      "paint-emulsion-25": "Emulsion paint, 25 kg",
+      "paint-washable-25": "Washable paint, 25 kg",
+      "paint-premium-25": "Premium paint, 25 kg",
+      "wall-tile-30x60": "Wall tile 30×60",
+      "wallpaper-053": "Wallpaper 0.53 × 10 m",
+      "wallpaper-106": "Wallpaper 1.06 × 10 m",
+      "wallpaper-glue": "Wallpaper paste",
+      "pvc-panel": "PVC panel 0.25 × 3 m",
+      "pvc-start-profile": "Starter trim, 3 m",
+      "mounting-adhesive": "Mounting adhesive",
+      "decorative-plaster-15": "Decorative plaster, 15 kg",
+      "drywall-12-5": "Knauf drywall, 12.5 mm",
+      "drywall-moisture": "Knauf drywall, moisture-resistant",
+      "metal-profile-3m": "Profile, 3 m",
+      "drywall-screw": "Screw",
+      "joint-tape-45": "Joint tape, 45 m",
+      "ceiling-paint-10": "Ceiling paint, 10 kg",
+      "stretch-ceiling": "Stretch ceiling membrane (installed)",
+      "stretch-baguette": "Baguette",
+      "stretch-light-ring": "Light ring",
+      "brick": "Brick 250×120×65",
+      "cement-m400-50": "Cement M400, 50 kg",
+      "sand": "Sand",
+      "gravel": "Gravel",
+      "aerated-block-200": "Aerated block 600×300×200",
+      "aerated-block-300": "Aerated block 600×300×300",
+      "block-adhesive-25": "Aerated block adhesive, 25 kg",
+      "waterproofing-15": "Waterproofing, 15 kg",
+      "sealing-tape": "Sealing tape",
+      "mineral-wool-6m2": "Mineral wool 50 mm, 6 m²",
+      "eps-board-50": "EPS board 50 mm, 1 × 1 m",
+      "insulation-dowel": "Insulation anchor",
+      "cable-vvg-3x2-5": "VVGng cable 3×2.5",
+      "cable-vvg-3x1-5": "VVGng cable 3×1.5",
+      "socket-switch": "Sockets and switches",
+      "junction-box": "Junction box",
+      "breaker-16a": "Circuit breaker, 16 A",
+      "corrugated-pipe": "Corrugated conduit",
+      "ppr-pipe-20": "PPR pipe, 20 mm",
+      "ppr-fitting": "PPR fitting",
+      "pipe-clip": "Pipe clip",
+      "mixer-tap": "Mixer tap",
+      "fittings-kit": "Fittings kit"
+    },
+    "labour": {
+      "floor-tiling": "Floor tiling",
+      "laminate-laying": "Laminate laying",
+      "linoleum-laying": "Linoleum laying",
+      "screed": "Screed",
+      "self-leveling-floor": "Self-levelling floor",
+      "skirting-install": "Skirting installation",
+      "wall-plastering": "Wall plastering",
+      "wall-puttying": "Puttying",
+      "wall-painting": "Wall painting",
+      "wall-putty-paint": "Puttying and painting",
+      "wallpapering": "Wallpapering",
+      "wall-tiling": "Wall tiling",
+      "decorative-plastering": "Decorative plaster",
+      "drywall-ceiling": "Drywall ceiling installation",
+      "ceiling-putty-paint": "Ceiling puttying and painting",
+      "stretch-ceiling": "Stretch ceiling",
+      "ceiling-painting": "Ceiling painting",
+      "bricklaying": "Bricklaying",
+      "block-laying": "Aerated block laying",
+      "demolition": "Demolition",
+      "waterproofing": "Waterproofing",
+      "electric-point": "Electrical point",
+      "cable-laying": "Cable laying",
+      "plumbing-point": "Plumbing point",
+      "toilet-install": "Toilet installation",
+      "plumbing-set": "Plumbing installation"
+    }
+  },
+  "login": {
+    "title": "Welcome back",
+    "lead": "We will text a 6-digit code to your phone number.",
+    "phone": "Phone number",
+    "prefix": "+998",
+    "getCode": "Get code",
+    "or": "or",
+    "telegram": "Sign in with Telegram",
+    "back": "← Back to home",
+    "terms": "By signing in you agree to the <link>Terms of use</link>.",
+    "invalidPhone": "Enter the full phone number."
   }
 }

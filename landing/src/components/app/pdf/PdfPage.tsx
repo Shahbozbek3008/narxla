@@ -1,14 +1,15 @@
 import { useTranslations } from 'next-intl';
 import { LogoMark } from '@/components/brand/Logo';
-import { qtyLabel, type Estimate, type EstimateInput, type Line, type MaterialLine } from '@/lib/calc-engine';
+import type { Estimate, EstimateInput, Line } from '@/lib/calc-engine';
 import { BRAND_NAME } from '@/lib/config';
 import { dec, fmt, rangeMln } from '@/lib/format';
 import { cn } from '@/lib/utils';
+import { useEngineText } from '../common/useEngineText';
 import type { PdfBlock, TableBlock } from './paginate';
 
 const COLUMN_KEYS = ['index', 'name', 'qty', 'price', 'total'] as const;
 const ROW = 'grid grid-cols-[24px_minmax(0,1fr)_80px_90px_100px] items-center gap-2';
-const isEstimated = (line: Line | MaterialLine) => 'status' in line && line.status !== 'verified';
+const isEstimated = (line: Line) => line.kind === 'material' && line.status !== 'verified';
 const BRAND = 'flex items-center gap-2.5 [--accent:var(--brand-amber-light)] [--accent-ink:#1A1206]';
 
 export type PdfDocument = {
@@ -76,6 +77,7 @@ function PageHeader({ number }: { number: string }) {
 function LinesTable({ block }: { block: TableBlock }) {
   const t = useTranslations('app.pdf');
   const columnsKey = block.section === 'materials' ? 'materialColumns' : 'labourColumns';
+  const { lineName, lineQty } = useEngineText();
 
   return (
     <div className="shrink-0">
@@ -91,10 +93,10 @@ function LinesTable({ block }: { block: TableBlock }) {
         ))}
       </div>
       {block.rows.map((line, index) => (
-        <div key={line.name} className={cn(ROW, 'h-[29px] border-b border-paper-line-soft tabular-nums')}>
+        <div key={`${line.cat}-${line.code}`} className={cn(ROW, 'h-[29px] border-b border-paper-line-soft tabular-nums')}>
           <span className="text-paper-muted">{block.startIndex + index + 1}</span>
-          <span className="truncate">{line.name}</span>
-          <span className="text-right whitespace-nowrap">{qtyLabel(line)}</span>
+          <span className="truncate">{lineName(line)}</span>
+          <span className="text-right whitespace-nowrap">{lineQty(line)}</span>
           <span className="text-right">
             {fmt(line.price)}
             {isEstimated(line) && <span className="text-paper-muted">*</span>}

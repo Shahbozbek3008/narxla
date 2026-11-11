@@ -8,6 +8,7 @@ import { ADMIN_KEY_HEADER } from './common/admin-key.guard.js';
 import { AppConfigModule } from './config/app-config.module.js';
 import { AppConfigService } from './config/app-config.service.js';
 import { HealthModule } from './health/health.module.js';
+import { LabourModule } from './labour/labour.module.js';
 import { PricesModule } from './prices/prices.module.js';
 import { PrismaModule } from './prisma/prisma.module.js';
 import { ReportsModule } from './reports/reports.module.js';
@@ -37,6 +38,7 @@ const MINUTE_MS = 60_000;
     HealthModule,
     PricesModule,
     CatalogModule,
+    LabourModule,
     ReviewModule,
     ReportsModule,
     ScraperModule,

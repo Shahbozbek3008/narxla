@@ -1,4 +1,5 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
+import { hostOf, sameHost } from '../common/url.js';
 import { PricesService } from '../prices/prices.service.js';
 import { PrismaService } from '../prisma/prisma.service.js';
 import { unitPriceOf } from '../scraper/domain/observation-policy.js';
@@ -111,7 +112,6 @@ export class CatalogService {
   }
 
   private assertSameHost(url: string, baseUrl: string) {
-    const host = (value: string) => new URL(value).hostname.replace(/^www\./, '');
-    if (host(url) !== host(baseUrl)) throw new BadRequestException(`URL must belong to ${host(baseUrl)}`);
+    if (!sameHost(url, baseUrl)) throw new BadRequestException(`URL must belong to ${hostOf(baseUrl)}`);
   }
 }

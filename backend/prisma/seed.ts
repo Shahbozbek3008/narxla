@@ -1,6 +1,7 @@
 import 'dotenv/config';
 import { PrismaPg } from '@prisma/adapter-pg';
 import { PrismaClient } from '../src/generated/prisma/client.js';
+import { LABOUR_RATES } from './seed/labour-rates.js';
 import { MATERIALS } from './seed/materials.js';
 import { STORES } from './seed/stores.js';
 
@@ -19,7 +20,15 @@ async function seed() {
     await prisma.store.upsert({ where: { code }, create: { code, ...details }, update: details });
   }
 
-  console.info(`Seeded ${MATERIALS.length} materials and ${STORES.length} stores`);
+  for (const { code, minPrice, price, maxPrice, ...details } of LABOUR_RATES) {
+    await prisma.labourRate.upsert({
+      where: { code },
+      create: { code, minPrice, price, maxPrice, ...details },
+      update: details,
+    });
+  }
+
+  console.info(`Seeded ${MATERIALS.length} materials, ${STORES.length} stores and ${LABOUR_RATES.length} labour rates`);
 }
 
 try {

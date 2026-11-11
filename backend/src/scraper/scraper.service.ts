@@ -1,5 +1,6 @@
-import { ConflictException, Injectable, Logger, NotFoundException } from '@nestjs/common';
+import { BadRequestException, ConflictException, Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { setTimeout as sleep } from 'node:timers/promises';
+import { hostOf, sameHost } from '../common/url.js';
 import { AppConfigService } from '../config/app-config.service.js';
 import type { ObservationStatus, ScrapeOutcome } from '../generated/prisma/client.js';
 import { PricesService } from '../prices/prices.service.js';
@@ -94,6 +95,23 @@ export class ScraperService {
     const result = await this.scrapeListing(listing);
     this.prices.invalidate();
     return result;
+  }
+
+  async preview(storeCode: string, url: string) {
+    const store = await this.prisma.store.findUniqueOrThrow({ where: { code: storeCode }, select: { baseUrl: true, priceSelector: true } });
+    if (!sameHost(url, store.baseUrl)) throw new BadRequestException(`URL must belong to ${hostOf(store.baseUrl)}`);
+
+    const verdict = await this.robots.check(url);
+    if (!verdict.allowed) return { outcome: 'BLOCKED' as const, error: 'Disallowed by robots.txt' };
+
+    try {
+      const { body } = await this.fetcher.fetchText(url);
+      const extracted = extractPrice(body, store.priceSelector);
+      if (!extracted) return { outcome: 'FAILED' as const, error: 'No price found on the page' };
+      return { outcome: 'OK' as const, ...extracted };
+    } catch (error) {
+      return { outcome: 'FAILED' as const, error: error instanceof Error ? error.message : String(error) };
+    }
   }
 
   listRuns(take = 20) {

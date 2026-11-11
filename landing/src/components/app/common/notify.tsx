@@ -8,7 +8,7 @@ type ToastKind = 'success' | 'info';
 
 type NotifyOptions = {
   title: string;
-  description: string;
+  description?: string;
   kind?: ToastKind;
   closeLabel: string;
 };
@@ -28,7 +28,7 @@ export function notify({ title, description, kind = 'success', closeLabel }: Not
       </span>
       <span className="flex min-w-0 flex-1 flex-col">
         <span className="text-sm/5 font-semibold">{title}</span>
-        <span className="text-[13px]/[18px] text-fg-2">{description}</span>
+        {description && <span className="text-[13px]/[18px] text-fg-2">{description}</span>}
       </span>
       <button
         type="button"

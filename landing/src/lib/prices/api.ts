@@ -1,23 +1,31 @@
 import { REFERENCE_PRICES, type MaterialCode } from './catalog';
-import type { PriceBook, PriceInfo } from './price-book';
+import { REFERENCE_LABOUR, type LabourCode } from './labour';
+import type { LabourInfo, PriceBook, PriceInfo } from './price-book';
 
 type PriceItemResponse = PriceInfo & { code: string; sources: (PriceInfo['sources'][number] & { storeCode: string })[] };
 
 type PricesResponse = { generatedAt: string; items: PriceItemResponse[] };
 
-export const PRICES_ENDPOINT = '/api/prices';
+type LabourItemResponse = { code: string; min: number; price: number; max: number; updatedAt: string };
+
+type LabourResponse = { generatedAt: string; items: LabourItemResponse[] };
 
 const isMaterialCode = (code: string): code is MaterialCode => code in REFERENCE_PRICES;
 
-export async function fetchPriceBook(signal?: AbortSignal): Promise<PriceBook> {
-  const response = await fetch(PRICES_ENDPOINT, { signal, headers: { accept: 'application/json' } });
-  if (!response.ok) throw new Error(`Prices request failed with ${response.status}`);
+const isLabourCode = (code: string): code is LabourCode => code in REFERENCE_LABOUR;
 
-  const { items } = (await response.json()) as PricesResponse;
-  const book: PriceBook = {};
+async function getJson<T>(url: string, signal?: AbortSignal): Promise<T> {
+  const response = await fetch(url, { signal, headers: { accept: 'application/json' } });
+  if (!response.ok) throw new Error(`${url} responded with ${response.status}`);
+  return (await response.json()) as T;
+}
+
+async function fetchMaterials(signal?: AbortSignal): Promise<PriceBook['materials']> {
+  const { items } = await getJson<PricesResponse>('/api/prices', signal);
+  const materials: PriceBook['materials'] = {};
   items.forEach(({ code, price, min, max, status, sampleSize, checkedAt, sources }) => {
     if (!isMaterialCode(code)) return;
-    book[code] = {
+    materials[code] = {
       price,
       min,
       max,
@@ -27,7 +35,25 @@ export async function fetchPriceBook(signal?: AbortSignal): Promise<PriceBook> {
       sources: sources.map(({ storeName, url, unitPrice, observedAt }) => ({ storeName, url, unitPrice, observedAt })),
     };
   });
-  return book;
+  return materials;
+}
+
+async function fetchLabour(signal?: AbortSignal): Promise<PriceBook['labour']> {
+  const { items } = await getJson<LabourResponse>('/api/labour-rates', signal);
+  const labour: PriceBook['labour'] = {};
+  items.forEach(({ code, min, price, max, updatedAt }) => {
+    if (isLabourCode(code)) labour[code] = { min, price, max, updatedAt } satisfies LabourInfo;
+  });
+  return labour;
+}
+
+export async function fetchPriceBook(signal?: AbortSignal): Promise<PriceBook> {
+  const [materials, labour] = await Promise.allSettled([fetchMaterials(signal), fetchLabour(signal)]);
+  if (materials.status === 'rejected' && labour.status === 'rejected') throw materials.reason;
+  return {
+    materials: materials.status === 'fulfilled' ? materials.value : {},
+    labour: labour.status === 'fulfilled' ? labour.value : {},
+  };
 }
 
 export async function sendPriceReport(report: { estimateId: string; materialCode?: string; comment?: string }) {

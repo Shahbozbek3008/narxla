@@ -5,7 +5,9 @@ import { useTranslations } from 'next-intl';
 import { checkPrice, type CheckTone } from '@/lib/calc-engine';
 import { fmt, mln, num } from '@/lib/format';
 import { cn } from '@/lib/utils';
+import { labourInfo } from '@/lib/prices/price-book';
 import { useCheck } from '@/store/check';
+import { usePriceBook } from '@/store/prices';
 import { card } from '../common/styles';
 
 const TONE: Record<CheckTone, string> = {
@@ -22,6 +24,7 @@ export function CheckResult() {
   const t = useTranslations('app.check');
   const tApp = useTranslations('app');
   const { type, volume, price } = useCheck();
+  const book = usePriceBook();
   const amount = Number(price) || 0;
   const quantity = num(volume);
 
@@ -37,7 +40,7 @@ export function CheckResult() {
     );
   }
 
-  const result = checkPrice(type, quantity, amount);
+  const result = checkPrice(labourInfo(book, type), quantity, amount);
   const stats = [
     { label: t('stats.min'), value: result.lo },
     { label: t('stats.avg'), value: result.avg },

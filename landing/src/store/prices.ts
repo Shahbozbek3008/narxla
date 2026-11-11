@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { fetchPriceBook } from '@/lib/prices/api';
-import type { PriceBook } from '@/lib/prices/price-book';
+import { EMPTY_BOOK, type PriceBook } from '@/lib/prices/price-book';
 
 type PricesState = {
   book: PriceBook;
@@ -9,7 +9,7 @@ type PricesState = {
 };
 
 export const usePrices = create<PricesState>()((set, get) => ({
-  book: {},
+  book: EMPTY_BOOK,
   state: 'idle',
   load: async () => {
     if (get().state === 'loading' || get().state === 'live') return;

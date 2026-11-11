@@ -2,7 +2,7 @@
 
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
-import { CALC_CATS, CALCULATORS, CAT_ICON, calculatorStatus, type Calculator } from '@/lib/calc-engine';
+import { CALC_CATS, CALCULATORS, CAT_ICON, calculatorStatus } from '@/lib/calc-engine';
 import { routes } from '@/lib/routes';
 import { cn } from '@/lib/utils';
 import { useCalc, type CalcFilter } from '@/store/calc';
@@ -10,22 +10,23 @@ import { usePriceBook } from '@/store/prices';
 import { EmptyCard } from '../common/EmptyCard';
 import { PageHeader } from '../common/PageHeader';
 import { SearchInput } from '../common/SearchInput';
+import { useEngineText } from '../common/useEngineText';
 import { card, interactiveCard, sectionLabel } from '../common/styles';
 import { PathIcon } from './PathIcon';
 import { SourceBadge } from './SourceBadge';
 
 const FILTERS: CalcFilter[] = ['all', ...CALC_CATS];
 
-const matches = (calculator: Calculator, query: string) =>
-  !query || `${calculator.name} ${calculator.desc}`.toLowerCase().includes(query);
-
 export function CalcCatalog() {
   const t = useTranslations('app.calcs');
   const { cat, query, setCat, setQuery } = useCalc();
   const book = usePriceBook();
+  const { calcName, calcDesc } = useEngineText();
 
   const normalized = query.trim().toLowerCase();
-  const found = CALCULATORS.filter((calculator) => matches(calculator, normalized));
+  const found = CALCULATORS.filter(
+    (calculator) => !normalized || `${calcName(calculator)} ${calcDesc(calculator)}`.toLowerCase().includes(normalized),
+  );
   const countOf = (filter: CalcFilter) =>
     filter === 'all' ? found.length : found.filter((calculator) => calculator.cat === filter).length;
   const groups = CALC_CATS.filter((id) => cat === 'all' || id === cat)
@@ -106,8 +107,8 @@ export function CalcCatalog() {
                       <SourceBadge status={calculatorStatus(calculator, book)} />
                     </span>
                     <span className="mt-auto flex flex-col gap-1">
-                      <span className="text-[15px]/5 font-semibold tracking-[-0.01em]">{calculator.name}</span>
-                      <span className="line-clamp-2 text-[13px]/[18px] text-fg-3">{calculator.desc}</span>
+                      <span className="text-[15px]/5 font-semibold tracking-[-0.01em]">{calcName(calculator)}</span>
+                      <span className="line-clamp-2 text-[13px]/[18px] text-fg-3">{calcDesc(calculator)}</span>
                     </span>
                   </Link>
                 ))}

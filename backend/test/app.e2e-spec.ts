@@ -65,4 +65,20 @@ describe('Smetachi API (e2e)', () => {
       .send({ materialCode: 'rotband-30', storeCode: 'prom-uz', url: 'https://evil.example.com/rotband' })
       .expect(400);
   });
+
+  it('publishes labour rates with their range', async () => {
+    const response = await request(app.getHttpServer()).get('/api/labour-rates').expect(200);
+    const tiling = response.body.items.find((item: { code: string }) => item.code === 'floor-tiling');
+    expect(tiling).toMatchObject({ unit: 'm²', min: expect.any(Number), price: expect.any(Number), max: expect.any(Number) });
+    expect(tiling.min).toBeLessThanOrEqual(tiling.price);
+    expect(tiling.price).toBeLessThanOrEqual(tiling.max);
+  });
+
+  it('rejects labour rate updates that break the range', async () => {
+    await request(app.getHttpServer())
+      .patch('/api/admin/labour-rates/floor-tiling')
+      .set(ADMIN_KEY_HEADER, adminKey)
+      .send({ price: 999_999_999 })
+      .expect(400);
+  });
 });

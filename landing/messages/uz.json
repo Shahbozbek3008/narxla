@@ -948,7 +948,6 @@
       },
       "rate": "≈ {rate} so‘m / {unit}",
       "volume": "Ish hajmi",
-      "verified": "Bozor narxi tekshirilgan",
       "estimated": "Taxminiy oraliq",
       "quote": "Usta aytgan narx",
       "quotePlaceholder": "Masalan, 6 000 000",
@@ -979,7 +978,8 @@
         "tooCheap": "Narx bozordan ancha past — qaysi ishlar kirmaganini va kafolatni aniqlang."
       },
       "emptyTitle": "Usta aytgan narxni kiriting",
-      "emptyText": "Natija shu yerda bozor shkalasida ko‘rinadi."
+      "emptyText": "Natija shu yerda bozor shkalasida ko‘rinadi.",
+      "updated": "Bozor oralig‘i yangilangan · {date}"
     },
     "calcs": {
       "title": "Kalkulyatorlar",
@@ -1019,7 +1019,256 @@
       "cost": "Taxminiy narx",
       "addToEstimate": "Smetaga qo‘shish",
       "notFoundTitle": "Kalkulyator topilmadi",
-      "notFoundText": "Bu kalkulyator mavjud emas yoki nomi o‘zgargan."
+      "notFoundText": "Bu kalkulyator mavjud emas yoki nomi o‘zgargan.",
+      "items": {
+        "kafel": {
+          "name": "Kafel / keramogranit",
+          "desc": "Dona, yelim, zatirka, krestik",
+          "note": "Kesish chiqindisi va 10% zaxira bilan. Yelim sarfi 5 kg/m²."
+        },
+        "laminat": {
+          "name": "Laminat",
+          "desc": "Upakovka, podlojka, plintus",
+          "note": "Kvadrat xona deb olingan. Diagonal yotqizishda +5% qo‘shing."
+        },
+        "linoleum": {
+          "name": "Linoleum",
+          "desc": "Polotno va ikki tomonlama skotch",
+          "note": "Rulon kengligini xona kengligidan katta tanlang — choklarsiz yotadi."
+        },
+        "styajka": {
+          "name": "Styajka (sement-qum)",
+          "desc": "Quruq aralash va demfer lenta",
+          "note": "Sarf: 20 kg/m² har 1 sm qalinlikka."
+        },
+        "nalivnoy": {
+          "name": "Nalivnoy pol",
+          "desc": "O‘zi tekislanadigan aralash",
+          "note": "Sarf: 1,6 kg/m² har 1 mm qalinlikka."
+        },
+        "plintus": {
+          "name": "Plintus",
+          "desc": "Planka va burchaklar",
+          "note": "Eshik kengligi 0,9 m ayiriladi, 10% zaxira."
+        },
+        "boyoq": {
+          "name": "Bo‘yoq",
+          "desc": "Kg, chelak va gruntovka",
+          "note": "Sarf: 0,18 kg/m² bir qatlamga, 10% zaxira."
+        },
+        "shtuk": {
+          "name": "Gipsli shtukaturka",
+          "desc": "Knauf Rotband, mayoqlar",
+          "note": "Sarf: 9 kg/m² har 1 sm qatlamga. Devor egri bo‘lsa sarf oshadi."
+        },
+        "sementshtuk": {
+          "name": "Sement shtukaturka",
+          "desc": "Nam xonalar va fasad uchun",
+          "note": "Sarf: 17 kg/m² har 1 sm qatlamga."
+        },
+        "shpak": {
+          "name": "Shpaklyovka",
+          "desc": "Start va finish qatlamlari",
+          "note": "Sarf: 1,2 kg/m² har bir qatlamga."
+        },
+        "grunt": {
+          "name": "Gruntovka",
+          "desc": "Chuqur singuvchi, litrda",
+          "note": "Sarf: 0,15 l/m² bir qatlamga."
+        },
+        "oboy": {
+          "name": "Oboy (devor qog‘ozi)",
+          "desc": "Rulon soni va yelim",
+          "note": "Naqsh moslash uchun har polosaga +10 sm qo‘shilgan."
+        },
+        "devorkafel": {
+          "name": "Devor kafeli",
+          "desc": "Hammom va oshxona fartugi",
+          "note": "Kesish chiqindisi va 10% zaxira bilan."
+        },
+        "pvx": {
+          "name": "PVX panel",
+          "desc": "Panel va start profil",
+          "note": "Panel maydoni 0,75 m², 10% zaxira."
+        },
+        "dekor": {
+          "name": "Dekorativ shtukaturka",
+          "desc": "Fakturali qoplama",
+          "note": "Sarf: 2,5 kg/m² (faktura turiga bog‘liq)."
+        },
+        "gips": {
+          "name": "Gipsokarton",
+          "desc": "List, profil, shuruplar, lenta",
+          "note": "Profil qadami 60 sm."
+        },
+        "natyajnoy": {
+          "name": "Natyajnoy shift",
+          "desc": "Polotno va baget",
+          "note": "Narx polotno va o‘rnatish bilan."
+        },
+        "shiftboyoq": {
+          "name": "Shift bo‘yog‘i",
+          "desc": "Matoviy shift bo‘yog‘i",
+          "note": "Sarf: 0,18 kg/m² bir qatlamga."
+        },
+        "gisht": {
+          "name": "G‘isht terish",
+          "desc": "G‘isht, sement, qum",
+          "note": "Choklar bilan, 5% zaxira. Qorishma 1:3."
+        },
+        "gazoblok": {
+          "name": "Gazoblok",
+          "desc": "Blok va montaj yelimi",
+          "note": "Blok yuzasi 600×300 mm, 5% zaxira."
+        },
+        "beton": {
+          "name": "Beton",
+          "desc": "Sement, qum, shag‘al",
+          "note": "Tarkib 1 m³ uchun: sement marka bo‘yicha, qum 0,5 m³, shag‘al 0,8 m³."
+        },
+        "gidro": {
+          "name": "Gidroizolyatsiya",
+          "desc": "Hammom poli va devor osti",
+          "note": "Devorga 30 sm ko‘tarilgan holda. Sarf 0,6 kg/m² har qatlamga."
+        },
+        "issiq": {
+          "name": "Issiqlik izolyatsiyasi",
+          "desc": "Mineral paxta yoki penoplast",
+          "note": "10% zaxira, 5 ta dyubel/m²."
+        },
+        "elektr": {
+          "name": "Elektr montaj",
+          "desc": "Kabel, rozetka, korobka",
+          "note": "Kabel uzunligi xona perimetri bo‘yicha taxminiy hisoblangan."
+        },
+        "truba": {
+          "name": "Suv trubalari (PPR)",
+          "desc": "Truba va fitinglar",
+          "note": "Klipsa qadami 50 sm."
+        }
+      },
+      "fields": {
+        "floorArea": "Pol maydoni",
+        "wallArea": "Devor maydoni",
+        "surfaceArea": "Yuza maydoni",
+        "ceilingArea": "Shift maydoni",
+        "roomArea": "Xona maydoni",
+        "tileSize": "Plitka o‘lchami",
+        "laminateClass": "Sinf",
+        "thickness": "Qalinlik",
+        "averageLayer": "O‘rtacha qatlam",
+        "roomPerimeter": "Xona perimetri",
+        "wallPerimeter": "Devorlar perimetri",
+        "perimeter": "Perimetr",
+        "doors": "Eshiklar soni",
+        "layers": "Qatlamlar",
+        "ceilingHeight": "Shift balandligi",
+        "roll": "Rulon",
+        "lightPoints": "Chiroq nuqtalari",
+        "wallThickness": "Devor qalinligi",
+        "concreteVolume": "Beton hajmi",
+        "grade": "Marka",
+        "material": "Material",
+        "sockets": "Rozetka va viklyuchatel",
+        "pipeLength": "Truba uzunligi",
+        "bends": "Burilishlar soni"
+      },
+      "options": {
+        "tile30": "30×30",
+        "tile60": "60×60",
+        "tile120": "60×120",
+        "tile20x30": "20×30",
+        "tile30x60": "30×60",
+        "class32": "32-sinf",
+        "class33": "33-sinf",
+        "class34": "34-sinf",
+        "one": "1",
+        "two": "2",
+        "three": "3",
+        "layer1": "1 qatlam",
+        "layer2": "2 qatlam",
+        "roll053": "0,53 × 10 m",
+        "roll106": "1,06 × 10 m",
+        "brickHalf": "½ g‘isht",
+        "brickOne": "1 g‘isht",
+        "brickOneHalf": "1½ g‘isht",
+        "block200": "200 mm",
+        "block300": "300 mm",
+        "m200": "M200",
+        "m250": "M250",
+        "m300": "M300",
+        "mineralWool": "Mineral paxta 50 mm",
+        "eps": "Penoplast 50 mm"
+      },
+      "rows": {
+        "tiles": "Plitka",
+        "tileArea": "Plitka maydoni",
+        "tileAdhesive": "Kafel yelimi, 25 kg",
+        "grout": "Zatirka, 2 kg",
+        "spacers": "Krestik, 2 mm",
+        "laminatePacks": "Laminat, 2,13 m² upak.",
+        "underlay": "Podlojka, 3 mm",
+        "skirting": "Plintus",
+        "linoleum": "Linoleum",
+        "doubleTape": "Ikki tomonlama skotch, 25 m",
+        "screedMix": "Quruq aralash M150, 40 kg",
+        "mixWeight": "Aralash og‘irligi",
+        "damperTape": "Demfer lenta",
+        "selfLeveling": "Nalivnoy pol, 25 kg",
+        "primerCanister": "Gruntovka, 10 l",
+        "skirtingPlanks": "Plintus, 2,5 m",
+        "totalLength": "Umumiy uzunlik",
+        "skirtingFittings": "Burchak va zaglushkalar",
+        "paint": "Bo‘yoq",
+        "paintBuckets": "Chelak, 25 kg",
+        "rotband": "Knauf Rotband, 30 kg",
+        "beacons": "Mayoq profil",
+        "cementPlaster": "Sement shtukaturka, 25 kg",
+        "putty": "Shpaklyovka, 25 kg",
+        "sandpaper": "Zumpara qog‘oz",
+        "primer": "Gruntovka",
+        "canisters": "Kanistr, 10 l",
+        "wallpaperRolls": "Oboy rulon",
+        "strips": "Polosalar",
+        "wallpaperGlue": "Oboy yelimi",
+        "pvcPanels": "PVX panel 0,25 × 3 m",
+        "startProfile": "Start profil, 3 m",
+        "mountingAdhesive": "Montaj yelimi / skoba",
+        "decorativePlaster": "Dekorativ shtukaturka",
+        "buckets15": "Chelak, 15 kg",
+        "drywallSheets": "Gipsokarton Knauf 1,2 × 2,5 m",
+        "profiles": "Profil, 3 m",
+        "screws": "Shuruplar",
+        "jointTape": "Serpyanka lenta, 45 m",
+        "stretchCanvas": "Polotno (montaj bilan)",
+        "baguette": "Baget",
+        "lightRings": "Chiroq halqalari",
+        "ceilingPaint": "Shift bo‘yog‘i",
+        "buckets10": "Chelak, 10 kg",
+        "bricks": "G‘isht 250×120×65",
+        "mortar": "Qorishma",
+        "cement": "Sement M400, 50 kg",
+        "sand": "Qum",
+        "blocks": "Gazoblok 600×300",
+        "volume": "Hajm",
+        "blockAdhesive": "Montaj yelimi, 25 kg",
+        "gravel": "Shag‘al",
+        "water": "Suv",
+        "treatedArea": "Ishlov maydoni",
+        "waterproofing": "Gidroizolyatsiya, 15 kg",
+        "sealingTape": "Germetik lenta",
+        "mineralWool": "Mineral paxta, 6 m² upak.",
+        "epsBoard": "Penoplast list 1 × 1 m",
+        "dowels": "Dyubel-zontik",
+        "cable25": "Kabel VVGng 3×2,5 (rozetka)",
+        "cable15": "Kabel VVGng 3×1,5 (chiroq)",
+        "sockets": "Rozetka / viklyuchatel",
+        "junctionBoxes": "Montaj korobkasi",
+        "conduit": "Gofra truba",
+        "pprPipe": "PPR truba, 20 mm",
+        "pprFittings": "Fitinglar (burchak, troynik, mufta)",
+        "pipeClips": "Kreplenie (klipsa)"
+      }
     },
     "settings": {
       "title": "Sozlamalar",
@@ -1187,6 +1436,119 @@
         "title": "Xabar yuborilmadi",
         "text": "Internet aloqasini tekshirib, qayta urinib ko‘ring."
       }
+    },
+    "units": {
+      "m2": "m²",
+      "m": "m",
+      "m3": "m³",
+      "mm": "mm",
+      "pcs": "dona",
+      "bag": "qop",
+      "bucket": "chelak",
+      "canister": "kanistr",
+      "sheet": "list",
+      "set": "komplekt",
+      "pack": "upak.",
+      "packet": "paket",
+      "roll": "rulon",
+      "kg": "kg",
+      "l": "l"
+    },
+    "materials": {
+      "laminate-32": "Laminat 32-sinf, 8 mm",
+      "laminate-33": "Laminat 33-sinf, 8 mm",
+      "laminate-34": "Laminat 34-sinf, 12 mm",
+      "underlay-3mm": "Podlojka, 3 mm",
+      "skirting": "Plintus",
+      "skirting-fittings": "Plintus burchak va zaglushkalari",
+      "porcelain-local": "Keramogranit 60×60, mahalliy",
+      "porcelain-60x60": "Keramogranit 60×60",
+      "porcelain-import": "Keramogranit 60×60, import",
+      "tile-adhesive-25": "Kafel yelimi, 25 kg",
+      "grout-2": "Zatirka, 2 kg",
+      "tile-spacers": "Krestik, 2 mm",
+      "linoleum": "Linoleum",
+      "double-tape-25": "Ikki tomonlama skotch, 25 m",
+      "screed-m150-40": "Quruq aralash M150, 40 kg",
+      "damper-tape": "Demfer lenta",
+      "self-leveling-25": "Nalivnoy pol, 25 kg",
+      "rotband-30": "Knauf Rotband, 30 kg",
+      "cement-plaster-25": "Sement shtukaturka, 25 kg",
+      "plaster-beacon": "Mayoq profil",
+      "putty-25": "Shpaklyovka, 25 kg",
+      "sandpaper-roll": "Zumpara qog‘oz",
+      "primer-10": "Gruntovka, 10 l",
+      "paint-emulsion-25": "Suv-emulsion bo‘yoq, 25 kg",
+      "paint-washable-25": "Yuviladigan bo‘yoq, 25 kg",
+      "paint-premium-25": "Premium bo‘yoq, 25 kg",
+      "wall-tile-30x60": "Devor kafeli 30×60",
+      "wallpaper-053": "Oboy 0,53 × 10 m",
+      "wallpaper-106": "Oboy 1,06 × 10 m",
+      "wallpaper-glue": "Oboy yelimi",
+      "pvc-panel": "PVX panel 0,25 × 3 m",
+      "pvc-start-profile": "Start profil, 3 m",
+      "mounting-adhesive": "Montaj yelimi",
+      "decorative-plaster-15": "Dekorativ shtukaturka, 15 kg",
+      "drywall-12-5": "Gipsokarton Knauf, 12,5 mm",
+      "drywall-moisture": "Gipsokarton Knauf, namga chidamli",
+      "metal-profile-3m": "Profil, 3 m",
+      "drywall-screw": "Shurup",
+      "joint-tape-45": "Serpyanka lenta, 45 m",
+      "ceiling-paint-10": "Shift bo‘yog‘i, 10 kg",
+      "stretch-ceiling": "Natyajnoy shift polotnosi (montaj bilan)",
+      "stretch-baguette": "Baget",
+      "stretch-light-ring": "Chiroq halqasi",
+      "brick": "G‘isht 250×120×65",
+      "cement-m400-50": "Sement M400, 50 kg",
+      "sand": "Qum",
+      "gravel": "Shag‘al",
+      "aerated-block-200": "Gazoblok 600×300×200",
+      "aerated-block-300": "Gazoblok 600×300×300",
+      "block-adhesive-25": "Gazoblok montaj yelimi, 25 kg",
+      "waterproofing-15": "Gidroizolyatsiya, 15 kg",
+      "sealing-tape": "Germetik lenta",
+      "mineral-wool-6m2": "Mineral paxta 50 mm, 6 m²",
+      "eps-board-50": "Penoplast 50 mm, 1 × 1 m",
+      "insulation-dowel": "Dyubel-zontik",
+      "cable-vvg-3x2-5": "Kabel VVGng 3×2,5",
+      "cable-vvg-3x1-5": "Kabel VVGng 3×1,5",
+      "socket-switch": "Rozetka va viklyuchatel",
+      "junction-box": "Montaj korobkasi",
+      "breaker-16a": "Avtomat, 16 A",
+      "corrugated-pipe": "Gofra truba",
+      "ppr-pipe-20": "PPR truba, 20 mm",
+      "ppr-fitting": "PPR fiting",
+      "pipe-clip": "Truba klipsasi",
+      "mixer-tap": "Smesitel",
+      "fittings-kit": "Fitinglar to‘plami"
+    },
+    "labour": {
+      "floor-tiling": "Pol kafelini yotqizish",
+      "laminate-laying": "Laminat yotqizish",
+      "linoleum-laying": "Linoleum yotqizish",
+      "screed": "Styajka",
+      "self-leveling-floor": "Nalivnoy pol",
+      "skirting-install": "Plintus o‘rnatish",
+      "wall-plastering": "Devorlarni shtukaturka qilish",
+      "wall-puttying": "Shpaklyovka",
+      "wall-painting": "Devorlarni bo‘yash",
+      "wall-putty-paint": "Shpaklyovka va bo‘yash",
+      "wallpapering": "Oboy yopishtirish",
+      "wall-tiling": "Devor kafelini yotqizish",
+      "decorative-plastering": "Dekorativ shtukaturka",
+      "drywall-ceiling": "Gipsokarton shift montaji",
+      "ceiling-putty-paint": "Shiftni shpaklyovka va bo‘yash",
+      "stretch-ceiling": "Natyajnoy shift",
+      "ceiling-painting": "Shift bo‘yash",
+      "bricklaying": "G‘isht terish",
+      "block-laying": "Gazoblok terish",
+      "demolition": "Demontaj",
+      "waterproofing": "Gidroizolyatsiya",
+      "electric-point": "Elektr nuqtasi",
+      "cable-laying": "Kabel tortish",
+      "plumbing-point": "Santexnika nuqtasi",
+      "toilet-install": "Unitaz o‘rnatish",
+      "plumbing-set": "Santexnika montaji"
     }
   },
   "login": {
@@ -1200,5 +1562,124 @@
     "back": "← Bosh sahifaga qaytish",
     "terms": "Kirish orqali <link>Foydalanish shartlari</link>ga rozilik bildirasiz.",
     "invalidPhone": "Telefon raqamni to‘liq kiriting."
+  },
+  "admin": {
+    "metaTitle": "Smetachi — admin",
+    "badge": "Admin",
+    "signOut": "Chiqish",
+    "close": "Yopish",
+    "refresh": "Yangilash",
+    "money": "{value} so‘m",
+    "tabsLabel": "Admin bo‘limlari",
+    "tabs": {
+      "review": "Tekshiruv",
+      "listings": "Do‘kon havolalari",
+      "labour": "Ish haqi",
+      "scraper": "Scraper",
+      "reports": "Xabarlar"
+    },
+    "status": {
+      "ACCEPTED": "Qabul qilingan",
+      "PENDING_REVIEW": "Tekshiruvda",
+      "REJECTED": "Rad etilgan"
+    },
+    "errors": {
+      "title": "Amal bajarilmadi",
+      "unauthorized": "Admin kaliti noto‘g‘ri yoki muddati o‘tgan.",
+      "network": "Backend bilan aloqa yo‘q. Server ishlayotganini tekshiring."
+    },
+    "gate": {
+      "title": "Admin panel",
+      "lead": "Davom etish uchun backend’dagi ADMIN_API_KEY ni kiriting. Kalit faqat shu brauzer oynasida saqlanadi.",
+      "key": "Admin kaliti",
+      "submit": "Kirish"
+    },
+    "review": {
+      "title": "Narxlarni tekshirish",
+      "lead": "Oldingi narxdan ±30% dan ko‘p farq qilgan narxlar avtomatik qabul qilinmaydi.",
+      "price": "Yangi narx",
+      "reference": "Bazaviy narx",
+      "approve": "Tasdiqlash",
+      "reject": "Rad etish",
+      "approved": "Narx tasdiqlandi",
+      "rejected": "Narx rad etildi",
+      "emptyTitle": "Tekshiruvda narx yo‘q",
+      "emptyText": "Scraper g‘ayrioddiy narx topsa, shu yerda paydo bo‘ladi."
+    },
+    "listings": {
+      "title": "Do‘kon havolalari",
+      "lead": "Har bir material uchun kamida 3 ta do‘kon havolasi bo‘lsa, narx «tekshirilgan» deb ko‘rsatiladi.",
+      "search": "Material qidirish",
+      "count": "{count} havola",
+      "pick": "Chapdan material tanlang.",
+      "reference": "Bazaviy narx",
+      "empty": "Bu material uchun hali havola yo‘q.",
+      "inactive": "O‘chirilgan",
+      "noPrice": "Narx hali olinmagan",
+      "meta": "Qadoq: {pack} · oxirgi tekshiruv: {checked}",
+      "check": "Hozir tekshirish",
+      "checked": "Narx olindi: {price} so‘m · {status}",
+      "checkFailed": "Narx olinmadi: {error}",
+      "activate": "Yoqish",
+      "deactivate": "O‘chirish",
+      "delete": "Havolani o‘chirish",
+      "confirmDelete": "Havola va uning barcha narx tarixi o‘chiriladi. Davom etasizmi?",
+      "deleted": "Havola o‘chirildi"
+    },
+    "form": {
+      "title": "Yangi havola",
+      "lead": "Mahsulot sahifasi manzilini kiriting. Saqlashdan oldin narxni tekshirib ko‘ring.",
+      "url": "Mahsulot sahifasi",
+      "store": "Do‘kon",
+      "packSize": "Qadoqda nechta {unit}",
+      "packHint": "Sahifadagi narx necha {unit} uchun ekanini kiriting. Masalan, laminat upakovkasi 2,13 m² bo‘lsa — 2,13.",
+      "name": "Nomi (ixtiyoriy)",
+      "preview": "Narxni tekshirish",
+      "previewOk": "Sahifadagi narx: {price} so‘m · birlik narxi: {unitPrice} so‘m · usul: {strategy}",
+      "previewFailed": "Narx topilmadi: {error}",
+      "submit": "Qo‘shish",
+      "created": "Havola qo‘shildi"
+    },
+    "labour": {
+      "title": "Usta ish haqi stavkalari",
+      "lead": "Smeta o‘rtacha stavkani ishlatadi, narx tekshiruvi esa minimum–maksimum oralig‘ini.",
+      "columns": {
+        "name": "Ish turi",
+        "minPrice": "Minimum",
+        "price": "O‘rtacha",
+        "maxPrice": "Maksimum"
+      },
+      "save": "Saqlash",
+      "saved": "{name} — stavka saqlandi"
+    },
+    "scraper": {
+      "title": "Scraper",
+      "lead": "Avtomatik ravishda har dushanba 03:00 da ishga tushadi. Kerak bo‘lsa, hozir ishga tushiring.",
+      "start": "Hozir ishga tushirish",
+      "started": "Scraper ishga tushdi",
+      "running": "Ishlamoqda",
+      "emptyTitle": "Hali ishga tushirilmagan",
+      "emptyText": "Birinchi ishga tushirishdan keyin natijalar shu yerda ko‘rinadi.",
+      "columns": {
+        "startedAt": "Boshlangan",
+        "finishedAt": "Tugagan",
+        "total": "Jami",
+        "accepted": "Qabul",
+        "flagged": "Tekshiruv",
+        "failed": "Xato",
+        "blocked": "Bloklangan"
+      }
+    },
+    "reports": {
+      "title": "Foydalanuvchi xabarlari",
+      "lead": "«Narx noto‘g‘rimi?» tugmasi orqali yuborilgan xabarlar.",
+      "wholeEstimate": "Butun smeta",
+      "resolve": "Hal qilindi",
+      "dismiss": "Rad etish",
+      "resolved": "Xabar hal qilindi",
+      "dismissed": "Xabar rad etildi",
+      "emptyTitle": "Ochiq xabarlar yo‘q",
+      "emptyText": "Foydalanuvchilar narx haqida xabar bersa, shu yerda ko‘rinadi."
+    }
   }
 }

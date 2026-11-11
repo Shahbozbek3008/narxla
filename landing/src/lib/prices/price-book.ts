@@ -1,4 +1,5 @@
 import { REFERENCE_PRICES, type MaterialCode } from './catalog';
+import { REFERENCE_LABOUR, type LabourCode, type LabourRange } from './labour';
 
 export type PriceStatus = 'verified' | 'partial' | 'estimated';
 
@@ -19,7 +20,14 @@ export type PriceInfo = {
   sources: PriceSource[];
 };
 
-export type PriceBook = Partial<Record<MaterialCode, PriceInfo>>;
+export type LabourInfo = LabourRange & { updatedAt: string | null };
+
+export type PriceBook = {
+  materials: Partial<Record<MaterialCode, PriceInfo>>;
+  labour: Partial<Record<LabourCode, LabourInfo>>;
+};
+
+export const EMPTY_BOOK: PriceBook = { materials: {}, labour: {} };
 
 export type PriceLookup = (code: MaterialCode) => number;
 
@@ -28,9 +36,12 @@ const referenceInfo = (code: MaterialCode): PriceInfo => {
   return { price, min: price, max: price, status: 'estimated', sampleSize: 0, checkedAt: null, sources: [] };
 };
 
-export const priceInfo = (book: PriceBook, code: MaterialCode): PriceInfo => book[code] ?? referenceInfo(code);
+export const priceInfo = (book: PriceBook, code: MaterialCode): PriceInfo => book.materials[code] ?? referenceInfo(code);
 
 export const priceOf = (book: PriceBook, code: MaterialCode) => priceInfo(book, code).price;
+
+export const labourInfo = (book: PriceBook, code: LabourCode): LabourInfo =>
+  book.labour[code] ?? { ...REFERENCE_LABOUR[code], updatedAt: null };
 
 export function combineStatus(statuses: PriceStatus[]): PriceStatus {
   if (statuses.length === 0) return 'estimated';

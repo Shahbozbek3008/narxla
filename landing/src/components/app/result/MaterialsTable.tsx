@@ -1,11 +1,12 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { qtyLabel, type MaterialLine } from '@/lib/calc-engine';
+import type { MaterialLine } from '@/lib/calc-engine';
 import { fmt } from '@/lib/format';
 import { cn } from '@/lib/utils';
 import { useUi, type SortKey } from '@/store/ui';
 import { SearchInput } from '../common/SearchInput';
+import { useEngineText } from '../common/useEngineText';
 import { plainCard } from '../common/styles';
 import { CATEGORY_COLOR } from './categories';
 import { LinePriceMark } from './PriceStatusBadge';
@@ -13,16 +14,20 @@ import { LinePriceMark } from './PriceStatusBadge';
 const GRID = 'grid grid-cols-[minmax(0,2.4fr)_minmax(0,1fr)_minmax(0,1fr)_minmax(0,1.1fr)] gap-4 px-5';
 const COLUMNS: SortKey[] = ['name', 'qty', 'price', 'total'];
 
-const compare = (key: SortKey) => (a: MaterialLine, b: MaterialLine) =>
+type NamedLine = MaterialLine & { name: string };
+
+const compare = (key: SortKey) => (a: NamedLine, b: NamedLine) =>
   key === 'name' ? a.name.localeCompare(b.name) : a[key] - b[key];
 
 export function MaterialsTable({ lines, total }: { lines: MaterialLine[]; total: number }) {
   const t = useTranslations('app.result');
   const tApp = useTranslations('app');
   const { materialQuery, sortKey, sortDir, setMaterialQuery, sortBy } = useUi();
+  const { lineName, lineQty } = useEngineText();
 
   const query = materialQuery.trim().toLowerCase();
   const rows = lines
+    .map((line) => ({ ...line, name: lineName(line) }))
     .filter((line) => line.name.toLowerCase().includes(query))
     .sort((a, b) => compare(sortKey)(a, b) * sortDir);
 
@@ -68,14 +73,14 @@ export function MaterialsTable({ lines, total }: { lines: MaterialLine[]; total:
       </div>
 
       {rows.map((line) => (
-        <div key={line.name} className="border-b border-line tabular-nums">
+        <div key={`${line.cat}-${line.code}`} className="border-b border-line tabular-nums">
           <div className={cn(GRID, 'items-center py-3 text-sm/5 transition-colors duration-150 hover:bg-surface-2 max-sm:hidden')}>
             <span className="flex min-w-0 items-center gap-2.5">
               <span className="size-1.5 shrink-0 rounded-[2px]" style={{ background: CATEGORY_COLOR[line.cat] }} />
               <span className="truncate">{line.name}</span>
               <LinePriceMark line={line} />
             </span>
-            <span className="text-right text-fg-2">{qtyLabel(line)}</span>
+            <span className="text-right text-fg-2">{lineQty(line)}</span>
             <span className="text-right text-fg-2">{fmt(line.price)}</span>
             <span className="text-right font-semibold">{fmt(line.total)}</span>
           </div>
@@ -87,7 +92,7 @@ export function MaterialsTable({ lines, total }: { lines: MaterialLine[]; total:
                 <LinePriceMark line={line} />
               </span>
               <span className="text-xs/4 text-fg-3">
-                {t('lineDetail', { qty: qtyLabel(line), price: fmt(line.price) })}
+                {t('lineDetail', { qty: lineQty(line), price: fmt(line.price) })}
               </span>
             </span>
             <span className="text-sm font-semibold">{fmt(line.total)}</span>

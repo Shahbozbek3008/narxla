@@ -16,6 +16,7 @@ import { EmptyCard } from '../common/EmptyCard';
 import { BackLink } from '../common/PageHeader';
 import { NumberField } from '../common/NumberField';
 import { card, fieldLabel, plainCard } from '../common/styles';
+import { useEngineText } from '../common/useEngineText';
 import { useNotify } from '../common/useNotify';
 import { PathIcon } from './PathIcon';
 import { SOURCE_TONE } from './SourceBadge';
@@ -30,6 +31,7 @@ export function CalcDetail({ id }: { id: string }) {
   const setValue = useCalc((state) => state.setValue);
   const room = useDraft((state) => state.room);
   const notify = useNotify();
+  const { unit, quantity, calcName, calcDesc } = useEngineText();
 
   if (!calculator) {
     return (
@@ -63,10 +65,10 @@ export function CalcDetail({ id }: { id: string }) {
           </span>
           <div className="min-w-0">
             <h1 className="font-display text-[clamp(24px,3vw,30px)] leading-[1.2] font-semibold tracking-[-0.03em]">
-              {calculator.name}
+              {calcName(calculator)}
             </h1>
             <p className="text-[13px] text-fg-3">
-              {t('calcs.caption', { category: t(`calcs.categories.${calculator.cat}`), desc: calculator.desc })}
+              {t('calcs.caption', { category: t(`calcs.categories.${calculator.cat}`), desc: calcDesc(calculator) })}
             </p>
           </div>
         </div>
@@ -79,35 +81,35 @@ export function CalcDetail({ id }: { id: string }) {
               <NumberField
                 key={input.k}
                 size="lg"
-                label={input.label}
-                unit={input.unit}
+                label={t(`calcs.fields.${input.label}`)}
+                unit={unit(input.unit)}
                 value={raw(input.k, input.def)}
                 onChange={(event) => setValue(calculator.id, input.k, event.target.value)}
               />
             ) : (
               <div key={input.k} className="flex flex-col gap-1.5">
-                <span className={fieldLabel}>{input.label}</span>
+                <span className={fieldLabel}>{t(`calcs.fields.${input.label}`)}</span>
                 <Segmented
                   size="md"
                   wrap
-                  label={input.label}
+                  label={t(`calcs.fields.${input.label}`)}
                   value={raw(input.k, input.def)}
                   onChange={(value) => setValue(calculator.id, input.k, value)}
-                  options={input.opts.map(([value, label]) => ({ value, label }))}
+                  options={input.opts.map(([value, label]) => ({ value, label: t(`calcs.options.${label}`) }))}
                   className="max-w-full self-start"
                 />
               </div>
             ),
           )}
-          <p className="border-t border-line pt-3.5 text-[13px]/5 text-fg-3">{output.note}</p>
+          <p className="border-t border-line pt-3.5 text-[13px]/5 text-fg-3">{t(`calcs.items.${calculator.id}.note`)}</p>
         </div>
 
         <div className={cn(plainCard, 'overflow-hidden')} aria-live="polite">
           <dl>
-            {output.rows.map(([label, value]) => (
-              <div key={label} className="flex items-center justify-between gap-4 border-b border-line px-5 py-3.5 tabular-nums">
-                <dt className="text-sm/5 text-fg-2">{label}</dt>
-                <dd className="font-display text-lg font-semibold whitespace-nowrap">{value}</dd>
+            {output.rows.map(({ key, value, unit: rowUnit, precise }) => (
+              <div key={key} className="flex items-center justify-between gap-4 border-b border-line px-5 py-3.5 tabular-nums">
+                <dt className="text-sm/5 text-fg-2">{t(`calcs.rows.${key}`)}</dt>
+                <dd className="font-display text-lg font-semibold whitespace-nowrap">{quantity(value, rowUnit, precise)}</dd>
               </div>
             ))}
           </dl>
@@ -124,7 +126,7 @@ export function CalcDetail({ id }: { id: string }) {
                 size="md"
                 className="hover:bg-surface-3"
                 onClick={() =>
-                  notify('addedToEstimate', 'success', { calc: calculator.name, room: t(`rooms.${room}.name`) })
+                  notify('addedToEstimate', 'success', { calc: calcName(calculator), room: t(`rooms.${room}.name`) })
                 }
               >
                 {t('calcs.addToEstimate')}

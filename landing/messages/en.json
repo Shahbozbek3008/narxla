@@ -996,7 +996,7 @@
     },
     "calcs": {
       "title": "Calculators",
-      "lead": "{count} materials — quantity, consumption and estimated price.",
+      "lead": "{count} calculators — quantities, consumption and estimated cost.",
       "search": "Search: brick, wallpaper, concrete…",
       "categoriesTitle": "Categories",
       "categories": {
@@ -1281,7 +1281,8 @@
         "pprPipe": "PPR pipe, 20 mm",
         "pprFittings": "Fittings (elbows, tees, couplings)",
         "pipeClips": "Pipe clips"
-      }
+      },
+      "clearSearch": "Clear filters"
     },
     "settings": {
       "title": "Settings",

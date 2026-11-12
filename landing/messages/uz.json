@@ -996,7 +996,7 @@
     },
     "calcs": {
       "title": "Kalkulyatorlar",
-      "lead": "{count} ta material — miqdor, sarf va taxminiy narx.",
+      "lead": "{count} ta kalkulyator — miqdor, sarf va taxminiy narx.",
       "search": "Qidirish: g‘isht, oboy, beton…",
       "categoriesTitle": "Toifalar",
       "categories": {
@@ -1281,7 +1281,8 @@
         "pprPipe": "PPR truba, 20 mm",
         "pprFittings": "Fitinglar (burchak, troynik, mufta)",
         "pipeClips": "Kreplenie (klipsa)"
-      }
+      },
+      "clearSearch": "Filtrni tozalash"
     },
     "settings": {
       "title": "Sozlamalar",

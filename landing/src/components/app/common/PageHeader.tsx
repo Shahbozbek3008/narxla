@@ -9,6 +9,7 @@ type PageHeaderProps = {
   back?: { href: string; label: string };
   eyebrow?: ReactNode;
   actions?: ReactNode;
+  actionsClassName?: string;
   size?: 'md' | 'lg' | 'sm';
   align?: 'end' | 'center';
   className?: string;
@@ -38,6 +39,7 @@ export function PageHeader({
   back,
   eyebrow,
   actions,
+  actionsClassName,
   size = 'md',
   align = 'end',
   className,
@@ -64,7 +66,7 @@ export function PageHeader({
         </h1>
         {subtitle && <div className="mt-1 text-fg-2">{subtitle}</div>}
       </div>
-      {actions && <div className="flex items-center gap-2">{actions}</div>}
+      {actions && <div className={cn('flex items-center gap-2', actionsClassName)}>{actions}</div>}
     </div>
   );
 }

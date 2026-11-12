@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import { EstimateStatus, Quality } from '../generated/prisma/enums.js';
+import { RESERVE_OPTIONS } from '../users/users.schemas.js';
 
 export const ROOM_IDS = ['yotoq', 'mehmon', 'oshxona', 'hammom', 'koridor', 'bolalar'] as const;
 export const WORK_IDS = ['pol', 'devor', 'shift', 'elektr', 'santex'] as const;
@@ -16,6 +17,7 @@ export const estimateInputSchema = z
     windows: z.number().int().min(0).max(10),
     works: z.object(Object.fromEntries(WORK_IDS.map((id) => [id, z.boolean()])) as Record<(typeof WORK_IDS)[number], z.ZodBoolean>).strict(),
     quality: z.enum(Quality),
+    reserve: z.union(RESERVE_OPTIONS.map((value) => z.literal(value))).optional(),
   })
   .strict()
   .refine(({ works }) => Object.values(works).some(Boolean), { message: 'Select at least one type of work', path: ['works'] });

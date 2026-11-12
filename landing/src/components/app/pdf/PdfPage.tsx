@@ -155,7 +155,7 @@ export function PdfPage({ document, blocks, page, pages }: PdfPageProps) {
       <footer className="flex h-14 shrink-0 items-end justify-between gap-6 text-[10px] text-paper-muted">
         <span className="flex w-full justify-between border-t border-paper-line pt-3">
           <span>
-            {t('footer')} {hasEstimated && t('estimatedNote')}
+            {t('footer', { reserve: document.result.reserve })} {hasEstimated && t('estimatedNote')}
           </span>
           <span className="whitespace-nowrap tabular-nums">{t('site', { page, pages })}</span>
         </span>

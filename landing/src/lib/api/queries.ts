@@ -116,6 +116,10 @@ export function useDeleteAccount() {
   return useMutation({ mutationFn: meApi.remove, onSuccess: signedOut });
 }
 
+export function useRevokeOtherSessions() {
+  return useMutation({ mutationFn: meApi.revokeOtherSessions });
+}
+
 export function useUpdateProfile() {
   const queryClient = useQueryClient();
   return useMutation({

@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import {
+  DEFAULT_RESERVE,
   LIMITS,
   ROOMS,
   WET_ROOMS,
@@ -26,8 +27,11 @@ export type Draft = {
   windows: number;
   works: Works;
   quality: Quality;
+  reserve: number;
   editingId: string | null;
 };
+
+export type DraftDefaults = Pick<Draft, 'quality' | 'reserve'>;
 
 type DraftActions = {
   setStep: (step: DraftStep) => void;
@@ -38,7 +42,7 @@ type DraftActions = {
   toggleWork: (work: WorkId) => void;
   setQuality: (quality: Quality) => void;
   load: (input: EstimateInput, step: DraftStep, editingId?: string | null) => void;
-  reset: () => void;
+  reset: (defaults?: DraftDefaults) => void;
 };
 
 export const DEFAULT_DRAFT: Draft = {
@@ -51,6 +55,7 @@ export const DEFAULT_DRAFT: Draft = {
   windows: 1,
   works: { pol: true, devor: true, shift: true, elektr: true, santex: false },
   quality: 'mid',
+  reserve: DEFAULT_RESERVE,
   editingId: null,
 };
 
@@ -65,6 +70,7 @@ export const draftToInput = (draft: Draft): EstimateInput => ({
   windows: draft.windows,
   works: draft.works,
   quality: draft.quality,
+  reserve: draft.reserve,
 });
 
 export const DEMO_INPUT = draftToInput(DEFAULT_DRAFT);
@@ -88,7 +94,7 @@ export const useDraft = create<Draft & DraftActions>()(
       setWindows: (value) => set({ windows: clamp(value, LIMITS.windows) }),
       toggleWork: (work) => set((state) => ({ works: { ...state.works, [work]: !state.works[work] } })),
       setQuality: (quality) => set({ quality }),
-      reset: () => set(DEFAULT_DRAFT),
+      reset: (defaults) => set({ ...DEFAULT_DRAFT, ...defaults }),
       load: (input, step, editingId = null) =>
         set({
           step,
@@ -101,6 +107,7 @@ export const useDraft = create<Draft & DraftActions>()(
           windows: input.windows,
           works: input.works,
           quality: input.quality,
+          reserve: input.reserve ?? DEFAULT_RESERVE,
         }),
     }),
     persistOptions('draft'),

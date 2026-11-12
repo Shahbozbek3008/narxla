@@ -33,7 +33,7 @@ export function KpiGrid({ result, progress: k }: KpiGridProps) {
         />
         <div className="relative text-[13px] text-fg-2">{t('total')}</div>
         <div className={cn(VALUE, 'relative text-accent-text')}>{rangeMln(result.low * k, result.high * k)}</div>
-        <div className="relative mt-1.5 text-xs text-fg-3">{t('totalNote')}</div>
+        <div className="relative mt-1.5 text-xs text-fg-3">{t('totalNote', { reserve: result.reserve })}</div>
       </div>
       {items.map((item) => (
         <div key={item.label} className={cn(card, 'p-[18px]')}>

@@ -19,7 +19,7 @@ type NamedLine = MaterialLine & { name: string };
 const compare = (key: SortKey) => (a: NamedLine, b: NamedLine) =>
   key === 'name' ? a.name.localeCompare(b.name) : a[key] - b[key];
 
-export function MaterialsTable({ lines, total }: { lines: MaterialLine[]; total: number }) {
+export function MaterialsTable({ lines, total, reserve }: { lines: MaterialLine[]; total: number; reserve: number }) {
   const t = useTranslations('app.result');
   const tApp = useTranslations('app');
   const { materialQuery, sortKey, sortDir, setMaterialQuery, sortBy } = useUi();
@@ -37,7 +37,7 @@ export function MaterialsTable({ lines, total }: { lines: MaterialLine[]; total:
         <span className="flex items-center gap-2">
           <h2 className="text-[15px] font-semibold">{t('materials')}</h2>
           <span className="rounded-md bg-surface-3 px-[7px] text-xs/5 text-fg-2 tabular-nums">{rows.length}</span>
-          <span className="text-xs text-fg-3">{t('reserveNote')}</span>
+          <span className="text-xs text-fg-3">{t('reserveNote', { reserve })}</span>
         </span>
         <SearchInput
           size="sm"

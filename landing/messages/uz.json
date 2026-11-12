@@ -847,7 +847,7 @@
       "check": "Usta narxini tekshirish",
       "kpi": {
         "total": "Jami byudjet",
-        "totalNote": "mln so‘m · 10% zaxira bilan",
+        "totalNote": "mln so‘m · {reserve}% zaxira bilan",
         "materials": "Materiallar",
         "materialsNote": "mln so‘m · {count} pozitsiya",
         "labour": "Usta ish haqi",
@@ -860,7 +860,7 @@
       "breakdownShare": "{name} · {percent}%",
       "share": "Ulashish",
       "materials": "Materiallar",
-      "reserveNote": "Miqdor 10% zaxira bilan",
+      "reserveNote": "Miqdor {reserve}% zaxira bilan",
       "searchMaterials": "Material qidirish",
       "columns": {
         "name": "Nomi",
@@ -943,7 +943,7 @@
         "total": "Jami",
         "range": "Byudjet oralig‘i"
       },
-      "footer": "Narxlar 8-noyabr, 2026 holatiga ko‘ra, Toshkent bozorlari asosida. Miqdorlar 10% zaxira bilan.",
+      "footer": "Narxlar 8-noyabr, 2026 holatiga ko‘ra, Toshkent bozorlari asosida. Miqdorlar {reserve}% zaxira bilan.",
       "site": "smetachi.uz · {page} / {pages}",
       "continued": "(davomi)",
       "estimatedNote": "* — taxminiy narx, do‘konlardan hali tekshirilmagan."
@@ -1285,40 +1285,59 @@
     },
     "settings": {
       "title": "Sozlamalar",
-      "lead": "Profil, hisob-kitob va ilova ko‘rinishi.",
-      "navLabel": "Sozlamalar bo‘limlari",
-      "nav": {
-        "s-profil": "Profil",
-        "s-smeta": "Smeta",
-        "s-bildirish": "Bildirishnomalar",
-        "s-korinish": "Ko‘rinish",
-        "s-tarif": "Tarif va to‘lov",
-        "s-hisob": "Hisob"
+      "lead": "Profil, smeta standartlari, tarif va hisob xavfsizligini boshqaring.",
+      "tabsLabel": "Sozlamalar bo‘limlari",
+      "tabs": {
+        "profile": "Profil",
+        "preferences": "Smeta",
+        "notifications": "Bildirishnomalar",
+        "appearance": "Ko‘rinish",
+        "billing": "Tarif va to‘lov",
+        "security": "Xavfsizlik"
+      },
+      "actions": {
+        "save": "Saqlash",
+        "saving": "Saqlanmoqda…",
+        "cancel": "Bekor qilish"
       },
       "profile": {
-        "title": "Profil",
-        "lead": "Smeta va PDF’da shu ma’lumotlar ko‘rinadi.",
-        "photo": "Rasm",
+        "identityTitle": "Shaxsiy ma’lumotlar",
+        "identityLead": "Bu ma’lumotlar smetalaringiz va PDF hujjatlarda ko‘rinadi.",
+        "identityNote": "Ism smeta sarlavhasida va ustaga yuborilgan havolada chiqadi.",
+        "noName": "Ism kiritilmagan",
+        "memberSince": "{date} dan beri a’zo",
         "name": "Ism familiya",
-        "phone": "Telefon",
-        "phoneHint": "Kirish uchun ishlatiladi",
-        "verified": "Tasdiqlangan",
+        "nameHint": "To‘liq ism yoki kompaniya nomi",
+        "namePlaceholder": "Masalan, Dilshod Rahimov",
         "district": "Tuman",
-        "noPhone": "Telegram orqali kirilgan",
-        "districtNone": "Tanlanmagan"
+        "districtHint": "Yaqin atrofdagi do‘kon narxlari uchun",
+        "districtNone": "Tanlanmagan",
+        "methodsTitle": "Kirish usullari",
+        "methodsLead": "Hisobingizga kirish uchun ulangan usullar.",
+        "phone": "Telefon raqam",
+        "phoneHint": "SMS kod shu raqamga yuboriladi",
+        "noPhone": "Raqam ulanmagan",
+        "telegram": "Telegram",
+        "telegramHint": "Telegram orqali bir bosishda kirish",
+        "verified": "Tasdiqlangan",
+        "connected": "Ulangan",
+        "notConnected": "Ulanmagan"
       },
-      "estimate": {
-        "title": "Smeta",
-        "lead": "Yangi smetalar uchun standart qiymatlar.",
+      "preferences": {
+        "title": "Smeta standartlari",
+        "lead": "Yangi smeta yaratilganda shu qiymatlar avtomatik qo‘llanadi.",
+        "note": "O‘zgarishlar faqat yangi smetalarga ta’sir qiladi.",
         "region": "Hudud",
         "regionHint": "Hozircha narxlar faqat Toshkent bo‘yicha",
         "reserve": "Material zaxirasi",
         "reserveHint": "Kesish va isrof uchun qo‘shiladi",
-        "quality": "Standart sifat"
+        "quality": "Standart sifat",
+        "qualityHint": "Wizard’da birinchi tanlangan bo‘ladi"
       },
       "notifications": {
         "title": "Bildirishnomalar",
         "lead": "Qachon va qayerda xabar olishni tanlang.",
+        "note": "Muhim xizmat xabarlari har doim yuboriladi.",
         "notifyPrice": {
           "title": "Narxlar o‘zgarganda",
           "desc": "Saqlangan smetadagi narx 5% dan ko‘p o‘zgarsa"
@@ -1333,41 +1352,61 @@
         }
       },
       "appearance": {
-        "title": "Ko‘rinish",
-        "lead": "Ilova mavzusi faqat shu qurilmada saqlanadi.",
+        "themeTitle": "Mavzu",
+        "themeLead": "Ilova ko‘rinishini tanlang. Tanlov shu qurilmada saqlanadi.",
         "dark": "Qorong‘i",
         "light": "Yorug‘",
-        "system": "Tizim"
+        "system": "Tizim bo‘yicha",
+        "languageTitle": "Til",
+        "languageLead": "Interfeys tili. Smeta va PDF ham shu tilda bo‘ladi."
       },
       "billing": {
-        "title": "Tarif va to‘lov",
-        "lead": "Obunani istalgan vaqtda o‘zgartirishingiz mumkin.",
-        "oneTime": "Bir martalik",
-        "history": "To‘lovlar tarixi",
-        "pro": "Ustalar uchun Pro",
-        "plans": {
-          "free": "Bepul tarif",
-          "project": "Loyiha",
-          "pro": "Pro"
-        },
-        "monthly": "Oylik",
-        "activeUntil": "{date}gacha amal qiladi",
-        "freeUsage": "{used} / {limit} smeta ishlatilgan",
+        "currentTitle": "Joriy tarif",
+        "currentLead": "Tarifingiz, foydalanish va amal qilish muddati.",
+        "active": "Faol",
+        "freeStatus": "Bepul",
+        "planLabel": "Tarif",
+        "usageLabel": "Smetalar",
+        "periodLabel": "Amal qiladi",
+        "unlimited": "Cheksiz smeta",
+        "noExpiry": "Muddatsiz",
+        "freeForever": "Har doim bepul",
+        "oneTime": "Bir martalik to‘lov",
+        "monthly": "Oylik obuna",
+        "manualNote": "Onlayn to‘lov tez orada. Hozircha tarif @smetachi_support orqali ulanadi.",
         "upgrade": "Tarifni yangilash",
-        "historyEmpty": "Hali to‘lovlar yo‘q."
+        "change": "Tarifni o‘zgartirish",
+        "plansTitle": "Tariflar",
+        "plansLead": "Ehtiyojingizga mos tarifni tanlang.",
+        "current": "Joriy tarif",
+        "choose": "Ulash",
+        "historyTitle": "To‘lovlar tarixi",
+        "historyLead": "Barcha to‘lovlar va tarif davrlari.",
+        "historyEmpty": "Hali to‘lovlar yo‘q",
+        "historyEmptyHint": "Tarif ulanganda to‘lov shu yerda ko‘rinadi.",
+        "until": "{date} gacha",
+        "columns": {
+          "date": "Sana",
+          "plan": "Tarif",
+          "period": "Davr",
+          "amount": "Summa"
+        }
       },
-      "account": {
-        "title": "Hisob",
-        "lead": "Kirish va hisobni boshqarish.",
-        "logout": "Tizimdan chiqish",
-        "logoutHint": "Bu qurilmadan chiqasiz. Smetalaringiz saqlanib qoladi.",
-        "logoutCta": "Chiqish",
-        "delete": "Hisobni o‘chirish",
-        "deleteHint": "Barcha smetalar va ma’lumotlar butunlay o‘chiriladi."
-      },
-      "dirty": "Saqlanmagan o‘zgarishlar",
-      "cancel": "Bekor qilish",
-      "save": "Saqlash"
+      "security": {
+        "sessionsTitle": "Sessiyalar",
+        "sessionsLead": "Hisobingizga kirilgan qurilmalarni boshqaring.",
+        "currentDevice": "Joriy qurilma",
+        "currentDeviceHint": "Siz hozir shu brauzerdan foydalanyapsiz.",
+        "active": "Faol",
+        "logout": "Chiqish",
+        "othersTitle": "Boshqa qurilmalar",
+        "othersHint": "Telefon yo‘qolgan bo‘lsa yoki begona qurilmadan kirgan bo‘lsangiz.",
+        "othersCta": "Hammasidan chiqish",
+        "dangerTitle": "Xavfli zona",
+        "dangerLead": "Hisobni o‘chirish qaytarib bo‘lmaydigan amal.",
+        "deleteNote": "Barcha smetalar, ulashilgan havolalar va to‘lovlar tarixi butunlay o‘chiriladi.",
+        "deleteCta": "Hisobni o‘chirish"
+      }
     },
     "dialogs": {
       "cancel": "Bekor qilish",
@@ -1468,6 +1507,10 @@
       "limitReached": {
         "title": "Bepul tarif limiti",
         "text": "Bepul tarifda 3 tagacha smeta saqlanadi. Ko‘proq uchun tarifni yangilang."
+      },
+      "sessionsRevoked": {
+        "title": "Boshqa qurilmalardan chiqildi",
+        "text": "{count} ta sessiya yakunlandi."
       }
     },
     "units": {

@@ -42,7 +42,7 @@ export function ProfileMenu() {
 
   const contact = user.phone ? formatPhone(user.phone) : t('telegram');
   const displayName = user.name || contact;
-  const initials = initialsOf(displayName);
+  const initials = initialsOf(user.name);
 
   return (
     <DropdownMenu>
@@ -68,11 +68,11 @@ export function ProfileMenu() {
           </span>
         </div>
         <DropdownMenuSeparator className="mt-0" />
-        <DropdownMenuItem onSelect={() => router.push(routes.settings)}>
+        <DropdownMenuItem onSelect={() => router.push(routes.settingsTab('profile'))}>
           <User size={16} strokeWidth={1.5} aria-hidden />
           <span className="flex-1">{t('settings')}</span>
         </DropdownMenuItem>
-        <DropdownMenuItem onSelect={() => router.push(routes.settingsSection('s-tarif'))}>
+        <DropdownMenuItem onSelect={() => router.push(routes.settingsTab('billing'))}>
           <CreditCard size={16} strokeWidth={1.5} aria-hidden />
           <span className="flex-1">{t('billing')}</span>
           <Badge tone="accent" shape="square">

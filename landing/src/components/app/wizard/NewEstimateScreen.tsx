@@ -6,7 +6,7 @@ import { useTranslations } from 'next-intl';
 import { useLayoutEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { useRouter } from '@/i18n/navigation';
-import { useUpdateEstimate } from '@/lib/api/queries';
+import { useAuth, useUpdateEstimate } from '@/lib/api/queries';
 import { estimate, validate } from '@/lib/calc-engine';
 import { rangeMln } from '@/lib/format';
 import { DRAFT_ESTIMATE_ID, routes } from '@/lib/routes';
@@ -37,13 +37,16 @@ export function NewEstimateScreen() {
   const [worksError, setWorksError] = useState(false);
   const initialStep = parseStep(useSearchParams().get('step'));
   const updateEstimate = useUpdateEstimate();
+  const { status, user } = useAuth();
+  const defaultQuality = user?.quality;
+  const defaultReserve = user?.reserve;
   const notify = useNotify();
 
   useLayoutEffect(() => {
-    if (!hydrated) return;
-    if (initialStep === null) useDraft.getState().reset();
-    else useDraft.getState().setStep(initialStep);
-  }, [hydrated, initialStep]);
+    if (!hydrated || status === 'loading') return;
+    if (initialStep !== null) return useDraft.getState().setStep(initialStep);
+    useDraft.getState().reset(defaultQuality && defaultReserve ? { quality: defaultQuality, reserve: defaultReserve } : undefined);
+  }, [hydrated, status, initialStep, defaultQuality, defaultReserve]);
 
   const input = draftToInput(draft);
   const errors = validate(input.L, input.W, input.H, input.works);

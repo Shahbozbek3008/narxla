@@ -17,6 +17,7 @@ export interface EstimateInput {
   windows: number;
   works: Works;
   quality: Quality;
+  reserve?: number;
 }
 
 interface LineBase {
@@ -42,6 +43,7 @@ export interface LabourLine extends LineBase {
 export type Line = MaterialLine | LabourLine;
 
 export interface Estimate {
+  reserve: number;
   area: number;
   perim: number;
   walls: number;
@@ -79,7 +81,7 @@ export const RANGE = { low: 0.92, high: 1.12 };
 
 const QF: Record<Quality, number> = { eco: 0.72, mid: 1, pre: 1.65 };
 const LF: Record<Quality, number> = { eco: 0.85, mid: 1, pre: 1.3 };
-const RESERVE = 1.1;
+export const DEFAULT_RESERVE = 10;
 const LABOUR_PER_DAY = 550000;
 
 const GRADED: Record<'laminate' | 'paint' | 'porcelain', Record<Quality, MaterialCode>> = {
@@ -97,7 +99,8 @@ export function estimate(i: EstimateInput, book: PriceBook): Estimate {
   const walls = Math.max(0, perim * H - doors * DOOR_AREA - windows * WINDOW_AREA);
   const qf = QF[q];
   const lf = LF[q];
-  const R = RESERVE;
+  const reserve = i.reserve ?? DEFAULT_RESERVE;
+  const R = 1 + reserve / 100;
   const wet = room === 'hammom';
   const tile = wet || room === 'oshxona';
   const c = Math.ceil;
@@ -178,6 +181,7 @@ export function estimate(i: EstimateInput, book: PriceBook): Estimate {
   const days = Math.max(2, c(labTotal / LABOUR_PER_DAY));
 
   return {
+    reserve,
     area,
     perim,
     walls,

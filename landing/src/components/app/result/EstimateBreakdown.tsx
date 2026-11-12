@@ -10,7 +10,7 @@ export function EstimateBreakdown({ result, progress }: { result: Estimate; prog
     <>
       <KpiGrid result={result} progress={progress} />
       <CostBreakdown result={result} progress={progress} />
-      <MaterialsTable lines={result.mats} total={result.matTotal} />
+      <MaterialsTable lines={result.mats} total={result.matTotal} reserve={result.reserve} />
       <LabourCard lines={result.lab} total={result.labTotal} />
       <TotalsCard result={result} />
     </>

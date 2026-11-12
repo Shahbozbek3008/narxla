@@ -23,6 +23,7 @@ export const meApi = {
   update: (patch: Partial<ProfileFields>) => apiRequest<Profile>('/me', { method: 'PATCH', body: patch }),
   remove: () => apiRequest<void>('/me', { method: 'DELETE' }),
   payments: (signal?: AbortSignal) => apiRequest<Payment[]>('/me/payments', { signal }),
+  revokeOtherSessions: () => apiRequest<{ revoked: number }>('/me/sessions', { method: 'DELETE' }),
 };
 
 export const estimatesApi = {

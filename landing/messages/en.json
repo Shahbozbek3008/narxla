@@ -847,7 +847,7 @@
       "check": "Check a contractor quote",
       "kpi": {
         "total": "Total budget",
-        "totalNote": "mln UZS · incl. 10% reserve",
+        "totalNote": "mln UZS · incl. {reserve}% reserve",
         "materials": "Materials",
         "materialsNote": "mln UZS · {count} items",
         "labour": "Labour",
@@ -860,7 +860,7 @@
       "breakdownShare": "{name} · {percent}%",
       "share": "Share",
       "materials": "Materials",
-      "reserveNote": "Quantities include a 10% reserve",
+      "reserveNote": "Quantities include a {reserve}% reserve",
       "searchMaterials": "Search materials",
       "columns": {
         "name": "Name",
@@ -943,7 +943,7 @@
         "total": "Total",
         "range": "Budget range"
       },
-      "footer": "Prices as of November 8, 2026, based on Tashkent markets. Quantities include a 10% reserve.",
+      "footer": "Prices as of November 8, 2026, based on Tashkent markets. Quantities include a {reserve}% reserve.",
       "site": "smetachi.uz · {page} / {pages}",
       "continued": "(continued)",
       "estimatedNote": "* — estimated price, not yet checked in stores."
@@ -1285,40 +1285,59 @@
     },
     "settings": {
       "title": "Settings",
-      "lead": "Profile, calculations and app appearance.",
-      "navLabel": "Settings sections",
-      "nav": {
-        "s-profil": "Profile",
-        "s-smeta": "Estimate",
-        "s-bildirish": "Notifications",
-        "s-korinish": "Appearance",
-        "s-tarif": "Plan and billing",
-        "s-hisob": "Account"
+      "lead": "Manage your profile, estimate defaults, plan and account security.",
+      "tabsLabel": "Settings sections",
+      "tabs": {
+        "profile": "Profile",
+        "preferences": "Estimates",
+        "notifications": "Notifications",
+        "appearance": "Appearance",
+        "billing": "Plan & billing",
+        "security": "Security"
+      },
+      "actions": {
+        "save": "Save",
+        "saving": "Saving…",
+        "cancel": "Cancel"
       },
       "profile": {
-        "title": "Profile",
-        "lead": "These details appear on estimates and PDFs.",
-        "photo": "Photo",
+        "identityTitle": "Personal information",
+        "identityLead": "This information appears on your estimates and PDFs.",
+        "identityNote": "Your name is shown in the estimate header and on links you share.",
+        "noName": "No name yet",
+        "memberSince": "Member since {date}",
         "name": "Full name",
-        "phone": "Phone",
-        "phoneHint": "Used to sign in",
-        "verified": "Verified",
+        "nameHint": "Your full name or company name",
+        "namePlaceholder": "e.g. Dilshod Rahimov",
         "district": "District",
-        "noPhone": "Signed in with Telegram",
-        "districtNone": "Not selected"
+        "districtHint": "Used for nearby store prices",
+        "districtNone": "Not selected",
+        "methodsTitle": "Sign-in methods",
+        "methodsLead": "Ways you can sign in to your account.",
+        "phone": "Phone number",
+        "phoneHint": "SMS codes are sent to this number",
+        "noPhone": "No number connected",
+        "telegram": "Telegram",
+        "telegramHint": "One-tap sign-in with Telegram",
+        "verified": "Verified",
+        "connected": "Connected",
+        "notConnected": "Not connected"
       },
-      "estimate": {
-        "title": "Estimate",
-        "lead": "Defaults for new estimates.",
+      "preferences": {
+        "title": "Estimate defaults",
+        "lead": "These values are applied automatically to new estimates.",
+        "note": "Changes only affect new estimates.",
         "region": "Region",
         "regionHint": "Prices are currently available for Tashkent only",
         "reserve": "Material reserve",
         "reserveHint": "Added for cutting and waste",
-        "quality": "Default quality"
+        "quality": "Default quality",
+        "qualityHint": "Preselected in the estimate wizard"
       },
       "notifications": {
         "title": "Notifications",
         "lead": "Choose when and where to get messages.",
+        "note": "Important service messages are always sent.",
         "notifyPrice": {
           "title": "When prices change",
           "desc": "If a price in a saved estimate changes by more than 5%"
@@ -1333,41 +1352,61 @@
         }
       },
       "appearance": {
-        "title": "Appearance",
-        "lead": "The app theme is stored on this device only.",
+        "themeTitle": "Theme",
+        "themeLead": "Choose how Smetachi looks. Stored on this device.",
         "dark": "Dark",
         "light": "Light",
-        "system": "System"
+        "system": "System",
+        "languageTitle": "Language",
+        "languageLead": "Interface language. Estimates and PDFs use it too."
       },
       "billing": {
-        "title": "Plan and billing",
-        "lead": "You can change your plan at any time.",
-        "oneTime": "One-time",
-        "history": "Payment history",
-        "pro": "Pro for contractors",
-        "plans": {
-          "free": "Free plan",
-          "project": "Project",
-          "pro": "Pro"
-        },
-        "monthly": "Monthly",
-        "activeUntil": "Active until {date}",
-        "freeUsage": "{used} of {limit} estimates used",
-        "upgrade": "Upgrade",
-        "historyEmpty": "No payments yet."
+        "currentTitle": "Current plan",
+        "currentLead": "Your plan, usage and renewal date.",
+        "active": "Active",
+        "freeStatus": "Free",
+        "planLabel": "Plan",
+        "usageLabel": "Estimates",
+        "periodLabel": "Valid until",
+        "unlimited": "Unlimited estimates",
+        "noExpiry": "No expiry",
+        "freeForever": "Free forever",
+        "oneTime": "One-time payment",
+        "monthly": "Monthly subscription",
+        "manualNote": "Online payments are coming soon. For now, plans are activated via @smetachi_support.",
+        "upgrade": "Upgrade plan",
+        "change": "Change plan",
+        "plansTitle": "Plans",
+        "plansLead": "Pick the plan that fits your project.",
+        "current": "Current plan",
+        "choose": "Choose",
+        "historyTitle": "Payment history",
+        "historyLead": "All payments and plan periods.",
+        "historyEmpty": "No payments yet",
+        "historyEmptyHint": "Payments will appear here once a plan is activated.",
+        "until": "until {date}",
+        "columns": {
+          "date": "Date",
+          "plan": "Plan",
+          "period": "Period",
+          "amount": "Amount"
+        }
       },
-      "account": {
-        "title": "Account",
-        "lead": "Sign-in and account management.",
+      "security": {
+        "sessionsTitle": "Sessions",
+        "sessionsLead": "Manage the devices signed in to your account.",
+        "currentDevice": "This device",
+        "currentDeviceHint": "You are using this browser right now.",
+        "active": "Active",
         "logout": "Sign out",
-        "logoutHint": "You will be signed out on this device. Your estimates stay saved.",
-        "logoutCta": "Sign out",
-        "delete": "Delete account",
-        "deleteHint": "All estimates and data will be permanently deleted."
-      },
-      "dirty": "Unsaved changes",
-      "cancel": "Cancel",
-      "save": "Save"
+        "othersTitle": "Other devices",
+        "othersHint": "Use this if you lost your phone or signed in on someone else’s device.",
+        "othersCta": "Sign out everywhere else",
+        "dangerTitle": "Danger zone",
+        "dangerLead": "Deleting your account cannot be undone.",
+        "deleteNote": "All estimates, shared links and payment history will be permanently deleted.",
+        "deleteCta": "Delete account"
+      }
     },
     "dialogs": {
       "cancel": "Cancel",
@@ -1468,6 +1507,10 @@
       "limitReached": {
         "title": "Free plan limit",
         "text": "The free plan keeps up to 3 estimates. Upgrade to save more."
+      },
+      "sessionsRevoked": {
+        "title": "Signed out of other devices",
+        "text": "{count} sessions were ended."
       }
     },
     "units": {

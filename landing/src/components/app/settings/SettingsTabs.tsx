@@ -3,6 +3,7 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import { Bell, CreditCard, Palette, ShieldCheck, SlidersHorizontal, UserRound, type LucideIcon } from 'lucide-react';
 import { useTranslations } from 'next-intl';
+import { useEffect, useRef } from 'react';
 import { Link, usePathname } from '@/i18n/navigation';
 import { routes, SETTINGS_TABS, type SettingsTab } from '@/lib/routes';
 import { cn } from '@/lib/utils';
@@ -21,10 +22,22 @@ export function SettingsTabs() {
   const pathname = usePathname();
   const reducedMotion = useReducedMotion();
   const active = SETTINGS_TABS.find((tab) => pathname.endsWith(`/${tab}`)) ?? SETTINGS_TABS[0];
+  const scroller = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const container = scroller.current;
+    const link = container?.querySelector<HTMLElement>('[aria-current=page]');
+    if (!container || !link) return;
+    const left = link.offsetLeft - (container.clientWidth - link.offsetWidth) / 2;
+    container.scrollTo({ left, behavior: reducedMotion ? 'auto' : 'smooth' });
+  }, [active, reducedMotion]);
 
   return (
     <nav aria-label={t('tabsLabel')} className="relative -mx-[clamp(16px,4vw,40px)] border-b border-line">
-      <div className="flex gap-1 overflow-x-auto px-[clamp(16px,4vw,40px)] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+      <div
+        ref={scroller}
+        className="scrollbar-none flex gap-1 overflow-x-auto px-[clamp(16px,4vw,40px)] max-md:fade-x"
+      >
         {SETTINGS_TABS.map((tab) => {
           const Icon = ICONS[tab];
           const selected = tab === active;

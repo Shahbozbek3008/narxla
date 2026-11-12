@@ -35,7 +35,7 @@ export function NotificationsTab() {
       {FIELDS.map((key) => {
         const Icon = ICONS[key];
         return (
-          <label key={key} className="flex cursor-pointer items-center gap-4 px-6 py-4 transition-colors duration-150 hover:bg-surface-2/60">
+          <label key={key} className="flex cursor-pointer items-center gap-4 px-4 sm:px-6 py-4 transition-colors duration-150 hover:bg-surface-2/60">
             <span className="grid size-9 shrink-0 place-items-center rounded-[10px] border border-line bg-surface-2 text-fg-2">
               <Icon size={16} strokeWidth={1.5} aria-hidden />
             </span>

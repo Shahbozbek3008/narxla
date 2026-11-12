@@ -46,7 +46,7 @@ export function LoginScreen() {
   });
 
   return (
-    <main className="relative grid min-h-screen animate-[screen-in_.6s_var(--ease-out-expo)_both] place-items-center overflow-x-hidden px-4 py-6">
+    <main className="relative grid min-h-screen place-items-center overflow-x-clip px-4 py-6">
       <div
         aria-hidden
         className="grid-bg pointer-events-none absolute inset-0 bg-size-[56px_56px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_30%,#000_10%,transparent_70%)]"
@@ -56,7 +56,7 @@ export function LoginScreen() {
         className="pointer-events-none absolute -top-50 left-1/2 h-140 w-225 -translate-x-1/2 bg-[radial-gradient(ellipse_at_center,var(--glow),transparent_62%)]"
       />
 
-      <div className="relative flex w-full max-w-[400px] flex-col items-center text-center">
+      <div className="relative flex w-full max-w-[400px] animate-[screen-in_.6s_var(--ease-out-expo)_both] flex-col items-center text-center">
         <span className="rounded-2xl shadow-[0_12px_32px_-8px_var(--glow)]">
           <LogoMark size={56} />
         </span>

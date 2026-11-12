@@ -8,6 +8,7 @@ import { cn } from '@/lib/utils';
 import { useCalc, type CalcFilter } from '@/store/calc';
 import { usePriceBook } from '@/store/prices';
 import { EmptyCard } from '../common/EmptyCard';
+import { FilterTabs } from '../common/FilterTabs';
 import { PageHeader } from '../common/PageHeader';
 import { SearchInput } from '../common/SearchInput';
 import { useEngineText } from '../common/useEngineText';
@@ -68,20 +69,14 @@ export function CalcCatalog() {
         </nav>
 
         <div className="flex min-w-0 flex-col gap-8">
-          <div className="-mx-4 flex gap-1.5 overflow-x-auto px-4 [scrollbar-width:none] md:hidden">
-            {FILTERS.map((filter) => (
-              <button
-                key={filter}
-                type="button"
-                aria-pressed={cat === filter}
-                onClick={() => setCat(filter)}
-                className="h-[34px] shrink-0 rounded-full border border-line-2 px-3 text-[13px] font-medium whitespace-nowrap text-fg-2 aria-pressed:border-fg-3 aria-pressed:bg-surface-3 aria-pressed:text-fg"
-              >
-                {t(`categories.${filter}`)}
-                <span className="ml-1.5 text-fg-3">{countOf(filter)}</span>
-              </button>
-            ))}
-          </div>
+          <FilterTabs
+            id="calcs-category-filter"
+            className="md:hidden"
+            label={t('categoriesTitle')}
+            value={cat}
+            onChange={setCat}
+            options={FILTERS.map((filter) => ({ value: filter, label: t(`categories.${filter}`), count: countOf(filter) }))}
+          />
 
           {groups.map(({ id, items }) => (
             <section key={id} className="flex flex-col gap-3.5">

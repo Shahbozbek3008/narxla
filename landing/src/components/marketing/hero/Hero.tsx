@@ -16,7 +16,7 @@ export function Hero() {
   const trust = t.raw('trust') as string[];
 
   return (
-    <section id={ANCHORS.top} className="relative pt-[clamp(56px,9vw,112px)] pb-[clamp(64px,8vw,96px)]">
+    <section id={ANCHORS.top} className="relative overflow-x-clip pt-[clamp(56px,9vw,112px)] pb-[clamp(64px,8vw,96px)]">
       <div
         aria-hidden
         className="grid-bg pointer-events-none absolute inset-0 bg-size-[64px_64px] bg-top [mask-image:radial-gradient(ellipse_70%_55%_at_50%_0%,#000_20%,transparent_75%)]"

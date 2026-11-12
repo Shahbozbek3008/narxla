@@ -5,7 +5,7 @@ export function StickyBar({ className, ...props }: ComponentProps<'div'>) {
   return (
     <div
       className={cn(
-        'glass sticky bottom-[84px] z-30 flex items-center gap-3 rounded-2xl border border-line-2 p-3 shadow-(--shadow-elev) md:bottom-4',
+        'glass sticky bottom-[calc(var(--tabbar-space,0px)+12px)] z-30 flex items-center gap-3 rounded-2xl border border-line-2 p-3 shadow-(--shadow-elev) md:bottom-4',
         className,
       )}
       {...props}

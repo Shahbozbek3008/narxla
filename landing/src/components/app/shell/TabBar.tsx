@@ -7,7 +7,7 @@ import { routes } from '@/lib/routes';
 import { activeNavKey, TAB_ITEMS } from './navigation';
 
 const TAB =
-  'flex h-14 flex-col items-center justify-center gap-1 text-[11px]/[14px] font-medium text-fg-3 transition-colors duration-150 aria-[current=page]:text-fg';
+  'group relative flex h-14 flex-col items-center justify-center gap-1 text-[11px]/[14px] font-medium text-fg-3 transition-colors duration-150 active:scale-95 aria-[current=page]:font-semibold aria-[current=page]:text-fg';
 
 export function TabBar() {
   const t = useTranslations('app.tabs');
@@ -16,7 +16,11 @@ export function TabBar() {
   const renderTabs = (items: typeof TAB_ITEMS.left) =>
     items.map(({ key, href, icon: Icon }) => (
       <Link key={key} href={href} className={TAB} aria-current={active === key ? 'page' : undefined}>
-        <Icon size={22} strokeWidth={1.5} aria-hidden />
+        <span
+          aria-hidden
+          className="absolute -top-1.5 h-0.5 w-6 scale-x-0 rounded-full bg-accent transition-transform duration-250 ease-(--ease-out-expo) group-aria-[current=page]:scale-x-100"
+        />
+        <Icon size={22} strokeWidth={1.5} className="transition-colors duration-150 group-aria-[current=page]:text-accent-text" aria-hidden />
         {t(key)}
       </Link>
     ));

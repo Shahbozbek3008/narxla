@@ -50,7 +50,7 @@ export function ProfileTab() {
           </SettingsFooter>
         }
       >
-        <div className="flex flex-wrap items-center gap-4 px-6 py-5">
+        <div className="flex flex-wrap items-center gap-4 px-4 sm:px-6 py-5">
           <Avatar initials={initialsOf(values.name)} size={64} />
           <div className="flex min-w-0 flex-1 flex-col gap-1">
             <span className="flex flex-wrap items-center gap-2">
@@ -65,7 +65,7 @@ export function ProfileTab() {
         <SettingsField label={t('name')} hint={t('nameHint')} htmlFor="settings-name">
           <Input
             id="settings-name"
-            className="max-w-md px-3 text-sm"
+            className="h-11 max-w-md px-3 text-base sm:h-10 sm:text-sm"
             placeholder={t('namePlaceholder')}
             maxLength={NAME_LIMIT}
             autoComplete="name"
@@ -92,7 +92,7 @@ export function ProfileTab() {
         <SettingsField label={t('phone')} hint={t('phoneHint')}>
           <span className="flex max-w-md flex-1 items-center gap-3 rounded-[10px] border border-line bg-surface-2 px-3 py-2.5">
             <Phone size={16} strokeWidth={1.5} className="text-fg-3" aria-hidden />
-            <span className="flex-1 text-sm tabular-nums">{user.phone ? formatPhone(user.phone) : t('noPhone')}</span>
+            <span className="min-w-0 flex-1 truncate text-sm whitespace-nowrap tabular-nums">{user.phone ? formatPhone(user.phone) : t('noPhone')}</span>
             <ConnectionState connected={user.phone !== null} label={t('verified')} />
           </span>
         </SettingsField>

@@ -25,6 +25,10 @@ export function activeNavKey(pathname: string): NavKey | null {
   return NAV_ITEMS.some((item) => item.key === section) ? (section as NavKey) : null;
 }
 
+const FOCUSED_SCREENS: ScreenKey[] = ['new', 'pdf'];
+
+export const isFocusedScreen = (pathname: string) => FOCUSED_SCREENS.includes(screenKey(pathname));
+
 export function screenKey(pathname: string): ScreenKey {
   const [, , section, id, child] = pathname.split('/');
   if (section === 'estimates' && child === 'pdf') return 'pdf';

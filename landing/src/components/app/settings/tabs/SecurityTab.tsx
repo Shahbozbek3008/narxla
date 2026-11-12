@@ -19,7 +19,7 @@ type ActionRowProps = {
 
 function ActionRow({ icon, title, hint, children }: ActionRowProps) {
   return (
-    <div className="flex flex-wrap items-center gap-4 px-6 py-4">
+    <div className="flex flex-wrap items-center gap-4 px-4 sm:px-6 py-4">
       <span className="grid size-9 shrink-0 place-items-center rounded-[10px] border border-line bg-surface-2 text-fg-2">{icon}</span>
       <span className="flex min-w-[200px] flex-1 flex-col">
         <span className="text-sm/5 font-medium">{title}</span>

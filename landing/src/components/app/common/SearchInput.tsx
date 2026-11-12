@@ -9,8 +9,8 @@ type SearchInputProps = Omit<ComponentProps<'input'>, 'size'> & {
 };
 
 const SIZE = {
-  sm: { input: 'h-8 rounded-lg pr-2.5 pl-[30px] text-[13px] focus-visible:shadow-[0_0_0_3px_var(--accent-soft)]', icon: 'top-[9px] left-2.5', px: 14 },
-  md: { input: 'h-10 bg-surface pr-3 pl-9 text-sm', icon: 'top-3 left-3', px: 16 },
+  sm: { input: 'h-10 rounded-lg pr-2.5 pl-[30px] text-base sm:h-8 sm:text-[13px] focus-visible:shadow-[0_0_0_3px_var(--accent-soft)]', icon: 'top-[13px] left-2.5 sm:top-[9px]', px: 14 },
+  md: { input: 'h-11 bg-surface pr-3 pl-9 text-base sm:h-10 sm:text-sm', icon: 'top-3.5 left-3 sm:top-3', px: 16 },
 };
 
 export function SearchInput({ size = 'md', wrapperClassName, className, ...props }: SearchInputProps) {

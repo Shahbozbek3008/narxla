@@ -15,9 +15,8 @@ import { SearchInput } from '../common/SearchInput';
 import { EstimateCard } from './EstimateCard';
 import { EstimatesEmpty, EstimatesError, EstimatesNotFound, EstimatesSkeleton } from './EstimatesStates';
 import { EstimatesTable } from './EstimatesTable';
+import { StatusFilter } from './StatusFilter';
 import { useProjectRows } from './useProjectRows';
-
-const FILTERS: ListFilter[] = ['all', 'ready', 'draft', 'sent'];
 
 export function EstimatesScreen() {
   const t = useTranslations('app.list');
@@ -62,6 +61,7 @@ export function EstimatesScreen() {
         actions={
           <>
             <ToggleGroup
+              className="max-sm:hidden"
               type="single"
               aria-label={t('viewLabel')}
               value={view}
@@ -84,28 +84,15 @@ export function EstimatesScreen() {
         }
       />
 
-      <div className="flex flex-wrap items-center gap-3">
+      <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
         <SearchInput
-          wrapperClassName="flex-[1_1_240px] max-w-[360px]"
+          wrapperClassName="sm:flex-[1_1_240px] sm:max-w-[360px]"
           value={search}
           placeholder={t('search')}
           aria-label={t('search')}
           onChange={(event) => setSearch(event.target.value)}
         />
-        <div role="group" aria-label={t('filtersLabel')} className="flex max-w-full gap-1.5 overflow-x-auto">
-          {FILTERS.map((value) => (
-            <button
-              key={value}
-              type="button"
-              aria-pressed={filter === value}
-              onClick={() => setFilter(value)}
-              className="h-8 rounded-full border border-line-2 px-3 text-[13px] font-medium whitespace-nowrap text-fg-2 transition-colors duration-150 hover:border-fg-3 aria-pressed:border-fg-3 aria-pressed:bg-surface-3 aria-pressed:text-fg"
-            >
-              {t(`filters.${value}`)}
-              <span className="ml-1.5 text-fg-3 tabular-nums">{countOf(value)}</span>
-            </button>
-          ))}
-        </div>
+        <StatusFilter value={filter} countOf={countOf} onChange={setFilter} />
       </div>
 
       {renderList()}

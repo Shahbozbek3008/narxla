@@ -93,7 +93,7 @@ function ResultView({ id, input, name, project }: ResultViewProps) {
         className="mb-2"
         eyebrow={
           <div className="flex items-center gap-1.5 text-[13px] text-fg-3">
-            <Link href={routes.estimates} className="transition-colors duration-150 hover:text-fg">
+            <Link href={routes.estimates} className="-my-2.5 py-2.5 transition-colors duration-150 hover:text-fg">
               {t('result.breadcrumb')}
             </Link>
             <span aria-hidden>/</span>
@@ -149,7 +149,7 @@ function ResultView({ id, input, name, project }: ResultViewProps) {
             <button
               type="button"
               onClick={actions.report}
-              className="inline-flex h-7 items-center gap-1.5 rounded-full border border-line-2 px-2.5 text-xs font-medium text-fg-2 transition-colors duration-150 hover:border-fg-3 hover:bg-surface-2 hover:text-fg"
+              className="inline-flex h-9 items-center sm:h-7 gap-1.5 rounded-full border border-line-2 px-2.5 text-xs font-medium text-fg-2 transition-colors duration-150 hover:border-fg-3 hover:bg-surface-2 hover:text-fg"
             >
               <Flag size={13} strokeWidth={1.75} aria-hidden />
               {t('result.report')}

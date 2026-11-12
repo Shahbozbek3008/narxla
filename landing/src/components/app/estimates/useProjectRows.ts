@@ -2,7 +2,7 @@
 
 import { useTranslations } from 'next-intl';
 import { useMemo } from 'react';
-import { estimate } from '@/lib/calc-engine';
+import { estimate, type EstimateInput } from '@/lib/calc-engine';
 import { dec, rangeMln } from '@/lib/format';
 import type { EstimateRecord, EstimateStatus } from '@/lib/api/types';
 import { usePriceBook } from '@/store/prices';
@@ -16,7 +16,8 @@ export type ProjectRow = {
   quality: string;
   date: string;
   range: string;
-  ratio: number;
+  input: EstimateInput;
+  roomName: string;
 };
 
 export function useProjectRows(projects: EstimateRecord[]): ProjectRow[] {
@@ -27,7 +28,7 @@ export function useProjectRows(projects: EstimateRecord[]): ProjectRow[] {
   return useMemo(
     () =>
       projects.map((project) => {
-        const { L, W, quality } = project.input;
+        const { quality, room } = project.input;
         const result = estimate(project.input, book);
         return {
           id: project.id,
@@ -37,7 +38,8 @@ export function useProjectRows(projects: EstimateRecord[]): ProjectRow[] {
           quality: t(`qualities.${quality}.name`),
           date: formatDate(project.createdAt.slice(0, 10)),
           range: t('mln', { value: rangeMln(result.low, result.high) }),
-          ratio: Math.max(L, W) / Math.max(Math.min(L, W), 0.1),
+          input: project.input,
+          roomName: t(`rooms.${room}.name`),
         };
       }),
     [projects, t, formatDate, book],

@@ -14,7 +14,7 @@ export function StepNav({ current, onSelect }: StepNavProps) {
   const t = useTranslations('app.wizard');
 
   return (
-    <ol aria-label={t('stepsLabel')} className="mt-6 grid grid-cols-4 gap-1.5 sm:gap-4">
+    <ol aria-label={t('stepsLabel')} className="mt-4 grid grid-cols-4 gap-1.5 sm:gap-4">
       {STEP_KEYS.map((key, index) => {
         const label = t(`steps.${key}`);
         const step = index as DraftStep;
@@ -28,7 +28,7 @@ export function StepNav({ current, onSelect }: StepNavProps) {
               disabled={!done}
               aria-current={active ? 'step' : undefined}
               onClick={() => onSelect(step)}
-              className="flex w-full min-w-0 flex-col gap-3 text-left focus-visible:rounded-[4px] focus-visible:outline-offset-4 enabled:cursor-pointer disabled:cursor-default"
+              className="flex w-full min-w-0 flex-col gap-3 py-2 text-left focus-visible:rounded-[4px] focus-visible:outline-offset-4 enabled:cursor-pointer disabled:cursor-default"
             >
               <span className="relative block h-[3px] w-full overflow-hidden rounded-[3px] bg-surface-3">
                 <span

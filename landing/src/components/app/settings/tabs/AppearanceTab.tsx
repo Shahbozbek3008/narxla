@@ -36,7 +36,7 @@ function SelectedMark({ selected }: { selected: boolean }) {
 
 function OptionGrid({ label, children }: { label: string; children: ReactNode }) {
   return (
-    <div role="radiogroup" aria-label={label} className="grid grid-cols-[repeat(auto-fill,minmax(min(100%,180px),1fr))] gap-3 border-t border-line px-6 py-5">
+    <div role="radiogroup" aria-label={label} className="grid grid-cols-[repeat(auto-fill,minmax(min(100%,180px),1fr))] gap-3 px-4 sm:px-6 py-5">
       {children}
     </div>
   );

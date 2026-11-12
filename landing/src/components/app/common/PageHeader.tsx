@@ -24,7 +24,7 @@ export function BackLink({ href, label }: { href: string; label: string }) {
   return (
     <Link
       href={href}
-      className="inline-flex items-center gap-1 text-[13px] text-fg-3 transition-colors duration-150 hover:text-fg"
+      className="-my-2.5 -ml-1 inline-flex items-center gap-1 py-2.5 pl-1 text-[13px] text-fg-3 transition-colors duration-150 hover:text-fg"
     >
       <ChevronLeft size={14} strokeWidth={1.5} aria-hidden />
       {label}

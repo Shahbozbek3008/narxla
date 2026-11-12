@@ -14,11 +14,11 @@ import { useFormatDate } from '../../common/useFormatDate';
 import { useNotify } from '../../common/useNotify';
 import { SettingsCard, SettingsFooter } from '../SettingsCard';
 
-const HISTORY_GRID = 'grid grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)_minmax(0,1fr)_minmax(0,0.9fr)] items-center gap-4 px-6';
+const HISTORY_GRID = 'grid grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)_minmax(0,1fr)_minmax(0,0.9fr)] items-center gap-4 px-4 sm:px-6';
 
 function Stat({ label, children }: { label: string; children: ReactNode }) {
   return (
-    <div className="flex min-w-0 flex-col gap-1.5 px-6 py-5">
+    <div className="flex min-w-0 flex-col gap-1.5 px-4 sm:px-6 py-5">
       <span className="text-xs font-medium tracking-[0.04em] text-fg-3 uppercase">{label}</span>
       {children}
     </div>
@@ -96,7 +96,7 @@ export function BillingTab() {
       </SettingsCard>
 
       <SettingsCard title={t('plansTitle')} description={t('plansLead')}>
-        <div className="grid gap-4 border-t border-line p-6 lg:grid-cols-3">
+        <div className="grid gap-4 p-4 sm:p-6 lg:grid-cols-3">
           {PLAN_KINDS.map((kind: PlanKind) => {
             const current = kind === plan.kind;
             const features = tPricing.raw(`plans.${kind}.features`) as string[];
@@ -154,7 +154,7 @@ export function BillingTab() {
       </SettingsCard>
 
       <SettingsCard title={t('historyTitle')} description={t('historyLead')}>
-        <div className="border-t border-line">
+        <div>
           <div className={cn(HISTORY_GRID, 'h-10 bg-surface-2 text-xs font-medium text-fg-3 max-sm:hidden')}>
             <span>{t('columns.date')}</span>
             <span>{t('columns.plan')}</span>
@@ -162,13 +162,13 @@ export function BillingTab() {
             <span className="text-right">{t('columns.amount')}</span>
           </div>
           {payments.isPending && (
-            <div className="flex flex-col gap-3 px-6 py-5">
+            <div className="flex flex-col gap-3 px-4 sm:px-6 py-5">
               <Skeleton className="h-4 w-2/3" />
               <Skeleton className="h-4 w-1/2" />
             </div>
           )}
           {payments.data?.length === 0 && (
-            <div className="flex flex-col items-center gap-2 px-6 py-10 text-center">
+            <div className="flex flex-col items-center gap-2 px-4 sm:px-6 py-10 text-center">
               <span className="grid size-10 place-items-center rounded-xl border border-line-2 text-fg-3">
                 <Receipt size={18} strokeWidth={1.5} aria-hidden />
               </span>

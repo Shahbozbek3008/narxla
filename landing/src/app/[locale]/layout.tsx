@@ -9,6 +9,7 @@ import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
 import { GlobalToaster } from "@/components/app/common/GlobalToaster";
 import { QueryProvider } from "@/components/providers/QueryProvider";
+import { ThemeRestorer } from "@/components/providers/ThemeRestorer";
 import { StoreHydrator } from "@/store/StoreHydrator";
 import "../globals.css";
 
@@ -58,7 +59,6 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
   return (
     <html
       lang={locale}
-      data-theme="dark"
       className={fontVariables}
       suppressHydrationWarning
     >
@@ -67,6 +67,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
       </head>
       <body>
         <NextIntlClientProvider>
+          <ThemeRestorer />
           <QueryProvider>
             <StoreHydrator />
             {children}

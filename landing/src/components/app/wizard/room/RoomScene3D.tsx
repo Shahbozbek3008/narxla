@@ -15,6 +15,24 @@ import type { RoomShape } from './types';
 
 const CAMERA_DIRECTION = new Vector3(0.95, 1.75, 1.35).normalize();
 const FIT_RATIO = 1.9;
+const WIDE_ASPECT = 1.45;
+
+function useAspect(ref: RefObject<HTMLDivElement | null>) {
+  const [aspect, setAspect] = useState(WIDE_ASPECT);
+
+  useEffect(() => {
+    const node = ref.current;
+    if (!node) return;
+    const observer = new ResizeObserver(([entry]) => {
+      const { width, height } = entry.contentRect;
+      if (width > 0 && height > 0) setAspect(width / height);
+    });
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, [ref]);
+
+  return aspect;
+}
 const INTRO_RATIO = 1.45;
 const SHADOW_EXTENT = 14;
 const LABEL_CLASS =
@@ -143,9 +161,11 @@ export default function RoomScene3D(shape: RoomShape) {
   const labels = useRef<(HTMLSpanElement | null)[]>([]);
   const [resetSignal, setResetSignal] = useState(0);
   const [quadrant, setQuadrant] = useState<Quadrant>(INITIAL_QUADRANT);
+  const container = useRef<HTMLDivElement>(null);
+  const aspect = useAspect(container);
 
   const diagonal = Math.hypot(shape.length, shape.width, shape.height);
-  const distance = diagonal * FIT_RATIO;
+  const distance = diagonal * FIT_RATIO * Math.max(1, WIDE_ASPECT / aspect);
   const [startPosition] = useState<Vector3Tuple>(() =>
     CAMERA_DIRECTION.clone()
       .multiplyScalar(distance * (reducedMotion ? 1 : INTRO_RATIO))
@@ -164,7 +184,7 @@ export default function RoomScene3D(shape: RoomShape) {
   };
 
   return (
-    <div className="relative size-full overflow-hidden">
+    <div ref={container} className="relative size-full overflow-hidden">
       <Canvas
         shadows="percentage"
         frameloop="demand"

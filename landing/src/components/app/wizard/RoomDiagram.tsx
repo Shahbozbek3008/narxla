@@ -52,11 +52,11 @@ export function RoomDiagram({ walls, perimeter, ...shape }: RoomDiagramProps) {
   return (
     <div className={cn(card, 'overflow-hidden')}>
       <div className="flex items-center justify-between gap-3 border-b border-line px-[18px] py-3.5">
-        <span className="text-sm font-semibold">{t('diagram')}</span>
-        <span className="flex items-center gap-2">
+        <span className="min-w-0 truncate text-sm font-semibold">{t('diagram')}</span>
+        <span className="flex shrink-0 items-center gap-2">
           {webgl && (
             <Segmented<ViewMode>
-              size="mini"
+              size="xs"
               label={t('viewLabel')}
               value={mode}
               onChange={setMode}
@@ -66,7 +66,7 @@ export function RoomDiagram({ walls, perimeter, ...shape }: RoomDiagramProps) {
               ]}
             />
           )}
-          <span className="rounded-md bg-surface-3 px-2 font-mono text-xs/[22px] text-fg-2">h = {shape.heightLabel} m</span>
+          <span className="rounded-md bg-surface-3 px-2 font-mono text-xs/[22px] whitespace-nowrap text-fg-2 max-[380px]:hidden">h = {shape.heightLabel} m</span>
         </span>
       </div>
 

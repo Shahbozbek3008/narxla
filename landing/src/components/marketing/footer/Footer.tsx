@@ -47,7 +47,7 @@ const COLUMNS: { title: string; links: FooterLink[] }[] = [
 ];
 
 const EXTERNAL_LINK_PROPS = { target: '_blank', rel: 'noreferrer' };
-const LINK = 'text-fg-2 transition-colors duration-150 hover:text-fg';
+const LINK = 'py-1.5 text-fg-2 transition-colors duration-150 hover:text-fg sm:py-0';
 const BOTTOM_LINK = 'text-fg-3 transition-colors duration-150 hover:text-fg';
 
 export function Footer() {
@@ -64,7 +64,7 @@ export function Footer() {
             <p className="mt-4 text-sm/[22px] text-fg-2">{t('about')}</p>
           </Reveal>
           {COLUMNS.map((column, index) => (
-            <Reveal key={column.title} delay={stagger(index + 1, 60)} className="flex flex-col gap-2.5 text-sm/5">
+            <Reveal key={column.title} delay={stagger(index + 1, 60)} className="flex flex-col gap-0.5 text-sm/5 sm:gap-2.5">
               <span className="mb-1 font-semibold">{label(column.title)}</span>
               {column.links.map((link) =>
                 link.kind === 'route' ? (

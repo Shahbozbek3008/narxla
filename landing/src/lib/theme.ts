@@ -11,6 +11,23 @@ const root = () => document.documentElement;
 const resolve = (preference: ThemePreference): Theme =>
   preference === 'system' ? (window.matchMedia(LIGHT_QUERY).matches ? 'light' : 'dark') : preference;
 
+const isPreference = (value: unknown): value is ThemePreference => value === 'light' || value === 'dark' || value === 'system';
+
+export function storedThemePreference(): ThemePreference {
+  try {
+    const value = localStorage.getItem(STORAGE_KEY);
+    return isPreference(value) ? value : 'dark';
+  } catch {
+    return 'dark';
+  }
+}
+
+export function restoreTheme() {
+  const preference = storedThemePreference();
+  root().dataset.themePreference = preference;
+  root().dataset.theme = resolve(preference);
+}
+
 export function readTheme(): Theme {
   return root().dataset.theme === 'light' ? 'light' : 'dark';
 }

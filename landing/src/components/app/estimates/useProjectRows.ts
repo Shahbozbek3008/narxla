@@ -4,7 +4,7 @@ import { useTranslations } from 'next-intl';
 import { useMemo } from 'react';
 import { estimate } from '@/lib/calc-engine';
 import { dec, rangeMln } from '@/lib/format';
-import type { EstimateStatus, Project } from '@/store/estimates';
+import type { EstimateRecord, EstimateStatus } from '@/lib/api/types';
 import { usePriceBook } from '@/store/prices';
 import { useFormatDate } from '../common/useFormatDate';
 
@@ -19,7 +19,7 @@ export type ProjectRow = {
   ratio: number;
 };
 
-export function useProjectRows(projects: Project[]): ProjectRow[] {
+export function useProjectRows(projects: EstimateRecord[]): ProjectRow[] {
   const t = useTranslations('app');
   const formatDate = useFormatDate();
   const book = usePriceBook();
@@ -35,7 +35,7 @@ export function useProjectRows(projects: Project[]): ProjectRow[] {
           status: project.status,
           area: `${dec(result.area)} m²`,
           quality: t(`qualities.${quality}.name`),
-          date: formatDate(project.createdAt),
+          date: formatDate(project.createdAt.slice(0, 10)),
           range: t('mln', { value: rangeMln(result.low, result.high) }),
           ratio: Math.max(L, W) / Math.max(Math.min(L, W), 0.1),
         };

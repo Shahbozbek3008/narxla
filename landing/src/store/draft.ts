@@ -26,6 +26,7 @@ export type Draft = {
   windows: number;
   works: Works;
   quality: Quality;
+  editingId: string | null;
 };
 
 type DraftActions = {
@@ -36,7 +37,8 @@ type DraftActions = {
   setWindows: (value: number) => void;
   toggleWork: (work: WorkId) => void;
   setQuality: (quality: Quality) => void;
-  load: (input: EstimateInput, step: DraftStep) => void;
+  load: (input: EstimateInput, step: DraftStep, editingId?: string | null) => void;
+  reset: () => void;
 };
 
 export const DEFAULT_DRAFT: Draft = {
@@ -49,6 +51,7 @@ export const DEFAULT_DRAFT: Draft = {
   windows: 1,
   works: { pol: true, devor: true, shift: true, elektr: true, santex: false },
   quality: 'mid',
+  editingId: null,
 };
 
 const clamp = (value: number, max: number) => Math.max(0, Math.min(max, value));
@@ -85,9 +88,11 @@ export const useDraft = create<Draft & DraftActions>()(
       setWindows: (value) => set({ windows: clamp(value, LIMITS.windows) }),
       toggleWork: (work) => set((state) => ({ works: { ...state.works, [work]: !state.works[work] } })),
       setQuality: (quality) => set({ quality }),
-      load: (input, step) =>
+      reset: () => set(DEFAULT_DRAFT),
+      load: (input, step, editingId = null) =>
         set({
           step,
+          editingId,
           room: input.room,
           L: dec(input.L),
           W: dec(input.W),

@@ -5,7 +5,8 @@ import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { SETTINGS_SECTIONS, type SettingsSection } from '@/lib/routes';
 import { cn } from '@/lib/utils';
-import { isProfileDirty, useSettings } from '@/store/settings';
+import { useAuth, useUpdateProfile } from '@/lib/api/queries';
+import { changedFields, profileFields, useSettingsDraft } from '@/store/settings';
 import { PageHeader } from '../common/PageHeader';
 import { StickyBar } from '../common/StickyBar';
 import { useNotify } from '../common/useNotify';
@@ -35,15 +36,33 @@ function useActiveSection() {
 
 export function SettingsScreen() {
   const t = useTranslations('app.settings');
-  const { saved, draft, commit, discard } = useSettings();
-  const dirty = isProfileDirty(saved, draft);
+  const { user } = useAuth();
+  const { draft, load, clear } = useSettingsDraft();
+  const updateProfile = useUpdateProfile();
+  const saved = user ? profileFields(user) : null;
+  const changes = saved && draft ? changedFields(saved, draft) : {};
+  const dirty = Object.keys(changes).length > 0;
   const active = useActiveSection();
   const notify = useNotify();
 
-  const save = () => {
-    commit();
-    notify('settingsSaved');
-  };
+  useEffect(() => {
+    if (user && !draft) load(profileFields(user));
+  }, [user, draft, load]);
+
+  useEffect(() => clear, [clear]);
+
+  const discard = () => saved && load(saved);
+
+  const save = () =>
+    updateProfile.mutate(changes, {
+      onSuccess: (profile) => {
+        load(profileFields(profile));
+        notify('settingsSaved');
+      },
+      onError: () => notify('actionFailed', 'info'),
+    });
+
+  if (!draft) return null;
 
   return (
     <div className="flex flex-col gap-6 pb-6">
@@ -83,7 +102,7 @@ export function SettingsScreen() {
         <Button variant="ghost" size="sm" className="h-[38px]" onClick={discard}>
           {t('cancel')}
         </Button>
-        <Button size="sm" className="h-[38px] px-4 shadow-none" onClick={save}>
+        <Button size="sm" className="h-[38px] px-4 shadow-none" disabled={updateProfile.isPending} onClick={save}>
           {t('save')}
         </Button>
       </StickyBar>

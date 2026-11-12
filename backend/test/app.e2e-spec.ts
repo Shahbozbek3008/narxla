@@ -1,24 +1,16 @@
-import { type INestApplication, StandardSchemaValidationPipe } from '@nestjs/common';
-import { Test } from '@nestjs/testing';
+import type { INestApplication } from '@nestjs/common';
 import request from 'supertest';
 import type { App } from 'supertest/types.js';
-import { AppModule } from '../src/app.module.js';
 import { ADMIN_KEY_HEADER } from '../src/common/admin-key.guard.js';
-import { PrismaExceptionFilter } from '../src/common/prisma-exception.filter.js';
 import { AppConfigService } from '../src/config/app-config.service.js';
+import { createTestApp } from './create-app.js';
 
 describe('Smetachi API (e2e)', () => {
   let app: INestApplication<App>;
   let adminKey: string;
 
   beforeAll(async () => {
-    process.env.SCRAPER_ENABLED = 'false';
-    const moduleRef = await Test.createTestingModule({ imports: [AppModule] }).compile();
-    app = moduleRef.createNestApplication();
-    app.setGlobalPrefix('api');
-    app.useGlobalPipes(new StandardSchemaValidationPipe());
-    app.useGlobalFilters(new PrismaExceptionFilter());
-    await app.init();
+    ({ app } = await createTestApp());
     adminKey = app.get(AppConfigService).adminApiKey;
   });
 

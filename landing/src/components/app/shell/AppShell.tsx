@@ -3,10 +3,9 @@
 import { useEffect, type ReactNode } from 'react';
 import { usePathname, useRouter } from '@/i18n/navigation';
 import { isProtectedPath } from '@/lib/access';
+import { useAuth } from '@/lib/api/queries';
 import { routes, withNext } from '@/lib/routes';
 import { usePrices } from '@/store/prices';
-import { useSession } from '@/store/session';
-import { useHydrated } from '@/store/StoreHydrator';
 import { ConfirmDialogHost } from './ConfirmDialogHost';
 import { Sidebar } from './Sidebar';
 import { TabBar } from './TabBar';
@@ -15,17 +14,16 @@ import { TopBar } from './TopBar';
 export function AppShell({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const router = useRouter();
-  const hydrated = useHydrated();
-  const signedIn = useSession((state) => state.signedIn);
-  const blocked = isProtectedPath(pathname) && (!hydrated || !signedIn);
+  const { status } = useAuth();
+  const blocked = isProtectedPath(pathname) && status !== 'authenticated';
 
   useEffect(() => {
     void usePrices.getState().load();
   }, []);
 
   useEffect(() => {
-    if (hydrated && !signedIn && isProtectedPath(pathname)) router.replace(withNext(routes.login, pathname));
-  }, [hydrated, signedIn, pathname, router]);
+    if (status === 'guest' && isProtectedPath(pathname)) router.replace(withNext(routes.login, pathname));
+  }, [status, pathname, router]);
 
   return (
     <div className="flex min-h-screen [--nav-bg:rgba(11,13,18,.78)] light:[--nav-bg:rgba(250,250,248,.8)]">

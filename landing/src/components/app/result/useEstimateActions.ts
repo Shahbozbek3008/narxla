@@ -1,12 +1,14 @@
 'use client';
 
-import { usePathname, useRouter } from '@/i18n/navigation';
+import { useLocale } from 'next-intl';
+import { getPathname, usePathname, useRouter } from '@/i18n/navigation';
+import { isApiError } from '@/lib/api/client';
+import { useAuth, useCreateEstimate, useShareEstimate } from '@/lib/api/queries';
+import type { EstimateRecord } from '@/lib/api/types';
 import type { EstimateInput } from '@/lib/calc-engine';
 import { sendPriceReport } from '@/lib/prices/api';
 import { routes, withNext } from '@/lib/routes';
 import { useDraft } from '@/store/draft';
-import { useEstimates, type Project } from '@/store/estimates';
-import { useSession } from '@/store/session';
 import { useNotify } from '../common/useNotify';
 
 const EDIT_STEP = 1;
@@ -15,41 +17,66 @@ type ActionsInput = {
   id: string;
   input: EstimateInput;
   name: string;
-  project: Project | null;
+  project: EstimateRecord | null;
 };
+
+const copy = (text: string) => navigator.clipboard?.writeText(text).catch(() => undefined);
 
 export function useEstimateActions({ id, input, name, project }: ActionsInput) {
   const router = useRouter();
   const pathname = usePathname();
-  const signedIn = useSession((state) => state.signedIn);
-  const addProject = useEstimates((state) => state.add);
+  const locale = useLocale();
+  const { status } = useAuth();
+  const createEstimate = useCreateEstimate();
+  const shareEstimate = useShareEstimate();
   const loadDraft = useDraft((state) => state.load);
   const notify = useNotify();
 
   const requireSignIn = () => {
-    if (signedIn) return false;
+    if (status === 'authenticated') return false;
     notify('signInRequired', 'info');
     router.push(withNext(routes.login, pathname));
     return true;
   };
 
+  const shareUrl = (token: string) => `${window.location.origin}${getPathname({ href: routes.shared(token), locale })}`;
+
   return {
     saved: project !== null,
+    saving: createEstimate.isPending,
     edit: () => {
-      loadDraft(input, EDIT_STEP);
+      loadDraft(input, EDIT_STEP, project?.id ?? null);
       router.push(routes.newEstimateStep(EDIT_STEP + 1));
     },
     save: () => {
       if (project) return notify('alreadySaved', 'info');
-      if (requireSignIn()) return;
-      const newId = addProject({ name, input });
-      notify('saved');
-      router.replace(routes.estimate(newId));
+      if (requireSignIn() || createEstimate.isPending) return;
+      createEstimate.mutate(
+        { name, input },
+        {
+          onSuccess: (record) => {
+            notify('saved');
+            router.replace(routes.estimate(record.id));
+          },
+          onError: (error) => notify(isApiError(error, 'PLAN_LIMIT') ? 'limitReached' : 'actionFailed', 'info'),
+        },
+      );
     },
     share: async () => {
-      const url = `${window.location.host}${pathname}`;
-      await navigator.clipboard?.writeText(`${window.location.protocol}//${url}`).catch(() => undefined);
-      notify('shared', 'success', { url });
+      if (!project) {
+        const url = `${window.location.origin}${getPathname({ href: pathname, locale })}`;
+        await copy(url);
+        return notify('shared', 'success', { url: url.replace(/^https?:\/\//, '') });
+      }
+      shareEstimate.mutate(project.id, {
+        onSuccess: async ({ shareToken }) => {
+          if (!shareToken) return notify('actionFailed', 'info');
+          const url = shareUrl(shareToken);
+          await copy(url);
+          notify('shared', 'success', { url: url.replace(/^https?:\/\//, '') });
+        },
+        onError: () => notify('actionFailed', 'info'),
+      });
     },
     openPdf: () => {
       if (requireSignIn()) return;

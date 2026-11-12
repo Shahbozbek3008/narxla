@@ -159,3 +159,108 @@ model LabourRate {
 
   @@map("labour_rates")
 }
+
+enum Plan {
+  free
+  project
+  pro
+}
+
+enum Quality {
+  eco
+  mid
+  pre
+}
+
+enum EstimateStatus {
+  ready
+  draft
+  sent
+}
+
+enum PaymentProvider {
+  manual
+}
+
+model User {
+  id             String     @id @default(cuid())
+  phone          String?    @unique
+  telegramId     BigInt?    @unique
+  name           String     @default("")
+  region         String     @default("Toshkent")
+  district       String     @default("")
+  reserve        Int        @default(10)
+  quality        Quality    @default(mid)
+  notifyPrice    Boolean    @default(true)
+  notifyTelegram Boolean    @default(false)
+  notifyNews     Boolean    @default(false)
+  plan           Plan       @default(free)
+  planExpiresAt  DateTime?
+  sessions       Session[]
+  estimates      Estimate[]
+  payments       Payment[]
+  createdAt      DateTime   @default(now())
+  updatedAt      DateTime   @updatedAt
+
+  @@map("users")
+}
+
+model Session {
+  id         String   @id @default(cuid())
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId     String
+  tokenHash  String   @unique
+  userAgent  String?
+  ip         String?
+  expiresAt  DateTime
+  lastUsedAt DateTime @default(now())
+  createdAt  DateTime @default(now())
+
+  @@index([userId])
+  @@index([expiresAt])
+  @@map("sessions")
+}
+
+model OtpChallenge {
+  id         String    @id @default(cuid())
+  phone      String
+  codeHash   String
+  attempts   Int       @default(0)
+  expiresAt  DateTime
+  consumedAt DateTime?
+  createdAt  DateTime  @default(now())
+
+  @@index([phone, createdAt(sort: Desc)])
+  @@map("otp_challenges")
+}
+
+model Estimate {
+  id         String         @id @default(cuid())
+  user       User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId     String
+  name       String
+  input      Json
+  status     EstimateStatus @default(ready)
+  shareToken String?        @unique
+  sharedAt   DateTime?
+  createdAt  DateTime       @default(now())
+  updatedAt  DateTime       @updatedAt
+
+  @@index([userId, createdAt(sort: Desc)])
+  @@map("estimates")
+}
+
+model Payment {
+  id        String          @id @default(cuid())
+  user      User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String
+  plan      Plan
+  amount    Int
+  provider  PaymentProvider
+  reference String?
+  periodEnd DateTime?
+  paidAt    DateTime        @default(now())
+
+  @@index([userId, paidAt(sort: Desc)])
+  @@map("payments")
+}

@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import type { EstimateStatus } from './estimates';
+import type { EstimateStatus } from '@/lib/api/types';
 import { persistOptions } from './persist';
 
 export type ListView = 'cards' | 'table';

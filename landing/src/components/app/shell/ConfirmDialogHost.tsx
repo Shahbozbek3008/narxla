@@ -1,6 +1,6 @@
 'use client';
 
-import { LogOut, Trash2 } from 'lucide-react';
+import { FileX2, LogOut, Trash2 } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 import {
@@ -14,34 +14,58 @@ import {
 } from '@/components/ui/alert-dialog';
 import { Button } from '@/components/ui/button';
 import { useRouter } from '@/i18n/navigation';
+import { useDeleteAccount, useDeleteEstimate, useSignOut } from '@/lib/api/queries';
 import { routes } from '@/lib/routes';
 import { useDialogs, type DialogKind } from '@/store/dialogs';
-import { useSession } from '@/store/session';
 import { useNotify } from '../common/useNotify';
 
-const ICONS = { logout: LogOut, delete: Trash2 };
+const ICONS = { logout: LogOut, delete: Trash2, deleteEstimate: FileX2 };
 
 export function ConfirmDialogHost() {
   const t = useTranslations('app.dialogs');
-  const { dialog, close } = useDialogs();
+  const { dialog, target, close } = useDialogs();
   const [shown, setShown] = useState<DialogKind>('logout');
-  const signOut = useSession((state) => state.signOut);
+  const signOut = useSignOut();
+  const deleteAccount = useDeleteAccount();
+  const deleteEstimate = useDeleteEstimate();
   const router = useRouter();
   const notify = useNotify();
 
   if (dialog && dialog !== shown) setShown(dialog);
 
   const Icon = ICONS[shown];
+  const failed = () => notify('actionFailed', 'info');
 
   const confirm = () => {
     close();
     if (shown === 'logout') {
-      signOut();
-      router.push(routes.login);
-      notify('loggedOut');
+      signOut.mutate(undefined, {
+        onSettled: () => {
+          router.push(routes.login);
+          notify('loggedOut');
+        },
+      });
       return;
     }
-    notify('deleteRequested', 'info');
+    if (shown === 'delete') {
+      deleteAccount.mutate(undefined, {
+        onSuccess: () => {
+          router.push(routes.home);
+          notify('accountDeleted');
+        },
+        onError: failed,
+      });
+      return;
+    }
+    if (target) {
+      deleteEstimate.mutate(target, {
+        onSuccess: () => {
+          router.replace(routes.estimates);
+          notify('estimateDeleted');
+        },
+        onError: failed,
+      });
+    }
   };
 
   return (

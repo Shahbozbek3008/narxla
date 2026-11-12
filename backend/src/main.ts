@@ -2,10 +2,12 @@ import { type INestApplication, StandardSchemaValidationPipe } from '@nestjs/com
 import { NestFactory } from '@nestjs/core';
 import type { NestExpressApplication } from '@nestjs/platform-express';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import cookieParser from 'cookie-parser';
 import helmet from 'helmet';
 import { Logger } from 'nestjs-pino';
 import { AppModule } from './app.module.js';
 import { ADMIN_KEY_HEADER } from './common/admin-key.guard.js';
+import { SESSION_COOKIE } from './auth/session-cookie.js';
 import { ADMIN_SECURITY } from './common/admin.decorator.js';
 import { PrismaExceptionFilter } from './common/prisma-exception.filter.js';
 import { AppConfigService } from './config/app-config.service.js';
@@ -17,9 +19,10 @@ function setupSwagger(app: INestApplication) {
     app,
     new DocumentBuilder()
       .setTitle('Smetachi API')
-      .setDescription('Construction material prices for Tashkent')
+      .setDescription('Renovation estimates, accounts and construction prices for Tashkent')
       .setVersion('1.0')
       .addApiKey({ type: 'apiKey', in: 'header', name: ADMIN_KEY_HEADER }, ADMIN_SECURITY)
+      .addCookieAuth(SESSION_COOKIE)
       .build(),
   );
   SwaggerModule.setup(`${API_PREFIX}/docs`, app, document);
@@ -33,7 +36,8 @@ async function bootstrap() {
   app.set('trust proxy', 1);
   app.setGlobalPrefix(API_PREFIX);
   app.use(helmet());
-  app.enableCors({ origin: config.corsOrigins, methods: ['GET', 'POST', 'PATCH', 'DELETE'] });
+  app.use(cookieParser());
+  app.enableCors({ origin: config.corsOrigins, credentials: true, methods: ['GET', 'POST', 'PATCH', 'DELETE'] });
   app.useGlobalPipes(new StandardSchemaValidationPipe());
   app.useGlobalFilters(new PrismaExceptionFilter());
   app.enableShutdownHooks();

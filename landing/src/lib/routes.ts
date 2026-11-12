@@ -20,6 +20,7 @@ export const routes = {
   check: '/app/check',
   calcs: '/app/calcs',
   calc: (id: string) => `/app/calcs/${id}`,
+  shared: (token: string) => `/app/shared/${token}`,
   settings: '/app/settings',
   settingsSection: (section: SettingsSection) => `/app/settings#${section}`,
 } as const;

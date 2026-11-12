@@ -12,6 +12,7 @@ import type {
   ReviewItem,
   ScrapeRun,
 } from './types';
+import type { Profile } from '../api/types';
 
 export const ADMIN_KEY_HEADER = 'x-admin-key';
 
@@ -66,6 +67,8 @@ export function createAdminApi(key: string) {
     runs: () => request<ScrapeRun[]>('GET', '/scraper/runs'),
     startRun: () => request<ScrapeRun>('POST', '/scraper/runs'),
     reports: (status: ReportStatus) => request<PriceReport[]>('GET', `/price-reports${query({ status })}`),
+    users: (search: string) => request<Profile[]>('GET', `/users${query(search ? { query: search } : {})}`),
+    grantPlan: (id: string, plan: 'project' | 'pro') => request<Profile>('POST', `/users/${id}/plan`, { plan }),
     resolveReport: (id: string, status: Exclude<ReportStatus, 'OPEN'>) => request<PriceReport>('PATCH', `/price-reports/${id}`, { status }),
   };
 }

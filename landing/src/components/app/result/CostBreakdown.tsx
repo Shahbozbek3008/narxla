@@ -38,7 +38,7 @@ export function CostBreakdown({ result, progress }: CostBreakdownProps) {
             <span className="mt-1.5 size-2 shrink-0 rounded-[2px]" style={{ background: CATEGORY_COLOR[id] }} />
             <span className="flex flex-col">
               <span className="text-[13px] text-fg-2">
-                {t('result.share', { name: t(`categories.${id}`), percent: Math.round(share * 100) })}
+                {t('result.breakdownShare', { name: t(`categories.${id}`), percent: Math.round(share * 100) })}
               </span>
               <span className="text-[15px] font-semibold">{t('money', { value: fmt(amount) })}</span>
             </span>

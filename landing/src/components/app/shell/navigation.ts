@@ -28,7 +28,7 @@ export function activeNavKey(pathname: string): NavKey | null {
 export function screenKey(pathname: string): ScreenKey {
   const [, , section, id, child] = pathname.split('/');
   if (section === 'estimates' && child === 'pdf') return 'pdf';
-  if (section === 'estimates' && id) return 'result';
+  if ((section === 'estimates' && id) || section === 'shared') return 'result';
   if (section === 'new' || section === 'check' || section === 'calcs' || section === 'settings') return section;
   return 'estimates';
 }

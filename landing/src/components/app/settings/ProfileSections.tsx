@@ -2,15 +2,15 @@
 
 import { Check } from 'lucide-react';
 import { useTranslations } from 'next-intl';
-import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { NativeSelect } from '@/components/ui/native-select';
 import { Segmented } from '@/components/ui/segmented';
 import { Switch } from '@/components/ui/switch';
 import { QUALITIES, type Quality } from '@/lib/calc-engine';
-import { useSession } from '@/store/session';
-import { DISTRICTS, initialsOf, REGIONS, RESERVES, useSettings, type Profile } from '@/store/settings';
-import { useNotify } from '../common/useNotify';
+import { useAuth } from '@/lib/api/queries';
+import { formatPhone } from '@/lib/format';
+import { RESERVES, type Reserve } from '@/lib/api/types';
+import { DISTRICTS, initialsOf, REGIONS, useSettingsDraft } from '@/store/settings';
 import { Avatar } from '../shell/Avatar';
 import { SettingsRow, SettingsSection } from './SettingsSection';
 
@@ -20,17 +20,15 @@ const NOTIFICATIONS: NotificationKey[] = ['notifyPrice', 'notifyTelegram', 'noti
 
 export function ProfileSection() {
   const t = useTranslations('app.settings.profile');
-  const { draft, update } = useSettings();
-  const phone = useSession((state) => state.phone);
-  const notify = useNotify();
+  const { draft, update } = useSettingsDraft();
+  const { user } = useAuth();
+
+  if (!draft || !user) return null;
 
   return (
     <SettingsSection id="s-profil" title={t('title')} lead={t('lead')}>
-      <SettingsRow title={t('photo')} hint={t('photoHint')}>
-        <Avatar initials={initialsOf(draft.name)} size={48} />
-        <Button variant="secondary" size="sm" onClick={() => notify('upload', 'info')}>
-          {t('upload')}
-        </Button>
+      <SettingsRow title={t('photo')}>
+        <Avatar initials={initialsOf(draft.name || user.phone || '')} size={48} />
       </SettingsRow>
       <SettingsRow title={t('name')}>
         <Input
@@ -42,15 +40,18 @@ export function ProfileSection() {
       </SettingsRow>
       <SettingsRow title={t('phone')} hint={t('phoneHint')}>
         <span className="flex min-h-10 max-w-[360px] min-w-0 flex-auto flex-wrap items-center justify-between gap-x-3 gap-y-1 rounded-[10px] border border-line bg-surface-2 px-3 py-2 text-sm text-fg-2 tabular-nums">
-          <span className="whitespace-nowrap">{phone}</span>
-          <span className="inline-flex items-center gap-1 text-xs font-medium whitespace-nowrap text-success">
-            <Check size={12} strokeWidth={2.5} aria-hidden />
-            {t('verified')}
-          </span>
+          <span className="whitespace-nowrap">{user.phone ? formatPhone(user.phone) : t('noPhone')}</span>
+          {user.phone && (
+            <span className="inline-flex items-center gap-1 text-xs font-medium whitespace-nowrap text-success">
+              <Check size={12} strokeWidth={2.5} aria-hidden />
+              {t('verified')}
+            </span>
+          )}
         </span>
       </SettingsRow>
       <SettingsRow title={t('district')}>
         <NativeSelect aria-label={t('district')} value={draft.district} onChange={(event) => update({ district: event.target.value })}>
+          <option value="">{t('districtNone')}</option>
           {DISTRICTS.map((district) => (
             <option key={district}>{district}</option>
           ))}
@@ -63,7 +64,9 @@ export function ProfileSection() {
 export function EstimateDefaultsSection() {
   const t = useTranslations('app.settings.estimate');
   const tQuality = useTranslations('app.qualities');
-  const { draft, update } = useSettings();
+  const { draft, update } = useSettingsDraft();
+
+  if (!draft) return null;
 
   return (
     <SettingsSection id="s-smeta" title={t('title')} lead={t('lead')}>
@@ -78,7 +81,7 @@ export function EstimateDefaultsSection() {
         <Segmented
           label={t('reserve')}
           value={String(draft.reserve)}
-          onChange={(value) => update({ reserve: Number(value) as Profile['reserve'] })}
+          onChange={(value) => update({ reserve: Number(value) as Reserve })}
           options={RESERVES.map((reserve) => ({ value: String(reserve), label: `${reserve}%` }))}
         />
       </SettingsRow>
@@ -96,7 +99,9 @@ export function EstimateDefaultsSection() {
 
 export function NotificationsSection() {
   const t = useTranslations('app.settings.notifications');
-  const { draft, update } = useSettings();
+  const { draft, update } = useSettingsDraft();
+
+  if (!draft) return null;
 
   return (
     <SettingsSection id="s-bildirish" title={t('title')} lead={t('lead')}>

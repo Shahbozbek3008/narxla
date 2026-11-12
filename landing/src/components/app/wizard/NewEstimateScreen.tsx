@@ -3,9 +3,10 @@
 import { ArrowRight, ChevronLeft } from 'lucide-react';
 import { useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
-import { useEffect, useState } from 'react';
+import { useLayoutEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { useRouter } from '@/i18n/navigation';
+import { useUpdateEstimate } from '@/lib/api/queries';
 import { estimate, validate } from '@/lib/calc-engine';
 import { rangeMln } from '@/lib/format';
 import { DRAFT_ESTIMATE_ID, routes } from '@/lib/routes';
@@ -14,6 +15,7 @@ import { draftToInput, LAST_STEP, useDraft, type DraftStep } from '@/store/draft
 import { usePriceBook } from '@/store/prices';
 import { useHydrated } from '@/store/StoreHydrator';
 import { PageHeader } from '../common/PageHeader';
+import { useNotify } from '../common/useNotify';
 import { StickyBar } from '../common/StickyBar';
 import { DimensionsStep } from './DimensionsStep';
 import { QualityStep } from './QualityStep';
@@ -34,9 +36,13 @@ export function NewEstimateScreen() {
   const startCalculation = useCalculation((state) => state.start);
   const [worksError, setWorksError] = useState(false);
   const initialStep = parseStep(useSearchParams().get('step'));
+  const updateEstimate = useUpdateEstimate();
+  const notify = useNotify();
 
-  useEffect(() => {
-    if (hydrated && initialStep !== null) useDraft.getState().setStep(initialStep);
+  useLayoutEffect(() => {
+    if (!hydrated) return;
+    if (initialStep === null) useDraft.getState().reset();
+    else useDraft.getState().setStep(initialStep);
   }, [hydrated, initialStep]);
 
   const input = draftToInput(draft);
@@ -47,18 +53,36 @@ export function NewEstimateScreen() {
   const worksInvalid = step === 2 && errors.errWorks;
   const isLast = step === LAST_STEP;
 
+  const goTo = (next: DraftStep) => {
+    draft.setStep(next);
+    router.replace(routes.newEstimateStep(next + 1));
+  };
+
   const goNext = () => {
     if (worksInvalid) return setWorksError(true);
     if (dimsInvalid) return;
-    if (!isLast) return draft.setStep((step + 1) as DraftStep);
-    startCalculation();
-    router.push(routes.estimate(DRAFT_ESTIMATE_ID));
+    if (!isLast) return goTo((step + 1) as DraftStep);
+    const { editingId } = draft;
+    if (!editingId) {
+      startCalculation();
+      return router.push(routes.estimate(DRAFT_ESTIMATE_ID));
+    }
+    updateEstimate.mutate(
+      { id: editingId, input },
+      {
+        onSuccess: () => {
+          startCalculation();
+          router.push(routes.estimate(editingId));
+        },
+        onError: () => notify('actionFailed', 'info'),
+      },
+    );
   };
 
   return (
     <div className="flex flex-1 flex-col">
       <PageHeader back={{ href: routes.estimates, label: t('wizard.back') }} title={t('wizard.title')} />
-      <StepNav current={step} onSelect={draft.setStep} />
+      <StepNav current={step} onSelect={goTo} />
 
       <div key={step} className="mt-[clamp(24px,4vw,40px)] flex-1 animate-step-in">
         {step === 0 && <RoomStep />}
@@ -68,7 +92,7 @@ export function NewEstimateScreen() {
       </div>
 
       <StickyBar className="mt-8 mb-6">
-        <Button variant="secondary" size="lg" disabled={step === 0} onClick={() => draft.setStep((step - 1) as DraftStep)}>
+        <Button variant="secondary" size="lg" disabled={step === 0} onClick={() => goTo((step - 1) as DraftStep)}>
           <ChevronLeft size={16} strokeWidth={1.5} aria-hidden />
           {t('wizard.prev')}
         </Button>

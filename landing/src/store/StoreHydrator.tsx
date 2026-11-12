@@ -5,12 +5,9 @@ import { create } from 'zustand';
 import { useAdmin } from './admin';
 import { useCalc } from './calc';
 import { useDraft } from './draft';
-import { useEstimates } from './estimates';
-import { useSession } from './session';
-import { useSettings } from './settings';
 import { useUi } from './ui';
 
-const PERSISTED_STORES = [useSession, useDraft, useEstimates, useUi, useCalc, useSettings, useAdmin];
+const PERSISTED_STORES = [useDraft, useUi, useCalc, useAdmin];
 
 export const useHydrated = create<boolean>()(() => false);
 

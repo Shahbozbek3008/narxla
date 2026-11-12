@@ -1,6 +1,6 @@
 import { useTranslations } from 'next-intl';
 import { Badge, type BadgeTone } from '@/components/ui/badge';
-import type { EstimateStatus } from '@/store/estimates';
+import type { EstimateStatus } from '@/lib/api/types';
 
 const TONE: Record<EstimateStatus, BadgeTone> = {
   ready: 'success',

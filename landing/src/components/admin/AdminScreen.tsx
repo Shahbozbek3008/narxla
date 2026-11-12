@@ -14,8 +14,9 @@ import { ListingsPanel } from './ListingsPanel';
 import { ReportsPanel } from './ReportsPanel';
 import { ReviewPanel } from './ReviewPanel';
 import { ScraperPanel } from './ScraperPanel';
+import { UsersPanel } from './UsersPanel';
 
-const TABS = ['review', 'listings', 'labour', 'scraper', 'reports'] as const;
+const TABS = ['review', 'listings', 'labour', 'scraper', 'users', 'reports'] as const;
 type Tab = (typeof TABS)[number];
 
 const PANELS: Record<Tab, ComponentType> = {
@@ -23,6 +24,7 @@ const PANELS: Record<Tab, ComponentType> = {
   listings: ListingsPanel,
   labour: LabourPanel,
   scraper: ScraperPanel,
+  users: UsersPanel,
   reports: ReportsPanel,
 };
 

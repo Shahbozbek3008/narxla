@@ -1,4 +1,4 @@
-import { Plus, Search } from 'lucide-react';
+import { CloudOff, Plus, Search } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -67,6 +67,23 @@ export function EstimatesNotFound({ onClear }: { onClear: () => void }) {
       action={
         <Button variant="secondary" size="sm" onClick={onClear}>
           {t('clear')}
+        </Button>
+      }
+    />
+  );
+}
+
+export function EstimatesError({ onRetry }: { onRetry: () => void }) {
+  const t = useTranslations('app.list');
+
+  return (
+    <EmptyCard
+      icon={<CloudOff size={18} strokeWidth={1.5} />}
+      title={t('errorTitle')}
+      text={t('errorText')}
+      action={
+        <Button variant="secondary" size="sm" onClick={onRetry}>
+          {t('retry')}
         </Button>
       }
     />

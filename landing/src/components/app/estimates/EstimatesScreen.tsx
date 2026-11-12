@@ -7,13 +7,13 @@ import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
 import { useBreakpoints } from '@/hooks/useBreakpoints';
 import { Link } from '@/i18n/navigation';
 import { routes } from '@/lib/routes';
-import { useEstimates } from '@/store/estimates';
+import { useEstimateList } from '@/lib/api/queries';
 import { useHydrated } from '@/store/StoreHydrator';
 import { useUi, type ListFilter, type ListView } from '@/store/ui';
 import { PageHeader } from '../common/PageHeader';
 import { SearchInput } from '../common/SearchInput';
 import { EstimateCard } from './EstimateCard';
-import { EstimatesEmpty, EstimatesNotFound, EstimatesSkeleton } from './EstimatesStates';
+import { EstimatesEmpty, EstimatesError, EstimatesNotFound, EstimatesSkeleton } from './EstimatesStates';
 import { EstimatesTable } from './EstimatesTable';
 import { useProjectRows } from './useProjectRows';
 
@@ -22,7 +22,7 @@ const FILTERS: ListFilter[] = ['all', 'ready', 'draft', 'sent'];
 export function EstimatesScreen() {
   const t = useTranslations('app.list');
   const hydrated = useHydrated();
-  const projects = useEstimates((state) => state.projects);
+  const { data: projects = [], isPending, isError, refetch } = useEstimateList();
   const { view, filter, search, setView, setFilter, setSearch, clearFilters } = useUi();
   const { isPhone } = useBreakpoints();
   const rows = useProjectRows(projects);
@@ -35,7 +35,8 @@ export function EstimatesScreen() {
     value === 'all' ? rows.length : rows.filter((row) => row.status === value).length;
 
   const renderList = () => {
-    if (!hydrated) return <EstimatesSkeleton />;
+    if (isError) return <EstimatesError onRetry={() => void refetch()} />;
+    if (!hydrated || isPending) return <EstimatesSkeleton />;
     if (rows.length === 0) return <EstimatesEmpty />;
     if (visible.length === 0) return <EstimatesNotFound onClear={clearFilters} />;
     if (view === 'table' && !isPhone) return <EstimatesTable rows={visible} />;

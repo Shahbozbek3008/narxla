@@ -8,6 +8,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
 import { GlobalToaster } from "@/components/app/common/GlobalToaster";
+import { QueryProvider } from "@/components/providers/QueryProvider";
 import { StoreHydrator } from "@/store/StoreHydrator";
 import "../globals.css";
 
@@ -66,9 +67,11 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
       </head>
       <body>
         <NextIntlClientProvider>
-          <StoreHydrator />
-          {children}
-          <GlobalToaster />
+          <QueryProvider>
+            <StoreHydrator />
+            {children}
+            <GlobalToaster />
+          </QueryProvider>
         </NextIntlClientProvider>
       </body>
     </html>

@@ -71,7 +71,7 @@ export function PdfScreen({ id }: { id: string }) {
       input: resolved.input,
       result: estimate(resolved.input, book),
       number: DOCUMENT_NUMBER,
-      date: formatDate(resolved.project?.createdAt ?? todayIso(), true),
+      date: formatDate(resolved.project?.createdAt.slice(0, 10) ?? todayIso(), true),
     };
   }, [resolved, formatDate, book]);
 

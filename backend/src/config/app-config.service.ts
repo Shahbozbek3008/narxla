@@ -11,6 +11,18 @@ export type ScraperConfig = {
   defaultDelayMs: number;
 };
 
+export type AuthConfig = {
+  secret: string;
+  sessionTtlDays: number;
+  otpTtlSeconds: number;
+  otpResendSeconds: number;
+  otpMaxAttempts: number;
+  otpHourlyLimit: number;
+  smsDriver: Env['SMS_DRIVER'];
+  fixedOtpCode: string | undefined;
+  telegramBotToken: string | undefined;
+};
+
 export type PricingConfig = {
   freshDays: number;
   minSources: number;
@@ -43,6 +55,20 @@ export class AppConfigService {
 
   get adminApiKey() {
     return this.get('ADMIN_API_KEY');
+  }
+
+  get auth(): AuthConfig {
+    return {
+      secret: this.get('AUTH_SECRET'),
+      sessionTtlDays: this.get('SESSION_TTL_DAYS'),
+      otpTtlSeconds: this.get('OTP_TTL_SECONDS'),
+      otpResendSeconds: this.get('OTP_RESEND_SECONDS'),
+      otpMaxAttempts: this.get('OTP_MAX_ATTEMPTS'),
+      otpHourlyLimit: this.get('OTP_HOURLY_LIMIT'),
+      smsDriver: this.get('SMS_DRIVER'),
+      fixedOtpCode: this.get('OTP_FIXED_CODE'),
+      telegramBotToken: this.get('TELEGRAM_BOT_TOKEN'),
+    };
   }
 
   get scraper(): ScraperConfig {

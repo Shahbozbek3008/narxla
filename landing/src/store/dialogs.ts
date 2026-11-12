@@ -1,15 +1,17 @@
 import { create } from 'zustand';
 
-export type DialogKind = 'logout' | 'delete';
+export type DialogKind = 'logout' | 'delete' | 'deleteEstimate';
 
 type DialogsState = {
   dialog: DialogKind | null;
-  open: (dialog: DialogKind) => void;
+  target: string | null;
+  open: (dialog: DialogKind, target?: string) => void;
   close: () => void;
 };
 
 export const useDialogs = create<DialogsState>()((set) => ({
   dialog: null,
-  open: (dialog) => set({ dialog }),
+  target: null,
+  open: (dialog, target) => set({ dialog, target: target ?? null }),
   close: () => set({ dialog: null }),
 }));

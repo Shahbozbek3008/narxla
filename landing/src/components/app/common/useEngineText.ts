@@ -5,9 +5,9 @@ import { dec, fmt } from '@/lib/format';
 export function useEngineText() {
   const t = useTranslations('app');
 
-  const unit = (value: Unit) => t(`units.${value}`);
+  const unit = (value: Unit, count = 1) => t(`units.${value}`, { count });
   const quantity = (value: number, unitId: Unit, precise = unitId === 'm2') =>
-    `${precise ? dec(value) : fmt(value)} ${unit(unitId)}`;
+    `${precise ? dec(value) : fmt(value)} ${unit(unitId, value)}`;
 
   return {
     unit,

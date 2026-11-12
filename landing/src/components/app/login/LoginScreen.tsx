@@ -1,47 +1,41 @@
 'use client';
 
-import { Send } from 'lucide-react';
 import { useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
-import { useState, type FormEvent } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { LogoMark } from '@/components/brand/Logo';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
 import { Link, useRouter } from '@/i18n/navigation';
 import { safeNextPath } from '@/lib/access';
-import { digitsOnly } from '@/lib/format';
+import { useAuth } from '@/lib/api/queries';
+import type { Profile } from '@/lib/api/types';
 import { routes } from '@/lib/routes';
-import { useSession } from '@/store/session';
-import { useSettings } from '@/store/settings';
-import { FieldError } from '../common/NumberField';
-import { fieldLabel } from '../common/styles';
 import { useNotify } from '../common/useNotify';
+import { CodeStep } from './CodeStep';
+import { PhoneStep } from './PhoneStep';
 
-const PHONE_DIGITS = 9;
-const DEFAULT_PHONE = '90 123 45 67';
-
-const formatPhone = (value: string) => {
-  const digits = digitsOnly(value, PHONE_DIGITS);
-  return [digits.slice(0, 2), digits.slice(2, 5), digits.slice(5, 7), digits.slice(7, 9)].filter(Boolean).join(' ');
-};
+export type PendingCode = { phone: string; display: string; resendIn: number };
 
 export function LoginScreen() {
   const t = useTranslations('login');
   const router = useRouter();
   const next = useSearchParams().get('next');
-  const signIn = useSession((state) => state.signIn);
-  const name = useSettings((state) => state.saved.name);
   const notify = useNotify();
-  const [phone, setPhone] = useState(DEFAULT_PHONE);
-  const [invalid, setInvalid] = useState(false);
+  const [pending, setPending] = useState<PendingCode | null>(null);
+  const { status } = useAuth();
+  const [entered, setEntered] = useState(false);
 
-  const submit = (event?: FormEvent) => {
-    event?.preventDefault();
-    if (digitsOnly(phone, PHONE_DIGITS).length !== PHONE_DIGITS) return setInvalid(true);
-    signIn(`${t('prefix')} ${phone}`);
-    router.replace(safeNextPath(next) ?? routes.estimates);
-    notify('welcome', 'success', { name: name.split(' ')[0] });
-  };
+  useEffect(() => {
+    if (status === 'authenticated' && !entered) router.replace(safeNextPath(next) ?? routes.estimates);
+  }, [status, entered, router, next]);
+
+  const signedIn = useCallback(
+    (profile: Profile) => {
+      setEntered(true);
+      router.replace(safeNextPath(next) ?? routes.estimates);
+      notify('welcome', 'success', { name: profile.name.split(' ')[0] || profile.phone || '' });
+    },
+    [router, next, notify],
+  );
 
   const terms = t.rich('terms', {
     link: (chunks) => (
@@ -66,46 +60,16 @@ export function LoginScreen() {
         <span className="rounded-2xl shadow-[0_12px_32px_-8px_var(--glow)]">
           <LogoMark size={56} />
         </span>
-        <h1 className="mt-6 font-display text-[28px]/9 font-semibold tracking-[-0.03em]">{t('title')}</h1>
-        <p className="mt-2 text-[15px] text-fg-2">{t('lead')}</p>
+        <h1 className="mt-6 font-display text-[28px]/9 font-semibold tracking-[-0.03em]">
+          {pending ? t('codeTitle') : t('title')}
+        </h1>
+        <p className="mt-2 text-[15px] text-fg-2">{pending ? t('codeLead', { phone: pending.display }) : t('lead')}</p>
 
-        <form
-          noValidate
-          onSubmit={submit}
-          className="sheen mt-8 flex w-full flex-col gap-3 rounded-[20px] border border-line-2 bg-surface p-6 text-left shadow-(--shadow-elev)"
-        >
-          <label className="flex flex-col gap-1.5">
-            <span className={fieldLabel}>{t('phone')}</span>
-            <span className="relative flex">
-              <span className="pointer-events-none absolute top-3 left-3.5 text-base text-fg-2 tabular-nums">{t('prefix')}</span>
-              <Input
-                type="tel"
-                inputMode="tel"
-                autoComplete="tel-national"
-                className="h-12 pl-[62px]"
-                aria-invalid={invalid || undefined}
-                value={phone}
-                onChange={(event) => {
-                  setInvalid(false);
-                  setPhone(formatPhone(event.target.value));
-                }}
-              />
-            </span>
-            {invalid && <FieldError>{t('invalidPhone')}</FieldError>}
-          </label>
-          <Button type="submit" size="xl" className="text-[15px] shadow-[inset_0_1px_0_rgba(255,255,255,.25),0_8px_24px_-10px_var(--glow)]">
-            {t('getCode')}
-          </Button>
-          <div className="flex items-center gap-3 text-xs text-fg-3">
-            <span className="h-px flex-1 bg-line" />
-            {t('or')}
-            <span className="h-px flex-1 bg-line" />
-          </div>
-          <Button variant="secondary" size="xl" className="text-[15px] shadow-none" onClick={() => submit()}>
-            <Send size={18} strokeWidth={1.5} aria-hidden />
-            {t('telegram')}
-          </Button>
-        </form>
+        {pending ? (
+          <CodeStep pending={pending} onResent={setPending} onBack={() => setPending(null)} onSignedIn={signedIn} />
+        ) : (
+          <PhoneStep onCodeSent={setPending} onSignedIn={signedIn} />
+        )}
 
         <Link href={routes.home} className="mt-4 text-[13px] text-fg-2 transition-colors duration-150 hover:text-fg">
           {t('back')}

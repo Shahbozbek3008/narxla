@@ -5,7 +5,7 @@ import { Logo } from '@/components/brand/Logo';
 import { Link, usePathname } from '@/i18n/navigation';
 import { routes } from '@/lib/routes';
 import { cn } from '@/lib/utils';
-import { useEstimates } from '@/store/estimates';
+import { useAuth } from '@/lib/api/queries';
 import { sectionLabel } from '../common/styles';
 import { activeNavKey, NAV_ITEMS } from './navigation';
 import { PlanCard } from './PlanCard';
@@ -15,7 +15,7 @@ export function Sidebar() {
   const t = useTranslations('app.nav');
   const pathname = usePathname();
   const active = activeNavKey(pathname);
-  const count = useEstimates((state) => state.projects.length);
+  const count = useAuth().user?.usage.estimates;
 
   return (
     <aside className="sticky top-0 hidden h-screen w-62 shrink-0 flex-col border-r border-line bg-bg-2 px-3 py-4 md:flex">
@@ -33,7 +33,7 @@ export function Sidebar() {
           >
             <Icon size={17} strokeWidth={1.5} aria-hidden />
             <span className="flex-1">{t(key)}</span>
-            {key === 'estimates' && <span className="text-xs text-fg-3 tabular-nums">{count}</span>}
+            {key === 'estimates' && count !== undefined && <span className="text-xs text-fg-3 tabular-nums">{count}</span>}
           </Link>
         ))}
       </nav>

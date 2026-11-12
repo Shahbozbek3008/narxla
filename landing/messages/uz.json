@@ -611,18 +611,23 @@
       "proCta": "Ustamisiz? Pro tarifi",
       "freeTitle": "Bepul tarif",
       "freeUsage": "{used} / {limit} smeta",
-      "freeCta": "Loyiha — 49 000 so‘m"
+      "freeCta": "Loyiha — 49 000 so‘m",
+      "proTitle": "Pro tarifi",
+      "proNote": "Oylik obuna · {date}gacha",
+      "kinds": {
+        "free": "Bepul",
+        "project": "Loyiha",
+        "pro": "Pro"
+      }
     },
     "profile": {
       "trigger": "Profil menyusi",
       "settings": "Profil va sozlamalar",
       "billing": "Tarif va to‘lov",
-      "billingBadge": "Loyiha",
       "help": "Yordam",
       "logout": "Tizimdan chiqish",
       "signIn": "Kirish",
-      "guest": "Mehmon",
-      "guestNote": "Smetalar shu qurilmada"
+      "telegram": "Telegram orqali"
     },
     "months": {
       "1": "yanvar",
@@ -765,7 +770,10 @@
       "emptyCta": "Birinchi smetani yaratish",
       "notFoundTitle": "Hech narsa topilmadi",
       "notFoundText": "Boshqa nom yoki filtrni sinab ko‘ring.",
-      "clear": "Filtrni tozalash"
+      "clear": "Filtrni tozalash",
+      "errorTitle": "Smetalar yuklanmadi",
+      "errorText": "Server bilan aloqa yo‘q. Birozdan keyin qayta urinib ko‘ring.",
+      "retry": "Qayta urinish"
     },
     "wizard": {
       "back": "Smetalarim",
@@ -849,6 +857,7 @@
       },
       "breakdown": "Xarajat taqsimoti",
       "breakdownTotal": "Jami {value} so‘m",
+      "breakdownShare": "{name} · {percent}%",
       "share": "Ulashish",
       "materials": "Materiallar",
       "reserveNote": "Miqdor 10% zaxira bilan",
@@ -874,7 +883,7 @@
       },
       "lineDetail": "{qty} × {price}",
       "lineDetailSom": "{qty} × {price} so‘m",
-      "sources": "Narxlar: Uzum Market, Prom.uz, Glotr.uz, 24stroy.uz, Maff.uz · Ish haqi: Ustabor.uz, MegaMaster · Noyabr 2026 · Oraliq −8% / +12%",
+      "sources": "Narxlar: 24stroy.uz, Maff.uz do‘konlaridan haftalik · Ish haqi: Toshkent bo‘yicha o‘rtacha stavkalar · Oraliq −8% / +12%",
       "report": "Narx noto‘g‘rimi? Xabar bering",
       "totalLabel": "Jami byudjet",
       "save": "Saqlash",
@@ -892,7 +901,11 @@
       "priceStatusHint": {
         "partial": "Narx 1–2 ta do‘kon bo‘yicha tekshirilgan",
         "estimated": "Narx taxminiy — do‘konlardan hali tekshirilmagan"
-      }
+      },
+      "errorTitle": "Smeta yuklanmadi",
+      "errorText": "Server bilan aloqa yo‘q. Birozdan keyin qayta urinib ko‘ring.",
+      "retry": "Qayta urinish",
+      "delete": "Smetani o‘chirish"
     },
     "pdf": {
       "back": "Smetaga qaytish",
@@ -1286,13 +1299,13 @@
         "title": "Profil",
         "lead": "Smeta va PDF’da shu ma’lumotlar ko‘rinadi.",
         "photo": "Rasm",
-        "photoHint": "PNG yoki JPG, 2 MB gacha",
-        "upload": "Yuklash",
         "name": "Ism familiya",
         "phone": "Telefon",
         "phoneHint": "Kirish uchun ishlatiladi",
         "verified": "Tasdiqlangan",
-        "district": "Tuman"
+        "district": "Tuman",
+        "noPhone": "Telegram orqali kirilgan",
+        "districtNone": "Tanlanmagan"
       },
       "estimate": {
         "title": "Smeta",
@@ -1329,12 +1342,19 @@
       "billing": {
         "title": "Tarif va to‘lov",
         "lead": "Obunani istalgan vaqtda o‘zgartirishingiz mumkin.",
-        "plan": "Loyiha",
         "oneTime": "Bir martalik",
-        "paid": "49 000 so‘m · {date}da to‘langan · obuna emas",
-        "tracking": "Narx kuzatuvi {date}gacha · Uzcard •••• {card}",
         "history": "To‘lovlar tarixi",
-        "pro": "Ustalar uchun Pro"
+        "pro": "Ustalar uchun Pro",
+        "plans": {
+          "free": "Bepul tarif",
+          "project": "Loyiha",
+          "pro": "Pro"
+        },
+        "monthly": "Oylik",
+        "activeUntil": "{date}gacha amal qiladi",
+        "freeUsage": "{used} / {limit} smeta ishlatilgan",
+        "upgrade": "Tarifni yangilash",
+        "historyEmpty": "Hali to‘lovlar yo‘q."
       },
       "account": {
         "title": "Hisob",
@@ -1358,7 +1378,12 @@
       },
       "delete": {
         "title": "Hisobni o‘chirasizmi?",
-        "text": "Barcha smetalar, PDF’lar va to‘lov tarixi butunlay o‘chiriladi. Bu amalni bekor qilib bo‘lmaydi.",
+        "text": "Barcha smetalar, ulashilgan havolalar va to‘lov tarixi butunlay o‘chiriladi. Bu amalni bekor qilib bo‘lmaydi.",
+        "action": "O‘chirish"
+      },
+      "deleteEstimate": {
+        "title": "Smetani o‘chirasizmi?",
+        "text": "Smeta va uning ulashilgan havolasi butunlay o‘chiriladi.",
         "action": "O‘chirish"
       }
     },
@@ -1396,21 +1421,13 @@
         "title": "Sozlamalar saqlandi",
         "text": "O‘zgarishlar yangi smetalarga qo‘llanadi."
       },
-      "upload": {
-        "title": "Rasm yuklash",
-        "text": "Fayl tanlash oynasi ochiladi."
-      },
       "billing": {
-        "title": "To‘lov boshqaruvi",
-        "text": "Click, Payme, Uzcard va Humo qo‘llab-quvvatlanadi."
+        "title": "Tarifni ulash",
+        "text": "Hozircha tarif qo‘lda ulanadi — Telegram: @smetachi_support"
       },
       "loggedOut": {
         "title": "Tizimdan chiqdingiz",
         "text": "Smetalaringiz saqlanib qoldi."
-      },
-      "deleteRequested": {
-        "title": "So‘rov qabul qilindi",
-        "text": "Tasdiqlash kodi telefoningizga yuborildi."
       },
       "print": {
         "title": "Chop etishga tayyor",
@@ -1435,6 +1452,22 @@
       "reportFailed": {
         "title": "Xabar yuborilmadi",
         "text": "Internet aloqasini tekshirib, qayta urinib ko‘ring."
+      },
+      "actionFailed": {
+        "title": "Amal bajarilmadi",
+        "text": "Internet aloqasini tekshirib, qayta urinib ko‘ring."
+      },
+      "accountDeleted": {
+        "title": "Hisob o‘chirildi",
+        "text": "Barcha ma’lumotlaringiz o‘chirildi."
+      },
+      "estimateDeleted": {
+        "title": "Smeta o‘chirildi",
+        "text": "Smetalarim ro‘yxatidan olib tashlandi."
+      },
+      "limitReached": {
+        "title": "Bepul tarif limiti",
+        "text": "Bepul tarifda 3 tagacha smeta saqlanadi. Ko‘proq uchun tarifni yangilang."
       }
     },
     "units": {
@@ -1549,6 +1582,12 @@
       "plumbing-point": "Santexnika nuqtasi",
       "toilet-install": "Unitaz o‘rnatish",
       "plumbing-set": "Santexnika montaji"
+    },
+    "shared": {
+      "eyebrow": "Ulashilgan smeta · {date}",
+      "missingTitle": "Havola ishlamayapti",
+      "missingText": "Smeta egasi ulashishni to‘xtatgan yoki smetani o‘chirgan.",
+      "cta": "O‘z smetangizni yarating"
     }
   },
   "login": {
@@ -1561,7 +1600,25 @@
     "telegram": "Telegram orqali kirish",
     "back": "← Bosh sahifaga qaytish",
     "terms": "Kirish orqali <link>Foydalanish shartlari</link>ga rozilik bildirasiz.",
-    "invalidPhone": "Telefon raqamni to‘liq kiriting."
+    "invalidPhone": "Telefon raqamni to‘liq kiriting.",
+    "codeTitle": "Kodni kiriting",
+    "codeLead": "{phone} raqamiga yuborilgan 6 xonali kodni kiriting.",
+    "code": "SMS kod",
+    "verify": "Kirish",
+    "verifying": "Tekshirilmoqda…",
+    "sending": "Yuborilmoqda…",
+    "changePhone": "← Raqamni o‘zgartirish",
+    "resend": "Kodni qayta yuborish",
+    "resendIn": "Qayta yuborish: {seconds} s",
+    "errors": {
+      "cooldown": "Kod yaqinda yuborilgan. {seconds} soniyadan keyin qayta urinib ko‘ring.",
+      "hourlyLimit": "Bu raqamga juda ko‘p kod so‘raldi. Bir soatdan keyin urinib ko‘ring.",
+      "invalidCode": "Kod noto‘g‘ri. Yana {attempts} ta urinish qoldi.",
+      "expired": "Kod muddati tugagan. Yangi kod so‘rang.",
+      "locked": "Urinishlar tugadi. Yangi kod so‘rang.",
+      "telegram": "Telegram orqali kirish amalga oshmadi.",
+      "network": "Server bilan aloqa yo‘q. Birozdan keyin qayta urinib ko‘ring."
+    }
   },
   "admin": {
     "metaTitle": "Smetachi — admin",
@@ -1576,7 +1633,8 @@
       "listings": "Do‘kon havolalari",
       "labour": "Ish haqi",
       "scraper": "Scraper",
-      "reports": "Xabarlar"
+      "reports": "Xabarlar",
+      "users": "Foydalanuvchilar"
     },
     "status": {
       "ACCEPTED": "Qabul qilingan",
@@ -1680,6 +1738,23 @@
       "dismissed": "Xabar rad etildi",
       "emptyTitle": "Ochiq xabarlar yo‘q",
       "emptyText": "Foydalanuvchilar narx haqida xabar bersa, shu yerda ko‘rinadi."
+    },
+    "users": {
+      "title": "Foydalanuvchilar",
+      "lead": "To‘lov integratsiyasi ulanguncha tarif shu yerdan qo‘lda beriladi. Har bir berish to‘lovlar tarixiga yoziladi.",
+      "search": "Telefon, ism yoki ID",
+      "empty": "Foydalanuvchi topilmadi.",
+      "telegramUser": "Telegram foydalanuvchisi",
+      "estimates": "{count} smeta",
+      "joined": "Ro‘yxatdan o‘tgan: {date}",
+      "until": "{date} gacha",
+      "grant": "{plan} berish",
+      "granted": "{plan} tarifi berildi",
+      "plans": {
+        "free": "Bepul",
+        "project": "Loyiha",
+        "pro": "Pro"
+      }
     }
   }
 }

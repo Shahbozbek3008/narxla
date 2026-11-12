@@ -14,7 +14,7 @@ import { Link } from '@/i18n/navigation';
 import { ANCHORS, toHash } from '@/lib/anchors';
 import { EASE_OUT } from '@/lib/motion';
 import { routes } from '@/lib/routes';
-import { useSession } from '@/store/session';
+import { useAuth } from '@/lib/api/queries';
 import { MobileDrawer } from './MobileDrawer';
 import { NAV_ITEMS } from './navItems';
 
@@ -27,7 +27,7 @@ export function Navbar() {
   const { scrollY } = useScroll();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const signedIn = useSession((state) => state.signedIn);
+  const signedIn = useAuth().status === 'authenticated';
   const closeMenu = useCallback(() => setMenuOpen(false), []);
 
   useEffect(() => setScrolled(scrollY.get() > SCROLL_THRESHOLD), [scrollY]);

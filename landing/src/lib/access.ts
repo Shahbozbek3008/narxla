@@ -6,6 +6,7 @@ const PUBLIC_APP_PATHS = [
   /^\/app\/new(\/|$)/,
   /^\/app\/calcs(\/|$)/,
   /^\/app\/check(\/|$)/,
+  /^\/app\/shared(\/|$)/,
   new RegExp(`^/app/estimates/(${DEMO_ESTIMATE_ID}|${DRAFT_ESTIMATE_ID})(/|$)`),
 ];
 

@@ -5,10 +5,11 @@ import { useTranslations } from 'next-intl';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { useThemePreference } from '@/hooks/useTheme';
+import { useAuth, usePayments } from '@/lib/api/queries';
+import { fmt } from '@/lib/format';
 import type { ThemePreference } from '@/lib/theme';
 import { cn } from '@/lib/utils';
 import { useDialogs } from '@/store/dialogs';
-import { usePlan } from '@/store/plan';
 import { useFormatDate } from '../common/useFormatDate';
 import { useNotify } from '../common/useNotify';
 import { SettingsRow, SettingsSection } from './SettingsSection';
@@ -68,29 +69,65 @@ export function AppearanceSection() {
 
 export function BillingSection() {
   const t = useTranslations('app.settings.billing');
-  const { paidAt, trackingUntil, cardLast4 } = usePlan();
+  const tApp = useTranslations('app');
+  const { user } = useAuth();
+  const payments = usePayments(Boolean(user));
   const formatDate = useFormatDate();
   const notify = useNotify();
 
+  if (!user) return null;
+
+  const { plan, usage } = user;
+  const paid = plan.kind !== 'free';
+  const dateOf = (iso: string) => formatDate(iso.slice(0, 10), true);
+
   return (
     <SettingsSection id="s-tarif" title={t('title')} lead={t('lead')}>
-      <div className="mx-5 mb-5 flex flex-wrap items-center gap-4 rounded-xl border border-accent p-4 shadow-[0_0_0_4px_var(--accent-soft)] tabular-nums">
+      <div
+        className={cn(
+          'mx-5 mb-4 flex flex-wrap items-center gap-4 rounded-xl border p-4 tabular-nums',
+          paid ? 'border-accent shadow-[0_0_0_4px_var(--accent-soft)]' : 'border-line-2',
+        )}
+      >
         <span className="flex min-w-50 flex-1 flex-col">
           <span className="flex items-center gap-2 font-semibold">
-            {t('plan')}
-            <Badge tone="accent" shape="square">
-              {t('oneTime')}
-            </Badge>
+            {t(`plans.${plan.kind}`)}
+            {paid && (
+              <Badge tone="accent" shape="square">
+                {t(plan.kind === 'pro' ? 'monthly' : 'oneTime')}
+              </Badge>
+            )}
           </span>
-          <span className="text-[13px] text-fg-2">{t('paid', { date: formatDate(paidAt) })}</span>
-          <span className="text-[13px] text-fg-3">{t('tracking', { date: formatDate(trackingUntil), card: cardLast4 })}</span>
+          <span className="text-[13px] text-fg-2">
+            {paid && plan.expiresAt
+              ? t('activeUntil', { date: dateOf(plan.expiresAt) })
+              : t('freeUsage', { used: usage.estimates, limit: usage.limit ?? 0 })}
+          </span>
         </span>
-        <Button variant="secondary" size="sm" onClick={() => notify('billing', 'info')}>
-          {t('history')}
+        <Button size="sm" className="shadow-none" onClick={() => notify('billing', 'info')}>
+          {paid ? t('pro') : t('upgrade')}
         </Button>
-        <Button size="sm" className="shadow-none" onClick={() => notify('pro', 'info')}>
-          {t('pro')}
-        </Button>
+      </div>
+
+      <div className="mx-5 mb-5">
+        <p className="mb-2 text-[13px] font-medium text-fg-2">{t('history')}</p>
+        {payments.data?.length ? (
+          <ul className="overflow-hidden rounded-xl border border-line">
+            {payments.data.map((payment) => (
+              <li key={payment.id} className="flex items-center gap-3 border-b border-line px-4 py-3 text-sm tabular-nums last:border-b-0">
+                <span className="flex flex-1 flex-col">
+                  <span className="font-medium">{t(`plans.${payment.plan}`)}</span>
+                  <span className="text-xs text-fg-3">{dateOf(payment.paidAt)}</span>
+                </span>
+                <span className="font-semibold">{tApp('money', { value: fmt(payment.amount) })}</span>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p className="rounded-xl border border-dashed border-line-2 px-4 py-3 text-[13px] text-fg-3">
+            {payments.isPending ? '…' : t('historyEmpty')}
+          </p>
+        )}
       </div>
     </SettingsSection>
   );

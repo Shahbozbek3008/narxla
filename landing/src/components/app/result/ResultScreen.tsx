@@ -1,6 +1,6 @@
 'use client';
 
-import { Bookmark, Download, Flag, Pencil, Share2, ShieldCheck } from 'lucide-react';
+import { Bookmark, Download, Flag, Pencil, Share2, ShieldCheck, Trash2 } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { useEffect } from 'react';
 import { Badge } from '@/components/ui/badge';
@@ -13,17 +13,14 @@ import { routes } from '@/lib/routes';
 import { cn } from '@/lib/utils';
 import { useCalculation } from '@/store/calculation';
 import { usePriceBook } from '@/store/prices';
-import type { Project } from '@/store/estimates';
+import type { EstimateRecord } from '@/lib/api/types';
+import { useDialogs } from '@/store/dialogs';
 import { EmptyCard } from '../common/EmptyCard';
 import { PageHeader } from '../common/PageHeader';
 import { StickyBar, StickyTotal } from '../common/StickyBar';
-import { CostBreakdown } from './CostBreakdown';
-import { KpiGrid } from './KpiGrid';
-import { LabourCard } from './LabourCard';
-import { MaterialsTable } from './MaterialsTable';
+import { EstimateBreakdown } from './EstimateBreakdown';
 import { PricesSummaryBadge } from './PriceStatusBadge';
 import { ResultSkeleton } from './ResultSkeleton';
-import { TotalsCard } from './TotalsCard';
 import { useEstimateActions } from './useEstimateActions';
 import { useResolvedEstimate } from './useResolvedEstimate';
 
@@ -34,6 +31,20 @@ export function ResultScreen({ id }: { id: string }) {
   const resolved = useResolvedEstimate(id);
 
   if (resolved.state === 'loading') return <ResultSkeleton />;
+  if (resolved.state === 'error') {
+    return (
+      <EmptyCard
+        className="mt-6"
+        title={t('errorTitle')}
+        text={t('errorText')}
+        action={
+          <Button variant="secondary" size="sm" onClick={resolved.retry}>
+            {t('retry')}
+          </Button>
+        }
+      />
+    );
+  }
   if (resolved.state === 'missing') {
     return (
       <EmptyCard
@@ -56,7 +67,7 @@ type ResultViewProps = {
   id: string;
   input: EstimateInput;
   name: string;
-  project: Project | null;
+  project: EstimateRecord | null;
 };
 
 function ResultView({ id, input, name, project }: ResultViewProps) {
@@ -66,6 +77,7 @@ function ResultView({ id, input, name, project }: ResultViewProps) {
   const result = estimate(input, book);
   const progress = useCountUp(!pending);
   const actions = useEstimateActions({ id, input, name, project });
+  const openDialog = useDialogs((state) => state.open);
 
   useEffect(() => {
     if (!pending) return;
@@ -106,6 +118,17 @@ function ResultView({ id, input, name, project }: ResultViewProps) {
               <Pencil size={15} strokeWidth={1.5} aria-hidden />
               {t('result.edit')}
             </Button>
+            {project && (
+              <Button
+                variant="secondary"
+                size="sm"
+                className="h-[38px] text-danger hover:border-danger hover:text-danger"
+                aria-label={t('result.delete')}
+                onClick={() => openDialog('deleteEstimate', project.id)}
+              >
+                <Trash2 size={15} strokeWidth={1.5} aria-hidden />
+              </Button>
+            )}
             <Button asChild variant="secondary" size="sm" className="h-[38px]">
               <Link href={routes.check}>
                 <ShieldCheck size={15} strokeWidth={1.5} aria-hidden />
@@ -120,11 +143,7 @@ function ResultView({ id, input, name, project }: ResultViewProps) {
         <ResultSkeleton />
       ) : (
         <>
-          <KpiGrid result={result} progress={progress} />
-          <CostBreakdown result={result} progress={progress} />
-          <MaterialsTable lines={result.mats} total={result.matTotal} />
-          <LabourCard lines={result.lab} total={result.labTotal} />
-          <TotalsCard result={result} />
+          <EstimateBreakdown result={result} progress={progress} />
           <div className="flex flex-col items-center gap-2 text-center text-xs/4 text-fg-3">
             <span>{t('result.sources')}</span>
             <button
@@ -144,6 +163,7 @@ function ResultView({ id, input, name, project }: ResultViewProps) {
               size="lg"
               className={cn('text-sm max-sm:px-3', actions.saved && 'text-accent-text')}
               aria-label={t('result.save')}
+              disabled={actions.saving}
               onClick={actions.save}
             >
               <Bookmark size={16} strokeWidth={1.5} fill={actions.saved ? 'currentColor' : 'none'} aria-hidden />

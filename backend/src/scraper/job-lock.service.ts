@@ -20,6 +20,14 @@ export class JobLockService {
     return rows.length > 0;
   }
 
+  async renew(name: string, leaseMs: number) {
+    const { count } = await this.prisma.jobLock.updateMany({
+      where: { name, owner: this.owner },
+      data: { lockedUntil: new Date(Date.now() + leaseMs) },
+    });
+    return count > 0;
+  }
+
   async release(name: string) {
     await this.prisma.jobLock.deleteMany({ where: { name, owner: this.owner } });
   }

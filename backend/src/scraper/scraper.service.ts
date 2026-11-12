@@ -1,4 +1,11 @@
-import { BadRequestException, ConflictException, Injectable, Logger, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  ConflictException,
+  Injectable,
+  Logger,
+  NotFoundException,
+  type OnApplicationShutdown,
+} from '@nestjs/common';
 import { setTimeout as sleep } from 'node:timers/promises';
 import { hostOf, sameHost } from '../common/url.js';
 import { AppConfigService } from '../config/app-config.service.js';
@@ -26,7 +33,8 @@ type ScrapeTarget = {
 };
 
 const LOCK_NAME = 'price-scraper';
-const LOCK_LEASE_MS = 3 * 60 * 60 * 1000;
+const LOCK_LEASE_MS = 2 * 60 * 1000;
+const LOCK_HEARTBEAT_MS = 30 * 1000;
 const STORE_CONCURRENCY = 3;
 const MAX_CONSECUTIVE_FAILURES = 5;
 
@@ -39,8 +47,10 @@ async function forEachLimited<T>(items: T[], limit: number, task: (item: T) => P
 }
 
 @Injectable()
-export class ScraperService {
+export class ScraperService implements OnApplicationShutdown {
   private readonly logger = new Logger(ScraperService.name);
+  private running: Promise<void> | null = null;
+  private stopping = false;
 
   constructor(
     private readonly prisma: PrismaService,
@@ -54,15 +64,32 @@ export class ScraperService {
   async start() {
     if (!(await this.locks.acquire(LOCK_NAME, LOCK_LEASE_MS))) throw new ConflictException('A scrape run is already in progress');
 
+    const abandoned = await this.prisma.scrapeRun.updateMany({ where: { finishedAt: null }, data: { finishedAt: new Date() } });
+    if (abandoned.count > 0) this.logger.warn(`Closed ${abandoned.count} abandoned scrape run(s)`);
+
     const run = await this.prisma.scrapeRun.create({ data: {} });
-    this.execute(run.id).catch((error: unknown) =>
-      this.logger.error(`Scrape run ${run.id} crashed: ${error instanceof Error ? error.stack : String(error)}`),
-    );
+    this.running = this.execute(run.id)
+      .catch((error: unknown) =>
+        this.logger.error(`Scrape run ${run.id} crashed: ${error instanceof Error ? error.stack : String(error)}`),
+      )
+      .finally(() => {
+        this.running = null;
+      });
     return run;
+  }
+
+  async onApplicationShutdown() {
+    this.stopping = true;
+    await this.running;
   }
 
   private async execute(runId: string) {
     const tally: RunTally = { total: 0, accepted: 0, flagged: 0, failed: 0, blocked: 0 };
+    const heartbeat = setInterval(() => {
+      this.locks.renew(LOCK_NAME, LOCK_LEASE_MS).catch((error: unknown) =>
+        this.logger.warn(`Could not renew the scraper lock: ${error instanceof Error ? error.message : String(error)}`),
+      );
+    }, LOCK_HEARTBEAT_MS);
     try {
       const stores = await this.prisma.store.findMany({
         where: { active: true },
@@ -71,14 +98,16 @@ export class ScraperService {
 
       await forEachLimited(stores, STORE_CONCURRENCY, async (store) => {
         for (const listing of store.listings) {
+          if (this.stopping) return;
           const result = await this.scrapeListing(listing);
           this.count(tally, result);
           await sleep(Math.max(store.crawlDelayMs, this.config.scraper.defaultDelayMs, result.crawlDelayMs));
         }
       });
 
-      this.logger.log(`Scrape run ${runId} finished: ${JSON.stringify(tally)}`);
+      this.logger.log(`Scrape run ${runId} ${this.stopping ? 'stopped early' : 'finished'}: ${JSON.stringify(tally)}`);
     } finally {
+      clearInterval(heartbeat);
       await this.prisma.scrapeRun.update({ where: { id: runId }, data: { ...tally, finishedAt: new Date() } });
       this.prices.invalidate();
       await this.locks.release(LOCK_NAME);
@@ -112,6 +141,11 @@ export class ScraperService {
     } catch (error) {
       return { outcome: 'FAILED' as const, error: error instanceof Error ? error.message : String(error) };
     }
+  }
+
+  async lastRunStartedAt() {
+    const run = await this.prisma.scrapeRun.findFirst({ orderBy: { startedAt: 'desc' }, select: { startedAt: true } });
+    return run?.startedAt ?? null;
   }
 
   listRuns(take = 20) {

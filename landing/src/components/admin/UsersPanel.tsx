@@ -42,9 +42,9 @@ export function UsersPanel() {
           {data?.map((user) => (
             <article key={user.id} className={cn(plainCard, 'flex flex-wrap items-center gap-4 p-4')}>
               <div className="flex min-w-0 flex-1 flex-col gap-0.5">
-                <span className="text-sm/5 font-semibold">{user.name || (user.phone ? formatPhone(user.phone) : t('telegramUser'))}</span>
+                <span className="text-sm/5 font-semibold">{user.name || (user.phone ? formatPhone(user.phone) : (user.email ?? t('telegramUser')))}</span>
                 <span className="text-xs text-fg-3 tabular-nums">
-                  {[user.phone && formatPhone(user.phone), user.telegramLinked ? 'Telegram' : null, t('estimates', { count: user.usage.estimates })]
+                  {[user.phone && formatPhone(user.phone), user.email, user.telegramLinked ? 'Telegram' : null, t('estimates', { count: user.usage.estimates })]
                     .filter(Boolean)
                     .join(' · ')}
                 </span>

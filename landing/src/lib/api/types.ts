@@ -19,6 +19,8 @@ export type Profile = ProfileFields & {
   id: string;
   phone: string | null;
   telegramLinked: boolean;
+  googleLinked: boolean;
+  email: string | null;
   plan: { kind: PlanKind; expiresAt: string | null };
   usage: { estimates: number; limit: number | null };
   createdAt: string;

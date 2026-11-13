@@ -1,6 +1,6 @@
 'use client';
 
-import { CircleCheck, Phone, Send } from 'lucide-react';
+import { CircleCheck, Mail, Phone, Send } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
@@ -96,6 +96,13 @@ export function ProfileTab() {
             <Phone size={16} strokeWidth={1.5} className="text-fg-3" aria-hidden />
             <span className="min-w-0 flex-1 truncate text-sm whitespace-nowrap tabular-nums">{user.phone ? formatPhone(user.phone) : t('noPhone')}</span>
             <ConnectionState connected={user.phone !== null} label={t('verified')} />
+          </span>
+        </SettingsField>
+        <SettingsField label={t('google')} hint={t('googleHint')}>
+          <span className="flex max-w-md flex-1 items-center gap-3 rounded-[10px] border border-line bg-surface-2 px-3 py-2.5">
+            <Mail size={16} strokeWidth={1.5} className="text-fg-3" aria-hidden />
+            <span className="min-w-0 flex-1 truncate text-sm">{user.email ?? 'Google'}</span>
+            <ConnectionState connected={user.googleLinked} label={t('connected')} />
           </span>
         </SettingsField>
         <SettingsField label={t('telegram')} hint={t('telegramHint')}>

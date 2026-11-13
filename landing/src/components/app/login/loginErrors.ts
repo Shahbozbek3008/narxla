@@ -1,6 +1,6 @@
 import { isApiError } from '@/lib/api/client';
 
-export type LoginErrorKey = 'cooldown' | 'hourlyLimit' | 'invalidCode' | 'expired' | 'locked' | 'telegram' | 'network';
+export type LoginErrorKey = 'cooldown' | 'hourlyLimit' | 'invalidCode' | 'expired' | 'locked' | 'telegram' | 'google' | 'network';
 
 export type LoginError = { key: LoginErrorKey; values: Record<string, number> };
 
@@ -12,6 +12,9 @@ const BY_CODE: Record<string, LoginErrorKey> = {
   OTP_LOCKED: 'locked',
   TELEGRAM_INVALID: 'telegram',
   TELEGRAM_DISABLED: 'telegram',
+  GOOGLE_INVALID: 'google',
+  GOOGLE_DISABLED: 'google',
+  GOOGLE_UNAVAILABLE: 'google',
 };
 
 const numberOf = (value: unknown) => (typeof value === 'number' ? value : 0);

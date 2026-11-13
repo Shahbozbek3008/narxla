@@ -31,6 +31,9 @@ export const telegramAuthSchema = z.object({
   hash: z.string().regex(/^[a-f0-9]{64}$/),
 });
 
+export const googleAuthSchema = z.object({ credential: z.string().min(100).max(4096) });
+
 export type RequestOtp = z.infer<typeof requestOtpSchema>;
 export type VerifyOtp = z.infer<typeof verifyOtpSchema>;
 export type TelegramAuth = z.infer<typeof telegramAuthSchema>;
+export type GoogleAuth = z.infer<typeof googleAuthSchema>;

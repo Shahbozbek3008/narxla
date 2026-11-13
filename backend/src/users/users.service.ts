@@ -22,6 +22,15 @@ export class UsersService {
     });
   }
 
+  async upsertByGoogle(googleId: string, email: string, name: string) {
+    return this.prisma.user.upsert({
+      where: { googleId },
+      create: { googleId, email, name },
+      update: { email },
+      select: { id: true },
+    });
+  }
+
   async linkTelegram(userId: string, telegramId: bigint) {
     const owner = await this.prisma.user.findUnique({ where: { telegramId }, select: { id: true } });
     if (owner && owner.id !== userId) {
@@ -32,8 +41,8 @@ export class UsersService {
   }
 
   async unlinkTelegram(userId: string) {
-    const { phone } = await this.prisma.user.findUniqueOrThrow({ where: { id: userId }, select: { phone: true } });
-    if (!phone) {
+    const { phone, googleId } = await this.prisma.user.findUniqueOrThrow({ where: { id: userId }, select: { phone: true, googleId: true } });
+    if (!phone && !googleId) {
       throw new ApiError(HttpStatus.CONFLICT, 'LAST_SIGN_IN_METHOD', 'Telegram is the only way to sign in to this account');
     }
     await this.prisma.user.update({ where: { id: userId }, data: { telegramId: null, notifyTelegram: false } });
@@ -102,6 +111,8 @@ export class UsersService {
       id: user.id,
       phone: user.phone,
       telegramLinked: user.telegramId !== null,
+      googleLinked: user.googleId !== null,
+      email: user.email,
       name: user.name,
       region: user.region,
       district: user.district,

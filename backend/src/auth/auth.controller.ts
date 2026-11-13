@@ -7,6 +7,8 @@ import { AppConfigService } from '../config/app-config.service.js';
 import {
   type RequestOtp,
   requestOtpSchema,
+  type GoogleAuth,
+  googleAuthSchema,
   type TelegramAuth,
   telegramAuthSchema,
   type VerifyOtp,
@@ -66,6 +68,21 @@ export class AuthController {
     @Res({ passthrough: true }) response: Response,
   ) {
     const { token, profile } = await this.auth.signInWithTelegram(body, metaOf(request));
+    setSessionCookie(response, token, this.config.auth.sessionTtlDays, this.config.isProduction);
+    return profile;
+  }
+
+  @Post('google')
+  @HttpCode(HttpStatus.OK)
+  @Throttle({ default: { limit: 10, ttl: MINUTE_MS } })
+  @ApiZodBody(googleAuthSchema)
+  @ApiOkResponse({ description: 'Signs in with a Google Identity Services ID token' })
+  async google(
+    @Body({ schema: googleAuthSchema }) body: GoogleAuth,
+    @Req() request: Request,
+    @Res({ passthrough: true }) response: Response,
+  ) {
+    const { token, profile } = await this.auth.signInWithGoogle(body, metaOf(request));
     setSessionCookie(response, token, this.config.auth.sessionTtlDays, this.config.isProduction);
     return profile;
   }

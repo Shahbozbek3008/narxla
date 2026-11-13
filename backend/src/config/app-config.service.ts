@@ -21,6 +21,7 @@ export type AuthConfig = {
   smsDriver: Env['SMS_DRIVER'];
   fixedOtpCode: string | undefined;
   telegramBotToken: string | undefined;
+  googleClientId: string | undefined;
 };
 
 export type PricingConfig = {
@@ -68,6 +69,7 @@ export class AppConfigService {
       smsDriver: this.get('SMS_DRIVER'),
       fixedOtpCode: this.get('OTP_FIXED_CODE'),
       telegramBotToken: this.get('TELEGRAM_BOT_TOKEN'),
+      googleClientId: this.get('GOOGLE_CLIENT_ID'),
     };
   }
 

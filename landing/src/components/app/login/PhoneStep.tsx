@@ -6,13 +6,15 @@ import { useState, type FormEvent } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { isApiError } from '@/lib/api/client';
-import { useRequestCode, useTelegramSignIn } from '@/lib/api/queries';
+import { useGoogleSignIn, useRequestCode, useTelegramSignIn } from '@/lib/api/queries';
 import type { Profile } from '@/lib/api/types';
 import { digitsOnly } from '@/lib/format';
 import { FieldError } from '../common/NumberField';
 import { fieldLabel } from '../common/styles';
+import { GoogleButton } from './GoogleButton';
 import { type LoginError, loginErrorOf } from './loginErrors';
 import type { PendingCode } from './LoginScreen';
+import { GOOGLE_CLIENT_ID } from './useGoogleLogin';
 import { useTelegramLogin } from './useTelegramLogin';
 
 const PHONE_DIGITS = 9;
@@ -34,6 +36,7 @@ export function PhoneStep({ onCodeSent, onSignedIn }: PhoneStepProps) {
   const [error, setError] = useState<LoginError | null>(null);
   const requestCode = useRequestCode();
   const telegramSignIn = useTelegramSignIn();
+  const googleSignIn = useGoogleSignIn();
 
   const telegram = useTelegramLogin(
     (data) => telegramSignIn.mutate(data, { onSuccess: onSignedIn, onError: (failure) => setError(loginErrorOf(failure)) }),
@@ -55,7 +58,8 @@ export function PhoneStep({ onCodeSent, onSignedIn }: PhoneStepProps) {
     });
   };
 
-  const busy = requestCode.isPending || telegramSignIn.isPending;
+  const busy = requestCode.isPending || telegramSignIn.isPending || googleSignIn.isPending;
+  const socialEnabled = telegram.enabled || GOOGLE_CLIENT_ID !== '';
 
   return (
     <form
@@ -93,13 +97,22 @@ export function PhoneStep({ onCodeSent, onSignedIn }: PhoneStepProps) {
       >
         {requestCode.isPending ? t('sending') : t('getCode')}
       </Button>
+      {socialEnabled && (
+        <div className="flex items-center gap-3 text-xs text-fg-3">
+          <span className="h-px flex-1 bg-line" />
+          {t('or')}
+          <span className="h-px flex-1 bg-line" />
+        </div>
+      )}
+      <GoogleButton
+        disabled={busy}
+        onCredential={(credential) =>
+          googleSignIn.mutate(credential, { onSuccess: onSignedIn, onError: (failure) => setError(loginErrorOf(failure)) })
+        }
+        onFailure={() => setError({ key: 'google', values: {} })}
+      />
       {telegram.enabled && (
         <>
-          <div className="flex items-center gap-3 text-xs text-fg-3">
-            <span className="h-px flex-1 bg-line" />
-            {t('or')}
-            <span className="h-px flex-1 bg-line" />
-          </div>
           <Button
             type="button"
             variant="secondary"

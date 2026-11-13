@@ -41,7 +41,7 @@ export function ProfileMenu() {
     );
   }
 
-  const contact = user.phone ? formatPhone(user.phone) : t('telegram');
+  const contact = user.phone ? formatPhone(user.phone) : (user.email ?? t('telegram'));
   const displayName = user.name || contact;
   const initials = initialsOf(user.name);
 

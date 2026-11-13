@@ -1219,7 +1219,9 @@
         "connect": "Ulash",
         "disconnect": "Uzish",
         "telegramUnavailable": "Telegram orqali kirish hozircha sozlanmagan",
-        "onlyMethod": "Bu yagona kirish usulingiz"
+        "onlyMethod": "Bu yagona kirish usulingiz",
+        "google": "Google",
+        "googleHint": "Google akkaunt orqali kirish"
       },
       "preferences": {
         "title": "Smeta standartlari",
@@ -1574,8 +1576,10 @@
       "expired": "Kod muddati tugagan. Yangi kod so‘rang.",
       "locked": "Urinishlar tugadi. Yangi kod so‘rang.",
       "telegram": "Telegram orqali kirish amalga oshmadi.",
-      "network": "Server bilan aloqa yo‘q. Birozdan keyin qayta urinib ko‘ring."
-    }
+      "network": "Server bilan aloqa yo‘q. Birozdan keyin qayta urinib ko‘ring.",
+      "google": "Google orqali kirish amalga oshmadi."
+    },
+    "google": "Google orqali kirish"
   },
   "admin": {
     "metaTitle": "Narxla — admin",

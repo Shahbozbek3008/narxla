@@ -97,6 +97,11 @@ export function useTelegramSignIn() {
   return useMutation({ mutationFn: (data: TelegramAuthData) => authApi.telegram(data), onSuccess: signedIn });
 }
 
+export function useGoogleSignIn() {
+  const signedIn = useSignedIn();
+  return useMutation({ mutationFn: (credential: string) => authApi.google(credential), onSuccess: signedIn });
+}
+
 function useSignedOut() {
   const queryClient = useQueryClient();
   return () => {

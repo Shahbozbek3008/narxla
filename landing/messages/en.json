@@ -1219,7 +1219,9 @@
         "connect": "Connect",
         "disconnect": "Disconnect",
         "telegramUnavailable": "Telegram sign-in is not configured yet",
-        "onlyMethod": "This is your only sign-in method"
+        "onlyMethod": "This is your only sign-in method",
+        "google": "Google",
+        "googleHint": "Sign in with your Google account"
       },
       "preferences": {
         "title": "Estimate defaults",
@@ -1574,8 +1576,10 @@
       "expired": "The code has expired. Request a new one.",
       "locked": "No attempts left. Request a new code.",
       "telegram": "Telegram sign-in failed.",
-      "network": "The server is unreachable. Please try again shortly."
-    }
+      "network": "The server is unreachable. Please try again shortly.",
+      "google": "Google sign-in failed."
+    },
+    "google": "Continue with Google"
   },
   "admin": {
     "metaTitle": "Narxla — admin",

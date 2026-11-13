@@ -15,6 +15,7 @@ export const authApi = {
   requestCode: (phone: string) => apiRequest<OtpRequested>('/auth/otp', { method: 'POST', body: { phone } }),
   verifyCode: (phone: string, code: string) => apiRequest<Profile>('/auth/otp/verify', { method: 'POST', body: { phone, code } }),
   telegram: (data: TelegramAuthData) => apiRequest<Profile>('/auth/telegram', { method: 'POST', body: data }),
+  google: (credential: string) => apiRequest<Profile>('/auth/google', { method: 'POST', body: { credential } }),
   logout: () => apiRequest<void>('/auth/logout', { method: 'POST' }),
 };
 

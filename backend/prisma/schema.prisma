@@ -186,6 +186,8 @@ model User {
   id             String     @id @default(cuid())
   phone          String?    @unique
   telegramId     BigInt?    @unique
+  googleId       String?    @unique
+  email          String?
   name           String     @default("")
   region         String     @default("Toshkent")
   district       String     @default("")

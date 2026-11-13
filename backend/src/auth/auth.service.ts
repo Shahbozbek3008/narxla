@@ -4,7 +4,8 @@ import { AppConfigService } from '../config/app-config.service.js';
 import { UsersService } from '../users/users.service.js';
 import { maskPhone } from './domain/phone.js';
 import { telegramDisplayName, verifyTelegramAuth } from './domain/telegram.js';
-import type { TelegramAuth, VerifyOtp } from './auth.schemas.js';
+import type { GoogleAuth, TelegramAuth, VerifyOtp } from './auth.schemas.js';
+import { GoogleVerifier } from './google-verifier.js';
 import { OtpService } from './otp.service.js';
 import { type SessionMeta, SessionsService } from './sessions.service.js';
 
@@ -17,6 +18,7 @@ export class AuthService {
     private readonly sessions: SessionsService,
     private readonly users: UsersService,
     private readonly config: AppConfigService,
+    private readonly google: GoogleVerifier,
   ) {}
 
   async requestCode(phone: string) {
@@ -33,6 +35,12 @@ export class AuthService {
   async signInWithTelegram(payload: TelegramAuth, meta: SessionMeta) {
     this.assertTelegram(payload);
     const user = await this.users.upsertByTelegram(BigInt(payload.id), telegramDisplayName(payload));
+    return this.startSession(user.id, meta);
+  }
+
+  async signInWithGoogle({ credential }: GoogleAuth, meta: SessionMeta) {
+    const identity = await this.google.verify(credential);
+    const user = await this.users.upsertByGoogle(identity.sub, identity.email, identity.name);
     return this.startSession(user.id, meta);
   }
 

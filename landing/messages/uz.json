@@ -1560,6 +1560,93 @@
       "missingTitle": "Havola ishlamayapti",
       "missingText": "Smeta egasi ulashishni to‘xtatgan yoki smetani o‘chirgan.",
       "cta": "O‘z smetangizni yarating"
+    },
+    "assistant": {
+      "title": "Narxla AI",
+      "lead": "Yozing yoki gapiring — smeta, material va usta narxini aniq hisoblayman.",
+      "badge": "Hisob-kitoblar Narxla kalkulyatorlarida — 100% aniq",
+      "greeting": "Salom! Xona o‘lchami, material yoki usta aytgan narxni yozing yoki ovozli xabar yuboring.",
+      "examplesTitle": "Masalan:",
+      "examples": [
+        "Yotoqxona 4,2×3,5 smeta",
+        "20 m² laminat qancha ketadi?",
+        "Usta 52 m² kafelga 4,9 mln dedi"
+      ],
+      "works": [
+        "Kafel",
+        "Laminat",
+        "Shtukaturka",
+        "Devorga bo‘yoq"
+      ],
+      "askQuoteChip": "Usta narxini solishtirish",
+      "placeholder": "Xabar yozing…",
+      "send": "Yuborish",
+      "record": "Ovozli xabar",
+      "stop": "Yozishni tugatish",
+      "cancel": "Bekor qilish",
+      "recording": "Gapiring… {seconds} / {max} s",
+      "transcribing": "Ovoz matnga aylantirilmoqda…",
+      "voice": "Ovozli xabar",
+      "clear": "Yangi suhbat",
+      "errors": {
+        "unsupported": "Brauzeringiz ovoz yozishni qo‘llamaydi. Matn bilan yozing.",
+        "denied": "Mikrofonga ruxsat berilmadi. Brauzer sozlamalaridan ruxsat bering.",
+        "failed": "Ovoz yozib bo‘lmadi. Qaytadan urinib ko‘ring.",
+        "disabled": "Ovozli xabar hozircha sozlanmagan. Matn bilan yozing.",
+        "empty": "Ovozda gap aniqlanmadi. Qaytadan, aniqroq gapiring.",
+        "transcribe": "Ovozni tanib bo‘lmadi. Qaytadan urinib ko‘ring."
+      },
+      "help": {
+        "greeting": "Men xona smetasi, material miqdori va usta narxini tekshirishni hisoblay olaman.",
+        "unknown": "Kechirasiz, tushunmadim. Shunday yozib ko‘ring:"
+      },
+      "ask": {
+        "room": "Qaysi xona uchun hisoblaymiz?",
+        "dims": "Xona o‘lchamini yozing, masalan: 4×3,5",
+        "dimsInvalid": "O‘lchamlar to‘g‘ri kelmadi: uzunlik va kenglik 0,5–30 m, balandlik 2–6 m bo‘lsin. Masalan: 4×3,5",
+        "area": "Maydon necha m²?",
+        "length": "Uzunligi necha metr?",
+        "volume": "Hajmi necha m³?",
+        "count": "Nechta nuqta?",
+        "quote": "Usta qancha so‘radi? Masalan: 4,9 mln",
+        "quoteInvalid": "Summa juda kichik. To‘liq summani yozing, masalan: 4 900 000 yoki 4,9 mln",
+        "work": "Qaysi ish uchun? Ish turini tanlang:"
+      },
+      "estimate": {
+        "intro": "{room} · {length}×{width} m uchun smeta tayyor.",
+        "total": "Umumiy byudjet",
+        "materials": "Materiallar",
+        "labour": "Usta ishi",
+        "duration": "Muddat",
+        "days": "{min}–{max} kun",
+        "quality": "Sifat: {quality}",
+        "top": "Asosiy materiallar",
+        "open": "To‘liq smetani ochish"
+      },
+      "calc": {
+        "intro": "{name}: hisob natijasi",
+        "derived": "Maydon xona o‘lchamidan hisoblandi: {value} m²",
+        "cost": "Taxminiy narx",
+        "open": "Kalkulyatorda ochish"
+      },
+      "check": {
+        "introLabour": "{work} · {volume}",
+        "introEstimate": "{room} smetasidagi barcha usta ishlari",
+        "quote": "Usta narxi: {value} so‘m",
+        "open": "Batafsil tekshirish"
+      },
+      "open": "Narxla AI bilan suhbat",
+      "close": "Chatni yopish",
+      "online": "Onlayn · darhol javob beradi",
+      "hello": {
+        "landing": "Salom! Xonangiz ta’miri qancha turishini 30 soniyada hisoblab beraymi?",
+        "calcs": "Qaysi material kerak? Masalan: «20 m² laminat» deb yozing.",
+        "check": "Usta aytgan narxni yozing — bozor bilan solishtirib beraman.",
+        "estimate": "Usta qancha so‘radi? Smetangiz bilan solishtirib beraman.",
+        "default": "Salom! Smeta yoki material hisoblashda yordam beraymi?"
+      },
+      "dismiss": "Yopish",
+      "typing": "Narxla AI yozmoqda…"
     }
   },
   "login": {

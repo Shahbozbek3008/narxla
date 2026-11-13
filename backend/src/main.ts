@@ -9,6 +9,7 @@ import { AppModule } from './app.module.js';
 import { ADMIN_KEY_HEADER } from './common/admin-key.guard.js';
 import { SESSION_COOKIE } from './auth/session-cookie.js';
 import { ADMIN_SECURITY } from './common/admin.decorator.js';
+import { MAX_AUDIO_BYTES } from './assistant/speech.service.js';
 import { PrismaExceptionFilter } from './common/prisma-exception.filter.js';
 import { AppConfigService } from './config/app-config.service.js';
 
@@ -37,6 +38,7 @@ async function bootstrap() {
   app.setGlobalPrefix(API_PREFIX);
   app.use(helmet());
   app.use(cookieParser());
+  app.useBodyParser('raw', { type: 'application/octet-stream', limit: MAX_AUDIO_BYTES });
   app.enableCors({ origin: config.corsOrigins, credentials: true, methods: ['GET', 'POST', 'PATCH', 'DELETE'] });
   app.useGlobalPipes(new StandardSchemaValidationPipe());
   app.useGlobalFilters(new PrismaExceptionFilter());

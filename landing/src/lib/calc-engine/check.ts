@@ -48,6 +48,20 @@ export type CheckTone = 'success' | 'accent' | 'danger';
 const FAIR_TOLERANCE = 5;
 const DANGER_MARKUP = 30;
 
+export function estimateLabourRange(lines: { code: LabourCode; total: number }[], rateOf: (code: LabourCode) => LabourRange) {
+  const works = lines.map((line) => {
+    const rate = rateOf(line.code);
+    const scale = rate.price > 0 ? line.total / rate.price : 0;
+    return { ...line, lo: rate.min * scale, hi: rate.max * scale };
+  });
+  const range: LabourRange = {
+    min: works.reduce((sum, work) => sum + work.lo, 0),
+    price: lines.reduce((sum, line) => sum + line.total, 0),
+    max: works.reduce((sum, work) => sum + work.hi, 0),
+  };
+  return { works, range };
+}
+
 export function checkPrice(rate: LabourRange, volume: number, price: number) {
   const lo = rate.min * volume;
   const avg = rate.price * volume;

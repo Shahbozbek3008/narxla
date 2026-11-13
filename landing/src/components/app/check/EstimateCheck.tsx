@@ -2,7 +2,7 @@
 
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
-import { checkPrice, type Estimate } from '@/lib/calc-engine';
+import { checkPrice, estimateLabourRange, type Estimate } from '@/lib/calc-engine';
 import { digitsOnly, fmt, mln } from '@/lib/format';
 import { labourInfo } from '@/lib/prices/price-book';
 import { cn } from '@/lib/utils';
@@ -26,16 +26,8 @@ export function EstimateCheck({ name, result }: EstimateCheckProps) {
   const { lineName, lineQty } = useEngineText();
   const [quote, setQuote] = useState('');
 
-  const works = result.lab.map((line) => {
-    const rate = labourInfo(book, line.code);
-    const scale = rate.price > 0 ? line.total / rate.price : 0;
-    return { line, lo: rate.min * scale, hi: rate.max * scale };
-  });
-  const range = {
-    min: works.reduce((sum, work) => sum + work.lo, 0),
-    price: result.labTotal,
-    max: works.reduce((sum, work) => sum + work.hi, 0),
-  };
+  const { works, range } = estimateLabourRange(result.lab, (code) => labourInfo(book, code));
+  const byKey = new Map(result.lab.map((line) => [`${line.cat}-${line.code}`, line]));
   const amount = Number(quote) || 0;
 
   return (
@@ -52,17 +44,22 @@ export function EstimateCheck({ name, result }: EstimateCheckProps) {
             <span>{t('marketRange')}</span>
           </div>
           <ul className="text-sm/5 tabular-nums">
-            {works.map(({ line, lo, hi }) => (
-              <li key={`${line.cat}-${line.code}`} className="flex items-center justify-between gap-3 border-b border-line px-3.5 py-2.5 last:border-b-0">
-                <span className="flex min-w-0 flex-col">
-                  <span className="truncate">{lineName(line)}</span>
-                  <span className="text-xs/4 text-fg-3">{lineQty(line)}</span>
-                </span>
-                <span className="shrink-0 text-right text-fg-2">
-                  {mln(lo)}–{tApp('mln', { value: mln(hi) })}
-                </span>
-              </li>
-            ))}
+            {result.lab.map((line, index) => {
+              const { lo, hi } = works[index];
+              const key = `${line.cat}-${line.code}`;
+              const source = byKey.get(key) ?? line;
+              return (
+                <li key={key} className="flex items-center justify-between gap-3 border-b border-line px-3.5 py-2.5 last:border-b-0">
+                  <span className="flex min-w-0 flex-col">
+                    <span className="truncate">{lineName(source)}</span>
+                    <span className="text-xs/4 text-fg-3">{lineQty(source)}</span>
+                  </span>
+                  <span className="shrink-0 text-right text-fg-2">
+                    {mln(lo)}–{tApp('mln', { value: mln(hi) })}
+                  </span>
+                </li>
+              );
+            })}
           </ul>
           <div className="flex items-center justify-between gap-3 border-t border-line bg-surface-2 px-3.5 py-2.5 text-sm/5 font-semibold tabular-nums">
             <span>{t('labourTotal')}</span>

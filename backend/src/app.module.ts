@@ -3,6 +3,7 @@ import { APP_GUARD } from '@nestjs/core';
 import { ScheduleModule } from '@nestjs/schedule';
 import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 import { LoggerModule } from 'nestjs-pino';
+import { AssistantModule } from './assistant/assistant.module.js';
 import { AuthModule } from './auth/auth.module.js';
 import { SessionsModule } from './auth/sessions.module.js';
 import { CatalogModule } from './catalog/catalog.module.js';
@@ -42,6 +43,7 @@ const MINUTE_MS = 60_000;
     SessionsModule,
     HealthModule,
     AuthModule,
+    AssistantModule,
     UsersModule,
     EstimatesModule,
     PricesModule,

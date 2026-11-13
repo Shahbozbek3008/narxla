@@ -7,6 +7,7 @@ import { isProtectedPath } from '@/lib/access';
 import { useAuth } from '@/lib/api/queries';
 import { routes, withNext } from '@/lib/routes';
 import { usePrices } from '@/store/prices';
+import { AssistantWidget } from '../assistant/AssistantWidget';
 import { ConfirmDialogHost } from './ConfirmDialogHost';
 import { isFocusedScreen } from './navigation';
 import { Sidebar } from './Sidebar';
@@ -41,6 +42,7 @@ export function AppShell({ children }: { children: ReactNode }) {
         </div>
       </main>
       {!focused && <TabBar />}
+      {!focused && <AssistantWidget className="max-md:bottom-[calc(var(--tabbar-space)+12px)]" />}
       <ConfirmDialogHost />
     </div>
   );

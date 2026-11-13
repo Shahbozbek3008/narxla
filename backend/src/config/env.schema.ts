@@ -33,6 +33,8 @@ export const envSchema = z.object({
   SMS_DRIVER: z.enum(['log']).default('log'),
   OTP_FIXED_CODE: optional(z.string().regex(/^\d{6}$/, 'Expected a 6-digit code')),
   TELEGRAM_BOT_TOKEN: optional(z.string().min(20)),
+  YANDEX_SPEECHKIT_API_KEY: optional(z.string().min(20)),
+  YANDEX_FOLDER_ID: optional(z.string().min(5)),
   GOOGLE_CLIENT_ID: optional(z.string().endsWith('.apps.googleusercontent.com')),
 
   SCRAPER_ENABLED: flag,

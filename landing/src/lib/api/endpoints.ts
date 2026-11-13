@@ -1,5 +1,5 @@
 import type { EstimateInput } from '../calc-engine';
-import { apiRequest } from './client';
+import { ApiError, apiRequest } from './client';
 import type {
   EstimateRecord,
   EstimateStatus,
@@ -38,4 +38,18 @@ export const estimatesApi = {
   remove: (id: string) => apiRequest<void>(`/estimates/${id}`, { method: 'DELETE' }),
   share: (id: string) => apiRequest<EstimateRecord>(`/estimates/${id}/share`, { method: 'POST' }),
   shared: (token: string, signal?: AbortSignal) => apiRequest<SharedEstimate>(`/shared/${token}`, { signal }),
+};
+
+export const assistantApi = {
+  transcribe: async (pcm: Int16Array, lang: string) => {
+    const response = await fetch(`/api/assistant/transcribe?lang=${lang}`, {
+      method: 'POST',
+      credentials: 'same-origin',
+      headers: { 'content-type': 'application/octet-stream', accept: 'application/json' },
+      body: pcm.slice().buffer as ArrayBuffer,
+    });
+    const payload: unknown = await response.json().catch(() => null);
+    if (!response.ok) throw ApiError.from(response.status, payload);
+    return payload as { text: string };
+  },
 };

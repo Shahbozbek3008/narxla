@@ -1560,6 +1560,93 @@
       "missingTitle": "This link no longer works",
       "missingText": "The owner stopped sharing this estimate or deleted it.",
       "cta": "Create your own estimate"
+    },
+    "assistant": {
+      "title": "Narxla AI",
+      "lead": "Type or speak — I will calculate estimates, materials and contractor prices exactly.",
+      "badge": "Calculated by Narxla calculators — 100% exact",
+      "greeting": "Hi! Type room dimensions, a material or a contractor’s price — or send a voice message.",
+      "examplesTitle": "For example:",
+      "examples": [
+        "Bedroom 4.2×3.5 estimate",
+        "How much laminate for 20 m²?",
+        "Contractor asks 4.9 mln for 52 m² of tiles"
+      ],
+      "works": [
+        "Tiles",
+        "Laminate",
+        "Plaster",
+        "Wall paint"
+      ],
+      "askQuoteChip": "Compare contractor price",
+      "placeholder": "Type a message…",
+      "send": "Send",
+      "record": "Voice message",
+      "stop": "Finish recording",
+      "cancel": "Cancel",
+      "recording": "Speak… {seconds} / {max} s",
+      "transcribing": "Transcribing your voice…",
+      "voice": "Voice message",
+      "clear": "New chat",
+      "errors": {
+        "unsupported": "Your browser cannot record audio. Please type instead.",
+        "denied": "Microphone access was denied. Allow it in your browser settings.",
+        "failed": "Could not record audio. Please try again.",
+        "disabled": "Voice messages are not configured yet. Please type instead.",
+        "empty": "No speech was detected. Please try again, a bit clearer.",
+        "transcribe": "Could not recognise the voice message. Please try again."
+      },
+      "help": {
+        "greeting": "I can estimate a room, count materials and check a contractor’s price.",
+        "unknown": "Sorry, I did not get that. Try something like:"
+      },
+      "ask": {
+        "room": "Which room should I calculate?",
+        "dims": "Type the room size, for example: 4×3.5",
+        "dimsInvalid": "Those dimensions look off: length and width 0.5–30 m, height 2–6 m. For example: 4×3.5",
+        "area": "What is the area in m²?",
+        "length": "How long is it in metres?",
+        "volume": "What is the volume in m³?",
+        "count": "How many points?",
+        "quote": "How much is the contractor asking? For example: 4.9 mln",
+        "quoteInvalid": "That amount is too small. Type the full amount, for example 4 900 000 or 4.9 mln",
+        "work": "For which job? Pick a work type:"
+      },
+      "estimate": {
+        "intro": "Estimate for {room} · {length}×{width} m is ready.",
+        "total": "Total budget",
+        "materials": "Materials",
+        "labour": "Labour",
+        "duration": "Duration",
+        "days": "{min}–{max} days",
+        "quality": "Quality: {quality}",
+        "top": "Main materials",
+        "open": "Open full estimate"
+      },
+      "calc": {
+        "intro": "{name}: result",
+        "derived": "Area calculated from the room size: {value} m²",
+        "cost": "Estimated cost",
+        "open": "Open in calculator"
+      },
+      "check": {
+        "introLabour": "{work} · {volume}",
+        "introEstimate": "All contractor work in the {room} estimate",
+        "quote": "Contractor price: {value} UZS",
+        "open": "Check in detail"
+      },
+      "open": "Chat with Narxla AI",
+      "close": "Close chat",
+      "online": "Online · replies instantly",
+      "hello": {
+        "landing": "Hi! Want to know what your room renovation costs — in 30 seconds?",
+        "calcs": "Which material do you need? Try “20 m² laminate”.",
+        "check": "Type the contractor’s price — I will compare it with the market.",
+        "estimate": "How much is the contractor asking? I will compare it with your estimate.",
+        "default": "Hi! Need help estimating a room or materials?"
+      },
+      "dismiss": "Dismiss",
+      "typing": "Narxla AI is typing…"
     }
   },
   "login": {

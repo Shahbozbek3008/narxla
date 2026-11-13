@@ -58,6 +58,10 @@ export class AppConfigService {
     return this.get('ADMIN_API_KEY');
   }
 
+  get speech() {
+    return { apiKey: this.get('YANDEX_SPEECHKIT_API_KEY'), folderId: this.get('YANDEX_FOLDER_ID') };
+  }
+
   get auth(): AuthConfig {
     return {
       secret: this.get('AUTH_SECRET'),

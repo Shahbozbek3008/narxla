@@ -1,7 +1,8 @@
 'use client';
 
 import { useLocale } from 'next-intl';
-import { getPathname, usePathname, useRouter } from '@/i18n/navigation';
+import { getPathname, usePathname } from '@/i18n/navigation';
+import { useRouter } from '@/i18n/router';
 import { isApiError } from '@/lib/api/client';
 import { useAuth, useCreateEstimate, useShareEstimate } from '@/lib/api/queries';
 import type { EstimateRecord } from '@/lib/api/types';

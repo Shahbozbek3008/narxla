@@ -1,6 +1,7 @@
 import type { Locale } from 'next-intl';
 import { useCallback, useTransition } from 'react';
-import { usePathname, useRouter } from '@/i18n/navigation';
+import { usePathname } from '@/i18n/navigation';
+import { useRouter } from '@/i18n/router';
 
 export function useChangeLocale() {
   const router = useRouter();

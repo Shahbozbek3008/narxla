@@ -11,7 +11,8 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { Link, usePathname, useRouter } from '@/i18n/navigation';
+import { Link, usePathname } from '@/i18n/navigation';
+import { useRouter } from '@/i18n/router';
 import { routes, withNext } from '@/lib/routes';
 import { useDialogs } from '@/store/dialogs';
 import { useAuth } from '@/lib/api/queries';

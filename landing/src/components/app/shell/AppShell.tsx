@@ -1,7 +1,8 @@
 'use client';
 
 import { useEffect, type ReactNode } from 'react';
-import { usePathname, useRouter } from '@/i18n/navigation';
+import { usePathname } from '@/i18n/navigation';
+import { useRouter } from '@/i18n/router';
 import { isProtectedPath } from '@/lib/access';
 import { useAuth } from '@/lib/api/queries';
 import { routes, withNext } from '@/lib/routes';

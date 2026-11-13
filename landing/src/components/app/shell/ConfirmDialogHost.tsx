@@ -13,7 +13,7 @@ import {
   AlertDialogTitle,
 } from '@/components/ui/alert-dialog';
 import { Button } from '@/components/ui/button';
-import { useRouter } from '@/i18n/navigation';
+import { useRouter } from '@/i18n/router';
 import { useDeleteAccount, useDeleteEstimate, useSignOut } from '@/lib/api/queries';
 import { routes } from '@/lib/routes';
 import { useDialogs, type DialogKind } from '@/store/dialogs';

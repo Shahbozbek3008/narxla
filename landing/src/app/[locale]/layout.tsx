@@ -8,6 +8,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
 import { GlobalToaster } from "@/components/app/common/GlobalToaster";
+import { NavigationProgress } from "@/components/providers/NavigationProgress";
 import { QueryProvider } from "@/components/providers/QueryProvider";
 import { ThemeRestorer } from "@/components/providers/ThemeRestorer";
 import { StoreHydrator } from "@/store/StoreHydrator";
@@ -69,9 +70,11 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
         <NextIntlClientProvider>
           <ThemeRestorer />
           <QueryProvider>
-            <StoreHydrator />
-            {children}
-            <GlobalToaster />
+            <NavigationProgress>
+              <StoreHydrator />
+              {children}
+              <GlobalToaster />
+            </NavigationProgress>
           </QueryProvider>
         </NextIntlClientProvider>
       </body>

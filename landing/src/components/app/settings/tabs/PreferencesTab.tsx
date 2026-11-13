@@ -8,6 +8,7 @@ import { QUALITIES, type Quality } from '@/lib/calc-engine';
 import { REGIONS } from '@/store/settings';
 import { FormActions } from '../FormActions';
 import { SettingsCard, SettingsField, SettingsFooter } from '../SettingsCard';
+import { SettingsSkeleton } from '../SettingsSkeleton';
 import { useProfileForm } from '../useProfileForm';
 
 const FIELDS = ['region', 'reserve', 'quality'] as const;
@@ -18,7 +19,7 @@ export function PreferencesTab() {
   const form = useProfileForm(FIELDS);
   const { values } = form;
 
-  if (!values) return null;
+  if (!values) return <SettingsSkeleton />;
 
   return (
     <SettingsCard

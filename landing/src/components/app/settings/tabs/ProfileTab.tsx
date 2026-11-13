@@ -11,6 +11,7 @@ import { useFormatDate } from '../../common/useFormatDate';
 import { Avatar } from '../../shell/Avatar';
 import { FormActions } from '../FormActions';
 import { SettingsCard, SettingsField, SettingsFooter } from '../SettingsCard';
+import { SettingsSkeleton } from '../SettingsSkeleton';
 import { TelegramConnection } from '../TelegramConnection';
 import { useProfileForm } from '../useProfileForm';
 
@@ -38,7 +39,7 @@ export function ProfileTab() {
   const form = useProfileForm(FIELDS);
   const { user, values } = form;
 
-  if (!user || !values) return null;
+  if (!user || !values) return <SettingsSkeleton />;
 
   return (
     <>

@@ -13,6 +13,7 @@ import { cn } from '@/lib/utils';
 import { useFormatDate } from '../../common/useFormatDate';
 import { useNotify } from '../../common/useNotify';
 import { SettingsCard, SettingsFooter } from '../SettingsCard';
+import { SettingsSkeleton } from '../SettingsSkeleton';
 
 const HISTORY_GRID = 'grid grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)_minmax(0,1fr)_minmax(0,0.9fr)] items-center gap-4 px-4 sm:px-6';
 
@@ -34,7 +35,7 @@ export function BillingTab() {
   const formatDate = useFormatDate();
   const notify = useNotify();
 
-  if (!user) return null;
+  if (!user) return <SettingsSkeleton />;
 
   const { plan, usage } = user;
   const paid = plan.kind !== 'free';

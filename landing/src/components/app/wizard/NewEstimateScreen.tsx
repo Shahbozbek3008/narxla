@@ -5,7 +5,7 @@ import { useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { useLayoutEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { useRouter } from '@/i18n/navigation';
+import { useRouter } from '@/i18n/router';
 import { useAuth, useUpdateEstimate } from '@/lib/api/queries';
 import { estimate, validate } from '@/lib/calc-engine';
 import { rangeMln } from '@/lib/format';

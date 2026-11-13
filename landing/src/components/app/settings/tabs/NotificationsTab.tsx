@@ -5,6 +5,7 @@ import { useTranslations } from 'next-intl';
 import { Switch } from '@/components/ui/switch';
 import { FormActions } from '../FormActions';
 import { SettingsCard, SettingsFooter } from '../SettingsCard';
+import { SettingsSkeleton } from '../SettingsSkeleton';
 import { useProfileForm } from '../useProfileForm';
 
 const FIELDS = ['notifyPrice', 'notifyTelegram', 'notifyNews'] as const;
@@ -20,7 +21,7 @@ export function NotificationsTab() {
   const form = useProfileForm(FIELDS);
   const { values } = form;
 
-  if (!values) return null;
+  if (!values) return <SettingsSkeleton />;
 
   return (
     <SettingsCard

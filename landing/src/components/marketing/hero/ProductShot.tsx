@@ -5,9 +5,11 @@ import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion
 import { useTranslations } from 'next-intl';
 import { RangeScale } from '@/components/shared/RangeScale';
 import { Reveal } from '@/components/shared/Reveal';
+import { fmt, mln } from '@/lib/format';
+import { cn } from '@/lib/utils';
 import { PhoneMockup } from './PhoneMockup';
 import { ShotDashboard } from './ShotDashboard';
-import { cn } from '@/lib/utils';
+import { DEMO_CHECK, useDemoShot } from './useDemoShot';
 
 const MAX_TILT = 10;
 const TILT_SCROLL_RATIO = 30;
@@ -19,6 +21,8 @@ const FLOAT_ICON = 'grid size-8 shrink-0 place-items-center';
 
 export function ProductShot() {
   const t = useTranslations('shot');
+  const tApp = useTranslations('app');
+  const { check, delta } = useDemoShot();
   const reducedMotion = useReducedMotion();
   const { scrollY } = useScroll();
 
@@ -55,20 +59,23 @@ export function ProductShot() {
             </span>
             <span className="flex flex-col">
               <span className="text-[13px]/[18px] font-semibold">{t('floatCheck.title')}</span>
-              <span className="text-xs/4 text-fg-3">{t('floatCheck.subtitle')}</span>
+              <span className="text-xs/4 text-fg-3">
+                {t('floatCheck.subtitle', { work: tApp(`labour.${DEMO_CHECK.code}`), price: fmt(DEMO_CHECK.quote) })}
+              </span>
             </span>
           </div>
-          <RangeScale className="mt-4" marker={74} size="sm" />
+          <RangeScale className="mt-4" marker={check.markerPct} size="sm" />
           <div className="mt-3 flex items-center justify-between">
-            <span className="text-xs text-fg-3">{t('floatCheck.market')}</span>
+            <span className="text-xs text-fg-3">{t('floatCheck.market', { from: mln(check.lo), to: mln(check.hi) })}</span>
             <span className="rounded-full bg-accent-soft px-2 py-0.5 text-xs/4 font-semibold text-accent-text">
-              {t('floatCheck.delta')}
+              {delta > 0 ? '+' : ''}
+              {delta}%
             </span>
           </div>
         </motion.div>
       </Reveal>
 
-      <Reveal kind="pop" delay={1300} className={cn(FLOAT, 'top-30 right-0')} aria-hidden>
+      <Reveal kind="pop" delay={1300} className={cn(FLOAT, 'top-14 right-0')} aria-hidden>
         <motion.div
           className={cn(FLOAT_CARD, 'flex items-center gap-3 rounded-[14px] py-3 pr-4 pl-3')}
           style={{ y: floatFast }}

@@ -48,112 +48,12 @@
   },
   "shot": {
     "alt": "Smetachi ilovasi: yotoqxona smetasi namunasi",
-    "url": "app.smetachi.uz/smeta/yotoqxona",
-    "nav": [
-      "Smetalarim",
-      "Yangi smeta",
-      "Kalkulyatorlar",
-      "Usta narxini tekshirish"
-    ],
-    "settings": "Sozlamalar",
-    "breadcrumb": "Smetalarim / Yotoqxona",
-    "title": "Yotoqxona · 4,2 × 3,5 m",
-    "pricesBadge": "Narxlar noyabr 2026",
-    "meta": "O‘rta sifat · Toshkent",
-    "share": "Ulashish",
-    "pdf": "PDF yuklab olish",
-    "kpis": [
-      {
-        "label": "Jami byudjet",
-        "value": "13,4–16,3 mln",
-        "note": "so‘m · 10% zaxira bilan"
-      },
-      {
-        "label": "Materiallar",
-        "value": "6,5 mln",
-        "note": "14 pozitsiya"
-      },
-      {
-        "label": "Usta ish haqi",
-        "value": "8,0 mln",
-        "note": "7 ish turi"
-      },
-      {
-        "label": "Taxminiy muddat",
-        "value": "15–21 kun",
-        "note": "2 usta bilan"
-      }
-    ],
-    "materials": "Materiallar",
-    "search": "Qidirish",
-    "columns": [
-      "Nomi",
-      "Miqdori",
-      "Birlik narxi",
-      "Jami"
-    ],
-    "rows": [
-      [
-        "Laminat 33-sinf, 8 mm",
-        "16,2 m²",
-        "110 000",
-        "1 782 000"
-      ],
-      [
-        "Knauf Rotband, 30 kg",
-        "13 qop",
-        "48 500",
-        "630 500"
-      ],
-      [
-        "Gipsokarton Knauf, 12,5 mm",
-        "6 list",
-        "59 500",
-        "357 000"
-      ],
-      [
-        "Yuviladigan bo‘yoq, 25 kg",
-        "1 chelak",
-        "465 000",
-        "465 000"
-      ],
-      [
-        "Plintus",
-        "17 m",
-        "25 000",
-        "425 000"
-      ]
-    ],
-    "breakdown": "Xarajat taqsimoti",
-    "donutValue": "13,4",
-    "donutCaption": "mln so‘mdan",
-    "legend": [
-      [
-        "Pol",
-        "34%"
-      ],
-      [
-        "Devorlar",
-        "28%"
-      ],
-      [
-        "Shift",
-        "14%"
-      ],
-      [
-        "Elektr",
-        "12%"
-      ],
-      [
-        "Boshqa",
-        "12%"
-      ]
-    ],
+    "url": "smetachi.uz/app/estimates/demo",
+    "donutCaption": "mln so‘m jami",
     "floatCheck": {
       "title": "Usta narxi tekshirildi",
-      "subtitle": "Hammom · 6 200 000 so‘m",
-      "market": "Bozor: 4,1–6,8 mln",
-      "delta": "+18%"
+      "subtitle": "{work} · {price} so‘m",
+      "market": "Bozor: {from}–{to} mln"
     },
     "floatSaved": {
       "title": "Smeta saqlandi",
@@ -162,34 +62,7 @@
   },
   "phone": {
     "alt": "Telefonda yotoqxona smetasi namunasi",
-    "caption": "Yotoqxona · 14,7 m²",
-    "label": "Jami byudjet",
-    "value": "13,4–16,3 mln",
-    "note": "so‘m · narxlar noyabr 2026",
-    "kpis": [
-      [
-        "Materiallar",
-        "6,5 mln"
-      ],
-      [
-        "Usta ish haqi",
-        "8,0 mln"
-      ]
-    ],
-    "rows": [
-      [
-        "Laminat · 16,2 m²",
-        "1 782 000"
-      ],
-      [
-        "Rotband · 13 qop",
-        "630 500"
-      ],
-      [
-        "Bo‘yoq · 1 chelak",
-        "465 000"
-      ]
-    ],
+    "note": "{reserve}% zaxira bilan · Toshkent narxlari",
     "cta": "PDF yuklab olish"
   },
   "sources": {

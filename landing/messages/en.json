@@ -47,113 +47,13 @@
     ]
   },
   "shot": {
-    "alt": "Smetachi app: a sample bedroom estimate",
-    "url": "app.smetachi.uz/smeta/yotoqxona",
-    "nav": [
-      "My estimates",
-      "New estimate",
-      "Calculators",
-      "Check a contractor price"
-    ],
-    "settings": "Settings",
-    "breadcrumb": "My estimates / Bedroom",
-    "title": "Bedroom · 4.2 × 3.5 m",
-    "pricesBadge": "Prices: Nov 2026",
-    "meta": "Mid-range · Tashkent",
-    "share": "Share",
-    "pdf": "Download PDF",
-    "kpis": [
-      {
-        "label": "Total budget",
-        "value": "13.4–16.3M",
-        "note": "UZS · incl. 10% reserve"
-      },
-      {
-        "label": "Materials",
-        "value": "6.5M",
-        "note": "14 items"
-      },
-      {
-        "label": "Labour",
-        "value": "8.0M",
-        "note": "7 job types"
-      },
-      {
-        "label": "Estimated time",
-        "value": "15–21 days",
-        "note": "with 2 workers"
-      }
-    ],
-    "materials": "Materials",
-    "search": "Search",
-    "columns": [
-      "Item",
-      "Qty",
-      "Unit price",
-      "Total"
-    ],
-    "rows": [
-      [
-        "Laminate class 33, 8 mm",
-        "16.2 m²",
-        "110,000",
-        "1,782,000"
-      ],
-      [
-        "Knauf Rotband, 30 kg",
-        "13 bags",
-        "48,500",
-        "630,500"
-      ],
-      [
-        "Knauf drywall, 12.5 mm",
-        "6 sheets",
-        "59,500",
-        "357,000"
-      ],
-      [
-        "Washable paint, 25 kg",
-        "1 bucket",
-        "465,000",
-        "465,000"
-      ],
-      [
-        "Skirting board",
-        "17 m",
-        "25,000",
-        "425,000"
-      ]
-    ],
-    "breakdown": "Cost breakdown",
-    "donutValue": "13.4",
-    "donutCaption": "M UZS and up",
-    "legend": [
-      [
-        "Floor",
-        "34%"
-      ],
-      [
-        "Walls",
-        "28%"
-      ],
-      [
-        "Ceiling",
-        "14%"
-      ],
-      [
-        "Electrical",
-        "12%"
-      ],
-      [
-        "Other",
-        "12%"
-      ]
-    ],
+    "alt": "Smetachi app: sample bedroom estimate",
+    "url": "smetachi.uz/app/estimates/demo",
+    "donutCaption": "mln UZS total",
     "floatCheck": {
-      "title": "Contractor price checked",
-      "subtitle": "Bathroom · 6,200,000 UZS",
-      "market": "Market: 4.1–6.8M",
-      "delta": "+18%"
+      "title": "Contractor quote checked",
+      "subtitle": "{work} · {price} UZS",
+      "market": "Market: {from}–{to} mln"
     },
     "floatSaved": {
       "title": "Estimate saved",
@@ -161,35 +61,8 @@
     }
   },
   "phone": {
-    "alt": "A sample bedroom estimate on a phone",
-    "caption": "Bedroom · 14.7 m²",
-    "label": "Total budget",
-    "value": "13.4–16.3M",
-    "note": "UZS · prices Nov 2026",
-    "kpis": [
-      [
-        "Materials",
-        "6.5M"
-      ],
-      [
-        "Labour",
-        "8.0M"
-      ]
-    ],
-    "rows": [
-      [
-        "Laminate · 16.2 m²",
-        "1,782,000"
-      ],
-      [
-        "Rotband · 13 bags",
-        "630,500"
-      ],
-      [
-        "Paint · 1 bucket",
-        "465,000"
-      ]
-    ],
+    "alt": "Sample bedroom estimate on a phone",
+    "note": "Incl. {reserve}% reserve · Tashkent prices",
     "cta": "Download PDF"
   },
   "sources": {

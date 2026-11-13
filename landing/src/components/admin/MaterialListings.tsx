@@ -4,12 +4,14 @@ import { ExternalLink, Play, Power, Trash2 } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { Badge, type BadgeTone } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import { NativeSelect } from '@/components/ui/native-select';
 import type { AdminMaterial, AdminStore, CheckResult, ObservationStatus } from '@/lib/admin/types';
 import { fmt } from '@/lib/format';
 import { cn } from '@/lib/utils';
 import { plainCard } from '../app/common/styles';
 import { ListingForm } from './ListingForm';
 import { PanelState } from './PanelChrome';
+import { ProductsSection } from './ProductsSection';
 import { formatDateTime, useAdminAction, useAdminResource } from './useAdmin';
 
 const STATUS_TONE: Record<ObservationStatus, BadgeTone> = {
@@ -27,11 +29,17 @@ type MaterialListingsProps = {
 export function MaterialListings({ material, stores, onChange }: MaterialListingsProps) {
   const t = useTranslations('admin');
   const { data, error, loading, reload } = useAdminResource(`listings:${material.code}`, (api) => api.listings(material.code));
+  const products = useAdminResource(`products:${material.code}`, (api) => api.products(material.code));
   const { run, pending } = useAdminAction();
 
   const refresh = () => {
     reload();
+    products.reload();
     onChange();
+  };
+
+  const relink = async (id: string, productId: string) => {
+    if (await run(id, (api) => api.setListingProduct(id, productId || null))) refresh();
   };
 
   const checkMessage = (result: CheckResult) =>
@@ -68,7 +76,9 @@ export function MaterialListings({ material, stores, onChange }: MaterialListing
         </span>
       </div>
 
-      <ListingForm material={material} stores={stores} onCreated={refresh} />
+      <ProductsSection material={material} products={products.data ?? []} onChange={refresh} />
+
+      <ListingForm material={material} stores={stores} products={products.data ?? []} onCreated={refresh} />
 
       <PanelState loading={loading && !data} error={error}>
         {data?.length === 0 && (
@@ -87,6 +97,20 @@ export function MaterialListings({ material, stores, onChange }: MaterialListing
                       {!listing.active && <Badge tone="outline">{t('listings.inactive')}</Badge>}
                     </span>
                     {listing.title && <span className="truncate text-[13px] text-fg-2">{listing.title}</span>}
+                    <NativeSelect
+                      aria-label={t('products.linkLabel')}
+                      value={listing.product?.id ?? ''}
+                      disabled={busy}
+                      onChange={(event) => relink(listing.id, event.target.value)}
+                      className="mt-1 h-8 max-w-[280px] text-xs"
+                    >
+                      <option value="">{t('products.unlinked')}</option>
+                      {(products.data ?? []).map((product) => (
+                        <option key={product.id} value={product.id}>
+                          {product.brand} · {product.name}
+                        </option>
+                      ))}
+                    </NativeSelect>
                     <a
                       href={listing.url}
                       target="_blank"

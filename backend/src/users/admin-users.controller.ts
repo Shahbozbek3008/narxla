@@ -3,7 +3,7 @@ import { ApiTags } from '@nestjs/swagger';
 import { idSchema } from '../catalog/catalog.schemas.js';
 import { AdminOnly } from '../common/admin.decorator.js';
 import { ApiZodBody } from '../common/api-zod-body.decorator.js';
-import { type GrantPlan, grantPlanSchema, type ListUsersQuery, listUsersQuerySchema } from './users.schemas.js';
+import { type GrantPlan, grantPlanSchema, type MergeUsers, mergeUsersSchema, type ListUsersQuery, listUsersQuerySchema } from './users.schemas.js';
 import { UsersService } from './users.service.js';
 
 @ApiTags('admin / users')
@@ -21,5 +21,11 @@ export class AdminUsersController {
   @ApiZodBody(grantPlanSchema)
   grantPlan(@Param('id', { schema: idSchema }) id: string, @Body({ schema: grantPlanSchema }) body: GrantPlan) {
     return this.users.grantPlan(id, body);
+  }
+
+  @Post(':id/merge')
+  @ApiZodBody(mergeUsersSchema)
+  merge(@Param('id', { schema: idSchema }) id: string, @Body({ schema: mergeUsersSchema }) { sourceId }: MergeUsers) {
+    return this.users.merge(id, sourceId);
   }
 }

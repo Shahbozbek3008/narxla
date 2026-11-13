@@ -1,7 +1,7 @@
 import { HttpStatus, Injectable } from '@nestjs/common';
 import { ApiError } from '../common/api-error.js';
 import { AppConfigService } from '../config/app-config.service.js';
-import { UsersService } from '../users/users.service.js';
+import { type LinkableIdentity, UsersService } from '../users/users.service.js';
 import { maskPhone } from './domain/phone.js';
 import { telegramDisplayName, verifyTelegramAuth } from './domain/telegram.js';
 import type { GoogleAuth, TelegramAuth, VerifyOtp } from './auth.schemas.js';
@@ -44,13 +44,30 @@ export class AuthService {
     return this.startSession(user.id, meta);
   }
 
-  linkTelegram(userId: string, payload: TelegramAuth) {
+  linkTelegram(userId: string, payload: TelegramAuth, merge: boolean) {
     this.assertTelegram(payload);
-    return this.users.linkTelegram(userId, BigInt(payload.id));
+    return this.users.attachIdentity(userId, { kind: 'telegram', telegramId: BigInt(payload.id) }, merge);
   }
 
-  unlinkTelegram(userId: string) {
-    return this.users.unlinkTelegram(userId);
+  async linkGoogle(userId: string, credential: string, merge: boolean) {
+    const identity = await this.google.verify(credential);
+    return this.users.attachIdentity(userId, { kind: 'google', googleId: identity.sub, email: identity.email }, merge);
+  }
+
+  async linkPhone(userId: string, { phone, code }: VerifyOtp, merge: boolean) {
+    const owner = await this.users.ownerOf({ kind: 'phone', phone }, userId);
+    if (owner && !merge) {
+      throw new ApiError(HttpStatus.CONFLICT, 'ACCOUNT_EXISTS', 'This sign-in method belongs to another account', {
+        method: 'phone',
+        estimates: owner.estimates,
+      });
+    }
+    await this.otp.verify(phone, code);
+    return this.users.attachIdentity(userId, { kind: 'phone', phone }, true);
+  }
+
+  unlink(userId: string, kind: LinkableIdentity['kind']) {
+    return this.users.detachIdentity(userId, kind);
   }
 
   signOut(sessionId: string) {

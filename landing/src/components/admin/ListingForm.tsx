@@ -6,7 +6,7 @@ import { useState, type FormEvent } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { NativeSelect } from '@/components/ui/native-select';
-import type { AdminMaterial, AdminStore, PreviewResult } from '@/lib/admin/types';
+import type { AdminMaterial, AdminProduct, AdminStore, PreviewResult } from '@/lib/admin/types';
 import { fmt, num } from '@/lib/format';
 import { cn } from '@/lib/utils';
 import { fieldLabel, plainCard } from '../app/common/styles';
@@ -15,6 +15,7 @@ import { useAdminAction } from './useAdmin';
 type ListingFormProps = {
   material: AdminMaterial;
   stores: AdminStore[];
+  products: AdminProduct[];
   onCreated: () => void;
 };
 
@@ -26,8 +27,10 @@ const hostOf = (value: string) => {
   }
 };
 
-export function ListingForm({ material, stores, onCreated }: ListingFormProps) {
+export function ListingForm({ material, stores, products, onCreated }: ListingFormProps) {
   const t = useTranslations('admin.form');
+  const tProducts = useTranslations('admin.products');
+  const [productId, setProductId] = useState('');
   const { run, pending } = useAdminAction();
   const [url, setUrl] = useState('');
   const [storeCode, setStoreCode] = useState(stores[0]?.code ?? '');
@@ -61,6 +64,7 @@ export function ListingForm({ material, stores, onCreated }: ListingFormProps) {
           url: url.trim(),
           packSize: num(packSize) || 1,
           title: title.trim() || undefined,
+          productId: productId || null,
         }),
       t('created'),
     );
@@ -68,6 +72,7 @@ export function ListingForm({ material, stores, onCreated }: ListingFormProps) {
     setUrl('');
     setTitle('');
     setPackSize('1');
+    setProductId('');
     setPreview(null);
     onCreated();
   };
@@ -92,6 +97,28 @@ export function ListingForm({ material, stores, onCreated }: ListingFormProps) {
           className="text-sm"
         />
       </label>
+
+      {products.length > 0 && (
+        <label className="flex flex-col gap-1.5">
+          <span className={fieldLabel}>{tProducts('linkLabel')}</span>
+          <NativeSelect
+            value={productId}
+            onChange={(event) => {
+              setProductId(event.target.value);
+              const product = products.find((item) => item.id === event.target.value);
+              if (product) setPackSize(String(product.packSize).replace('.', ','));
+            }}
+            className="max-w-none"
+          >
+            <option value="">{tProducts('unlinked')}</option>
+            {products.map((product) => (
+              <option key={product.id} value={product.id}>
+                {product.brand} · {product.name}
+              </option>
+            ))}
+          </NativeSelect>
+        </label>
+      )}
 
       <div className="grid gap-4 sm:grid-cols-[minmax(0,1fr)_140px]">
         <label className="flex flex-col gap-1.5">

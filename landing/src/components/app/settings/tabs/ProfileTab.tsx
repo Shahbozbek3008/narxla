@@ -1,36 +1,20 @@
 'use client';
 
-import { CircleCheck, Mail, Phone, Send } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import { NativeSelect } from '@/components/ui/native-select';
-import { formatPhone } from '@/lib/format';
 import { DISTRICTS, initialsOf } from '@/store/settings';
 import { useFormatDate } from '../../common/useFormatDate';
 import { Avatar } from '../../shell/Avatar';
 import { FormActions } from '../FormActions';
 import { SettingsCard, SettingsField, SettingsFooter } from '../SettingsCard';
 import { SettingsSkeleton } from '../SettingsSkeleton';
-import { TelegramConnection } from '../TelegramConnection';
+import { SignInMethodsCard } from '../account-link/SignInMethodsCard';
 import { useProfileForm } from '../useProfileForm';
 
 const FIELDS = ['name', 'district'] as const;
 const NAME_LIMIT = 80;
-
-function ConnectionState({ connected, label }: { connected: boolean; label: string }) {
-  const t = useTranslations('app.settings.profile');
-  return connected ? (
-    <Badge tone="success" shape="status" className="gap-1">
-      <CircleCheck size={12} strokeWidth={2.25} aria-hidden />
-      {label}
-    </Badge>
-  ) : (
-    <Badge tone="neutral" shape="status">
-      {t('notConnected')}
-    </Badge>
-  );
-}
 
 export function ProfileTab() {
   const t = useTranslations('app.settings.profile');
@@ -90,30 +74,7 @@ export function ProfileTab() {
         </SettingsField>
       </SettingsCard>
 
-      <SettingsCard title={t('methodsTitle')} description={t('methodsLead')}>
-        <SettingsField label={t('phone')} hint={t('phoneHint')}>
-          <span className="flex max-w-md flex-1 items-center gap-3 rounded-[10px] border border-line bg-surface-2 px-3 py-2.5">
-            <Phone size={16} strokeWidth={1.5} className="text-fg-3" aria-hidden />
-            <span className="min-w-0 flex-1 truncate text-sm whitespace-nowrap tabular-nums">{user.phone ? formatPhone(user.phone) : t('noPhone')}</span>
-            <ConnectionState connected={user.phone !== null} label={t('verified')} />
-          </span>
-        </SettingsField>
-        <SettingsField label={t('google')} hint={t('googleHint')}>
-          <span className="flex max-w-md flex-1 items-center gap-3 rounded-[10px] border border-line bg-surface-2 px-3 py-2.5">
-            <Mail size={16} strokeWidth={1.5} className="text-fg-3" aria-hidden />
-            <span className="min-w-0 flex-1 truncate text-sm">{user.email ?? 'Google'}</span>
-            <ConnectionState connected={user.googleLinked} label={t('connected')} />
-          </span>
-        </SettingsField>
-        <SettingsField label={t('telegram')} hint={t('telegramHint')}>
-          <span className="flex max-w-md flex-1 items-center gap-3 rounded-[10px] border border-line bg-surface-2 py-1.5 pr-1.5 pl-3">
-            <Send size={16} strokeWidth={1.5} className="text-fg-3" aria-hidden />
-            <span className="min-w-0 flex-1 truncate text-sm">Telegram</span>
-            {user.telegramLinked && <ConnectionState connected label={t('connected')} />}
-            <TelegramConnection user={user} />
-          </span>
-        </SettingsField>
-      </SettingsCard>
+      <SignInMethodsCard user={user} />
     </>
   );
 }

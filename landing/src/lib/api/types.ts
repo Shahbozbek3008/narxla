@@ -15,6 +15,8 @@ export type ProfileFields = {
   notifyNews: boolean;
 };
 
+export type SignInMethod = 'phone' | 'telegram' | 'google';
+
 export type Profile = ProfileFields & {
   id: string;
   phone: string | null;

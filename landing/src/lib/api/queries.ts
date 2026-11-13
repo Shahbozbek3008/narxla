@@ -133,19 +133,14 @@ export function useUpdateProfile() {
   });
 }
 
-export function useLinkTelegram() {
+export function useAccountMutation() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (data: TelegramAuthData) => meApi.linkTelegram(data),
-    onSuccess: (profile) => queryClient.setQueryData(queryKeys.me, profile),
-  });
-}
-
-export function useUnlinkTelegram() {
-  const queryClient = useQueryClient();
-  return useMutation({
-    mutationFn: meApi.unlinkTelegram,
-    onSuccess: (profile) => queryClient.setQueryData(queryKeys.me, profile),
+    mutationFn: (run: () => Promise<Profile>) => run(),
+    onSuccess: (profile) => {
+      queryClient.setQueryData(queryKeys.me, profile);
+      return queryClient.invalidateQueries({ queryKey: queryKeys.estimates });
+    },
   });
 }
 

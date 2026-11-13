@@ -8,6 +8,7 @@ import type {
   Profile,
   ProfileFields,
   SharedEstimate,
+  SignInMethod,
   TelegramAuthData,
 } from './types';
 
@@ -24,8 +25,11 @@ export const meApi = {
   update: (patch: Partial<ProfileFields>) => apiRequest<Profile>('/me', { method: 'PATCH', body: patch }),
   remove: () => apiRequest<void>('/me', { method: 'DELETE' }),
   payments: (signal?: AbortSignal) => apiRequest<Payment[]>('/me/payments', { signal }),
-  linkTelegram: (data: TelegramAuthData) => apiRequest<Profile>('/me/telegram', { method: 'POST', body: data }),
-  unlinkTelegram: () => apiRequest<Profile>('/me/telegram', { method: 'DELETE' }),
+  linkTelegram: (data: TelegramAuthData, merge = false) => apiRequest<Profile>('/me/telegram', { method: 'POST', body: { ...data, merge } }),
+  linkGoogle: (credential: string, merge = false) => apiRequest<Profile>('/me/google', { method: 'POST', body: { credential, merge } }),
+  requestPhoneLink: (phone: string) => apiRequest<OtpRequested>('/me/phone/otp', { method: 'POST', body: { phone } }),
+  linkPhone: (phone: string, code: string, merge = false) => apiRequest<Profile>('/me/phone', { method: 'POST', body: { phone, code, merge } }),
+  unlinkMethod: (method: SignInMethod) => apiRequest<Profile>(`/me/${method}`, { method: 'DELETE' }),
   revokeOtherSessions: () => apiRequest<{ revoked: number }>('/me/sessions', { method: 'DELETE' }),
 };
 

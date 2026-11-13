@@ -1234,7 +1234,22 @@
         "telegramUnavailable": "Telegram sign-in is not configured yet",
         "onlyMethod": "This is your only sign-in method",
         "google": "Google",
-        "googleHint": "Sign in with your Google account"
+        "googleHint": "Sign in with your Google account",
+        "sendCode": "Send code",
+        "codeSent": "Code sent to {phone}",
+        "codeLabel": "SMS code",
+        "confirmCode": "Confirm",
+        "phonePlaceholder": "90 123 45 67",
+        "mergeTitle": "This {method} belongs to another account",
+        "mergeText": "That account has {count, plural, =0 {no estimates} one {# estimate} other {# estimates}}. Merging moves its estimates and plan here and deletes the other account. You can then sign in with any method.",
+        "mergeConfirm": "Merge accounts",
+        "mergeCancel": "Cancel",
+        "methods": {
+          "phone": "phone number",
+          "google": "Google account",
+          "telegram": "Telegram account"
+        },
+        "googleUnavailable": "Google sign-in is not configured yet"
       },
       "preferences": {
         "title": "Estimate defaults",
@@ -1440,6 +1455,22 @@
       "telegramFailed": {
         "title": "Couldn’t connect Telegram",
         "text": "Confirm the sign-in in the Telegram window and try again."
+      },
+      "accountLinked": {
+        "title": "Sign-in method connected",
+        "text": "You now reach this account with this method too."
+      },
+      "accountsMerged": {
+        "title": "Accounts merged",
+        "text": "Estimates and plan were moved into one account."
+      },
+      "methodUnlinked": {
+        "title": "Sign-in method disconnected",
+        "text": "Use your remaining methods to sign in."
+      },
+      "linkFailed": {
+        "title": "Could not connect",
+        "text": "Please try again."
       }
     },
     "units": {
@@ -1691,7 +1722,7 @@
     "tabsLabel": "Admin sections",
     "tabs": {
       "review": "Review",
-      "listings": "Store links",
+      "listings": "Catalog",
       "labour": "Labour rates",
       "scraper": "Scraper",
       "reports": "Reports",
@@ -1816,6 +1847,43 @@
         "project": "Project",
         "pro": "Pro"
       }
+    },
+    "products": {
+      "title": "Products",
+      "lead": "Brands of this material type. Link a store listing to a product and its price is collected automatically.",
+      "add": "Add product",
+      "edit": "Edit",
+      "save": "Save",
+      "cancel": "Cancel",
+      "brand": "Brand",
+      "brandPlaceholder": "e.g. Knauf",
+      "name": "Product name",
+      "namePlaceholder": "e.g. Rotband 30 kg",
+      "pack": "Amount per pack ({unit})",
+      "packHint": "How many {unit} are in one pack. New listings inherit this value.",
+      "tier": "Quality tier",
+      "tierNone": "Not set",
+      "tiers": {
+        "eco": "Budget",
+        "mid": "Standard",
+        "pre": "Premium"
+      },
+      "image": "Image URL (optional)",
+      "empty": "No products yet. Add the first brand.",
+      "created": "Product added",
+      "updated": "Product saved",
+      "deleted": "Product deleted",
+      "confirmDelete": "The product will be deleted. Linked listings stay but lose their brand. Continue?",
+      "hide": "Hide",
+      "show": "Show",
+      "hidden": "Hidden",
+      "listings": "{count} listings",
+      "priceRange": "{min}–{max} UZS / {unit}",
+      "noPrice": "No price",
+      "unlinked": "No brand",
+      "linkLabel": "Product",
+      "pick": "Pick a product",
+      "remove": "Delete product"
     }
   }
 }

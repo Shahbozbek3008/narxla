@@ -1,6 +1,7 @@
 import type {
   AdminListing,
   AdminMaterial,
+  AdminProduct,
   AdminStore,
   CheckResult,
   LabourRate,
@@ -8,6 +9,7 @@ import type {
   ObservationStatus,
   PreviewResult,
   PriceReport,
+  ProductInput,
   ReportStatus,
   ReviewItem,
   ScrapeRun,
@@ -52,6 +54,12 @@ export function createAdminApi(key: string) {
   return {
     materials: () => request<AdminMaterial[]>('GET', '/materials'),
     stores: () => request<AdminStore[]>('GET', '/stores'),
+    products: (materialCode: string) => request<AdminProduct[]>('GET', `/materials/${materialCode}/products`),
+    createProduct: (materialCode: string, product: ProductInput) =>
+      request<AdminProduct>('POST', '/products', { materialCode, ...product }),
+    updateProduct: (id: string, patch: Partial<ProductInput & { active: boolean }>) => request<AdminProduct>('PATCH', `/products/${id}`, patch),
+    deleteProduct: (id: string) => request<void>('DELETE', `/products/${id}`),
+    setListingProduct: (id: string, productId: string | null) => request<AdminListing>('PATCH', `/listings/${id}`, { productId }),
     listings: (materialCode: string) => request<AdminListing[]>('GET', `/listings${query({ materialCode })}`),
     createListing: (listing: NewListing) => request<AdminListing>('POST', '/listings', listing),
     setListingActive: (id: string, active: boolean) => request<AdminListing>('PATCH', `/listings/${id}`, { active }),

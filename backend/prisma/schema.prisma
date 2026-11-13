@@ -50,10 +50,30 @@ model Material {
   category       MaterialCategory
   referencePrice Int
   listings       Listing[]
+  products       Product[]
   createdAt      DateTime         @default(now())
   updatedAt      DateTime         @updatedAt
 
   @@map("materials")
+}
+
+model Product {
+  id         String    @id @default(cuid())
+  material   Material  @relation(fields: [materialId], references: [id], onDelete: Cascade)
+  materialId String
+  brand      String
+  name       String
+  packSize   Decimal   @default(1) @db.Decimal(10, 3)
+  tier       Quality?
+  imageUrl   String?
+  active     Boolean   @default(true)
+  listings   Listing[]
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+
+  @@unique([materialId, brand, name])
+  @@index([materialId, active])
+  @@map("products")
 }
 
 model Store {
@@ -75,6 +95,8 @@ model Listing {
   id            String             @id @default(cuid())
   material      Material           @relation(fields: [materialId], references: [id], onDelete: Cascade)
   materialId    String
+  product       Product?           @relation(fields: [productId], references: [id], onDelete: SetNull)
+  productId     String?
   store         Store              @relation(fields: [storeId], references: [id], onDelete: Cascade)
   storeId       String
   url           String             @unique
@@ -90,6 +112,7 @@ model Listing {
   updatedAt     DateTime           @updatedAt
 
   @@index([materialId])
+  @@index([productId])
   @@index([storeId, active])
   @@map("listings")
 }

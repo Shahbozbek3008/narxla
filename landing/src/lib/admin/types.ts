@@ -11,6 +11,28 @@ export type AdminMaterial = {
   _count: { listings: number };
 };
 
+export type ProductTier = 'eco' | 'mid' | 'pre';
+
+export type AdminProduct = {
+  id: string;
+  brand: string;
+  name: string;
+  packSize: number;
+  tier: ProductTier | null;
+  imageUrl: string | null;
+  active: boolean;
+  listings: number;
+  price: { min: number; max: number; sources: number } | null;
+};
+
+export type ProductInput = {
+  brand: string;
+  name: string;
+  packSize: number;
+  tier: ProductTier | null;
+  imageUrl: string | null;
+};
+
 export type AdminStore = {
   code: string;
   name: string;
@@ -44,6 +66,7 @@ export type AdminListing = {
   failureCount: number;
   material: { code: string; name: string; unit: string };
   store: { code: string; name: string };
+  product: { id: string; brand: string; name: string } | null;
   observations: Observation[];
 };
 
@@ -94,4 +117,4 @@ export type CheckResult =
   | { outcome: 'OK'; status: ObservationStatus; price: number; unitPrice: number; reason: string | null }
   | { outcome: 'FAILED' | 'BLOCKED'; error: string };
 
-export type NewListing = { materialCode: string; storeCode: string; url: string; title?: string; packSize: number };
+export type NewListing = { materialCode: string; storeCode: string; url: string; title?: string; packSize?: number; productId?: string | null };

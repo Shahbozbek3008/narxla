@@ -6,29 +6,37 @@ import {
   codeSchema,
   createListingSchema,
   createMaterialSchema,
+  createProductSchema,
   createStoreSchema,
   idSchema,
   listListingsQuerySchema,
   manualObservationSchema,
   updateListingSchema,
   updateMaterialSchema,
+  updateProductSchema,
   updateStoreSchema,
   type CreateListing,
   type CreateMaterial,
+  type CreateProduct,
   type CreateStore,
   type ListListingsQuery,
   type ManualObservation,
   type UpdateListing,
   type UpdateMaterial,
+  type UpdateProduct,
   type UpdateStore,
 } from './catalog.schemas.js';
 import { CatalogService } from './catalog.service.js';
+import { ProductsService } from './products.service.js';
 
 @ApiTags('admin / catalog')
 @AdminOnly()
 @Controller('admin')
 export class AdminCatalogController {
-  constructor(private readonly catalog: CatalogService) {}
+  constructor(
+    private readonly catalog: CatalogService,
+    private readonly products: ProductsService,
+  ) {}
 
   @Get('materials')
   listMaterials() {
@@ -45,6 +53,29 @@ export class AdminCatalogController {
   @ApiZodBody(updateMaterialSchema)
   updateMaterial(@Param('code', { schema: codeSchema }) code: string, @Body({ schema: updateMaterialSchema }) body: UpdateMaterial) {
     return this.catalog.updateMaterial(code, body);
+  }
+
+  @Get('materials/:code/products')
+  listProducts(@Param('code', { schema: codeSchema }) code: string) {
+    return this.products.listByMaterial(code);
+  }
+
+  @Post('products')
+  @ApiZodBody(createProductSchema)
+  createProduct(@Body({ schema: createProductSchema }) body: CreateProduct) {
+    return this.products.create(body);
+  }
+
+  @Patch('products/:id')
+  @ApiZodBody(updateProductSchema)
+  updateProduct(@Param('id', { schema: idSchema }) id: string, @Body({ schema: updateProductSchema }) body: UpdateProduct) {
+    return this.products.update(id, body);
+  }
+
+  @Delete('products/:id')
+  @HttpCode(HttpStatus.NO_CONTENT)
+  removeProduct(@Param('id', { schema: idSchema }) id: string) {
+    return this.products.remove(id);
   }
 
   @Get('stores')

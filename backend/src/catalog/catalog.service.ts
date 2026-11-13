@@ -3,6 +3,7 @@ import { hostOf, sameHost } from '../common/url.js';
 import { PricesService } from '../prices/prices.service.js';
 import { PrismaService } from '../prisma/prisma.service.js';
 import { unitPriceOf } from '../scraper/domain/observation-policy.js';
+import { ProductsService } from './products.service.js';
 import type {
   CreateListing,
   CreateMaterial,
@@ -19,6 +20,7 @@ export class CatalogService {
   constructor(
     private readonly prisma: PrismaService,
     private readonly prices: PricesService,
+    private readonly products: ProductsService,
   ) {}
 
   listMaterials() {
@@ -64,23 +66,38 @@ export class CatalogService {
       include: {
         material: { select: { code: true, name: true, unit: true } },
         store: { select: { code: true, name: true } },
+        product: { select: { id: true, brand: true, name: true } },
         observations: { orderBy: { observedAt: 'desc' }, take: 1 },
       },
     });
   }
 
-  async createListing({ materialCode, storeCode, ...data }: CreateListing) {
-    const store = await this.prisma.store.findUniqueOrThrow({ where: { code: storeCode } });
+  async createListing({ materialCode, storeCode, productId, packSize, ...data }: CreateListing) {
+    const [store, material] = await Promise.all([
+      this.prisma.store.findUniqueOrThrow({ where: { code: storeCode } }),
+      this.prisma.material.findUniqueOrThrow({ where: { code: materialCode }, select: { id: true } }),
+    ]);
     this.assertSameHost(data.url, store.baseUrl);
+    const product = productId ? await this.products.assertBelongs(productId, material.id) : null;
     return this.prisma.listing.create({
-      data: { ...data, store: { connect: { id: store.id } }, material: { connect: { code: materialCode } } },
+      data: {
+        ...data,
+        packSize: packSize ?? product?.packSize ?? 1,
+        store: { connect: { id: store.id } },
+        material: { connect: { id: material.id } },
+        ...(productId ? { product: { connect: { id: productId } } } : {}),
+      },
     });
   }
 
   async updateListing(id: string, data: UpdateListing) {
-    if (data.url) {
-      const { store } = await this.prisma.listing.findUniqueOrThrow({ where: { id }, select: { store: true } });
-      this.assertSameHost(data.url, store.baseUrl);
+    if (data.url || data.productId) {
+      const { store, materialId } = await this.prisma.listing.findUniqueOrThrow({
+        where: { id },
+        select: { store: true, materialId: true },
+      });
+      if (data.url) this.assertSameHost(data.url, store.baseUrl);
+      if (data.productId) await this.products.assertBelongs(data.productId, materialId);
     }
     const listing = await this.prisma.listing.update({
       where: { id },

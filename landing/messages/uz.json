@@ -1234,7 +1234,22 @@
         "telegramUnavailable": "Telegram orqali kirish hozircha sozlanmagan",
         "onlyMethod": "Bu yagona kirish usulingiz",
         "google": "Google",
-        "googleHint": "Google akkaunt orqali kirish"
+        "googleHint": "Google akkaunt orqali kirish",
+        "sendCode": "Kod yuborish",
+        "codeSent": "Kod {phone} raqamiga yuborildi",
+        "codeLabel": "SMS kod",
+        "confirmCode": "Tasdiqlash",
+        "phonePlaceholder": "90 123 45 67",
+        "mergeTitle": "Bu {method} boshqa hisobga ulangan",
+        "mergeText": "U hisobda {count, plural, =0 {smeta yo‘q} other {# ta smeta bor}}. Birlashtirsak, smetalar va tarif shu hisobga o‘tadi, ikkinchi hisob o‘chiriladi. Keyin qaysi usul bilan kirsangiz ham shu hisobga tushasiz.",
+        "mergeConfirm": "Hisoblarni birlashtirish",
+        "mergeCancel": "Bekor qilish",
+        "methods": {
+          "phone": "telefon raqam",
+          "google": "Google akkaunt",
+          "telegram": "Telegram akkaunt"
+        },
+        "googleUnavailable": "Google orqali kirish hozircha sozlanmagan"
       },
       "preferences": {
         "title": "Smeta standartlari",
@@ -1440,6 +1455,22 @@
       "telegramFailed": {
         "title": "Telegram ulanmadi",
         "text": "Telegram oynasida tasdiqlang va qaytadan urinib ko‘ring."
+      },
+      "accountLinked": {
+        "title": "Kirish usuli ulandi",
+        "text": "Endi bu usul bilan ham shu hisobga kirasiz."
+      },
+      "accountsMerged": {
+        "title": "Hisoblar birlashtirildi",
+        "text": "Smetalar va tarif bitta hisobga o‘tkazildi."
+      },
+      "methodUnlinked": {
+        "title": "Kirish usuli uzildi",
+        "text": "Qolgan usullar bilan kirishingiz mumkin."
+      },
+      "linkFailed": {
+        "title": "Ulab bo‘lmadi",
+        "text": "Qaytadan urinib ko‘ring."
       }
     },
     "units": {
@@ -1691,7 +1722,7 @@
     "tabsLabel": "Admin bo‘limlari",
     "tabs": {
       "review": "Tekshiruv",
-      "listings": "Do‘kon havolalari",
+      "listings": "Katalog",
       "labour": "Ish haqi",
       "scraper": "Scraper",
       "reports": "Xabarlar",
@@ -1816,6 +1847,43 @@
         "project": "Loyiha",
         "pro": "Pro"
       }
+    },
+    "products": {
+      "title": "Mahsulotlar",
+      "lead": "Shu material turiga tegishli brendlar. Do‘kon havolasini mahsulotga bog‘lang — narx avtomatik yig‘iladi.",
+      "add": "Mahsulot qo‘shish",
+      "edit": "Tahrirlash",
+      "save": "Saqlash",
+      "cancel": "Bekor qilish",
+      "brand": "Brend",
+      "brandPlaceholder": "Masalan, Knauf",
+      "name": "Mahsulot nomi",
+      "namePlaceholder": "Masalan, Rotband 30 kg",
+      "pack": "Qadoqdagi miqdor ({unit})",
+      "packHint": "Bir qadoqda nechta {unit} bor. Havola qo‘shilganda shu qiymat avtomatik olinadi.",
+      "tier": "Sifat darajasi",
+      "tierNone": "Ko‘rsatilmagan",
+      "tiers": {
+        "eco": "Tejamkor",
+        "mid": "O‘rta",
+        "pre": "Premium"
+      },
+      "image": "Rasm havolasi (ixtiyoriy)",
+      "empty": "Hali mahsulot yo‘q. Birinchi brendni qo‘shing.",
+      "created": "Mahsulot qo‘shildi",
+      "updated": "Mahsulot saqlandi",
+      "deleted": "Mahsulot o‘chirildi",
+      "confirmDelete": "Mahsulot o‘chiriladi. Unga bog‘langan havolalar saqlanadi, lekin brendsiz qoladi. Davom etasizmi?",
+      "hide": "Yashirish",
+      "show": "Ko‘rsatish",
+      "hidden": "Yashirilgan",
+      "listings": "{count} havola",
+      "priceRange": "{min}–{max} so‘m / {unit}",
+      "noPrice": "Narx yo‘q",
+      "unlinked": "Brendsiz",
+      "linkLabel": "Mahsulot",
+      "pick": "Mahsulotni tanlang",
+      "remove": "Mahsulotni o‘chirish"
     }
   }
 }

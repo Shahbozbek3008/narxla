@@ -33,3 +33,6 @@ export const grantPlanSchema = z.object({
 export type UpdateProfile = z.infer<typeof updateProfileSchema>;
 export type ListUsersQuery = z.infer<typeof listUsersQuerySchema>;
 export type GrantPlan = z.infer<typeof grantPlanSchema>;
+
+export const mergeUsersSchema = z.object({ sourceId: z.cuid() });
+export type MergeUsers = z.infer<typeof mergeUsersSchema>;

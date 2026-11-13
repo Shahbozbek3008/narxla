@@ -2,6 +2,7 @@ import type { INestApplication } from '@nestjs/common';
 import request from 'supertest';
 import type { App } from 'supertest/types.js';
 import { SESSION_COOKIE } from '../src/auth/session-cookie.js';
+import { PrismaService } from '../src/prisma/prisma.service.js';
 import { ADMIN_KEY_HEADER } from '../src/common/admin-key.guard.js';
 import { AppConfigService } from '../src/config/app-config.service.js';
 import { type CapturingSmsSender, createTestApp } from './create-app.js';
@@ -153,6 +154,28 @@ describe('Accounts and estimates (e2e)', () => {
       .send({ id: 1, first_name: 'Test', auth_date: Math.floor(Date.now() / 1000), hash: 'a'.repeat(64) })
       .expect(503);
     expect(response.body.code).toBe('TELEGRAM_DISABLED');
+  });
+
+  it('merges another account when its phone number is linked and confirmed', async () => {
+    const first = await signIn();
+    await first.agent.post('/api/estimates').send({ name: 'First', input: INPUT }).expect(201);
+    const secondLocal = randomPhone();
+    const prisma = app.get(PrismaService);
+    const second = await prisma.user.create({ data: { phone: fullPhone(secondLocal), plan: 'pro', planExpiresAt: new Date(Date.now() + 86_400_000) } });
+    await prisma.estimate.create({ data: { userId: second.id, name: 'Second', input: INPUT } });
+
+    await first.agent.post('/api/me/phone/otp').send({ phone: secondLocal }).expect(202);
+    const code = sms.lastCodeFor(fullPhone(secondLocal));
+    const conflict = await first.agent.post('/api/me/phone').send({ phone: secondLocal, code }).expect(409);
+    expect(conflict.body).toMatchObject({ code: 'ACCOUNT_EXISTS', method: 'phone', estimates: 1 });
+
+    const merged = await first.agent.post('/api/me/phone').send({ phone: secondLocal, code, merge: true }).expect(200);
+    expect(merged.body).toMatchObject({ phone: fullPhone(secondLocal), plan: { kind: 'pro' }, usage: { estimates: 2 } });
+    expect(await prisma.user.findUnique({ where: { id: second.id } })).toBeNull();
+
+    const list = await first.agent.get('/api/estimates').expect(200);
+    expect(list.body.map((item: { name: string }) => item.name).sort()).toEqual(['First', 'Second']);
+    await first.agent.delete('/api/me').expect(204);
   });
 
   it('guards Telegram linking behind a session and keeps phone users able to unlink', async () => {

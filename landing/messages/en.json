@@ -275,6 +275,26 @@
     "pdf": "Download PDF",
     "send": "Send to contractor"
   },
+  "liveCalc": {
+    "eyebrow": "Try it",
+    "title": "Calculate it right here",
+    "lead": "Drag the sliders — the estimate updates instantly using Tashkent store prices.",
+    "room": "Room",
+    "length": "Length",
+    "width": "Width",
+    "meters": "m",
+    "quality": "Quality",
+    "budget": "Estimated budget",
+    "area": "{value} m² floor",
+    "currency": "mln UZS",
+    "materials": "Materials",
+    "labour": "Labour",
+    "duration": "Duration",
+    "days": "{min}–{max} days",
+    "top": "Largest items",
+    "note": "Doors, windows and work types are set on the next step.",
+    "cta": "Continue in the full estimate"
+  },
   "calculators": {
     "eyebrow": "Quick calculators",
     "title": "Need just one material? 30 seconds.",

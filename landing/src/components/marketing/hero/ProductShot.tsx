@@ -1,10 +1,12 @@
 'use client';
 
 import { Check, ShieldCheck } from 'lucide-react';
-import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
+import { motion, useMotionValue, useReducedMotion, useScroll, useSpring, useTransform } from 'framer-motion';
 import { useTranslations } from 'next-intl';
+import { useEffect } from 'react';
 import { RangeScale } from '@/components/shared/RangeScale';
 import { Reveal } from '@/components/shared/Reveal';
+import { useFinePointer } from '@/hooks/useFinePointer';
 import { fmt, mln } from '@/lib/format';
 import { cn } from '@/lib/utils';
 import { PhoneMockup } from './PhoneMockup';
@@ -14,6 +16,9 @@ import { DEMO_CHECK, useDemoShot } from './useDemoShot';
 const MAX_TILT = 10;
 const TILT_SCROLL_RATIO = 30;
 const TILT_SCALE_RATIO = 0.003;
+const POINTER_TILT_X = 3;
+const POINTER_TILT_Y = 5;
+const POINTER_SPRING = { stiffness: 90, damping: 20, mass: 0.8 };
 
 const FLOAT = 'absolute z-2 hidden lg:block';
 const FLOAT_CARD = 'sheen border border-line-2 bg-surface text-left tabular-nums shadow-(--shadow-elev)';
@@ -26,8 +31,24 @@ export function ProductShot() {
   const reducedMotion = useReducedMotion();
   const { scrollY } = useScroll();
 
-  const rotateX = useTransform(scrollY, (y) => (reducedMotion ? 0 : Math.max(0, MAX_TILT - y / TILT_SCROLL_RATIO)));
-  const scale = useTransform(rotateX, (tilt) => 1 - tilt * TILT_SCALE_RATIO);
+  const finePointer = useFinePointer();
+  const pointerX = useSpring(useMotionValue(0), POINTER_SPRING);
+  const pointerY = useSpring(useMotionValue(0), POINTER_SPRING);
+
+  useEffect(() => {
+    if (!finePointer || reducedMotion) return;
+    const onMove = (event: PointerEvent) => {
+      pointerX.set((event.clientX / window.innerWidth) * 2 - 1);
+      pointerY.set((event.clientY / window.innerHeight) * 2 - 1);
+    };
+    window.addEventListener('pointermove', onMove, { passive: true });
+    return () => window.removeEventListener('pointermove', onMove);
+  }, [finePointer, reducedMotion, pointerX, pointerY]);
+
+  const scrollTilt = useTransform(scrollY, (y) => (reducedMotion ? 0 : Math.max(0, MAX_TILT - y / TILT_SCROLL_RATIO)));
+  const scale = useTransform(scrollTilt, (tilt) => 1 - tilt * TILT_SCALE_RATIO);
+  const rotateX = useTransform([scrollTilt, pointerY], ([tilt, py]: number[]) => tilt - py * POINTER_TILT_X);
+  const rotateY = useTransform(pointerX, (px) => px * POINTER_TILT_Y);
   const floatSlow = useTransform(scrollY, (y) => (reducedMotion ? 0 : -y * 0.08));
   const floatFast = useTransform(scrollY, (y) => (reducedMotion ? 0 : -y * 0.16));
 
@@ -45,7 +66,7 @@ export function ProductShot() {
       <div className="relative hidden perspective-[2400px] sm:block" role="img" aria-label={t('alt')}>
         <motion.div
           className="origin-top rounded-[20px] bg-linear-to-b from-line-2 to-line p-1.5 shadow-(--shadow-elev)"
-          style={{ rotateX, scale }}
+          style={{ rotateX, rotateY, scale }}
         >
           <ShotDashboard />
         </motion.div>

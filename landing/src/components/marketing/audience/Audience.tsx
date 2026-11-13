@@ -24,7 +24,7 @@ export function Audience() {
           const Icon = ICONS[index];
           return (
             <Reveal key={persona.title} delay={stagger(index, 100)}>
-              <article className="sheen flex h-full flex-col gap-4 rounded-2xl border border-line bg-surface p-6 shadow-(--shadow-card)">
+              <article className="spotlight sheen flex h-full flex-col gap-4 rounded-2xl border border-line bg-surface p-6 shadow-(--shadow-card)">
                 <span className="grid size-10 place-items-center rounded-[11px] border border-line-2 bg-surface-2 text-accent-text">
                   <Icon size={20} strokeWidth={1.5} aria-hidden />
                 </span>

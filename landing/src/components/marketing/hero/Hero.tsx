@@ -2,6 +2,7 @@ import { ArrowRight, Check, ChevronRight } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { Container } from '@/components/shared/Container';
 import { CtaGroup } from '@/components/shared/CtaGroup';
+import { PointerGlow } from '@/components/shared/PointerGlow';
 import { Reveal } from '@/components/shared/Reveal';
 import { Button } from '@/components/ui/button';
 import { Link } from '@/i18n/navigation';
@@ -25,6 +26,7 @@ export function Hero() {
         aria-hidden
         className="pointer-events-none absolute -top-60 left-1/2 h-160 w-[1100px] -translate-x-1/2 bg-[radial-gradient(ellipse_at_center,var(--glow),transparent_62%)]"
       />
+      <PointerGlow className="[mask-image:linear-gradient(#000_55%,transparent)]" />
 
       <Container className="flex flex-col items-center text-center">
         <Reveal delay={60} className="max-w-full">
@@ -52,10 +54,10 @@ export function Hero() {
 
         <Reveal delay={330} className="mt-8 max-sm:w-full">
           <CtaGroup>
-            <Button asChild size="xl">
+            <Button asChild size="xl" className="group shine">
               <Link href={routes.newEstimate}>
                 {tCommon('cta')}
-                <ArrowRight size={16} strokeWidth={1.75} aria-hidden />
+                <ArrowRight size={16} strokeWidth={1.75} className="transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden />
               </Link>
             </Button>
             <Button asChild variant="secondary" size="xl">

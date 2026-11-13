@@ -9,8 +9,10 @@ import { FinalCta } from '@/components/marketing/final-cta/FinalCta';
 import { Footer } from '@/components/marketing/footer/Footer';
 import { Hero } from '@/components/marketing/hero/Hero';
 import { HowItWorks } from '@/components/marketing/how-it-works/HowItWorks';
+import { LiveCalcSection } from '@/components/marketing/live-calc/LiveCalcSection';
 import { Navbar } from '@/components/marketing/navbar/Navbar';
 import { Pricing } from '@/components/marketing/pricing/Pricing';
+import { SpotlightTracker } from '@/components/shared/SpotlightTracker';
 import { Problem } from '@/components/marketing/problem/Problem';
 import { routing } from '@/i18n/routing';
 
@@ -33,6 +35,7 @@ export default async function HomePage({ params }: PageProps) {
         <Problem />
         <Features />
         <HowItWorks />
+        <LiveCalcSection />
         <Calculators />
         <Audience />
         <Pricing />
@@ -40,6 +43,7 @@ export default async function HomePage({ params }: PageProps) {
         <FinalCta />
       </main>
       <Footer />
+      <SpotlightTracker />
     </>
   );
 }

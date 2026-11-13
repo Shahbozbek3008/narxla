@@ -2,6 +2,7 @@ import type { ReactNode } from 'react';
 import { cn } from '@/lib/utils';
 import { Eyebrow } from './Eyebrow';
 import { Reveal } from './Reveal';
+import { WordsReveal } from './WordsReveal';
 
 type SectionHeadingProps = {
   eyebrow: string;
@@ -43,11 +44,12 @@ export function SectionHeading({
       <Reveal>
         <Eyebrow>{eyebrow}</Eyebrow>
       </Reveal>
-      <Reveal delay={80}>
-        <h2 className="gradient-text mt-4 pb-1 font-display text-[clamp(30px,4vw,48px)] leading-[1.12] font-semibold tracking-[-0.035em] text-balance">
-          {title}
-        </h2>
-      </Reveal>
+      <WordsReveal
+        text={title}
+        delay={80}
+        wordClassName="gradient-text"
+        className="mt-4 pb-1 font-display text-[clamp(30px,4vw,48px)] leading-[1.12] font-semibold tracking-[-0.035em] text-balance"
+      />
       {lead && (
         <Reveal delay={160}>
           <p className={cn('mt-4 text-pretty text-fg-2', LEAD_SIZE[leadSize], LEAD_WIDTH[leadWidth])}>{lead}</p>

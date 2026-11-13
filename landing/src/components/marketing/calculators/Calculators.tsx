@@ -42,10 +42,10 @@ export function Calculators() {
           <Reveal key={id} delay={stagger(index, 70)}>
             <Link
               href={routes.calc(id)}
-              className="sheen flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-surface shadow-(--shadow-card) transition-[translate,box-shadow,border-color] duration-200 hover:-translate-y-[3px] hover:border-line-2 hover:shadow-(--shadow-lift)"
+              className="group spotlight sheen flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-surface shadow-(--shadow-card) transition-[translate,box-shadow,border-color] duration-200 hover:-translate-y-[3px] hover:border-line-2 hover:shadow-(--shadow-lift)"
             >
-              <div className={cn('grid h-28 place-items-center border-b border-line bg-surface-2', pattern)}>
-                <span className="sheen grid size-16 place-items-center rounded-[18px] border border-line-2 bg-surface text-accent-text shadow-(--shadow-lift)">
+              <div className={cn('grid h-28 place-items-center border-b border-line bg-surface-2 transition-[background-position] duration-700 ease-out group-hover:bg-position-[8px_6px]', pattern)}>
+                <span className="sheen grid size-16 place-items-center rounded-[18px] border border-line-2 bg-surface text-accent-text shadow-(--shadow-lift) transition-transform duration-500 ease-[cubic-bezier(.16,1,.3,1)] group-hover:-translate-y-1 group-hover:-rotate-6 group-hover:scale-105">
                   <Icon size={30} strokeWidth={1.5} />
                 </span>
               </div>

@@ -22,8 +22,8 @@ export function PlanCard({ id, featured }: PlanCardProps) {
       className={cn(
         'flex h-full flex-col rounded-3xl border bg-surface p-8',
         featured
-          ? 'border-accent shadow-[0_0_0_4px_var(--accent-soft),var(--shadow-lift),0_24px_80px_-24px_var(--glow)]'
-          : 'sheen border-line shadow-(--shadow-card)',
+          ? 'beam-border border-accent/45 shadow-[0_0_0_4px_var(--accent-soft),var(--shadow-lift),0_24px_80px_-24px_var(--glow)]'
+          : 'spotlight sheen border-line shadow-(--shadow-card)',
       )}
     >
       <div className="flex items-center justify-between gap-2">

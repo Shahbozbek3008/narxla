@@ -1,13 +1,17 @@
 'use client';
 
+import { motion, useReducedMotion } from 'framer-motion';
 import { Download, Search, Share2 } from 'lucide-react';
 import { useTranslations } from 'next-intl';
+import { useRef } from 'react';
 import { PricesSummaryBadge } from '@/components/app/result/PriceStatusBadge';
 import { CATEGORY_COLOR } from '@/components/app/result/categories';
 import { NAV_ITEMS } from '@/components/app/shell/navigation';
 import { useEngineText } from '@/components/app/common/useEngineText';
 import { Logo } from '@/components/brand/Logo';
+import { useBuildProgress } from '@/hooks/useBuildProgress';
 import { dec, fmt, mln, rangeMln } from '@/lib/format';
+import { EASE_OUT } from '@/lib/motion';
 import { cn } from '@/lib/utils';
 import { useDemoShot } from './useDemoShot';
 
@@ -17,6 +21,9 @@ const ACTION = 'flex h-[34px] items-center gap-1.5 rounded-[9px] px-3 text-[13px
 const TABLE_ROW =
   'grid grid-cols-[minmax(0,2.2fr)_minmax(0,1fr)_minmax(0,1.1fr)_minmax(0,1.1fr)] gap-3 border-b border-line px-4 tabular-nums';
 const COLUMN_KEYS = ['name', 'qty', 'price', 'total'] as const;
+const BUILD_DELAY_MS = 1100;
+const BUILD_DURATION_MS = 2200;
+const ROW_STEP_S = 0.14;
 
 export function ShotDashboard() {
   const t = useTranslations('shot');
@@ -24,17 +31,29 @@ export function ShotDashboard() {
   const { lineName, lineQty } = useEngineText();
   const { input, result, topMaterials, breakdown } = useDemoShot();
   const roomName = tApp(`rooms.${input.room}.name`);
+  const ref = useRef<HTMLDivElement>(null);
+  const { started, progress: p } = useBuildProgress(ref, BUILD_DELAY_MS, BUILD_DURATION_MS);
+  const reducedMotion = useReducedMotion();
+  const scaled = (value: number) => value * p;
+  const rowMotion = (index: number) => ({
+    initial: reducedMotion ? false : { opacity: 0, x: -10 },
+    animate: started ? { opacity: 1, x: 0 } : undefined,
+    transition: { duration: 0.6, delay: index * ROW_STEP_S, ease: EASE_OUT },
+  });
 
   const kpis = [
-    { label: tApp('result.kpi.total'), value: rangeMln(result.low, result.high), note: tApp('result.kpi.totalNote', { reserve: result.reserve }) },
-    { label: tApp('result.kpi.materials'), value: mln(result.matTotal), note: tApp('result.kpi.materialsNote', { count: result.mats.length }) },
-    { label: tApp('result.kpi.labour'), value: mln(result.labTotal), note: tApp('result.kpi.labourNote', { count: result.lab.length }) },
-    { label: tApp('result.kpi.duration'), value: `${result.dMin}–${result.dMax}`, note: tApp('result.kpi.durationNote') },
+    { label: tApp('result.kpi.total'), value: rangeMln(scaled(result.low), scaled(result.high)), note: tApp('result.kpi.totalNote', { reserve: result.reserve }) },
+    { label: tApp('result.kpi.materials'), value: mln(scaled(result.matTotal)), note: tApp('result.kpi.materialsNote', { count: result.mats.length }) },
+    { label: tApp('result.kpi.labour'), value: mln(scaled(result.labTotal)), note: tApp('result.kpi.labourNote', { count: result.lab.length }) },
+    { label: tApp('result.kpi.duration'), value: `${Math.round(scaled(result.dMin))}–${Math.round(scaled(result.dMax))}`, note: tApp('result.kpi.durationNote') },
   ];
-  const donut = breakdown.map(({ id, from, to }) => `${CATEGORY_COLOR[id]} ${from}% ${to}%`).join(',');
+  const donut = [
+    ...breakdown.map(({ id, from, to }) => `${CATEGORY_COLOR[id]} ${from * p}% ${to * p}%`),
+    `var(--surface-3) ${100 * p}% 100%`,
+  ].join(',');
 
   return (
-    <div className="overflow-hidden rounded-[15px] border border-line bg-bg-2">
+    <div ref={ref} className="overflow-hidden rounded-[15px] border border-line bg-bg-2">
       <div className="flex h-10 items-center gap-2 border-b border-line bg-surface px-4">
         <span className="size-2.5 rounded-full bg-surface-3" />
         <span className="size-2.5 rounded-full bg-surface-3" />
@@ -81,7 +100,9 @@ export function ShotDashboard() {
                 {tApp('result.title', { name: roomName, length: dec(input.L), width: dec(input.W) })}
               </div>
               <div className="mt-2 flex flex-wrap items-center gap-2 text-xs/[22px]">
-                <PricesSummaryBadge lines={result.mats} />
+                <motion.span initial={{ opacity: 0 }} animate={{ opacity: p >= 1 ? 1 : 0 }} transition={{ duration: 0.5 }}>
+                  <PricesSummaryBadge lines={result.mats} />
+                </motion.span>
                 <span className="text-fg-2">
                   {tApp('result.qualityBadge', { quality: tApp(`qualities.${input.quality}.name`) })} · {tApp('result.region')}
                 </span>
@@ -132,8 +153,12 @@ export function ShotDashboard() {
                   </span>
                 ))}
               </div>
-              {topMaterials.map((line) => (
-                <div key={`${line.cat}-${line.code}`} className={cn(TABLE_ROW, 'py-2.5 text-[13px]/5 last:border-b-0')}>
+              {topMaterials.map((line, index) => (
+                <motion.div
+                  key={`${line.cat}-${line.code}`}
+                  className={cn(TABLE_ROW, 'py-2.5 text-[13px]/5 last:border-b-0')}
+                  {...rowMotion(index)}
+                >
                   <span className="flex min-w-0 items-center gap-2">
                     <span className="size-1.5 shrink-0 rounded-[2px]" style={{ background: CATEGORY_COLOR[line.cat] }} />
                     <span className="truncate">{lineName(line)}</span>
@@ -141,7 +166,7 @@ export function ShotDashboard() {
                   <span className="text-right text-fg-2">{lineQty(line)}</span>
                   <span className="text-right text-fg-2">{fmt(line.price)}</span>
                   <span className="text-right font-medium">{fmt(line.total)}</span>
-                </div>
+                </motion.div>
               ))}
             </div>
 
@@ -150,18 +175,18 @@ export function ShotDashboard() {
               <div className="relative mx-auto size-33 rounded-full" style={{ background: `conic-gradient(${donut})` }}>
                 <div className="absolute inset-4.5 grid place-items-center rounded-full bg-surface text-center">
                   <div>
-                    <div className="font-display text-lg/[22px] font-semibold tabular-nums">{mln(result.total)}</div>
+                    <div className="font-display text-lg/[22px] font-semibold tabular-nums">{mln(scaled(result.total))}</div>
                     <div className="text-[11px]/[14px] text-fg-3">{t('donutCaption')}</div>
                   </div>
                 </div>
               </div>
               <div className="flex flex-col gap-2 text-xs/4 tabular-nums">
-                {breakdown.map(({ id, share }) => (
-                  <div key={id} className="flex items-center gap-2">
+                {breakdown.map(({ id, share }, index) => (
+                  <motion.div key={id} className="flex items-center gap-2" {...rowMotion(index + 2)}>
                     <span className="size-2 rounded-[2px]" style={{ background: CATEGORY_COLOR[id] }} />
                     <span className="text-fg-2">{tApp(`categories.${id}`)}</span>
-                    <span className="ml-auto">{Math.round(share)}%</span>
-                  </div>
+                    <span className="ml-auto">{Math.round(share * p)}%</span>
+                  </motion.div>
                 ))}
               </div>
             </div>

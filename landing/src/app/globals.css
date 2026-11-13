@@ -22,8 +22,11 @@
   --animate-screen-in: screen-in 0.5s var(--ease-out-expo) both;
   --animate-step-in: screen-in 0.45s var(--ease-out-expo) both;
   --animate-shimmer: shimmer 1.4s linear infinite;
-  --animate-accordion-down: accordion-down 0.3s ease;
-  --animate-accordion-up: accordion-up 0.3s ease;
+  --animate-accordion-down: accordion-down 0.45s var(--ease-out-expo);
+  --animate-accordion-up: accordion-up 0.3s var(--ease-out-expo);
+  --animate-marquee: marquee 38s linear infinite;
+  --animate-shine: shine 6s var(--ease-out-expo) 2.4s infinite;
+  --animate-beam: beam 5s linear infinite;
 
   @keyframes screen-in {
     from {
@@ -62,6 +65,28 @@
     }
     to {
       height: 0;
+    }
+  }
+
+  @keyframes marquee {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  @keyframes shine {
+    0% {
+      transform: translateX(-130%) skewX(-18deg);
+    }
+    22%,
+    100% {
+      transform: translateX(230%) skewX(-18deg);
+    }
+  }
+
+  @keyframes beam {
+    to {
+      --beam-angle: 360deg;
     }
   }
 
@@ -169,6 +194,117 @@
   }
 }
 
+@property --beam-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@utility spotlight {
+  position: relative;
+  isolation: isolate;
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+  }
+
+  &::before {
+    z-index: -1;
+    background: radial-gradient(520px circle at var(--mx, 50%) var(--my, 0%), var(--spot), transparent 42%);
+  }
+
+  &::after {
+    z-index: 1;
+    padding: 1px;
+    background: radial-gradient(300px circle at var(--mx, 50%) var(--my, 0%), var(--spot-edge), transparent 60%);
+    mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  }
+
+  &:hover::before,
+  &:hover::after {
+    opacity: 1;
+  }
+}
+
+@utility shine {
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    width: 40%;
+    pointer-events: none;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.42), transparent);
+    transform: translateX(-130%) skewX(-18deg);
+    animation: var(--animate-shine);
+  }
+}
+
+@utility beam-border {
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1.5px;
+    pointer-events: none;
+    background: conic-gradient(from var(--beam-angle), transparent 0 62%, var(--accent) 80%, var(--accent-hover) 86%, transparent 94%);
+    mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+    animation: var(--animate-beam);
+  }
+}
+
+@utility range-input {
+  appearance: none;
+  height: 6px;
+  width: 100%;
+  border-radius: 999px;
+  cursor: pointer;
+  background:
+    linear-gradient(90deg, var(--accent), var(--accent-hover)) 0 / var(--fill, 50%) 100% no-repeat,
+    var(--surface-3);
+
+  &::-webkit-slider-thumb {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--surface);
+    border: 2px solid var(--accent);
+    box-shadow: 0 0 0 5px var(--accent-soft), 0 2px 6px rgba(0, 0, 0, 0.3);
+    transition: transform 0.15s ease;
+  }
+
+  &::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--surface);
+    border: 2px solid var(--accent);
+    box-shadow: 0 0 0 5px var(--accent-soft), 0 2px 6px rgba(0, 0, 0, 0.3);
+  }
+
+  &:hover::-webkit-slider-thumb,
+  &:active::-webkit-slider-thumb {
+    transform: scale(1.12);
+  }
+}
+
+@utility marquee-mask {
+  mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
+}
+
 @utility sheen {
   background-image: var(--sheen);
 }
@@ -244,6 +380,12 @@
   *::after {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .animate-marquee,
+  .shine::after,
+  .beam-border::before {
+    animation: none !important;
   }
 }
 

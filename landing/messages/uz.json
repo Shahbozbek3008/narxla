@@ -275,6 +275,26 @@
     "pdf": "PDF yuklab olish",
     "send": "Ustaga yuborish"
   },
+  "liveCalc": {
+    "eyebrow": "Sinab ko‘ring",
+    "title": "Shu yerning o‘zida hisoblang",
+    "lead": "Slayderlarni suring — smeta Toshkent do‘konlari narxlari bo‘yicha darhol qayta hisoblanadi.",
+    "room": "Xona",
+    "length": "Uzunlik",
+    "width": "Kenglik",
+    "meters": "m",
+    "quality": "Sifat",
+    "budget": "Taxminiy byudjet",
+    "area": "{value} m² pol",
+    "currency": "mln so‘m",
+    "materials": "Materiallar",
+    "labour": "Usta ishi",
+    "duration": "Muddat",
+    "days": "{min}–{max} kun",
+    "top": "Asosiy xarajatlar",
+    "note": "Eshik, deraza va ish turlarini keyingi qadamda aniqlaysiz.",
+    "cta": "To‘liq smetada davom etish"
+  },
   "calculators": {
     "eyebrow": "Tezkor kalkulyatorlar",
     "title": "Bitta material kerakmi? 30 soniya.",

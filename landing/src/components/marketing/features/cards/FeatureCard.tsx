@@ -21,7 +21,7 @@ export function FeatureCard({ layout = 'stack', className, children }: FeatureCa
   return (
     <article
       className={cn(
-        'sheen h-full rounded-2xl border border-line bg-surface p-6 shadow-(--shadow-card) transition-[translate,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-(--shadow-lift)',
+        'spotlight sheen h-full rounded-2xl border border-line bg-surface p-6 shadow-(--shadow-card) transition-[translate,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-(--shadow-lift)',
         LAYOUT[layout],
         className,
       )}

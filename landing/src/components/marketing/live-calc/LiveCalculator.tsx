@@ -179,14 +179,14 @@ export function LiveCalculator() {
             { label: t('materials'), value: result.matTotal },
             { label: t('labour'), value: result.labTotal },
           ].map(({ label, value }) => (
-            <div key={label} className="rounded-xl border border-line bg-surface-2 px-3 py-2.5">
+            <div key={label} className="rounded-xl border border-line bg-surface-2 px-2.5 py-2.5 sm:px-3">
               <div className="truncate text-xs/4 text-fg-3">{label}</div>
-              <AnimatedValue value={value} format={formatMln} className="mt-1 block font-display text-base/6 font-semibold tabular-nums" />
+              <AnimatedValue value={value} format={formatMln} className="mt-1 block font-display text-[15px]/6 font-semibold whitespace-nowrap tabular-nums sm:text-base/6" />
             </div>
           ))}
-          <div className="rounded-xl border border-line bg-surface-2 px-3 py-2.5">
+          <div className="rounded-xl border border-line bg-surface-2 px-2.5 py-2.5 sm:px-3">
             <div className="truncate text-xs/4 text-fg-3">{t('duration')}</div>
-            <div className="mt-1 font-display text-base/6 font-semibold tabular-nums">{t('days', { min: result.dMin, max: result.dMax })}</div>
+            <div className="mt-1 font-display text-[15px]/6 font-semibold whitespace-nowrap tabular-nums sm:text-base/6">{t('days', { min: result.dMin, max: result.dMax })}</div>
           </div>
         </div>
 

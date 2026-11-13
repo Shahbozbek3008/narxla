@@ -885,7 +885,20 @@
         "tooCheap": "Far below the market — find out what work is excluded and whether there is a warranty."
       },
       "emptyTitle": "Enter the contractor's quote",
-      "emptyText": "The result will appear here on the market scale."
+      "emptyText": "The result will appear here on the market scale.",
+      "modeLabel": "Check mode",
+      "modes": {
+        "estimate": "Whole estimate",
+        "single": "Single job"
+      },
+      "backToEstimate": "Back to estimate: {name}",
+      "estimateTitle": "Labour in this estimate",
+      "estimateLead": "{name} · {count} jobs. Enter the total the contractor quoted for all the work and we will compare it with the market range.",
+      "work": "Job",
+      "marketRange": "Market range",
+      "labourTotal": "Labour per estimate",
+      "quoteTotal": "Contractor’s total quote",
+      "inEstimate": "In estimate"
     },
     "calcs": {
       "title": "Calculators",

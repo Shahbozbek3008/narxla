@@ -20,6 +20,7 @@ export const routes = {
   newEstimateStep: (step: number) => `/app/new?step=${step}`,
   newEstimatePlan: (plan: PlanKind) => `/app/new?plan=${plan}`,
   check: '/app/check',
+  checkEstimate: (id: string) => `/app/check?estimate=${id}`,
   calcs: '/app/calcs',
   calc: (id: string) => `/app/calcs/${id}`,
   shared: (token: string) => `/app/shared/${token}`,

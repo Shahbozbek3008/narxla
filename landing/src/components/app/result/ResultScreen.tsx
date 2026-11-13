@@ -130,7 +130,7 @@ function ResultView({ id, input, name, project }: ResultViewProps) {
               </Button>
             )}
             <Button asChild variant="secondary" size="sm" className="h-[38px]">
-              <Link href={routes.check}>
+              <Link href={routes.checkEstimate(id)}>
                 <ShieldCheck size={15} strokeWidth={1.5} aria-hidden />
                 {t('result.check')}
               </Link>

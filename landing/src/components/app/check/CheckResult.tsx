@@ -20,27 +20,26 @@ const SCALE_KEYS = ['low', 'range', 'high'] as const;
 
 const MOVE = 'transition-[left] duration-600 ease-(--ease-out-expo)';
 
-export function CheckResult() {
+export type CheckOutcome = ReturnType<typeof checkPrice>;
+
+export function CheckEmpty() {
+  const t = useTranslations('app.check');
+
+  return (
+    <div className={cn(card, 'flex min-h-70 flex-col items-center justify-center gap-2 p-5 text-center')}>
+      <span className="grid size-11 place-items-center rounded-xl border border-line-2 text-fg-3">
+        <ShieldCheck size={20} strokeWidth={1.5} aria-hidden />
+      </span>
+      <p className="mt-2 font-semibold">{t('emptyTitle')}</p>
+      <p className="max-w-[280px] text-sm text-fg-2">{t('emptyText')}</p>
+    </div>
+  );
+}
+
+export function CheckVerdict({ result }: { result: CheckOutcome }) {
   const t = useTranslations('app.check');
   const tApp = useTranslations('app');
-  const { type, volume, price } = useCheck();
-  const book = usePriceBook();
-  const amount = Number(price) || 0;
-  const quantity = num(volume);
 
-  if (amount <= 0 || quantity <= 0) {
-    return (
-      <div className={cn(card, 'flex min-h-70 flex-col items-center justify-center gap-2 p-5 text-center')}>
-        <span className="grid size-11 place-items-center rounded-xl border border-line-2 text-fg-3">
-          <ShieldCheck size={20} strokeWidth={1.5} aria-hidden />
-        </span>
-        <p className="mt-2 font-semibold">{t('emptyTitle')}</p>
-        <p className="max-w-[280px] text-sm text-fg-2">{t('emptyText')}</p>
-      </div>
-    );
-  }
-
-  const result = checkPrice(labourInfo(book, type), quantity, amount);
   const stats = [
     { label: t('stats.min'), value: result.lo },
     { label: t('stats.avg'), value: result.avg },
@@ -63,7 +62,7 @@ export function CheckResult() {
         >
           {t(`verdicts.${result.verdict}`, { percent: result.percent })}
         </p>
-        <p className="mt-1.5 text-sm text-fg-2 tabular-nums">{t('average', { value: fmt(result.avg) })}</p>
+        <p className="mt-1.5 text-sm text-fg-2 tabular-nums">{t('average', { value: fmt(Math.round(result.avg)) })}</p>
       </div>
 
       <div className="pt-7">
@@ -111,4 +110,14 @@ export function CheckResult() {
       </div>
     </div>
   );
+}
+
+export function CheckResult() {
+  const { type, volume, price } = useCheck();
+  const book = usePriceBook();
+  const amount = Number(price) || 0;
+  const quantity = num(volume);
+
+  if (amount <= 0 || quantity <= 0) return <CheckEmpty />;
+  return <CheckVerdict result={checkPrice(labourInfo(book, type), quantity, amount)} />;
 }

@@ -17,7 +17,7 @@ import { useFormatDate } from '../common/useFormatDate';
 export function CheckForm() {
   const t = useTranslations('app.check');
   const tApp = useTranslations('app');
-  const { cat, type, volume, price, pickCategory, pickType, setVolume, setPrice } = useCheck();
+  const { cat, type, volume, price, hints, pickCategory, pickType, setVolume, setPrice } = useCheck();
   const book = usePriceBook();
   const { unit } = useEngineText();
   const formatDate = useFormatDate();
@@ -54,6 +54,9 @@ export function CheckForm() {
                 <span className={cn('text-[13px]/[18px] font-semibold', selected ? 'text-accent-text' : 'text-fg')}>
                   {tApp(`labour.${item.code}`)}
                 </span>
+                {hints[item.code] !== undefined && (
+                  <span className="text-[11px]/4 font-medium text-success">{t('inEstimate')}</span>
+                )}
                 <span className="text-xs/4 text-fg-3 tabular-nums">{t('rate', { rate: fmt(labourInfo(book, item.code).price), unit: unit(item.unit) })}</span>
               </button>
             );

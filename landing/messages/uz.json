@@ -885,7 +885,20 @@
       },
       "emptyTitle": "Usta aytgan narxni kiriting",
       "emptyText": "Natija shu yerda bozor shkalasida ko‘rinadi.",
-      "updated": "Bozor oralig‘i yangilangan · {date}"
+      "updated": "Bozor oralig‘i yangilangan · {date}",
+      "modeLabel": "Tekshirish usuli",
+      "modes": {
+        "estimate": "Butun smeta bo‘yicha",
+        "single": "Bitta ish turi"
+      },
+      "backToEstimate": "Smetaga qaytish: {name}",
+      "estimateTitle": "Smetadagi usta ishlari",
+      "estimateLead": "{name} · {count} ta ish turi. Usta butun ish uchun aytgan summani kiriting — bozor oralig‘i bilan solishtiramiz.",
+      "work": "Ish",
+      "marketRange": "Bozor oralig‘i",
+      "labourTotal": "Smeta bo‘yicha ish haqi",
+      "quoteTotal": "Usta aytgan umumiy narx",
+      "inEstimate": "Smetada bor"
     },
     "calcs": {
       "title": "Kalkulyatorlar",

@@ -1195,7 +1195,11 @@
         "telegramHint": "Вход в один клик через Telegram",
         "verified": "Подтверждён",
         "connected": "Подключён",
-        "notConnected": "Не подключён"
+        "notConnected": "Не подключён",
+        "connect": "Подключить",
+        "disconnect": "Отключить",
+        "telegramUnavailable": "Вход через Telegram пока не настроен",
+        "onlyMethod": "Это ваш единственный способ входа"
       },
       "preferences": {
         "title": "Параметры смет",
@@ -1385,6 +1389,22 @@
       "sessionsRevoked": {
         "title": "Выход с других устройств выполнен",
         "text": "Завершено сессий: {count}."
+      },
+      "telegramLinked": {
+        "title": "Telegram подключён",
+        "text": "Теперь можно входить через Telegram в одно касание."
+      },
+      "telegramUnlinked": {
+        "title": "Telegram отключён",
+        "text": "Входите в аккаунт по номеру телефона."
+      },
+      "telegramTaken": {
+        "title": "Telegram уже занят",
+        "text": "Этот аккаунт Telegram привязан к другому профилю."
+      },
+      "telegramFailed": {
+        "title": "Не удалось подключить Telegram",
+        "text": "Подтвердите вход в окне Telegram и попробуйте снова."
       }
     },
     "units": {

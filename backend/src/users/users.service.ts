@@ -1,4 +1,5 @@
-import { Injectable } from '@nestjs/common';
+import { HttpStatus, Injectable } from '@nestjs/common';
+import { ApiError } from '../common/api-error.js';
 import type { User } from '../generated/prisma/client.js';
 import { PrismaService } from '../prisma/prisma.service.js';
 import { effectivePlan, estimateLimit, PLAN_PRICES, planPeriodEnd } from './domain/plan.js';
@@ -19,6 +20,24 @@ export class UsersService {
       update: {},
       select: { id: true },
     });
+  }
+
+  async linkTelegram(userId: string, telegramId: bigint) {
+    const owner = await this.prisma.user.findUnique({ where: { telegramId }, select: { id: true } });
+    if (owner && owner.id !== userId) {
+      throw new ApiError(HttpStatus.CONFLICT, 'TELEGRAM_TAKEN', 'This Telegram account is linked to another profile');
+    }
+    await this.prisma.user.update({ where: { id: userId }, data: { telegramId } });
+    return this.profile(userId);
+  }
+
+  async unlinkTelegram(userId: string) {
+    const { phone } = await this.prisma.user.findUniqueOrThrow({ where: { id: userId }, select: { phone: true } });
+    if (!phone) {
+      throw new ApiError(HttpStatus.CONFLICT, 'LAST_SIGN_IN_METHOD', 'Telegram is the only way to sign in to this account');
+    }
+    await this.prisma.user.update({ where: { id: userId }, data: { telegramId: null, notifyTelegram: false } });
+    return this.profile(userId);
   }
 
   async profile(userId: string) {

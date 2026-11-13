@@ -1195,7 +1195,11 @@
         "telegramHint": "One-tap sign-in with Telegram",
         "verified": "Verified",
         "connected": "Connected",
-        "notConnected": "Not connected"
+        "notConnected": "Not connected",
+        "connect": "Connect",
+        "disconnect": "Disconnect",
+        "telegramUnavailable": "Telegram sign-in is not configured yet",
+        "onlyMethod": "This is your only sign-in method"
       },
       "preferences": {
         "title": "Estimate defaults",
@@ -1385,6 +1389,22 @@
       "sessionsRevoked": {
         "title": "Signed out of other devices",
         "text": "{count} sessions were ended."
+      },
+      "telegramLinked": {
+        "title": "Telegram connected",
+        "text": "You can now sign in with Telegram in one tap."
+      },
+      "telegramUnlinked": {
+        "title": "Telegram disconnected",
+        "text": "Sign in with your phone number."
+      },
+      "telegramTaken": {
+        "title": "Telegram already in use",
+        "text": "This Telegram account is linked to another profile."
+      },
+      "telegramFailed": {
+        "title": "Couldn’t connect Telegram",
+        "text": "Confirm the sign-in in the Telegram window and try again."
       }
     },
     "units": {

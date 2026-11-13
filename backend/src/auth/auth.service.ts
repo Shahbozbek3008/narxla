@@ -31,6 +31,25 @@ export class AuthService {
   }
 
   async signInWithTelegram(payload: TelegramAuth, meta: SessionMeta) {
+    this.assertTelegram(payload);
+    const user = await this.users.upsertByTelegram(BigInt(payload.id), telegramDisplayName(payload));
+    return this.startSession(user.id, meta);
+  }
+
+  linkTelegram(userId: string, payload: TelegramAuth) {
+    this.assertTelegram(payload);
+    return this.users.linkTelegram(userId, BigInt(payload.id));
+  }
+
+  unlinkTelegram(userId: string) {
+    return this.users.unlinkTelegram(userId);
+  }
+
+  signOut(sessionId: string) {
+    return this.sessions.revoke(sessionId);
+  }
+
+  private assertTelegram(payload: TelegramAuth) {
     const { telegramBotToken } = this.config.auth;
     if (!telegramBotToken) {
       throw new ApiError(HttpStatus.SERVICE_UNAVAILABLE, 'TELEGRAM_DISABLED', 'Telegram sign-in is not configured');
@@ -38,12 +57,6 @@ export class AuthService {
     if (!verifyTelegramAuth(payload, telegramBotToken, Math.floor(Date.now() / SECOND_MS))) {
       throw new ApiError(HttpStatus.UNAUTHORIZED, 'TELEGRAM_INVALID', 'Telegram sign-in could not be verified');
     }
-    const user = await this.users.upsertByTelegram(BigInt(payload.id), telegramDisplayName(payload));
-    return this.startSession(user.id, meta);
-  }
-
-  signOut(sessionId: string) {
-    return this.sessions.revoke(sessionId);
   }
 
   private async startSession(userId: string, meta: SessionMeta) {

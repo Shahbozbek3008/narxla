@@ -154,4 +154,17 @@ describe('Accounts and estimates (e2e)', () => {
       .expect(503);
     expect(response.body.code).toBe('TELEGRAM_DISABLED');
   });
+
+  it('guards Telegram linking behind a session and keeps phone users able to unlink', async () => {
+    const payload = { id: 1, first_name: 'Test', auth_date: Math.floor(Date.now() / 1000), hash: 'a'.repeat(64) };
+    await request(app.getHttpServer()).post('/api/me/telegram').send(payload).expect(401);
+
+    const { agent } = await signIn();
+    const linked = await agent.post('/api/me/telegram').send(payload).expect(503);
+    expect(linked.body.code).toBe('TELEGRAM_DISABLED');
+
+    const unlinked = await agent.delete('/api/me/telegram').expect(200);
+    expect(unlinked.body.telegramLinked).toBe(false);
+    await agent.delete('/api/me').expect(204);
+  });
 });

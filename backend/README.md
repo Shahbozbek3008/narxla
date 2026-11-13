@@ -34,6 +34,9 @@ $ npm install
 ## Compile and run the project
 
 ```bash
+# one command: postgres + prisma generate + migrations + seed + watch mode
+$ npm run dev
+
 # development
 $ npm run start
 

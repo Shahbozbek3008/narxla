@@ -1195,7 +1195,11 @@
         "telegramHint": "Telegram orqali bir bosishda kirish",
         "verified": "Tasdiqlangan",
         "connected": "Ulangan",
-        "notConnected": "Ulanmagan"
+        "notConnected": "Ulanmagan",
+        "connect": "Ulash",
+        "disconnect": "Uzish",
+        "telegramUnavailable": "Telegram orqali kirish hozircha sozlanmagan",
+        "onlyMethod": "Bu yagona kirish usulingiz"
       },
       "preferences": {
         "title": "Smeta standartlari",
@@ -1385,6 +1389,22 @@
       "sessionsRevoked": {
         "title": "Boshqa qurilmalardan chiqildi",
         "text": "{count} ta sessiya yakunlandi."
+      },
+      "telegramLinked": {
+        "title": "Telegram ulandi",
+        "text": "Endi Telegram orqali bir bosishda kirishingiz mumkin."
+      },
+      "telegramUnlinked": {
+        "title": "Telegram uzildi",
+        "text": "Hisobingizga telefon raqam orqali kirasiz."
+      },
+      "telegramTaken": {
+        "title": "Telegram band",
+        "text": "Bu Telegram akkaunt boshqa hisobga ulangan."
+      },
+      "telegramFailed": {
+        "title": "Telegram ulanmadi",
+        "text": "Telegram oynasida tasdiqlang va qaytadan urinib ko‘ring."
       }
     },
     "units": {

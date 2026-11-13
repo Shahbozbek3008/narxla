@@ -11,6 +11,7 @@ import { useFormatDate } from '../../common/useFormatDate';
 import { Avatar } from '../../shell/Avatar';
 import { FormActions } from '../FormActions';
 import { SettingsCard, SettingsField, SettingsFooter } from '../SettingsCard';
+import { TelegramConnection } from '../TelegramConnection';
 import { useProfileForm } from '../useProfileForm';
 
 const FIELDS = ['name', 'district'] as const;
@@ -97,10 +98,11 @@ export function ProfileTab() {
           </span>
         </SettingsField>
         <SettingsField label={t('telegram')} hint={t('telegramHint')}>
-          <span className="flex max-w-md flex-1 items-center gap-3 rounded-[10px] border border-line bg-surface-2 px-3 py-2.5">
+          <span className="flex max-w-md flex-1 items-center gap-3 rounded-[10px] border border-line bg-surface-2 py-1.5 pr-1.5 pl-3">
             <Send size={16} strokeWidth={1.5} className="text-fg-3" aria-hidden />
-            <span className="flex-1 text-sm">Telegram</span>
-            <ConnectionState connected={user.telegramLinked} label={t('connected')} />
+            <span className="min-w-0 flex-1 truncate text-sm">Telegram</span>
+            {user.telegramLinked && <ConnectionState connected label={t('connected')} />}
+            <TelegramConnection user={user} />
           </span>
         </SettingsField>
       </SettingsCard>

@@ -128,6 +128,22 @@ export function useUpdateProfile() {
   });
 }
 
+export function useLinkTelegram() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (data: TelegramAuthData) => meApi.linkTelegram(data),
+    onSuccess: (profile) => queryClient.setQueryData(queryKeys.me, profile),
+  });
+}
+
+export function useUnlinkTelegram() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: meApi.unlinkTelegram,
+    onSuccess: (profile) => queryClient.setQueryData(queryKeys.me, profile),
+  });
+}
+
 function useEstimateCache() {
   const queryClient = useQueryClient();
   return {

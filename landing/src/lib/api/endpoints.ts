@@ -23,6 +23,8 @@ export const meApi = {
   update: (patch: Partial<ProfileFields>) => apiRequest<Profile>('/me', { method: 'PATCH', body: patch }),
   remove: () => apiRequest<void>('/me', { method: 'DELETE' }),
   payments: (signal?: AbortSignal) => apiRequest<Payment[]>('/me/payments', { signal }),
+  linkTelegram: (data: TelegramAuthData) => apiRequest<Profile>('/me/telegram', { method: 'POST', body: data }),
+  unlinkTelegram: () => apiRequest<Profile>('/me/telegram', { method: 'DELETE' }),
   revokeOtherSessions: () => apiRequest<{ revoked: number }>('/me/sessions', { method: 'DELETE' }),
 };
 

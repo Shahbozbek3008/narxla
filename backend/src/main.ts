@@ -18,7 +18,7 @@ function setupSwagger(app: INestApplication) {
   const document = SwaggerModule.createDocument(
     app,
     new DocumentBuilder()
-      .setTitle('Smetachi API')
+      .setTitle('Narxla API')
       .setDescription('Renovation estimates, accounts and construction prices for Tashkent')
       .setVersion('1.0')
       .addApiKey({ type: 'apiKey', in: 'header', name: ADMIN_KEY_HEADER }, ADMIN_SECURITY)

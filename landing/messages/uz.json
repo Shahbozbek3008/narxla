@@ -1,6 +1,6 @@
 {
   "meta": {
-    "title": "Smetachi — remont smetasi 2 daqiqada",
+    "title": "Narxla — remont smetasi 2 daqiqada",
     "description": "Xona o‘lchamlarini kiriting — material ro‘yxati, so‘mdagi narx oralig‘i va usta ish haqini bir zumda oling. Remontni boshlashdan oldin byudjetni aniq biling va usta aytgan narxni tekshiring."
   },
   "common": {
@@ -28,7 +28,7 @@
     "light": "Yorug‘",
     "language": "Til",
     "hints": {
-      "features": "Smetachi nima qila oladi",
+      "features": "Narxla nima qila oladi",
       "calculators": "Kafel, bo‘yoq, laminat va boshqalar",
       "pricing": "Bepul, Loyiha va Pro tariflar",
       "faq": "Ko‘p beriladigan savollar"
@@ -47,8 +47,8 @@
     ]
   },
   "shot": {
-    "alt": "Smetachi ilovasi: yotoqxona smetasi namunasi",
-    "url": "smetachi.uz/app/estimates/demo",
+    "alt": "Narxla ilovasi: yotoqxona smetasi namunasi",
+    "url": "narxla.uz/app/estimates/demo",
     "donutCaption": "mln so‘m jami",
     "floatCheck": {
       "title": "Usta narxi tekshirildi",
@@ -95,13 +95,13 @@
           "+4,6 mln"
         ]
       ],
-      "solution": "Smetachi har bir xarajatni oldindan ro‘yxatga chiqaradi"
+      "solution": "Narxla har bir xarajatni oldindan ro‘yxatga chiqaradi"
     }
   },
   "features": {
     "eyebrow": "Imkoniyatlar",
     "title": "Taxmin emas — har bir so‘m hisobda",
-    "lead": "Smetachi o‘lchamdan tortib usta narxigacha hamma narsani bitta joyda hisoblaydi.",
+    "lead": "Narxla o‘lchamdan tortib usta narxigacha hamma narsani bitta joyda hisoblaydi.",
     "materials": {
       "title": "Aniq material miqdori",
       "text": "Eshik va derazalar ayiriladi, kesish chiqindisi va 10% zaxira qo‘shiladi. Do‘konga ro‘yxat bilan borasiz.",
@@ -383,7 +383,7 @@
     "lead": "Javob topmadingizmi? <link>Telegram’da yozing</link>.",
     "items": [
       {
-        "question": "Smetachi narxlari qanchalik aniq?",
+        "question": "Narxla narxlari qanchalik aniq?",
         "answer": "Narxlar Toshkentdagi ochiq onlayn do‘konlar va e’lon saytlaridan (Uzum Market, Prom.uz, Glotr.uz va boshqalar) olinadi. Har bir smetada narx sanasi ko‘rsatiladi, natija esa bitta raqam emas — oraliq ko‘rinishida beriladi. Narxlar har oy yangilanadi; xato narx ko‘rsangiz, smetaning o‘zidan bir bosishda xabar berasiz."
       },
       {
@@ -415,7 +415,7 @@
   },
   "footer": {
     "about": "Remont smetasini so‘mda, real bozor narxlari bilan hisoblaydigan kalkulyator.",
-    "copyright": "© 2026 Smetachi · Toshkent",
+    "copyright": "© 2026 Narxla · Toshkent",
     "columns": {
       "product": {
         "title": "Mahsulot",
@@ -449,7 +449,7 @@
   },
   "app": {
     "meta": {
-      "title": "Smetachi — ilova"
+      "title": "Narxla — ilova"
     },
     "nav": {
       "label": "Asosiy navigatsiya",
@@ -817,7 +817,7 @@
         "range": "Byudjet oralig‘i"
       },
       "footer": "Narxlar 8-noyabr, 2026 holatiga ko‘ra, Toshkent bozorlari asosida. Miqdorlar {reserve}% zaxira bilan.",
-      "site": "smetachi.uz · {page} / {pages}",
+      "site": "narxla.uz · {page} / {pages}",
       "continued": "(davomi)",
       "estimatedNote": "* — taxminiy narx, do‘konlardan hali tekshirilmagan."
     },
@@ -1218,7 +1218,7 @@
         },
         "notifyTelegram": {
           "title": "Telegram orqali",
-          "desc": "Xabarlar @smetachi_bot ga keladi"
+          "desc": "Xabarlar @narxla_bot ga keladi"
         },
         "notifyNews": {
           "title": "Maslahat va yangiliklar",
@@ -1247,7 +1247,7 @@
         "freeForever": "Har doim bepul",
         "oneTime": "Bir martalik to‘lov",
         "monthly": "Oylik obuna",
-        "manualNote": "Onlayn to‘lov tez orada. Hozircha tarif @smetachi_support orqali ulanadi.",
+        "manualNote": "Onlayn to‘lov tez orada. Hozircha tarif @narxla_support orqali ulanadi.",
         "upgrade": "Tarifni yangilash",
         "change": "Tarifni o‘zgartirish",
         "plansTitle": "Tariflar",
@@ -1328,7 +1328,7 @@
       },
       "help": {
         "title": "Yordam",
-        "text": "Telegram: @smetachi_support"
+        "text": "Telegram: @narxla_support"
       },
       "settingsSaved": {
         "title": "Sozlamalar saqlandi",
@@ -1336,7 +1336,7 @@
       },
       "billing": {
         "title": "Tarifni ulash",
-        "text": "Hozircha tarif qo‘lda ulanadi — Telegram: @smetachi_support"
+        "text": "Hozircha tarif qo‘lda ulanadi — Telegram: @narxla_support"
       },
       "loggedOut": {
         "title": "Tizimdan chiqdingiz",
@@ -1538,7 +1538,7 @@
     }
   },
   "admin": {
-    "metaTitle": "Smetachi — admin",
+    "metaTitle": "Narxla — admin",
     "badge": "Admin",
     "signOut": "Chiqish",
     "close": "Yopish",

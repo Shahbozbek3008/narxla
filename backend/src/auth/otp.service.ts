@@ -39,7 +39,7 @@ export class OtpService {
     await this.prisma.otpChallenge.create({
       data: { phone, codeHash: hashOtp(secret, phone, code), expiresAt: new Date(now + otpTtlSeconds * SECOND_MS) },
     });
-    await this.sms.send(phone, `Smetachi: kirish kodi ${code}. Kodni hech kimga bermang.`);
+    await this.sms.send(phone, `Narxla: kirish kodi ${code}. Kodni hech kimga bermang.`);
 
     return { expiresIn: otpTtlSeconds, resendIn: otpResendSeconds };
   }

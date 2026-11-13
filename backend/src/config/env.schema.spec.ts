@@ -4,7 +4,7 @@ const BASE = {
   DATABASE_URL: 'postgresql://user:pass@localhost:5432/db',
   ADMIN_API_KEY: 'a'.repeat(32),
   AUTH_SECRET: 'b'.repeat(32),
-  SCRAPER_USER_AGENT: 'SmetachiBot/1.0',
+  SCRAPER_USER_AGENT: 'NarxlaBot/1.0',
 };
 
 describe('validateEnv', () => {

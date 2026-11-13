@@ -2,7 +2,7 @@ import { BRAND_NAME } from '@/lib/config';
 import { cn } from '@/lib/utils';
 
 const LOGO_PATH =
-  'M16.5 6.5h-7A2.5 2.5 0 0 0 7 9v.5A2.5 2.5 0 0 0 9.5 12h5a2.5 2.5 0 0 1 2.5 2.5v.5a2.5 2.5 0 0 1-2.5 2.5h-7';
+  'M7.5 17.5v-11l9 11v-11';
 
 const TILE_RADIUS_RATIO = 0.28;
 const GLYPH_RATIO = 0.7;

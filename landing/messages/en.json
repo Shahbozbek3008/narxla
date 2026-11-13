@@ -1,6 +1,6 @@
 {
   "meta": {
-    "title": "Smetachi — a renovation estimate in 2 minutes",
+    "title": "Narxla — a renovation estimate in 2 minutes",
     "description": "Enter your room dimensions and instantly get a materials list, a price range in UZS and the cost of labour. Know your budget before the renovation starts and check the price your contractor quotes."
   },
   "common": {
@@ -28,7 +28,7 @@
     "light": "Light",
     "language": "Language",
     "hints": {
-      "features": "What Smetachi can do",
+      "features": "What Narxla can do",
       "calculators": "Tile, paint, laminate and more",
       "pricing": "Free, Project and Pro plans",
       "faq": "Frequently asked questions"
@@ -47,8 +47,8 @@
     ]
   },
   "shot": {
-    "alt": "Smetachi app: sample bedroom estimate",
-    "url": "smetachi.uz/app/estimates/demo",
+    "alt": "Narxla app: sample bedroom estimate",
+    "url": "narxla.uz/app/estimates/demo",
     "donutCaption": "mln UZS total",
     "floatCheck": {
       "title": "Contractor quote checked",
@@ -95,13 +95,13 @@
           "+4.6M"
         ]
       ],
-      "solution": "Smetachi lists every expense up front"
+      "solution": "Narxla lists every expense up front"
     }
   },
   "features": {
     "eyebrow": "Features",
     "title": "No guesswork — every som counted",
-    "lead": "Smetachi calculates everything in one place, from room dimensions to the contractor’s price.",
+    "lead": "Narxla calculates everything in one place, from room dimensions to the contractor’s price.",
     "materials": {
       "title": "Exact material quantities",
       "text": "Doors and windows are subtracted, cutting waste and a 10% reserve are added. You go to the store with a list.",
@@ -383,7 +383,7 @@
     "lead": "Didn’t find an answer? <link>Message us on Telegram</link>.",
     "items": [
       {
-        "question": "How accurate are Smetachi’s prices?",
+        "question": "How accurate are Narxla’s prices?",
         "answer": "Prices come from open online stores and classifieds sites in Tashkent (Uzum Market, Prom.uz, Glotr.uz and others). Every estimate shows the price date, and the result is a range rather than a single number."
       },
       {
@@ -415,7 +415,7 @@
   },
   "footer": {
     "about": "A calculator that estimates renovation costs in UZS using real market prices.",
-    "copyright": "© 2026 Smetachi · Tashkent",
+    "copyright": "© 2026 Narxla · Tashkent",
     "columns": {
       "product": {
         "title": "Product",
@@ -449,7 +449,7 @@
   },
   "app": {
     "meta": {
-      "title": "Smetachi — app"
+      "title": "Narxla — app"
     },
     "nav": {
       "label": "Main navigation",
@@ -817,7 +817,7 @@
         "range": "Budget range"
       },
       "footer": "Prices as of November 8, 2026, based on Tashkent markets. Quantities include a {reserve}% reserve.",
-      "site": "smetachi.uz · {page} / {pages}",
+      "site": "narxla.uz · {page} / {pages}",
       "continued": "(continued)",
       "estimatedNote": "* — estimated price, not yet checked in stores."
     },
@@ -1218,7 +1218,7 @@
         },
         "notifyTelegram": {
           "title": "Via Telegram",
-          "desc": "Messages are sent to @smetachi_bot"
+          "desc": "Messages are sent to @narxla_bot"
         },
         "notifyNews": {
           "title": "Tips and news",
@@ -1227,7 +1227,7 @@
       },
       "appearance": {
         "themeTitle": "Theme",
-        "themeLead": "Choose how Smetachi looks. Stored on this device.",
+        "themeLead": "Choose how Narxla looks. Stored on this device.",
         "dark": "Dark",
         "light": "Light",
         "system": "System",
@@ -1247,7 +1247,7 @@
         "freeForever": "Free forever",
         "oneTime": "One-time payment",
         "monthly": "Monthly subscription",
-        "manualNote": "Online payments are coming soon. For now, plans are activated via @smetachi_support.",
+        "manualNote": "Online payments are coming soon. For now, plans are activated via @narxla_support.",
         "upgrade": "Upgrade plan",
         "change": "Change plan",
         "plansTitle": "Plans",
@@ -1328,7 +1328,7 @@
       },
       "help": {
         "title": "Help",
-        "text": "Telegram: @smetachi_support"
+        "text": "Telegram: @narxla_support"
       },
       "settingsSaved": {
         "title": "Settings saved",
@@ -1336,7 +1336,7 @@
       },
       "billing": {
         "title": "Plan upgrades",
-        "text": "Plans are activated manually for now — Telegram: @smetachi_support"
+        "text": "Plans are activated manually for now — Telegram: @narxla_support"
       },
       "loggedOut": {
         "title": "Signed out",
@@ -1538,7 +1538,7 @@
     }
   },
   "admin": {
-    "metaTitle": "Smetachi — admin",
+    "metaTitle": "Narxla — admin",
     "badge": "Admin",
     "signOut": "Sign out",
     "close": "Close",

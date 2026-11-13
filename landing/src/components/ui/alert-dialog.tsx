@@ -14,7 +14,7 @@ function AlertDialogContent({ className, children, ...props }: ComponentProps<ty
     <AlertDialogPrimitive.Portal>
       <AlertDialogPrimitive.Overlay
         data-slot="alert-dialog-overlay"
-        className="fixed inset-0 z-150 bg-[rgba(4,5,8,.55)] backdrop-blur-[6px] duration-300 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:animate-in data-[state=open]:fade-in-0"
+        className="fixed inset-0 z-150 bg-[rgba(6,11,17,.55)] backdrop-blur-[6px] duration-300 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:animate-in data-[state=open]:fade-in-0"
       />
       <div className="pointer-events-none fixed inset-0 z-150 grid place-items-center p-4">
         <AlertDialogPrimitive.Content

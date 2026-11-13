@@ -12,9 +12,9 @@ import { cn } from '@/lib/utils';
 import { SettingsCard } from '../SettingsCard';
 
 const THEMES: { id: ThemePreference; preview: string; line: string }[] = [
-  { id: 'dark', preview: '#0B0D12', line: '#2A2F3A' },
+  { id: 'dark', preview: '#0E1621', line: '#2B3846' },
   { id: 'light', preview: '#FAFAF8', line: '#DCDCD8' },
-  { id: 'system', preview: 'linear-gradient(135deg,#0B0D12 50%,#FAFAF8 50%)', line: '#8A8F99' },
+  { id: 'system', preview: 'linear-gradient(135deg,#0E1621 50%,#FAFAF8 50%)', line: '#8A8F99' },
 ];
 
 const OPTION =

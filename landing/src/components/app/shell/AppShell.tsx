@@ -31,7 +31,7 @@ export function AppShell({ children }: { children: ReactNode }) {
   return (
     <div
       data-focused={focused}
-      className="flex min-h-screen [--nav-bg:rgba(11,13,18,.78)] [--tabbar-space:calc(68px+env(safe-area-inset-bottom))] light:[--nav-bg:rgba(250,250,248,.8)] data-[focused=true]:[--tabbar-space:env(safe-area-inset-bottom)] md:[--tabbar-space:0px]"
+      className="flex min-h-screen [--nav-bg:rgba(14,22,33,.8)] [--tabbar-space:calc(68px+env(safe-area-inset-bottom))] light:[--nav-bg:rgba(250,250,248,.8)] data-[focused=true]:[--tabbar-space:env(safe-area-inset-bottom)] md:[--tabbar-space:0px]"
     >
       <Sidebar />
       <main className="flex min-w-0 flex-1 flex-col pb-[calc(var(--tabbar-space)+16px)] md:pb-0">
